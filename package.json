@@ -1,7 +1,7 @@
 {
   "name": "mvm-system",
   "version": "1.0.0",
-  "description": "",
+  "description": "Trabajo ingenieria de software",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,5 +11,13 @@
   "dependencies": {
     "express": "^4.18.1",
     "mysql": "^2.18.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JosMiguelMM2/MVM-SYSTEM.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JosMiguelMM2/MVM-SYSTEM/issues"
+  },
+  "homepage": "https://github.com/JosMiguelMM2/MVM-SYSTEM#readme"
 }
