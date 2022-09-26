@@ -1,14 +1,14 @@
-/*
+
 const express = require('express');
 const router = express.Router();
 
-var  = require('../modelos/TipDocModel');
+var  tipEmpleadoModel = require('../modelos/tipEmpleadoModel');
 
 module.exports = function()
 {
     router.get("/", function (req, res)
     {
-        TipDocModel.getTipDocs(function (error, data)
+        tipEmpleadoModel.getTipEmpleados(function(error, data)
         {
             res.status(200).json(data);
         });
@@ -24,7 +24,7 @@ module.exports = function()
 
         if(!isNaN(id))
         {
-            TipDocModel.getTipDoc(id, function (error, data)
+            tipEmpleadoModel.getTipEmpleado(id, function (error, data)
             {
             if(typeof data !== 'undefined' && data.length > 0)
             {
@@ -50,14 +50,20 @@ module.exports = function()
 
     router.post("/", function (req, res)
     {
-        var TipDocData =
+        var TipEmpleadoData =
         {
-            id_tip_doc: null,
-            tipo_documento: req.body.tipo_documento,
-            iniciales_tip_doc: req.body.iniciales_tip_doc
+            Id_empleados: null,
+            Id_catalogos_universal: req.body.Id_catalogos_universal,
+            nombre1_empleados: req.body.nombre1_empleados,
+            nombre2_empleados: req.body.nombre2_empleados,
+            apellido1_empleados: req.body.apellido1_empleados,
+            apellido2_empleados: req.body.apellido2_empleados,
+            tipodocu_empleados: req.body.tipodocu_empleados,
+            numdoc_empleados: req.body.numdoc_empleados,
+            cargo_empleados: req.body.cargo_empleados
         };
 
-        TipDocModel.insertTipDoc(TipDocData, function(error, data)
+        tipEmpleadoModel.insertTipEmpleado(TipEmpleadoData, function(error, data)
         {
             if(data)
             {
@@ -77,15 +83,22 @@ router.put("/", function (req, res)
     {
     //almacenamos los datos de la peticiÃn en un objeto
     //console.log(" 38");
-        var TipDocData =
-        { 
-            id_tip_doc: req.body.id_tip_doc,
-            tipo_documento: req.body.tipo_documento,
-            iniciales_tip_doc: req.body.iniciales_tip_doc,
+
+        var TipEmpleadoData =
+        {
+            Id_empleados: req.body.Id_empleados,
+            Id_catalogos_universal: req.body.Id_catalogos_universal,
+            nombre1_empleados: req.body.nombre1_empleados,
+            nombre2_empleados: req.body.nombre2_empleados,
+            apellido1_empleados: req.body.apellido1_empleados,
+            apellido2_empleados: req.body.apellido2_empleados,
+            tipodocu_empleados: req.body.tipodocu_empleados,
+            numdoc_empleados: req.body.numdoc_empleados,
+            cargo_empleados: req.body.cargo_empleados
         };
 
     //usamos la funcion para actualizar
-    TipDocModel.updateTipDoc(TipDocData, function (error, data)
+    tipEmpleadoModel.updateTipEmpleado(TipEmpleadoData, function (error, data)
     {
     //se muestra el mensaje correspondiente
         if (data && data.msg)
@@ -104,4 +117,3 @@ router.put("/", function (req, res)
 
     return router;
 }
-*/

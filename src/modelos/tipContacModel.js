@@ -35,9 +35,9 @@ tipContacModel.getTipContacs = function(callback)
             else
             {
                 //debuelve las filas como un Json
-                //callback(null, rows);
+                callback(null, rows);
                 //comvierte las filas Json a una cadena de texto para Angular
-                callback(null, JSON.stringify(rows));
+                //callback(null, JSON.stringify(rows));
             }
         });
     }
@@ -109,6 +109,7 @@ tipContacModel.getTipContacs = function(callback)
         +", Dato_contacto = "+ connection.escape(TipContacData.Dato_contacto)
         +" WHERE Id_contactos = "
         + connection.escape(TipContacData.Id_contactos)+";";
+      
         //console.log(" 37 tal "+ sql);
 
         connection.query(sql, function (error, result)

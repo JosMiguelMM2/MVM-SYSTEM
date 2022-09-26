@@ -7,8 +7,10 @@ var http = require('http');//protocolo de intercambio de archivos
 var path = require('path');//direccion
 
 var conectado = require('./src/conexion/index');
+//const { getTipEmpleado } = require('./src/modelos/tipEmpleadoModel');
 
 var tipContac= require('./src/rutas/tipContacRutas');
+var tipEmpleado= require('./src/rutas/tipEmpleadoRuta');
 var app = express();//recibe un constructor
 
 // todos los entornos
@@ -55,6 +57,7 @@ next();
 
 //app.use('/tipdoc', tipdoc());//ruta para el servicio
 app.use('/tipContac', tipContac());
+app.use('/tipEmpleado', tipEmpleado());
 http.createServer(app).listen(app.get('port'), function ( )
 
 {
