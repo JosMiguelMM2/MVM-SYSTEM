@@ -1,7 +1,7 @@
 
 const connection = require('../conexion');
 
-var tipContacModel = {};
+let tipContacModel = {};
 
 //obtener todos los tipos de documentos
 
@@ -17,7 +17,7 @@ tipContacModel.getTipContacs = function(callback)
         + "FROM `am_contactos`"
         + "ORDER BY `Id_empleados`";*/
         
-        var sql = "SELECT "
+        let sql = "SELECT "
         +"ct.`Id_contactos`"
         +",g.`tipodocu_empleados` AS 'Numero Documento'"
         +",D.`denominacion_universal` AS 'Tipo Contacto'" 
@@ -51,7 +51,7 @@ tipContacModel.getTipContacs = function(callback)
     {
         if(connection)
         {
-            var sql = "SELECT `Id_contactos`, `Id_empleados`, `Tipo_contacto`, `Dato_contacto` FROM `am_contactos` WHERE Id_contactos = "
+            let sql = "SELECT `Id_contactos`, `Id_empleados`, `Tipo_contacto`, `Dato_contacto` FROM `am_contactos` WHERE Id_contactos = "
             + connection.escape(id) +";";
 
             // console.log id
@@ -77,7 +77,7 @@ tipContacModel.getTipContacs = function(callback)
     {
         if(connection)
         {
-             var sql = "INSERT INTO am_contactos SET ?";
+             let sql = "INSERT INTO am_contactos SET ?";
             //var sql = "INSERT INTO `ct_tipos_documentos`(`tipo_documento`, `iniciales_tip_doc`) "
             //+ " VALUES (" + connection.escape(TipDocData.tipo_documento) + ", " + connection.escape(TipDocData.iniciales_tip_doc) + ");"
             console.log("aqui "+sql)
@@ -103,7 +103,7 @@ tipContacModel.getTipContacs = function(callback)
     // console.log(" 32 tal ");
     if (connection)
     {
-        var sql = "UPDATE `am_contactos` SET"
+        let sql = "UPDATE `am_contactos` SET"
         +" Id_empleados = "+ connection.escape(TipContacData.Id_empleados)
         +", Tipo_contacto = "+ connection.escape(TipContacData.Tipo_contacto)
         +", Dato_contacto = "+ connection.escape(TipContacData.Dato_contacto)

@@ -2,7 +2,7 @@
 const express = require ('express');
 const router = express.Router();
 
-var tipContacModel = require('../modelos/tipContacModel');
+let tipContacModel = require('../modelos/tipContacModel');
 
 module.exports = function()
 {
@@ -20,7 +20,7 @@ module.exports = function()
 
     router.get("/:id", function (req, res)
     {
-        var id = req.params.id;
+        let id = req.params.id;
 
         if(!isNaN(id))
         {
@@ -51,7 +51,7 @@ module.exports = function()
 
     router.post("/", function (req, res)
     {
-        var TipContacData =
+        let TipContacData =
         {
             Id_contactos: null,
             Id_empleados: req.body.Id_empleados,
@@ -79,7 +79,7 @@ router.put("/", function (req, res)
     {
     //almacenamos los datos de la peticiÃn en un objeto
     //console.log(" 38");
-        var TipContacData =
+        let TipContacData =
         { 
             Id_contactos: req.body.Id_contactos,
             Id_empleados: req.body.Id_empleados,
