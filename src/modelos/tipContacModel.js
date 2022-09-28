@@ -15,8 +15,8 @@ tipContacModel.getTipContacs = function(callback)
         + ", `Tipo_contacto`"
         + ", `Dato_contacto`"  
         + "FROM `am_contactos`"
-        + "ORDER BY `Id_empleados`";*/
-        
+        + "ORDER BY `Id_empleados`";
+        */
         let sql = "SELECT "
         +"ct.`Id_contactos`"
         +",g.`tipodocu_empleados` AS 'Numero Documento'"
