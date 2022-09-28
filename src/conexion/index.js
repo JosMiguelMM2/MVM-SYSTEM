@@ -1,7 +1,7 @@
-var mysql = require('mysql');
+let mysql = require('mysql');
 
-var settings = require('./confing.json');
-var connection;
+let settings = require('./confing.json');
+let connection;
 
 function connectDatabase()
 

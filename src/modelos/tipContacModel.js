@@ -10,7 +10,7 @@ tipContacModel.getTipContacs = function(callback)
 {
     if(connection)
     {   
-       /* var sql = "SELECT `Id_contactos`"
+       /* let sql = "SELECT `Id_contactos`"
         + ", `Id_empleados`"
         + ", `Tipo_contacto`"
         + ", `Dato_contacto`"  
@@ -87,7 +87,7 @@ tipContacModel.getTipContacs = function(callback)
         if(connection)
         {
              let sql = "INSERT INTO am_contactos SET ?";
-            //var sql = "INSERT INTO `ct_tipos_documentos`(`tipo_documento`, `iniciales_tip_doc`) "
+            //let sql = "INSERT INTO `ct_tipos_documentos`(`tipo_documento`, `iniciales_tip_doc`) "
             //+ " VALUES (" + connection.escape(TipDocData.tipo_documento) + ", " + connection.escape(TipDocData.iniciales_tip_doc) + ");"
             console.log("aqui "+sql)
 

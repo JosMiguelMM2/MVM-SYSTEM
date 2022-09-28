@@ -1,7 +1,7 @@
 const connection = require('../conexion');
 
 
-var tipEmpleadoModel = {};
+let tipEmpleadoModel = {};
 
 
 //obtener todos los tipos de documentos
@@ -10,7 +10,7 @@ tipEmpleadoModel.getTipEmpleados= function (callback)
 {
     if(connection)
     {
-        /*var sql = "SELECT `Id_empleados`" 
+        /*let sql = "SELECT `Id_empleados`" 
         + ", `Id_catalogos_universal`"
         + ", `nombre1_empleados`"
         + ", `nombre2_empleados`"
@@ -21,7 +21,7 @@ tipEmpleadoModel.getTipEmpleados= function (callback)
         + ", `cargo_empleados`"
         + "FROM `tb_empleados`"
         + "ORDER BY `Id_empleados`;";*/
-       var sql = " SELECT "+
+       let sql = " SELECT "+
        " e.`Id_empleados`,"+
        " D.`denominacion_universal` AS 'Tipo Documento',"+
        " CONCAT( e.`nombre1_empleados`, ' ',"+
@@ -60,7 +60,7 @@ tipEmpleadoModel.getTipEmpleados= function (callback)
     {
         if(connection)
         {
-            /*var sql = "SELECT `Id_empleados`" 
+            /*let sql = "SELECT `Id_empleados`" 
             + ", `Id_catalogos_universal`"
             + ", `nombre1_empleados`"
             + ", `nombre2_empleados`"
@@ -71,7 +71,7 @@ tipEmpleadoModel.getTipEmpleados= function (callback)
             + ", `cargo_empleados`"
             + "FROM `tb_empleados`"
             + "WHERE `Id_empleados` = "*/
-            var sql = "SELECT"+
+            let sql = "SELECT"+
             " e.`Id_empleados`,"+
             " D.`denominacion_universal` AS 'Tipo Documento',"+
             " CONCAT( e.`nombre1_empleados`, ' ',"+
@@ -108,8 +108,8 @@ tipEmpleadoModel.getTipEmpleados= function (callback)
     {
         if(connection)
         {
-             var sql = "INSERT INTO `tb_empleados` SET ?";
-            //var sql = "INSERT INTO `ct_tipos_documentos`(`tipo_documento`, `iniciales_tip_doc`) "
+             let sql = "INSERT INTO `tb_empleados` SET ?";
+            //let sql = "INSERT INTO `ct_tipos_documentos`(`tipo_documento`, `iniciales_tip_doc`) "
             //+ " VALUES (" + connection.escape(TipDocData.tipo_documento) + ", " + connection.escape(TipDocData.iniciales_tip_doc) + ");"
             console.log("aqui "+sql)
 
@@ -133,7 +133,7 @@ tipEmpleadoModel.getTipEmpleados= function (callback)
     // console.log(" 32 tal ");
     if (connection)
     {
-        var sql = "UPDATE `tb_empleados` SET"
+        let sql = "UPDATE `tb_empleados` SET"
         +" Id_catalogos_universal = "+ connection.escape (TipEmpleadoData.Id_catalogos_universal)
         +", nombre1_empleados = "+ connection.escape(TipEmpleadoData.nombre1_empleados)
         +", nombre2_empleados = "+ connection.escape(TipEmpleadoData.nombre2_empleados)

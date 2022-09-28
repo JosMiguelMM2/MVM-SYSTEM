@@ -1,17 +1,17 @@
-var express = require('express');//guarda express que nosotros intalamos
+let  express = require('express');//guarda express que nosotros intalamos
 
-var bodyParser = require('body-parser'), port = 4000;//rmanejo de cuerpo de la "pagina" y puerto
+let  bodyParser = require('body-parser'), port = 4000;//rmanejo de cuerpo de la "pagina" y puerto
 
-var http = require('http');//protocolo de intercambio de archivos
+let  http = require('http');//protocolo de intercambio de archivos
 
-var path = require('path');//direccion
+let  path = require('path');//direccion
 
-var conectado = require('./src/conexion/index');
+let  conectado = require('./src/conexion/index');
 //const { getTipEmpleado } = require('./src/modelos/tipEmpleadoModel');
 
-var tipContac= require('./src/rutas/tipContacRutas');
-var tipEmpleado= require('./src/rutas/tipEmpleadoRuta');
-var app = express();//recibe un constructor
+let  tipContac= require('./src/rutas/tipContacRutas');
+let  tipEmpleado= require('./src/rutas/tipEmpleadoRuta');
+let  app = express();//recibe un constructor
 
 // todos los entornos
 
@@ -35,7 +35,7 @@ res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
 
 // A que métodos que desea dar permisos
 
-res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DElet E');
 
 // A que encabezados se les va a dar permiso
 
