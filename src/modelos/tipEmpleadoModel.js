@@ -32,8 +32,8 @@ tipEmpleadoModel.getTipEmpleados= function (callback)
        " c.`denominacion_universal` AS 'Cargo Empleado'"+
        " FROM `tb_empleados` AS e"+
        " INNER JOIN `ct_catalogo_universal` AS c ON e.`cargo_empleados` = c.`Id_catalogo_universal`"+
-       " INNER JOIN `ct_catalogo_universal` AS D ON e.`Id_catalogos_universal` = D.`Id_catalogo_universal`;";
-
+       " INNER JOIN `ct_catalogo_universal` AS D ON e.`Id_catalogos_universal` = D.`Id_catalogo_universal`"
+       + "ORDER BY `Id_empleados`;";
       
        
         connection.query(sql, function (error, rows)

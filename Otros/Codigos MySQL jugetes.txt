@@ -35,28 +35,17 @@ WHERE `Id_contactos` = 2
 jugetes
 ----------------
 SELECT 
-    `Id_juguetes`, 
+    j.`Id_juguetes`, 
     D.`denominacion_universal` AS 'Tipo Jugete',
-    `Nombre_juguete`, 
-    `tama_juguete`, 
+    j.`Nombre_juguete`, 
+    j.`tama_juguete`, 
     a.`denominacion_universal` AS 'Tipo Jugete' 
     
 FROM `tb_juguetes` AS j
 INNER JOIN `ct_catalogo_universal` AS D ON j.`tipo_producto` = D.`Id_catalogo_universal` 
 INNER JOIN `ct_catalogo_universal` AS a ON j.`color_jugete` = a.`Id_catalogo_universal` 
+ORDER BY `Nombre_juguete`
 
------id-----
-SELECT 
-    `Id_juguetes`, 
-    D.`denominacion_universal` AS 'Tipo Jugete',
-    `Nombre_juguete`, 
-    `tama_juguete`, 
-    a.`denominacion_universal` AS 'color del jugete' 
-    
-FROM `tb_juguetes` AS j
-INNER JOIN `ct_catalogo_universal` AS D ON j.`tipo_producto` = D.`Id_catalogo_universal` 
-INNER JOIN `ct_catalogo_universal` AS a ON j.`color_jugete` = a.`Id_catalogo_universal` 
-ORDER BY`Nombre_juguete`
 //where `Id_juguetes`= 3
 -----------------------------------------
 materiales
