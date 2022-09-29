@@ -1,12 +1,12 @@
 const connection = require('../conexion');
 
 
-let tipJugetesModel = {};
+let tipJuguetesModel = {};
 
 
 //obtener todos los tipos de documentos
 
-tipJugetesModel.getTipJugetes= function (callback)
+tipJuguetesModel.getTipJuguetes= function (callback)
 {
     if(connection)
     {
@@ -53,7 +53,7 @@ tipJugetesModel.getTipJugetes= function (callback)
  //////////////////////////////////////////////////////////////////////////////
  
  // obtener tipo doc por su id
-    tipJugetesModel.getTipJugete = function (id, callback)
+    tipJuguetesModel.getTipJuguete = function (id, callback)
     {
         if(connection)
         {
@@ -98,7 +98,7 @@ tipJugetesModel.getTipJugetes= function (callback)
  //////////////////////////////////////////////////////////////////////////////
     //añadir registro
 
-    tipJugetesModel.insertTipJugete = function (TipjugetesData, callback)
+    tipJuguetesModel.insertTipJuguete = function (TipjuguetesData, callback)
     {
         if(connection)
         {
@@ -107,7 +107,7 @@ tipJugetesModel.getTipJugetes= function (callback)
             //+ " VALUES (" + connection.escape(TipDocData.tipo_documento) + ", " + connection.escape(TipDocData.iniciales_tip_doc) + ");"
             console.log("aqui "+sql)
 
-            connection.query(sql, TipjugetesData, function(error, result)
+            connection.query(sql, TipjuguetesData, function(error, result)
             {
                 if(error)
                 {
@@ -123,21 +123,21 @@ tipJugetesModel.getTipJugetes= function (callback)
 
     //actualizar un tipo de documento
     
-    tipJugetesModel.updateTipJugete = function (TipjugetesData, callback)
+    tipJuguetesModel.updateTipJuguete = function (TipjuguetesData, callback)
 {
-    // console.log(" 32 tal ");
+     console.log(" 32 tal ");
+     console.log(" acá vamos   24 - " + TipjuguetesData.tipo_producto +"  --  " +TipjuguetesData.Nombre_juguete);
     if (connection)
     {
         let sql = "UPDATE `tb_juguetes` SET"+ 
-        "`Id_juguetes`= "+ connection.escape(TipjugetesData.Id_juguetes)+
-        ", `tipo_producto`= "+ connection.escape(TipjugetesData.tipo_producto)+
-        ", `Nombre_juguete`= "+ connection.escape(TipjugetesData.Nombre_juguete)+
-        ", `tama_juguete`= "+ connection.escape(TipjugetesData.tama_juguete)+
-        ", `color_jugete`= " + connection.escape(TipjugetesData.color_jugete)+
-        "WHERE `Id_juguetes`= "+
-        connection.escape(TipjugetesData.Id_juguetes)+";";
+          " `tipo_producto`= "+ connection.escape(TipjuguetesData.tipo_producto)+
+        ", `Nombre_juguete`= "+ connection.escape(TipjuguetesData.Nombre_juguete)+
+        ", `tama_juguete`= "+ connection.escape(TipjuguetesData.tama_juguete)+
+        ", `color_jugete`= " + connection.escape(TipjuguetesData.color_jugete)+
+        " WHERE `Id_juguetes`= "+
+        connection.escape(TipjuguetesData.Id_juguetes)+";";
 
-        //console.log(" 37 tal "+ sql);
+        console.log(" 37 tal "+ sql);
         
 
         connection.query(sql, function (error, result)
@@ -156,4 +156,4 @@ tipJugetesModel.getTipJugetes= function (callback)
 }
     
 
-module.exports = tipJugetesModel;
+module.exports = tipJuguetesModel;
