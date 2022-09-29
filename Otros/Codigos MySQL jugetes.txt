@@ -14,6 +14,7 @@ SELECT
         INNER JOIN `ct_catalogo_universal` AS D ON e.`Id_catalogos_universal` = D.`Id_catalogo_universal`
         ORDER BY `nombre1_empleados`;
 //WHERE `Id_empleados`=3
+
 -----------------------------------------------------------------------------------
 ----- Contactos 
 SELECT 
