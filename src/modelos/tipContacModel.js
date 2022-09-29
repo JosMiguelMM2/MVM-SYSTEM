@@ -17,15 +17,19 @@ tipContacModel.getTipContacs = function(callback)
         + "FROM `am_contactos`"
         + "ORDER BY `Id_empleados`";
         */
-        let sql = "SELECT "
-        +"ct.`Id_contactos`"
-        +",g.`tipodocu_empleados` AS 'Numero Documento'"
-        +",D.`denominacion_universal` AS 'Tipo Contacto'" 
-        +",ct.`Dato_contacto`"
-        +"FROM `am_contactos` AS ct "
-        +"INNER JOIN `ct_catalogo_universal` AS D ON ct.`Tipo_contacto` = D.`Id_catalogo_universal`"
-        +"INNER JOIN `tb_empleados` AS g ON ct.`Id_empleados` = g.`Id_empleados`";
-
+        let sql = "SELECT "+
+        " ct.`Id_contactos`,"+
+        " g.`tipodocu_empleados` AS 'Numero Documento',"+
+        " CONCAT(h.nombre1_empleados, ' ',"+
+        " i.apellido1_empleados) as 'Persona',"+
+        " D.`denominacion_universal` AS 'Tipo Contacto', "+
+        " ct.`Dato_contacto`    "  +
+        " FROM `am_contactos` AS ct "+
+        " INNER JOIN `ct_catalogo_universal` AS D ON ct.`Tipo_contacto` = D.`Id_catalogo_universal` "+
+        " INNER JOIN `tb_empleados` AS g ON ct.`Id_empleados` = g.`Id_empleados`"+
+        " INNER JOIN `tb_empleados` AS h ON ct.`Id_empleados` = h.`Id_empleados`"+
+        " INNER JOIN `tb_empleados` AS i ON ct.`Id_empleados` = i.`Id_empleados`"+
+        " ORDER BY h.`nombre1_empleados`;";
         connection.query(sql, function (error, rows)
         {
             if (error)
@@ -52,15 +56,19 @@ tipContacModel.getTipContacs = function(callback)
         if(connection)
         {
             /*let sql = "SELECT `Id_contactos`, `Id_empleados`, `Tipo_contacto`, `Dato_contacto` FROM `am_contactos` WHERE Id_contactos = "*/
-            let sql = "SELECT "+
-        " ct.`Id_contactos`,"+
-        " g.`tipodocu_empleados` AS 'Numero Documento',"+
-        " D.`denominacion_universal` AS 'Tipo Contacto'," +
-        " ct.`Dato_contacto`"+
-        " FROM `am_contactos` AS ct "+
-        " INNER JOIN `ct_catalogo_universal` AS D ON ct.`Tipo_contacto` = D.`Id_catalogo_universal`"+
-        " INNER JOIN `tb_empleados` AS g ON ct.`Id_empleados` = g.`Id_empleados`"+
-        " WHERE Id_contactos = "
+            let sql = "SELECT" +
+            " ct.`Id_contactos`,"+
+            " g.`tipodocu_empleados` AS 'Numero Documento',"+
+            " CONCAT(h.nombre1_empleados, ' ',"+
+            " i.apellido1_empleados) as 'Persona',"+
+            " D.`denominacion_universal` AS 'Tipo Contacto', "+
+            " ct.`Dato_contacto`   "  +     
+            " FROM `am_contactos` AS ct "+
+            " INNER JOIN `ct_catalogo_universal` AS D ON ct.`Tipo_contacto` = D.`Id_catalogo_universal`" +
+            " INNER JOIN `tb_empleados` AS g ON ct.`Id_empleados` = g.`Id_empleados`"+
+            " INNER JOIN `tb_empleados` AS h ON ct.`Id_empleados` = h.`Id_empleados`"+
+            " INNER JOIN `tb_empleados` AS i ON ct.`Id_empleados` = i.`Id_empleados`"+
+            " WHERE Id_contactos = "
             + connection.escape(id) +";";
 
             // console.log id
