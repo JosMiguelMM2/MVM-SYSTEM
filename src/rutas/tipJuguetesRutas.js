@@ -1,14 +1,13 @@
 const express = require ('express');
-const tipJugetesModel = require('../modelos/tipJuguetesModel');
 const router = express.Router();
 
-//let tipJugetesModel = require('../modelos/tipJuguetesModel');
+let tipJuguetesModel = require('../modelos/tipJuguetesModel');
 
 module.exports = function()
 {
     router.get("/", function (req, res)
     {
-        tipJugetesModel.getTipJugetes(function(error, data)
+        tipJuguetesModel.getTipJuguetes(function(error, data)
         {
             res.status(200).json(data);
         });
@@ -24,7 +23,7 @@ module.exports = function()
 
         if(!isNaN(id))
         {
-            tipJugetesModel.getTipJugete(id, function(error, data)
+            tipJuguet0000000000000esModel.getTipJuguete(id, function(error, data)
             
             {
             if(typeof data !== 'undefined' && data.length > 0)
@@ -51,7 +50,7 @@ module.exports = function()
 
     router.post("/", function (req, res)
     {
-        let tipJugetesModel =
+        let TipjuguetesData =
         {
             Id_juguetes: null,
             tipo_producto: req.body.tipo_producto,
@@ -60,7 +59,7 @@ module.exports = function()
             color_jugete: req.body.color_jugete
         };
 
-        tipJugetesModel.insertTipJugete(TipjugetesData, function(error, data)
+        tipJuguetesModel.insertTipJuguete(TipjuguetesData, function(error, data)
         {
             if(data)
             {
@@ -79,8 +78,8 @@ module.exports = function()
 router.put("/", function (req, res)
     {
     //almacenamos los datos de la peticiÃn en un objeto
-    //console.log(" 38");
-        let TipjugetesData =
+    console.log(" 38");
+        let TipjuguetesData =
         { 
             Id_juguetes: req.body.Id_juguetes,
             tipo_producto: req.body.tipo_producto,
@@ -89,8 +88,10 @@ router.put("/", function (req, res)
             color_jugete: req.body.color_jugete
         };
 
+
+console.log(" acá vamos   39 - " + TipjuguetesData.tipo_producto +"  --  " +TipjuguetesData.Nombre_juguete);
     //usamos la funcion para actualizar
-    tipJugetesModel.updateTipJugete(TipjugetesData, function (error, data)
+    tipJuguetesModel.updateTipJuguete(TipjuguetesData, function (error, data)
     {
     //se muestra el mensaje correspondiente
         if (data && data.msg)
