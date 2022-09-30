@@ -3,13 +3,13 @@
 const express = require ('express');
 const router = express.Router();
 
-let tipContacModel = require('../modelos/tipContacModel');
+let tipCatalogoModel = require('../modelos/tipCatalogoModel');
 
 module.exports = function()
 {
     router.get("/", function (req, res)
     {
-        tipContacModel.getTipContacs(function(error, data)
+        tipCatalogoModel.getTipContacs(function(error, data)
         {
             res.status(200).json(data);
         });
@@ -25,7 +25,7 @@ module.exports = function()
 
         if(!isNaN(id))
         {
-            tipContacModel.getTipContac(id, function (error, data)
+            tipCatalogoModel.getTipContac(id, function (error, data)
             
             {
             if(typeof data !== 'undefined' && data.length > 0)
@@ -52,7 +52,7 @@ module.exports = function()
 
     router.post("/", function (req, res)
     {
-        let TipContacData =
+        let TipCatalogoData =
         {
             Id_contactos: null,
             Id_empleados: req.body.Id_empleados,
@@ -60,7 +60,7 @@ module.exports = function()
             Dato_contacto: req.body.Dato_contacto
         };
 
-        tipContacModel.insertTipContac(TipContacData, function(error, data)
+        tipCatalogoModel.insertTipContac(TipCatalogoData, function(error, data)
         {
             if(data)
             {
@@ -80,7 +80,7 @@ router.put("/", function (req, res)
     {
     //almacenamos los datos de la peticiÃn en un objeto
     //console.log(" 38");
-        let TipContacData =
+        let TipCatalogoData =
         { 
             Id_contactos: req.body.Id_contactos,
             Id_empleados: req.body.Id_empleados,
@@ -89,7 +89,7 @@ router.put("/", function (req, res)
         };
 
     //usamos la funcion para actualizar
-    tipContacModel.updateTipContac(TipContacData, function (error, data)
+    tipCatalogoModel.updateTipContac(TipCatalogoData, function (error, data)
     {
     //se muestra el mensaje correspondiente
         if (data && data.msg)
