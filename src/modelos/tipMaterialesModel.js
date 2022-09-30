@@ -10,14 +10,24 @@ tipMaterialesModel.getTipMaterialess = function (callback)
 {
     if(connection)
     {   
-        let sql = "SELECT `Id_material`,"+
+        /*let sql = "SELECT `Id_material`,"+
         "`clase_material`,"+
         "`color_material`,"+
         "`cantidad_peso`, "+
         "`nombre_material`"+
         "FROM `tb_materiales` "+
-        "ORDER BY `nombre_material`;";
+        "ORDER BY `nombre_material`;";*/
 
+        let sql = "SELECT " +
+        " mj.`Id_materiales_productos`, " +
+    	" j.`Nombre_juguete` as 'nombre jugete', "+
+        " n.`nombre_material` as 'Material', "+
+        " mj.`Descripcion`, "+
+        " mj.`cantidad` "+
+        " FROM `tp_materiales_juguetes` AS mj "+
+        " INNER JOIN `tb_juguetes` AS j ON mj.`Id_materiales_productos` = j.`Id_juguetes` "+
+        " INNER JOIN `tb_materiales` AS n ON mj.`Id_material` = n.`Id_material` "+
+        " ORDER BY j.`Nombre_juguete`; ";
         connection.query(sql, function (error, rows)
         {
             if (error)
@@ -43,13 +53,24 @@ tipMaterialesModel.getTipMaterialess = function (callback)
     {
         if(connection)
         {
-            let sql = "SELECT "+
+            /*let sql = "SELECT "+
             "`clase_material`,"+
             "`color_material`,"+
             "`cantidad_peso`, "+
             "`nombre_material`"+
             "FROM `tb_materiales` "+
-            "WHERE `Id_material` = "+
+            "WHERE `Id_material` = "+*/
+
+            let sql = "SELECT " +
+            " mj.`Id_materiales_productos`, " +
+            " j.`Nombre_juguete` as 'nombre jugete', "+
+            " n.`nombre_material` as 'Material', "+
+            " mj.`Descripcion`, "+
+            " mj.`cantidad` "+
+            " FROM `tp_materiales_juguetes` AS mj "+
+            " INNER JOIN `tb_juguetes` AS j ON mj.`Id_materiales_productos` = j.`Id_juguetes` "+
+            " INNER JOIN `tb_materiales` AS n ON mj.`Id_material` = n.`Id_material` "+
+            " WHERE `Id_materiales_productos` = "+
             connection.escape(id) +";";
 
             // console.log id
