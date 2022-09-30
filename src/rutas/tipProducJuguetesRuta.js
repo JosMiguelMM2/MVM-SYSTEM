@@ -7,7 +7,7 @@ module.exports = function()
 {
     router.get("/", function (req, res)
     {
-        tipProducJuguetesModel.getTipProducjuguetes(function(error, data)
+        tipProducJuguetesModel.getTipProducJuguetess(function(error, data)
         {
             res.status(200).json(data);
         });
@@ -23,7 +23,7 @@ module.exports = function()
 
         if(!isNaN(id))
         {
-            tipProducJuguetesModel.getTipProducjuguete(id, function (error, data)
+            tipProducJuguetesModel.getTipProducJuguetes(id, function (error, data)
             
             {
             if(typeof data !== 'undefined' && data.length > 0)
@@ -50,15 +50,18 @@ module.exports = function()
 
     router.post("/", function (req, res)
     {
-        let TipContacData =
+        let TipProducJuguetesData =
         {
-            Id_contactos: null,
+            Id_produccion:null,
             Id_empleados: req.body.Id_empleados,
-            Tipo_contacto: req.body.Tipo_contacto,
-            Dato_contacto: req.body.Dato_contacto
+            Id_juguetes: req.body.Id_juguetes,
+            Fecha_produccion: req.body.Fecha_produccion,
+            Detalles_produccion: req.body.Detalles_produccion,
+            Errores_produccion: req.body.Errores_produccion,
+            Cantidad_producida: req.body.Cantidad_producida
         };
 
-        tipContacModel.insertTipContac(TipContacData, function(error, data)
+        tipProducJuguetesModel.insertTipProducJuguetes(TipProducJuguetesData, function(error, data)
         {
             if(data)
             {
@@ -78,16 +81,19 @@ router.put("/", function (req, res)
     {
     //almacenamos los datos de la peticiÃn en un objeto
     //console.log(" 38");
-        let TipContacData =
+        let TipProducJuguetesData =
         { 
-            Id_contactos: req.body.Id_contactos,
+            Id_produccion:req.body.Id_produccion,
             Id_empleados: req.body.Id_empleados,
-            Tipo_contacto: req.body.Tipo_contacto,
-            Dato_contacto: req.body.Dato_contacto
+            Id_juguetes: req.body.Id_juguetes,
+            Fecha_produccion: req.body.Fecha_produccion,
+            Detalles_produccion: req.body.Detalles_produccion,
+            Errores_produccion: req.body.Errores_produccion,
+            Cantidad_producida: req.body.Cantidad_producida
         };
 
     //usamos la funcion para actualizar
-    tipContacModel.updateTipContac(TipContacData, function (error, data)
+    tipProducJuguetesModel.updateTipProducJuguetes(TipProducJuguetesData, function (error, data)
     {
     //se muestra el mensaje correspondiente
         if (data && data.msg)
