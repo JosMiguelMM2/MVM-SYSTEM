@@ -5,28 +5,15 @@ let tipCatalogoModel = {};
 //obtener todos los tipos de documentos
 
 
-tipCatalogoModel.getTipMaterialess = function (callback)
+tipCatalogoModel.getTipCatalogo = function (callback)
 {
     if(connection)
     {   
-        /*let sql = "SELECT `Id_material`,"+
-        "`clase_material`,"+
-        "`color_material`,"+
-        "`cantidad_peso`, "+
-        "`nombre_material`"+
-        "FROM `tb_materiales` "+
-        "ORDER BY `nombre_material`;";*/
-
-        let sql = "SELECT "+ 
-        " M.`Id_material`, " +
-        " M.`nombre_material`," +
-        " a.`denominacion_universal` AS 'Clase de material' ," +
-        " c.`denominacion_universal` AS 'color del material' ,"+
-        " M.`cantidad_peso` as 'Peso gr'"+        
-        " FROM `tb_materiales` AS M"+
-        " INNER JOIN `ct_catalogo_universal` AS a ON M.clase_material = a.`Id_catalogo_universal`"+
-        " INNER JOIN `ct_catalogo_universal` AS c ON M.color_material = c.`Id_catalogo_universal`"+
-        " ORDER BY `nombre_material`"
+       let sql ="SELECT"
+       + "`Id_catalogo_universal`," 
+       +"`denominacion_universal`,"
+       + "`catalogo_universal`" 
+       + "FROM `ct_catalogo_universal` WHERE 1"
         connection.query(sql, function (error, rows)
         {
             if (error)
@@ -89,7 +76,7 @@ tipCatalogoModel.getTipMaterialess = function (callback)
  //////////////////////////////////////////////////////////////////////////////
     //añadir registro
 
-    tipCatalogoModel.insertTipMateriales = function (TTipCatalogoData, callback)
+    tipCatalogoModel.insertTipCatalogo = function (TTipCatalogoData, callback)
     {
         if(connection)
         {
@@ -113,7 +100,7 @@ tipCatalogoModel.getTipMaterialess = function (callback)
     }
 
     //actualizar un tipo de documento
-    tipCatalogoModel.updateTipMateriales = function (TTipCatalogoData, callback)
+    tipCatalogoModel.updateTipCatalogo = function (TTipCatalogoData, callback)
 {
     // console.log(" 32 tal ");
     if (connection)

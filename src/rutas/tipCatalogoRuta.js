@@ -1,3 +1,5 @@
+
+
 const express = require ('express');
 const router = express.Router();
 
@@ -7,7 +9,7 @@ module.exports = function()
 {
     router.get("/", function (req, res)
     {
-        tipCatalogoModel.getTipContacs(function(error, data)
+        tipCatalogoModel.getTipCatalogo(function(error, data)
         {
             res.status(200).json(data);
         });
@@ -23,7 +25,7 @@ module.exports = function()
 
         if(!isNaN(id))
         {
-            tipCatalogoModel.getTipContac(id, function (error, data)
+            tipCatalogoModel.getTipCatalogo(id, function (error, data)
             
             {
             if(typeof data !== 'undefined' && data.length > 0)
@@ -58,7 +60,7 @@ module.exports = function()
             Dato_contacto: req.body.Dato_contacto
         };
 
-        tipCatalogoModel.insertTipContac(TipCatalogoData, function(error, data)
+        tipCatalogoModel.insertTipCatalogo(TipCatalogoData, function(error, data)
         {
             if(data)
             {
@@ -87,7 +89,7 @@ router.put("/", function (req, res)
         };
 
     //usamos la funcion para actualizar
-    tipCatalogoModel.updateTipContac(TipCatalogoData, function (error, data)
+    tipCatalogoModel.updateTipCatalogo(TipCatalogoData, function (error, data)
     {
     //se muestra el mensaje correspondiente
         if (data && data.msg)
