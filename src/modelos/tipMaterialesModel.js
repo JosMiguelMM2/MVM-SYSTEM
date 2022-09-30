@@ -18,16 +18,16 @@ tipMaterialesModel.getTipMaterialess = function (callback)
         "FROM `tb_materiales` "+
         "ORDER BY `nombre_material`;";*/
 
-        let sql = "SELECT " +
-        " mj.`Id_materiales_productos`, " +
-    	" j.`Nombre_juguete` as 'nombre jugete', "+
-        " n.`nombre_material` as 'Material', "+
-        " mj.`Descripcion`, "+
-        " mj.`cantidad` "+
-        " FROM `tp_materiales_juguetes` AS mj "+
-        " INNER JOIN `tb_juguetes` AS j ON mj.`Id_materiales_productos` = j.`Id_juguetes` "+
-        " INNER JOIN `tb_materiales` AS n ON mj.`Id_material` = n.`Id_material` "+
-        " ORDER BY j.`Nombre_juguete`; ";
+        let sql = "SELECT "+ 
+        " M.`Id_material`, " +
+        " M.`nombre_material`," +
+        " a.`denominacion_universal` AS 'Clase de material' ," +
+        " c.`denominacion_universal` AS 'color del material' ,"+
+        " M.`cantidad_peso` as 'Peso gr'"+        
+        " FROM `tb_materiales` AS M"+
+        " INNER JOIN `ct_catalogo_universal` AS a ON M.clase_material = a.`Id_catalogo_universal`"+
+        " INNER JOIN `ct_catalogo_universal` AS c ON M.color_material = c.`Id_catalogo_universal`"+
+        " ORDER BY `nombre_material`"
         connection.query(sql, function (error, rows)
         {
             if (error)
@@ -61,16 +61,15 @@ tipMaterialesModel.getTipMaterialess = function (callback)
             "FROM `tb_materiales` "+
             "WHERE `Id_material` = "+*/
 
-            let sql = "SELECT " +
-            " mj.`Id_materiales_productos`, " +
-            " j.`Nombre_juguete` as 'nombre jugete', "+
-            " n.`nombre_material` as 'Material', "+
-            " mj.`Descripcion`, "+
-            " mj.`cantidad` "+
-            " FROM `tp_materiales_juguetes` AS mj "+
-            " INNER JOIN `tb_juguetes` AS j ON mj.`Id_materiales_productos` = j.`Id_juguetes` "+
-            " INNER JOIN `tb_materiales` AS n ON mj.`Id_material` = n.`Id_material` "+
-            " WHERE `Id_materiales_productos` = "+
+            let sql = "SELECT "+ 
+            " M.`nombre_material`," +
+            " a.`denominacion_universal` AS 'Clase de material'," +
+            " c.`denominacion_universal` AS 'color del material',"+
+            " M.`cantidad_peso` as 'Peso gr'"+        
+            " FROM `tb_materiales` AS M"+
+            " INNER JOIN `ct_catalogo_universal` AS a ON M.clase_material = a.`Id_catalogo_universal`"+
+            " INNER JOIN `ct_catalogo_universal` AS c ON M.color_material = c.`Id_catalogo_universal`"+
+            " WHERE `Id_material` = "+
             connection.escape(id) +";";
 
             // console.log id
