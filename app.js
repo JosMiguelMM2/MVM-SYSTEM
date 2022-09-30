@@ -9,6 +9,7 @@ let  path = require('path');//direccion
 let  conectado = require('./src/conexion/index');
 //const { getTipEmpleado } = require('./src/modelos/tipEmpleadoModel');
 
+let  tipCatalogo= require('./src/rutas/tipCatalogoRuta');
 let  tipContac= require('./src/rutas/tipContacRutas');
 let  tipEmpleado= require('./src/rutas/tipEmpleadoRuta');
 let  tipJuguete= require('./src/rutas/tipJuguetesRutas'); 
@@ -59,6 +60,7 @@ next();
 //============================================================
 
 //app.use('/tipdoc', tipdoc());//ruta para el servicio
+app.use('/tipCatalogo', tipCatalogo());
 app.use('/tipContac', tipContac());
 app.use('/tipEmpleado', tipEmpleado());
 app.use('/tipJuguete', tipJuguete());
