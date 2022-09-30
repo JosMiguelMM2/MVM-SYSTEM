@@ -89,7 +89,7 @@ tipCatalogoModel.getTipMaterialess = function (callback)
  //////////////////////////////////////////////////////////////////////////////
     //añadir registro
 
-    tipCatalogoModel.insertTipMateriales = function (TipMaterialDada, callback)
+    tipCatalogoModel.insertTipMateriales = function (TTipCatalogoData, callback)
     {
         if(connection)
         {
@@ -98,7 +98,7 @@ tipCatalogoModel.getTipMaterialess = function (callback)
             //+ " VALUES (" + connection.escape(TipDocData.tipo_documento) + ", " + connection.escape(TipDocData.iniciales_tip_doc) + ");"
             console.log("aqui "+sql)
 
-            connection.query(sql, TipMaterialDada, function(error, result)
+            connection.query(sql, TTipCatalogoData, function(error, result)
             {
                 if(error)
                 {
@@ -113,7 +113,7 @@ tipCatalogoModel.getTipMaterialess = function (callback)
     }
 
     //actualizar un tipo de documento
-    tipCatalogoModel.updateTipMateriales = function (TipMaterialDada, callback)
+    tipCatalogoModel.updateTipMateriales = function (TTipCatalogoData, callback)
 {
     // console.log(" 32 tal ");
     if (connection)
@@ -124,7 +124,7 @@ tipCatalogoModel.getTipMaterialess = function (callback)
         +", `cantidad_peso`= "+ connection.escape(tipMaterialesModel.cantidad_peso)
         + ", `nombre_material`= " + connection.escape(tipMaterialesModel.nombre_material)
         + " WHERE `Id_material` = "
-        + connection.escape(TipMaterialDada.Id_material)+";";
+        + connection.escape(TTipCatalogoData.Id_material)+";";
       
         //console.log(" 37 tal "+ sql);
 
