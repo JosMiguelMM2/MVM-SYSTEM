@@ -13,7 +13,11 @@ let  tipContac= require('./src/rutas/tipContacRutas');
 let  tipEmpleado= require('./src/rutas/tipEmpleadoRuta');
 let  tipJuguete= require('./src/rutas/tipJuguetesRutas'); 
 let  tipMaterial= require('./src/rutas/tipMaterialesRuta');
+<<<<<<< HEAD
 let  tipProducjuguete= require('./src/rutas/tipProducJuguetesRuta')
+=======
+let  tipCatalogo= require('./src/rutas/tipCatalogoRuta');
+>>>>>>> 433dee13feefc98fa982408fd60eccee6d21c853
 let  app = express();//recibe un constructor
 
 // todos los entornos
@@ -63,7 +67,11 @@ app.use('/tipContac', tipContac());
 app.use('/tipEmpleado', tipEmpleado());
 app.use('/tipJuguete', tipJuguete());
 app.use('/tipMaterial', tipMaterial());
+<<<<<<< HEAD
 app.use('/tipProducjuguete', tipProducjuguete());
+=======
+app.use('/tipCatalogo', tipCatalogo());
+>>>>>>> 433dee13feefc98fa982408fd60eccee6d21c853
 
 http.createServer(app).listen(app.get('port'), function ( )
 

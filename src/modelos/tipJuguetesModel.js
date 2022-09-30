@@ -10,16 +10,16 @@ tipJuguetesModel.getTipJuguetes= function (callback)
 {
     if(connection)
     {
-        let sql = "SELECT"+ 
+        /*let sql = "SELECT"+ 
         "`Id_juguetes`, "+
         "`tipo_producto`," +
         "`Nombre_juguete`, "+
         "`tama_juguete`, "+
         "`color_jugete`" +
         "FROM `tb_juguetes`"+
-        "ORDER BY `Nombre_juguete`";
+        "ORDER BY `Nombre_juguete`";*/
 
-       /*let sql = " SELECT "+
+       let sql = " SELECT "+
        " e.`Id_empleados`,"+
        " D.`denominacion_universal` AS 'Tipo Documento',"+
        " CONCAT( e.`nombre1_empleados`, ' ',"+
@@ -31,7 +31,7 @@ tipJuguetesModel.getTipJuguetes= function (callback)
        " FROM `tb_empleados` AS e"+
        " INNER JOIN `ct_catalogo_universal` AS c ON e.`cargo_empleados` = c.`Id_catalogo_universal`"+
        " INNER JOIN `ct_catalogo_universal` AS D ON e.`Id_catalogos_universal` = D.`Id_catalogo_universal`;";
-*/
+
       
        
         connection.query(sql, function (error, rows)
@@ -57,15 +57,15 @@ tipJuguetesModel.getTipJuguetes= function (callback)
     {
         if(connection)
         {
-            let sql = "SELECT"+ 
+            /*let sql = "SELECT"+ 
             "`Id_juguetes`, "+
             "`tipo_producto`," +
             "`Nombre_juguete`, "+
             "`tama_juguete`, "+
             "`color_jugete`" +
             "FROM `tb_juguetes`"+
-            "where `Id_juguetes` = "+
-            /*let sql = "SELECT"+
+            "where `Id_juguetes` = "+*/
+            let sql = "SELECT"+
             " e.`Id_empleados`,"+
             " D.`denominacion_universal` AS 'Tipo Documento',"+
             " CONCAT( e.`nombre1_empleados`, ' ',"+
@@ -77,7 +77,7 @@ tipJuguetesModel.getTipJuguetes= function (callback)
             " FROM `tb_empleados` AS e"+
             " INNER JOIN `ct_catalogo_universal` AS c ON e.`cargo_empleados` = c.`Id_catalogo_universal`"+
             " INNER JOIN `ct_catalogo_universal` AS D ON e.`Id_catalogos_universal` = D.`Id_catalogo_universal`"+
-            "WHERE `Id_empleados` = "*/
+            "WHERE `Id_empleados` = "+
             connection.escape(id) +";";
 
             // console.log id
