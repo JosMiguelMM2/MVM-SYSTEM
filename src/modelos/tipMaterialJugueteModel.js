@@ -9,12 +9,24 @@ tipMaterialJugueteModel.getTipMaterialJuguetes = function(callback)
 {
     if(connection)
     {   
-        let sql = "SELECT `Id_materiales_productos`,"
+        /*let sql = "SELECT `Id_materiales_productos`,"
         +" `Id_juguetes`,"
         +" `Id_material`," 
         +" `Descripcion`," 
         +" `cantidad` "
         +" FROM `tp_materiales_juguetes` ";
+        */
+        let sql = "SELECT "
+        + " mj.`Id_materiales_productos`, "
+    	+ " j.`Nombre_juguete` as 'nombre jugete',"
+        + " n.`nombre_material` as 'Material',"
+        + " mj.`Descripcion`,"
+        + " mj.`cantidad`"
+        + " FROM `tp_materiales_juguetes` AS mj"
+        + " INNER JOIN `tb_juguetes` AS j ON mj.`Id_materiales_productos` = j.`Id_juguetes`"
+        + " INNER JOIN `tb_materiales` AS n ON mj.`Id_material` = n.`Id_material`"
+        + " ORDER BY j.`Nombre_juguete` "
+
         connection.query(sql, function (error, rows)
         {
             if (error)
@@ -40,7 +52,7 @@ tipMaterialJugueteModel.getTipMaterialJuguetes = function(callback)
     {
         if(connection)
         {
-         let sql = "SELECT `Id_materiales_productos`,"
+         /*let sql = "SELECT `Id_materiales_productos`,"
             +" `Id_juguetes`,"
             +" `Id_material`," 
             +" `Descripcion`," 
@@ -48,7 +60,18 @@ tipMaterialJugueteModel.getTipMaterialJuguetes = function(callback)
             +" FROM `tp_materiales_juguetes` "
             +" WHERE `Id_materiales_productos` = "
             + connection.escape(id) +";";
-
+            */
+            let sql = "SELECT "
+            + " mj.`Id_materiales_productos`, "
+            + " j.`Nombre_juguete` as 'nombre jugete',"
+            + " n.`nombre_material` as 'Material',"
+            + " mj.`Descripcion`,"
+            + " mj.`cantidad`"
+            + " FROM `tp_materiales_juguetes` AS mj"
+            + " INNER JOIN `tb_juguetes` AS j ON mj.`Id_materiales_productos` = j.`Id_juguetes`"
+            + " INNER JOIN `tb_materiales` AS n ON mj.`Id_material` = n.`Id_material`"
+            + " WHERE `Id_materiales_productos` = "
+            + connection.escape(id) +";";
             // console.log id
             // console.log("31 tal ";)
 
