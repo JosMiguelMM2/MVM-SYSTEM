@@ -5,15 +5,16 @@ let tipCatalogoModel = {};
 //obtener todos los tipos de documentos
 
 
-tipCatalogoModel.getTipCatalogo = function (callback)
+tipCatalogoModel.getTipCatalogos = function (callback)
 {
     if(connection)
     {   
        let sql ="SELECT"
-       + "`Id_catalogo_universal`," 
+       +"`Id_catalogo_universal`,"
        +"`denominacion_universal`,"
-       + "`catalogo_universal`" 
-       + "FROM `ct_catalogo_universal` WHERE 1"
+       +"`catalogo_universal`"
+       +"FROM `ct_catalogo_universal`" 
+       +"ORDER BY `catalogo_universal`"
         connection.query(sql, function (error, rows)
         {
             if (error)
@@ -35,28 +36,17 @@ tipCatalogoModel.getTipCatalogo = function (callback)
  
  // obtener contacto por su id
 
- tipCatalogoModel.getTipMateriales = function (id, callback)
+ tipCatalogoModel.getTipCatalogo = function (id, callback)
     {
         if(connection)
         {
-            /*let sql = "SELECT "+
-            "`clase_material`,"+
-            "`color_material`,"+
-            "`cantidad_peso`, "+
-            "`nombre_material`"+
-            "FROM `tb_materiales` "+
-            "WHERE `Id_material` = "+*/
-
-            let sql = "SELECT "+ 
-            " M.`nombre_material`," +
-            " a.`denominacion_universal` AS 'Clase de material'," +
-            " c.`denominacion_universal` AS 'color del material',"+
-            " M.`cantidad_peso` as 'Peso gr'"+        
-            " FROM `tb_materiales` AS M"+
-            " INNER JOIN `ct_catalogo_universal` AS a ON M.clase_material = a.`Id_catalogo_universal`"+
-            " INNER JOIN `ct_catalogo_universal` AS c ON M.color_material = c.`Id_catalogo_universal`"+
-            " WHERE `Id_material` = "+
-            connection.escape(id) +";";
+            let sql = "SELECT"
+            +"`Id_catalogo_universal`,"
+            +"`denominacion_universal`,"
+            +"`catalogo_universal`"
+            +"FROM `ct_catalogo_universal`" 
+            +"WHERE `Id_catalogo_universal`= "
+            +connection.escape(id) +";";
 
             // console.log id
             // console.log("31 tal ";)
@@ -76,16 +66,16 @@ tipCatalogoModel.getTipCatalogo = function (callback)
  //////////////////////////////////////////////////////////////////////////////
     //añadir registro
 
-    tipCatalogoModel.insertTipCatalogo = function (TTipCatalogoData, callback)
+    tipCatalogoModel.insertTipCatalogo = function (TipCatalogoData, callback)
     {
         if(connection)
         {
-             let sql = "INSERT INTO `tb_materiales` SET ?";
+             let sql = "INSERT INTO ct_catalogo_universal SET ?";
             //let sql = "INSERT INTO `ct_tipos_documentos`(`tipo_documento`, `iniciales_tip_doc`) "
             //+ " VALUES (" + connection.escape(TipDocData.tipo_documento) + ", " + connection.escape(TipDocData.iniciales_tip_doc) + ");"
             console.log("aqui "+sql)
 
-            connection.query(sql, TTipCatalogoData, function(error, result)
+            connection.query(sql, TipCatalogoData, function(error, result)
             {
                 if(error)
                 {
@@ -100,18 +90,16 @@ tipCatalogoModel.getTipCatalogo = function (callback)
     }
 
     //actualizar un tipo de documento
-    tipCatalogoModel.updateTipCatalogo = function (TTipCatalogoData, callback)
+    tipCatalogoModel.updateTipCatalogo = function (TipCatalogoData, callback)
 {
     // console.log(" 32 tal ");
     if (connection)
     {
-        let sql = "UPDATE `tb_materiales` SET"
-        +" `clase_material`= "+ connection.escape(tipMaterialesModel.clase_material)
-        +", `color_material`= "+ connection.escape(tipMaterialesModel.color_material)
-        +", `cantidad_peso`= "+ connection.escape(tipMaterialesModel.cantidad_peso)
-        + ", `nombre_material`= " + connection.escape(tipMaterialesModel.nombre_material)
-        + " WHERE `Id_material` = "
-        + connection.escape(TTipCatalogoData.Id_material)+";";
+        let sql = "UPDATE `ct_catalogo_universal` SET "
+        + "`denominacion_universal`= "+ connection.escape(tipCatalogoModel.denominacion_universal)
+        + ", `catalogo_universal`= "+ connection.escape(tipCatalogoModel.catalogo_universal)
+        + " WHERE `Id_catalogo_universal` = "
+        + connection.escape(TipCatalogoData.Id_catalogo_universal)+";";
       
         //console.log(" 37 tal "+ sql);
 

@@ -7,7 +7,7 @@ module.exports = function()
 {
     router.get("/", function (req, res)
     {
-        tipCatalogoModel.getTipCatalogo(function(error, data)
+        tipCatalogoModel.getTipCatalogos(function(error, data)
         {
             res.status(200).json(data);
         });
@@ -52,10 +52,9 @@ module.exports = function()
     {
         let TipCatalogoData =
         {
-            Id_contactos: null,
-            Id_empleados: req.body.Id_empleados,
-            Tipo_contacto: req.body.Tipo_contacto,
-            Dato_contacto: req.body.Dato_contacto
+            Id_catalogo_universal: null,
+            denominacion_universal: req.body.denominacion_universal,
+            catalogo_universal: req.body.catalogo_universal
         };
 
         tipCatalogoModel.insertTipCatalogo(TipCatalogoData, function(error, data)
@@ -80,10 +79,9 @@ router.put("/", function (req, res)
     //console.log(" 38");
         let TipCatalogoData =
         { 
-            Id_contactos: req.body.Id_contactos,
-            Id_empleados: req.body.Id_empleados,
-            Tipo_contacto: req.body.Tipo_contacto,
-            Dato_contacto: req.body.Dato_contacto
+            Id_catalogo_universal: req.body.Id_catalogo_universal,
+            denominacion_universal: req.body.denominacion_universal,
+            catalogo_universal: req.body.catalogo_universal
         };
 
     //usamos la funcion para actualizar
