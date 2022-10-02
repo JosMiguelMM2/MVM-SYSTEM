@@ -9,12 +9,20 @@ tipCatalogoModel.getTipCatalogos = function (callback)
 {
     if(connection)
     {   
-       let sql ="SELECT"
+      /* let sql ="SELECT"
        +"`Id_catalogo_universal`,"
        +"`denominacion_universal`,"
        +"`catalogo_universal`"
        +"FROM `ct_catalogo_universal`" 
        +"ORDER BY `catalogo_universal`"
+*/
+       let sql = "SELECT " 
+        +" cu.`Id_catalogo_universal`,"
+        +" cu.`denominacion_universal`,"
+        +" a.`denominacion_universal` AS ' Pertenece a '"
+        +" FROM `ct_catalogo_universal` AS cu "
+        +" INNER JOIN `ct_catalogo_universal` AS a ON cu.catalogo_universal = a.Id_catalogo_universal"
+        +" ORDER BY cu.`catalogo_universal`"
         connection.query(sql, function (error, rows)
         {
             if (error)
@@ -40,12 +48,19 @@ tipCatalogoModel.getTipCatalogos = function (callback)
     {
         if(connection)
         {
-            let sql = "SELECT"
+            /*let sql = "SELECT"
             +"`Id_catalogo_universal`,"
             +"`denominacion_universal`,"
             +"`catalogo_universal`"
             +"FROM `ct_catalogo_universal`" 
-            +"WHERE `Id_catalogo_universal`= "
+            +"WHERE `Id_catalogo_universal`= "*/
+            let sql ="SELECT " 
+            +" cu.`Id_catalogo_universal`,"
+            +" cu.`denominacion_universal`,"
+            +" a.`denominacion_universal` AS ' Pertenece a '"
+            +" FROM `ct_catalogo_universal` AS cu "
+            +" INNER JOIN `ct_catalogo_universal` AS a ON cu.catalogo_universal = a.Id_catalogo_universal"
+            +" WHERE cu.`Id_catalogo_universal`= "
             +connection.escape(id) +";";
 
             // console.log id
@@ -96,9 +111,9 @@ tipCatalogoModel.getTipCatalogos = function (callback)
     if (connection)
     {
         let sql = "UPDATE `ct_catalogo_universal` SET "
-        + "`denominacion_universal`= "+ connection.escape(tipCatalogoModel.denominacion_universal)
-        + ", `catalogo_universal`= "+ connection.escape(tipCatalogoModel.catalogo_universal)
-        + " WHERE `Id_catalogo_universal` = "
+        + " denominacion_universal = "+ connection.escape(tipCatalogoModel.denominacion_universal)
+        + ", catalogo_universal = "+ connection.escape(tipCatalogoModel.catalogo_universal)
+        + " WHERE Id_catalogo_universal = "
         + connection.escape(TipCatalogoData.Id_catalogo_universal)+";";
       
         //console.log(" 37 tal "+ sql);

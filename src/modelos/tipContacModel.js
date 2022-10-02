@@ -10,14 +10,14 @@ tipContacModel.getTipContacs = function(callback)
 {
     if(connection)
     {   
-        let sql = "SELECT `Id_contactos`"
+        /*let sql = "SELECT `Id_contactos`"
         + ", `Id_empleados`"
         + ", `Tipo_contacto`"
         + ", `Dato_contacto`"  
         + "FROM `am_contactos`"
         + "ORDER BY `Id_empleados`";
-        
-        /*let sql = "SELECT "+
+        */
+        let sql = "SELECT "+
         " ct.`Id_contactos`,"+
         " g.`tipodocu_empleados` AS 'Numero Documento',"+
         " CONCAT(h.nombre1_empleados, ' ',"+
@@ -29,7 +29,7 @@ tipContacModel.getTipContacs = function(callback)
         " INNER JOIN `tb_empleados` AS g ON ct.`Id_empleados` = g.`Id_empleados`"+
         " INNER JOIN `tb_empleados` AS h ON ct.`Id_empleados` = h.`Id_empleados`"+
         " INNER JOIN `tb_empleados` AS i ON ct.`Id_empleados` = i.`Id_empleados`"+
-        " ORDER BY h.`nombre1_empleados`;";*/
+        " ORDER BY h.`nombre1_empleados`;";
         connection.query(sql, function (error, rows)
         {
             if (error)
@@ -120,7 +120,7 @@ tipContacModel.getTipContacs = function(callback)
     // console.log(" 32 tal ");
     if (connection)
     {
-        let sql = "UPDATE `am_contactos` SET"
+        let sql = "UPDATE `am_contactos` SET "
         +" Id_empleados = "+ connection.escape(TipContacData.Id_empleados)
         +", Tipo_contacto = "+ connection.escape(TipContacData.Tipo_contacto)
         +", Dato_contacto = "+ connection.escape(TipContacData.Dato_contacto)

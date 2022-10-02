@@ -23,7 +23,7 @@ module.exports = function()
 
         if(!isNaN(id))
         {
-            tipJuguet0000000000000esModel.getTipJuguete(id, function(error, data)
+            tipJuguetesModel.getTipJuguete(id, function(error, data)
             
             {
             if(typeof data !== 'undefined' && data.length > 0)

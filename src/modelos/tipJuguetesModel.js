@@ -19,18 +19,16 @@ tipJuguetesModel.getTipJuguetes= function (callback)
         "FROM `tb_juguetes`"+
         "ORDER BY `Nombre_juguete`";*/
 
-       let sql = " SELECT "+
-       " e.`Id_empleados`,"+
-       " D.`denominacion_universal` AS 'Tipo Documento',"+
-       " CONCAT( e.`nombre1_empleados`, ' ',"+
-       " e.`nombre2_empleados`,  ' ',"+
-       " e.`apellido1_empleados`, ' ',"+
-       " e.`apellido2_empleados`) AS 'Persona',"+
-       "  e.`numdoc_empleados` AS 'Numero De Documento',"+
-       " c.`denominacion_universal` AS 'Cargo Empleado'"+
-       " FROM `tb_empleados` AS e"+
-       " INNER JOIN `ct_catalogo_universal` AS c ON e.`cargo_empleados` = c.`Id_catalogo_universal`"+
-       " INNER JOIN `ct_catalogo_universal` AS D ON e.`Id_catalogos_universal` = D.`Id_catalogo_universal`;";
+       let sql = "SELECT "
+       +" j.`Id_juguetes`, "
+       +" D.`denominacion_universal` AS 'Tipo Jugete',"
+       +" j.`Nombre_juguete`, "
+       +" j.`tama_juguete`, "
+       +" a.`denominacion_universal` AS 'Color Jugete' "      
+       + " FROM `tb_juguetes` AS j"
+       + " INNER JOIN `ct_catalogo_universal` AS D ON j.`tipo_producto` = D.`Id_catalogo_universal` "
+       + " INNER JOIN `ct_catalogo_universal` AS a ON j.`color_jugete` = a.`Id_catalogo_universal` "
+       + " ORDER BY `Nombre_juguete` "
 
       
        
@@ -64,21 +62,18 @@ tipJuguetesModel.getTipJuguetes= function (callback)
             "`tama_juguete`, "+
             "`color_jugete`" +
             "FROM `tb_juguetes`"+
-            "where `Id_juguetes` = "+*/
-            let sql = "SELECT"+
-            " e.`Id_empleados`,"+
-            " D.`denominacion_universal` AS 'Tipo Documento',"+
-            " CONCAT( e.`nombre1_empleados`, ' ',"+
-            " e.`nombre2_empleados`,  ' ',"+
-            " e.`apellido1_empleados`, ' ',"+
-            " e.`apellido2_empleados`) AS 'Persona',"+
-            "  e.`numdoc_empleados` AS 'Numero De Documento',"+
-            " c.`denominacion_universal` AS 'Cargo Empleado'"+
-            " FROM `tb_empleados` AS e"+
-            " INNER JOIN `ct_catalogo_universal` AS c ON e.`cargo_empleados` = c.`Id_catalogo_universal`"+
-            " INNER JOIN `ct_catalogo_universal` AS D ON e.`Id_catalogos_universal` = D.`Id_catalogo_universal`"+
-            "WHERE `Id_empleados` = "+
-            connection.escape(id) +";";
+            "where `Id_juguetes` = "*/
+            let sql = "SELECT "
+            +" j.`Id_juguetes`, "
+            +" D.`denominacion_universal` AS 'Tipo Jugete',"
+            +" j.`Nombre_juguete`, "
+            +" j.`tama_juguete`, "
+            +" a.`denominacion_universal` AS 'Color Jugete' "           
+            +" FROM `tb_juguetes` AS j"
+            +" INNER JOIN `ct_catalogo_universal` AS D ON j.`tipo_producto` = D.`Id_catalogo_universal` "
+            +" INNER JOIN `ct_catalogo_universal` AS a ON j.`color_jugete` = a.`Id_catalogo_universal` "
+            +" where `Id_juguetes`= "
+            + connection.escape(id) +";";
 
             // console.log id
             // console.log("31 tal ";)

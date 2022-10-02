@@ -45,6 +45,36 @@ module.exports = function()
 
     });
 
+    //////////////////////////////////////////////////////////////////////////////
+     // fechas
+
+     router.get("/:fecha", function (req, res)
+     {
+         let fecha1 = req.params.fecha;
+         let fecha2 = req.params.fecha;
+         if(!isNaN(fecha1))
+         {
+             tipProJugueteModel.getTipProJuguete(fecha1,fecha2, function (error, data)
+             
+             {
+             if(typeof data !== 'undefined' && data.length > 0)
+             {
+                 res.status(200).json(data);
+             }
+             else{
+                 res.json(404,
+                     {
+                         "msg": "registro no existe"
+                     });
+             }
+             });
+         }
+             else // si hay error
+             {
+                 res.status(500).json({"msg": "error"});
+             }
+ 
+     });
  //////////////////////////////////////////////////////////////////////////////
     // añadir
 

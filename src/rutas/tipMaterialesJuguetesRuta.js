@@ -81,7 +81,7 @@ router.put("/", function (req, res)
     //console.log(" 38");
         let TipMaterialJugueteData =
         { 
-            Id_materiales_productos: req.body.Id_material,
+            Id_materiales_productos: req.body.Id_materiales_productos,
             Id_juguetes: req.body.Id_juguetes,
             Id_material: req.body.Id_material,
             Descripcion: req.body.Descripcion,

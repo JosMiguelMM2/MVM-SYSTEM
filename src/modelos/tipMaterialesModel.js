@@ -53,14 +53,15 @@ tipMaterialesModel.getTipMaterialess = function (callback)
     {
         if(connection)
         {
-            /*let sql = "SELECT "+
+            let sql = "SELECT "+
+            "`Id_material`,"+
             "`clase_material`,"+
             "`color_material`,"+
             "`cantidad_peso`, "+
             "`nombre_material`"+
             "FROM `tb_materiales` "+
-            "WHERE `Id_material` = "+*/
-
+            "WHERE `Id_material` = "+
+/*
             let sql = "SELECT "+ 
             " M.`nombre_material`," +
             " a.`denominacion_universal` AS 'Clase de material'," +
@@ -69,7 +70,7 @@ tipMaterialesModel.getTipMaterialess = function (callback)
             " FROM `tb_materiales` AS M"+
             " INNER JOIN `ct_catalogo_universal` AS a ON M.clase_material = a.`Id_catalogo_universal`"+
             " INNER JOIN `ct_catalogo_universal` AS c ON M.color_material = c.`Id_catalogo_universal`"+
-            " WHERE `Id_material` = "+
+            " WHERE `Id_material` = "+*/
             connection.escape(id) +";";
 
             // console.log id
@@ -119,12 +120,12 @@ tipMaterialesModel.getTipMaterialess = function (callback)
     // console.log(" 32 tal ");
     if (connection)
     {
-        let sql = "UPDATE `tb_materiales` SET"
-        +" `clase_material`= "+ connection.escape(tipMaterialesModel.clase_material)
-        +", `color_material`= "+ connection.escape(tipMaterialesModel.color_material)
-        +", `cantidad_peso`= "+ connection.escape(tipMaterialesModel.cantidad_peso)
-        + ", `nombre_material`= " + connection.escape(tipMaterialesModel.nombre_material)
-        + " WHERE `Id_material` = "
+        let sql = "UPDATE `tb_materiales` SET "
+        +" clase_material = "+ connection.escape(tipMaterialesModel.clase_material)
+        +", color_material = "+ connection.escape(tipMaterialesModel.color_material)
+        +", cantidad_peso = "+ connection.escape(tipMaterialesModel.cantidad_peso)
+        + ", nombre_material = " + connection.escape(tipMaterialesModel.nombre_material)
+        + " WHERE Id_material = "
         + connection.escape(TipMaterialDada.Id_material)+";";
       
         //console.log(" 37 tal "+ sql);

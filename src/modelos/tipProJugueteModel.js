@@ -100,6 +100,39 @@ tipProJugueteModel.getTipProJuguetes = function(callback)
             });
         }
     }
+
+     //////////////////////////////////////////////////////////////////////////////
+ 
+ // obtener Informe por fechas cantidad de juguetes producidos
+
+ tipProJugueteModel.getTipProJuguete = function (fecha1,fecha2, callback)
+ {
+     if(connection)
+     {
+        
+         let sql = "SELECT "
+            " SUM(ALL `Cantidad_producida`)as 'Total Producida' "
+            " FROM `th_produccion_juguetes` "
+            " WHERE `Fecha_produccion` "  
+            " BETWEEN  "
+            + connection.escape(fecha1) 
+            +"AND "
+            + connection.escape(fecha2) +";";
+         // console.log id
+         // console.log("31 tal ";)
+
+         connection.query(sql, function (error, row)
+         {
+             if (error)
+             {
+             throw error;
+             }
+             else{
+             callback(null, row);
+             }
+         });
+     }
+ }
  //////////////////////////////////////////////////////////////////////////////
     //añadir registro
 

@@ -1,3 +1,13 @@
+Catalogo 
+--
+SELECT 
+    cu.`Id_catalogo_universal`,
+    cu.`denominacion_universal`,
+    a.`denominacion_universal` AS ' Pertenece a '
+FROM `ct_catalogo_universal` AS cu 
+INNER JOIN `ct_catalogo_universal` AS a ON cu.catalogo_universal = a.Id_catalogo_universal
+ORDER BY cu.`catalogo_universal`
+------------------------------------------------------------
 Organizacion de Empleados MySQL
 ---------------------------------------------
 SELECT
