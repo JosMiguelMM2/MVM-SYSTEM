@@ -42,9 +42,48 @@ tipCatalogoModel.getTipCatalogos = function (callback)
 
  //////////////////////////////////////////////////////////////////////////////
  
- // obtener contacto por su id
+ 
+tipCatalogoModel.getTipCatalogosa = function (cts, callback)
+{
+    if(connection)
+    {   
+      /* let sql ="SELECT"
+       +"`Id_catalogo_universal`,"
+       +"`denominacion_universal`,"
+       +"`catalogo_universal`"
+       +"FROM `ct_catalogo_universal`" 
+       +"ORDER BY `catalogo_universal`"
+*/
+       let sql = "SELECT " 
+        +" cu.`Id_catalogo_universal`,"
+        +" cu.`denominacion_universal`,"
+        +" a.`denominacion_universal` AS ' Pertenece a '"
+        +" FROM `ct_catalogo_universal` AS cu "
+        +" INNER JOIN `ct_catalogo_universal` AS a ON cu.catalogo_universal = a.Id_catalogo_universal"
+        +" WHERE cu.`catalogo_universal`= " +connection.escape(cts) +";";
+        +" ORDER BY cu.`catalogo_universal`"
+        connection.query(sql, function (error, rows)
+        {
+            if (error)
+            {
+                throw error;
+            }
+            else
+            {
+                //debuelve las filas como un Json
+                callback(null, rows);
+                //comvierte las filas Json a una cadena de texto para Angular
+                //callback(null, JSON.stringify(rows));
+            }
+        });
+    }
+}
 
- tipCatalogoModel.getTipCatalogo = function (id, callback)
+ //////////////////////////////////////////////////////////////////////////////
+ 
+ // obtener contacto por su varios
+
+ tipCatalogoModel.getTipCatalogo = function (cts, id, callback)
     {
         if(connection)
         {
@@ -57,11 +96,12 @@ tipCatalogoModel.getTipCatalogos = function (callback)
             let sql ="SELECT " 
             +" cu.`Id_catalogo_universal`,"
             +" cu.`denominacion_universal`,"
-            +" a.`denominacion_universal` AS ' Pertenece a '"
+            +" a.`denominacion_universal` AS ' Pertenece a ',"
+            +" cu.`catalogo_universal`"
             +" FROM `ct_catalogo_universal` AS cu "
             +" INNER JOIN `ct_catalogo_universal` AS a ON cu.catalogo_universal = a.Id_catalogo_universal"
-            +" WHERE cu.`Id_catalogo_universal`= "
-            +connection.escape(id) +";";
+            +" WHERE cu.`catalogo_universal`= " + connection.escape(cts) + " AND cu.`Id_catalogo_universal` = "
+            + connection.escape(id) +";";
 
             // console.log id
             // console.log("31 tal ";)
@@ -111,8 +151,8 @@ tipCatalogoModel.getTipCatalogos = function (callback)
     if (connection)
     {
         let sql = "UPDATE `ct_catalogo_universal` SET "
-        + " denominacion_universal = "+ connection.escape(tipCatalogoModel.denominacion_universal)
-        + ", catalogo_universal = "+ connection.escape(tipCatalogoModel.catalogo_universal)
+        + " denominacion_universal = "+ connection.escape(TipCatalogoData.denominacion_universal)
+        + ", catalogo_universal = "+ connection.escape(TipCatalogoData.catalogo_universal)
         + " WHERE Id_catalogo_universal = "
         + connection.escape(TipCatalogoData.Id_catalogo_universal)+";";
       

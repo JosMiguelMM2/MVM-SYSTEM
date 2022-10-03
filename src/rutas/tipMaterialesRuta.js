@@ -88,7 +88,7 @@ router.put("/", function (req, res)
             cantidad_peso:req.body.cantidad_peso,
             nombre_material:req.body.nombre_material
         };
-
+       console.log("159 "+ TipMaterialDada.nombre_material)
     //usamos la funcion para actualizar
     tipMaterialesModel.updateTipMateriales(TipMaterialDada, function (error, data)
     {

@@ -121,14 +121,14 @@ tipMaterialesModel.getTipMaterialess = function (callback)
     if (connection)
     {
         let sql = "UPDATE `tb_materiales` SET "
-        +" clase_material = "+ connection.escape(tipMaterialesModel.clase_material)
-        +", color_material = "+ connection.escape(tipMaterialesModel.color_material)
-        +", cantidad_peso = "+ connection.escape(tipMaterialesModel.cantidad_peso)
-        + ", nombre_material = " + connection.escape(tipMaterialesModel.nombre_material)
+        +" clase_material = "+ connection.escape(TipMaterialDada.clase_material)
+        +", color_material = "+ connection.escape(TipMaterialDada.color_material)
+        +", cantidad_peso = "+ connection.escape(TipMaterialDada.cantidad_peso)
+        + ", nombre_material = " + connection.escape(TipMaterialDada.nombre_material)
         + " WHERE Id_material = "
         + connection.escape(TipMaterialDada.Id_material)+";";
       
-        //console.log(" 37 tal "+ sql);
+        console.log(" 37 tal "+ sql);
 
         connection.query(sql, function (error, result)
         {

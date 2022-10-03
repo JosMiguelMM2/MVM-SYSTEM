@@ -5,7 +5,7 @@ let tipCatalogoModel = require('../modelos/tipCatalogoModel');
 
 module.exports = function()
 {
-    router.get("/", function (req, res)
+    router.get("/t", function (req, res)
     {
         tipCatalogoModel.getTipCatalogos(function(error, data)
         {
@@ -17,13 +17,13 @@ module.exports = function()
      //////////////////////////////////////////////////////////////////////////////
      // ID
 
-    router.get("/:id", function (req, res)
+    router.get("/:cts/:id", function (req, res)
     {
         let id = req.params.id;
-
+        let cts = req.params.cts;
         if(!isNaN(id))
         {
-            tipCatalogoModel.getTipCatalogo(id, function (error, data)
+            tipCatalogoModel.getTipCatalogo(cts, id, function (error, data)
             
             {
             if(typeof data !== 'undefined' && data.length > 0)
@@ -44,6 +44,38 @@ module.exports = function()
             }
 
     });
+
+
+     //////////////////////////////////////////////////////////////////////////////
+     // cts
+
+     router.get("/:cts", function (req, res)
+     {
+         let cts = req.params.cts;
+ 
+         if(!isNaN(cts))
+         {
+             tipCatalogoModel.getTipCatalogosa(cts, function (error, data)
+             
+             {
+             if(typeof data !== 'undefined' && data.length > 0)
+             {
+                 res.status(200).json(data);
+             }
+             else{
+                 res.json(404,
+                     {
+                         "msg": "registro no existe"
+                     });
+             }
+             });
+         }
+             else // si hay error
+             {
+                 res.status(500).json({"msg": "error"});
+             }
+ 
+     });
 
  //////////////////////////////////////////////////////////////////////////////
     // añadir

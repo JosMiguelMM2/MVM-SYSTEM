@@ -47,7 +47,7 @@ module.exports = function()
 
     //////////////////////////////////////////////////////////////////////////////
      // fechas
-
+/*
      router.get("/:fecha", function (req, res)
      {
          let fecha1 = req.params.fecha;
@@ -74,7 +74,7 @@ module.exports = function()
                  res.status(500).json({"msg": "error"});
              }
  
-     });
+     });*/
  //////////////////////////////////////////////////////////////////////////////
     // añadir
 

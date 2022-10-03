@@ -104,7 +104,7 @@ tipProJugueteModel.getTipProJuguetes = function(callback)
      //////////////////////////////////////////////////////////////////////////////
  
  // obtener Informe por fechas cantidad de juguetes producidos
-
+/*
  tipProJugueteModel.getTipProJuguete = function (fecha1,fecha2, callback)
  {
      if(connection)
@@ -132,7 +132,7 @@ tipProJugueteModel.getTipProJuguetes = function(callback)
              }
          });
      }
- }
+ }*/
  //////////////////////////////////////////////////////////////////////////////
     //añadir registro
 
