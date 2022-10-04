@@ -1,3 +1,21 @@
+consulta de informe 1
+
+SELECT 
+	e.`Id_juguetes`, 
+    d.`Nombre_juguete`,
+    e.Id_produccion,
+    e.`Cantidad_producida`,
+    e.Errores_produccion 
+	
+    FROM `th_produccion_juguetes` AS e 
+    INNER JOIN `tb_juguetes` AS d ON 
+    e.`Id_produccion`= d.`Id_juguetes`
+    WHERE e.`Fecha_produccion`
+	BETWEEN '2013-03-15' AND '2025-08-15';
+
+
+
+
 Catalogo 
 --
 SELECT 
