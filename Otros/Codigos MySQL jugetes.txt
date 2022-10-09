@@ -110,6 +110,25 @@ INNER JOIN `tb_empleados` AS i ON pj.`Id_empleados` = i.`Id_empleados`
 INNER JOIN `tb_juguetes` AS j ON pj.`Id_empleados` = j.`Id_juguetes`
 order by `Cantidad_producida` 
 //WHERE  `Id_produccion` = 6
+Informe 1 
+SELECT 
+        e.`Id_juguetes`, 
+        d.`Nombre_juguete`,  
+       COUNT(e.`Cantidad_producida`) As 'Cantidad Pedidos',
+       SUM( `Cantidad_producida`) AS 'total producido'
+    FROM `th_produccion_juguetes` AS e 
+    INNER JOIN `tb_juguetes` AS d ON e.`Id_juguetes`= d.`Id_juguetes`
+    WHERE e.`Fecha_produccion` BETWEEN '2013-03-15' AND '2025-08-15'
+    GROUP BY `Id_juguetes`;
+Informe 2
+   SELECT 
+        e.`Id_juguetes`, 
+        d.`Nombre_juguete`, 
+        SUM( `Material_Utilizado`) AS 'total de materiales' 
+    FROM `th_produccion_juguetes` AS e 
+    INNER JOIN `tb_juguetes` AS d ON e.`Id_juguetes`= d.`Id_juguetes` 
+    WHERE e.`Fecha_produccion` BETWEEN '2013-03-15' AND '2025-08-15' 
+    GROUP BY `Id_juguetes`;
 ----------------------------------------
 material jugete
 SELECT 

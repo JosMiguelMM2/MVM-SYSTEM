@@ -15,7 +15,8 @@ tipProJugueteModel.getTipProJuguetes = function(callback)
         +" `Fecha_produccion`,"
         +" `Detalles_produccion`," 
         +" `Errores_produccion`,"
-        +" `Cantidad_producida`" 
+        +" `Cantidad_producida`," 
+        +" `Material_Utilizado`"
         +" FROM `th_produccion_juguetes` "
         +" ORDER BY `Cantidad_producida` DESC ";
         */
@@ -27,7 +28,8 @@ tipProJugueteModel.getTipProJuguetes = function(callback)
         +" pj.`Cantidad_producida`,"
         +" pj.`Fecha_produccion`, "
         +" pj.`Detalles_produccion`,"
-        +" pj.`Errores_produccion` "
+        +" pj.`Errores_produccion`, "
+        +" pj.`Material_Utilizado` "
         +" FROM `th_produccion_juguetes` AS pj"
         +" INNER JOIN `tb_empleados` AS h ON pj.`Id_empleados` = h.`Id_empleados`"
         +" INNER JOIN `tb_empleados` AS i ON pj.`Id_empleados` = i.`Id_empleados`"
@@ -54,7 +56,7 @@ tipProJugueteModel.getTipProJuguetes = function(callback)
  
  // obtener contacto por su id
 
-    tipProJugueteModel.getTipProJuguete = function (id, callback)
+    tipProJugueteModel.getTipProJuguetei = function (id, callback)
     {
         if(connection)
         {
@@ -65,7 +67,8 @@ tipProJugueteModel.getTipProJuguetes = function(callback)
             +" `Fecha_produccion`,"
             +" `Detalles_produccion`," 
             +" `Errores_produccion`,"
-            +" `Cantidad_producida`" 
+            +" `Cantidad_producida`," 
+            +" `Material_Utilizado`"
             +" FROM `th_produccion_juguetes` "
             +" WHERE Id_produccion = "
             + connection.escape(id) +";";
@@ -78,7 +81,8 @@ tipProJugueteModel.getTipProJuguetes = function(callback)
         +" pj.`Cantidad_producida`,"
         +" pj.`Fecha_produccion`, "
         +" pj.`Detalles_produccion`,"
-        +" pj.`Errores_produccion` "
+        +" pj.`Errores_produccion`, "
+        +" pj.`Material_Utilizado` "
         +" FROM `th_produccion_juguetes` AS pj"
         +" INNER JOIN `tb_empleados` AS h ON pj.`Id_empleados` = h.`Id_empleados`"
         +" INNER JOIN `tb_empleados` AS i ON pj.`Id_empleados` = i.`Id_empleados`"
@@ -104,22 +108,24 @@ tipProJugueteModel.getTipProJuguetes = function(callback)
      //////////////////////////////////////////////////////////////////////////////
  
  // obtener Informe por fechas cantidad de juguetes producidos
-/*
- tipProJugueteModel.getTipProJuguete = function (fecha1,fecha2, callback)
+
+ tipProJugueteModel.getTipProJuguete = function (Finicio,Ffinal, callback)
  {
      if(connection)
      {
         
-         let sql = "SELECT "
-            " SUM(ALL `Cantidad_producida`)as 'Total Producida' "
-            " FROM `th_produccion_juguetes` "
-            " WHERE `Fecha_produccion` "  
-            " BETWEEN  "
-            + connection.escape(fecha1) 
-            +"AND "
-            + connection.escape(fecha2) +";";
-         // console.log id
-         // console.log("31 tal ";)
+         let sql = "SELECT " 
+        +" e.`Id_juguetes`," 
+        +" d.`Nombre_juguete`,"  
+        +" COUNT(e.`Cantidad_producida`) As 'Cantidad Pedidos',"
+        +" SUM( `Cantidad_producida`) AS 'total producido'"
+        +" FROM `th_produccion_juguetes` AS e "
+        +" INNER JOIN `tb_juguetes` AS d ON e.`Id_juguetes`= d.`Id_juguetes`"
+        +" WHERE e.`Fecha_produccion` BETWEEN "+"'"+ connection.escape(Finicio)+"'"+" AND " +"'"+ connection.escape(Ffinal)+"'"
+        +" GROUP BY `Id_juguetes`;"
+            
+         //console.log id
+          console.log("31 tal ")
 
          connection.query(sql, function (error, row)
          {
@@ -132,7 +138,7 @@ tipProJugueteModel.getTipProJuguetes = function(callback)
              }
          });
      }
- }*/
+ }
  //////////////////////////////////////////////////////////////////////////////
     //añadir registro
 
@@ -174,6 +180,7 @@ tipProJugueteModel.getTipProJuguetes = function(callback)
         +", `Detalles_produccion`= "+ connection.escape(TipProJugueteData.Detalles_produccion)
         +", `Errores_produccion`= "+ connection.escape(TipProJugueteData.Errores_produccion)
         +", `Cantidad_producida`= " + connection.escape(TipProJugueteData.Cantidad_producida)
+        +", `Material_Utilizado` = "+ connection.escape(TipProJugueteData.Material_Utilizado)
         +" WHERE Id_produccion = "
         + connection.escape(TipProJugueteData.Id_produccion)+";";
         //console.log(" 37 tal "+ sql);

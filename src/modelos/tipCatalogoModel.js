@@ -41,7 +41,7 @@ tipCatalogoModel.getTipCatalogos = function (callback)
 }
 
  //////////////////////////////////////////////////////////////////////////////
- 
+ // uno 
  
 tipCatalogoModel.getTipCatalogosa = function (cts, callback)
 {
@@ -81,7 +81,7 @@ tipCatalogoModel.getTipCatalogosa = function (cts, callback)
 
  //////////////////////////////////////////////////////////////////////////////
  
- // obtener contacto por su varios
+ // obtener contacto por tipo catalogo e id 
 
  tipCatalogoModel.getTipCatalogo = function (cts, id, callback)
     {
