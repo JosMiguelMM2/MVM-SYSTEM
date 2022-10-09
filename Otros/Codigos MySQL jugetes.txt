@@ -1,5 +1,7 @@
 consulta de informe 1
 
+SELECT * FROM `th_produccion_juguetes` WHERE `Fecha_produccion` BETWEEN '2002-10-02' AND '2028-10-04'
+
 SELECT 
 	e.`Id_juguetes`, 
     d.`Nombre_juguete`,

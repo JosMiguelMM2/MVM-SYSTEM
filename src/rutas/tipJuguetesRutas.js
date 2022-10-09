@@ -58,7 +58,7 @@ module.exports = function()
             tama_juguete: req.body.tama_juguete,
             color_jugete: req.body.color_jugete
         };
-
+       
         tipJuguetesModel.insertTipJuguete(TipjuguetesData, function(error, data)
         {
             if(data)
