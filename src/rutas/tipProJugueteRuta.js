@@ -46,15 +46,17 @@ module.exports = function()
     });
 
     //////////////////////////////////////////////////////////////////////////////
-     // fechas
+     // fechas + id
 
-     router.get("/:Finicio/:Ffinal", function (req, res)
+     router.get("/:Finicio/:Ffinal/:id", function (req, res)
      {
          let Finicio = req.params.Finicio;
          let Ffinal = req.params.Ffinal;
-         if(!isNaN(Finicio))
-         {
-             tipProJugueteModel.getTipProJuguete(Ffinal,Finicio, function (error, data)
+         let id = req.params.id
+         console.log("aca 159 "+ Finicio + " - " + Ffinal + " - " + id );
+         //if(!isNaN(Finicio))
+        // {
+             tipProJugueteModel.getTipProJuguete(Finicio,Ffinal, id, function (error, data)
              
              {
              if(typeof data !== 'undefined' && data.length > 0)
@@ -68,11 +70,38 @@ module.exports = function()
                      });
              }
              });
-         }
-             else // si hay error
+         //}
+             
+ 
+     });
+
+     //////////////////////////////////////////////////////////////////////////////
+     // fechas 
+
+     router.get("/:Finicio/:Ffinal", function (req, res)
+     {
+         let Finicio = req.params.Finicio;
+         let Ffinal = req.params.Ffinal;
+         let id = req.params.id
+         console.log("aca 159 "+ Finicio + " - " + Ffinal  );
+         //if(!isNaN(Finicio))
+        // {
+             tipProJugueteModel.getTipProJuguetef(Finicio,Ffinal, function (error, data)
+             
              {
-                 res.status(500).json({"msg": "error"});
+             if(typeof data !== 'undefined' && data.length > 0)
+             {
+                 res.status(200).json(data);
              }
+             else{
+                 res.json(404,
+                     {
+                         "msg": "registro no existe"
+                     });
+             }
+             });
+         //}
+             
  
      });
  //////////////////////////////////////////////////////////////////////////////
@@ -83,8 +112,8 @@ module.exports = function()
         let TipProJugueteData =
         {
             Id_produccion: null,
-            Id_empleados: req.body.Id_empleados,
-            Id_juguetes: req.body.Id_juguetes,
+            empleados_Produccion: req.body.empleados_Produccion,
+            juguetes_Produccion: req.body.juguetes_Produccion,
             Fecha_produccion: req.body.Fecha_produccion,
             Detalles_produccion: req.body.Detalles_produccion,
             Errores_produccion: req.body.Errores_produccion,
@@ -115,8 +144,8 @@ router.put("/", function (req, res)
         let TipProJugueteData =
         { 
             Id_produccion: req.body.Id_produccion,
-            Id_empleados: req.body.Id_empleados,
-            Id_juguetes: req.body.Id_juguetes,
+            empleados_Produccion: req.body.empleados_Produccion,
+            juguetes_Produccion: req.body.juguetes_Produccion,
             Fecha_produccion: req.body.Fecha_produccion,
             Detalles_produccion: req.body.Detalles_produccion,
             Errores_produccion: req.body.Errores_produccion,

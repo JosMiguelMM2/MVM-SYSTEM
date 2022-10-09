@@ -111,15 +111,28 @@ INNER JOIN `tb_juguetes` AS j ON pj.`Id_empleados` = j.`Id_juguetes`
 order by `Cantidad_producida` 
 //WHERE  `Id_produccion` = 6
 Informe 1 
-SELECT 
-        e.`Id_juguetes`, 
-        d.`Nombre_juguete`,  
-       COUNT(e.`Cantidad_producida`) As 'Cantidad Pedidos',
-       SUM( `Cantidad_producida`) AS 'total producido'
-    FROM `th_produccion_juguetes` AS e 
-    INNER JOIN `tb_juguetes` AS d ON e.`Id_juguetes`= d.`Id_juguetes`
-    WHERE e.`Fecha_produccion` BETWEEN '2013-03-15' AND '2025-08-15'
-    GROUP BY `Id_juguetes`;
+ SELECT e.Id_produccion,
+    e.Fecha_produccion AS 'Fecha',
+    e.`juguetes_Produccion` AS 'ID juguete',
+    CONCAT ( a.denominacion_universal ," ",
+            `Nombre_juguete`," ",
+            c.denominacion_universal ) AS 'Juguete' ,
+    CONCAT ( k.nombre1_empleados, " ",
+             b.nombre2_empleados, " ",
+             g.apellido2_empleados, " ",
+             h.apellido2_empleados ) AS 'Persona',
+    	e.Errores_produccion AS 'Errores', 
+        e.Cantidad_producida AS 'Total Creados',
+    ( e.Cantidad_producida - e.Errores_produccion ) AS 'Total Servibles' 
+    FROM `th_produccion_juguetes` AS e
+    INNER JOIN `tb_juguetes` AS d ON e.`juguetes_Produccion`= d.`Id_juguetes`
+    INNER JOIN `ct_catalogo_universal` AS a ON a.Id_catalogo_universal = d.tipo_producto 
+    INNER JOIN `ct_catalogo_universal` AS c ON c.Id_catalogo_universal = d.color_jugete 
+    INNER JOIN `tb_empleados` AS k ON e.empleados_Produccion = k.`Id_empleados`
+    INNER JOIN `tb_empleados` AS b ON e.empleados_Produccion = b.`Id_empleados`
+    INNER JOIN `tb_empleados` AS g ON e.empleados_Produccion = g.`Id_empleados`
+    INNER JOIN `tb_empleados` AS h ON e.empleados_Produccion = h.`Id_empleados`
+    WHERE `juguetes_Produccion` = 7 and e.`Fecha_produccion` BETWEEN '2019-12-31' AND '2022-12-31';
 Informe 2
    SELECT 
         e.`Id_juguetes`, 
@@ -142,3 +155,38 @@ INNER JOIN `tb_juguetes` AS j ON mj.`Id_materiales_productos` = j.`Id_juguetes`
 INNER JOIN `tb_materiales` AS n ON mj.`Id_material` = n.`Id_material`
 ORDER BY j.`Nombre_juguete` 
 //WHERE `Id_materiales_productos` = 6
+----------------------------------------------------------------------------------
+otra cosa 
+SELECT 
+`Id_juguetes`, 
+ CONCAT ( a.denominacion_universal ," ",
+`Nombre_juguete`," ",
+b.denominacion_universal , " ",
+c.denominacion_universal ) AS 'juguete'
+FROM `tb_juguetes` AS j 
+INNER JOIN `ct_catalogo_universal` AS a ON a.Id_catalogo_universal = j.tipo_producto
+INNER JOIN `ct_catalogo_universal` AS b ON b.Id_catalogo_universal = j.tama_juguete
+INNER JOIN `ct_catalogo_universal` AS c ON c.Id_catalogo_universal = j.color_jugete
+
+SELECT 
+e.Id_produccion, 
+e.Fecha_produccion, 
+e.`juguetes_Produccion`,
+CONCAT ( a.denominacion_universal ," ", 
+        `Nombre_juguete`," ",
+        c.denominacion_universal ) AS 'juguete' ,
+        e.Errores_produccion, 
+        ( e.Cantidad_producida - e.Errores_produccion ) AS 'total'
+        FROM `th_produccion_juguetes` AS e 
+        INNER JOIN `tb_juguetes` AS d ON e.`juguetes_Produccion`= d.`Id_juguetes`
+        INNER JOIN `ct_catalogo_universal` AS a ON a.Id_catalogo_universal = d.tipo_producto 
+        INNER JOIN `ct_catalogo_universal` AS c ON c.Id_catalogo_universal = d.color_jugete 
+        WHERE `juguetes_Produccion` = 7 and e.`Fecha_produccion` BETWEEN '2019-12-31' AND '2022-12-31';
+
+
+
+
+        k.nombre1_empleados, " ",
+             b.nombre2_empleados, " ",
+             f.nombre2_empleados, " ",
+             g.apellido2_empleados, " ",

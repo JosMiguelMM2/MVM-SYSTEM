@@ -9,16 +9,16 @@ tipProJugueteModel.getTipProJuguetes = function(callback)
 {
     if(connection)
     {   
-        /*let sql = "SELECT `Id_produccion`," 
-        +" `Id_empleados`,"
-        +" `Id_juguetes`, "
-        +" `Fecha_produccion`,"
-        +" `Detalles_produccion`," 
-        +" `Errores_produccion`,"
-        +" `Cantidad_producida`," 
+        /*let sql = "SELECT `Id_produccion`, "
+        +" `empleados_Produccion`, "
+        +" `juguetes_Produccion`," 
+        +" `Fecha_produccion`," 
+        +" `Detalles_produccion`,"
+        +" `Errores_produccion`, "
+        +" `Cantidad_producida`, "
         +" `Material_Utilizado`"
-        +" FROM `th_produccion_juguetes` "
-        +" ORDER BY `Cantidad_producida` DESC ";
+        +" FROM `th_produccion_juguetes`"
+        +" ORDER BY `Cantidad_producida` DESC"
         */
         let sql = "SELECT " 
         +" pj.`Id_produccion`,"  
@@ -31,9 +31,9 @@ tipProJugueteModel.getTipProJuguetes = function(callback)
         +" pj.`Errores_produccion`, "
         +" pj.`Material_Utilizado` "
         +" FROM `th_produccion_juguetes` AS pj"
-        +" INNER JOIN `tb_empleados` AS h ON pj.`Id_empleados` = h.`Id_empleados`"
-        +" INNER JOIN `tb_empleados` AS i ON pj.`Id_empleados` = i.`Id_empleados`"
-        +" INNER JOIN `tb_juguetes` AS j ON pj.`Id_empleados` = j.`Id_juguetes`"
+        +" INNER JOIN `tb_empleados` AS h ON pj.`empleados_Produccion` = h.`Id_empleados`"
+        +" INNER JOIN `tb_empleados` AS i ON pj.`empleados_Produccion` = i.`Id_empleados`"
+        +" INNER JOIN `tb_juguetes` AS j ON pj.`juguetes_Produccion` = j.`Id_juguetes`"
         +" order by `Cantidad_producida`";
         connection.query(sql, function (error, rows)
         {
@@ -61,18 +61,18 @@ tipProJugueteModel.getTipProJuguetes = function(callback)
         if(connection)
         {
             /*let sql = "SELECT `Id_contactos`, `Id_empleados`, `Tipo_contacto`, `Dato_contacto` FROM `am_contactos` WHERE Id_contactos = "*/
-            /*let sql = "SELECT " 
-            +" `Id_empleados`,"
-            +" `Id_juguetes`, "
-            +" `Fecha_produccion`,"
-            +" `Detalles_produccion`," 
-            +" `Errores_produccion`,"
-            +" `Cantidad_producida`," 
+            /*let sql = "SELECT  `Id_produccion`,"
+            +" `empleados_Produccion`, "
+            +" `juguetes_Produccion`," 
+            +" `Fecha_produccion`," 
+            +" `Detalles_produccion`,"
+            +" `Errores_produccion`, "
+            +" `Cantidad_producida`, "
             +" `Material_Utilizado`"
-            +" FROM `th_produccion_juguetes` "
+            +" FROM `th_produccion_juguetes`"
             +" WHERE Id_produccion = "
-            + connection.escape(id) +";";
-            */
+            + connection.escape(id) +";";*/
+            
             let sql = "SELECT " 
         +" pj.`Id_produccion`,"  
         +" CONCAT(h.nombre1_empleados, ' ',"
@@ -84,9 +84,9 @@ tipProJugueteModel.getTipProJuguetes = function(callback)
         +" pj.`Errores_produccion`, "
         +" pj.`Material_Utilizado` "
         +" FROM `th_produccion_juguetes` AS pj"
-        +" INNER JOIN `tb_empleados` AS h ON pj.`Id_empleados` = h.`Id_empleados`"
-        +" INNER JOIN `tb_empleados` AS i ON pj.`Id_empleados` = i.`Id_empleados`"
-        +" INNER JOIN `tb_juguetes` AS j ON pj.`Id_empleados` = j.`Id_juguetes`"
+        +" INNER JOIN `tb_empleados` AS h ON pj.`empleados_Produccion` = h.`Id_empleados`"
+        +" INNER JOIN `tb_empleados` AS i ON pj.`empleados_Produccion` = i.`Id_empleados`"
+        +" INNER JOIN `tb_juguetes` AS j ON pj.`juguetes_Produccion` = j.`Id_juguetes`"
         +" WHERE Id_produccion = "
         + connection.escape(id) +";";
             // console.log id
@@ -109,21 +109,79 @@ tipProJugueteModel.getTipProJuguetes = function(callback)
  
  // obtener Informe por fechas cantidad de juguetes producidos
 
- tipProJugueteModel.getTipProJuguete = function (Finicio,Ffinal, callback)
+ tipProJugueteModel.getTipProJuguete = function ( Finicio, Ffinal, id, callback)
  {
+    console.log("aca 258 "+ Finicio + " - " + Ffinal +"- " + id );
      if(connection)
      {
         
-         let sql = "SELECT " 
-        +" e.`Id_juguetes`," 
-        +" d.`Nombre_juguete`,"  
-        +" COUNT(e.`Cantidad_producida`) As 'Cantidad Pedidos',"
-        +" SUM( `Cantidad_producida`) AS 'total producido'"
-        +" FROM `th_produccion_juguetes` AS e "
-        +" INNER JOIN `tb_juguetes` AS d ON e.`Id_juguetes`= d.`Id_juguetes`"
-        +" WHERE e.`Fecha_produccion` BETWEEN "+"'"+ connection.escape(Finicio)+"'"+" AND " +"'"+ connection.escape(Ffinal)+"'"
-        +" GROUP BY `Id_juguetes`;"
-            
+       let sql =" SELECT e.Id_produccion,"
+       + " e.Fecha_produccion AS 'Fecha',"
+       + " e.`juguetes_Produccion` AS 'ID juguete',"
+       + " CONCAT ( a.denominacion_universal ,' ',"
+       + "       `Nombre_juguete`,' ',"
+       + "       c.denominacion_universal ) AS 'Juguete' ,"
+       + " CONCAT ( k.nombre1_empleados, ' ',"
+       + "       b.nombre2_empleados, ' ',"
+       + "       g.apellido2_empleados, ' ',"
+       + "       h.apellido2_empleados ) AS 'Persona',"
+       + "  e.Errores_produccion AS 'Errores', "
+       + "  e.Cantidad_producida AS 'Total Creados',"
+       + " ( e.Cantidad_producida - e.Errores_produccion ) AS 'Total Servibles' "
+       + " FROM `th_produccion_juguetes` AS e"
+       + " INNER JOIN `tb_juguetes` AS d ON e.`juguetes_Produccion`= d.`Id_juguetes`"
+       + " INNER JOIN `ct_catalogo_universal` AS a ON a.Id_catalogo_universal = d.tipo_producto "
+       + " INNER JOIN `ct_catalogo_universal` AS c ON c.Id_catalogo_universal = d.color_jugete "
+       + " INNER JOIN `tb_empleados` AS k ON e.empleados_Produccion = k.`Id_empleados`"
+       + " INNER JOIN `tb_empleados` AS b ON e.empleados_Produccion = b.`Id_empleados`"
+       + " INNER JOIN `tb_empleados` AS g ON e.empleados_Produccion = g.`Id_empleados`"
+       + " INNER JOIN `tb_empleados` AS h ON e.empleados_Produccion = h.`Id_empleados`"
+       + " WHERE `juguetes_Produccion` = "+ connection.escape(id) 
+       + " AND e.`Fecha_produccion` BETWEEN "+ connection.escape(Finicio)+ "AND "+ connection.escape(Ffinal)+";";
+         //console.log id
+          console.log("31 tal ")
+
+         connection.query(sql, function (error, row)
+         {
+             if (error)
+             {
+             throw error;
+             }
+             else{
+             callback(null, row);
+             }
+         });
+     }
+ }
+ //-----------------------filtra por fechas--------
+ tipProJugueteModel.getTipProJuguetef = function ( Finicio, Ffinal, callback)
+ {
+    console.log("aca 258 "+ Finicio + " - " + Ffinal  );
+     if(connection)
+     {
+        
+       let sql =" SELECT e.Id_produccion,"
+       + " e.Fecha_produccion AS 'Fecha',"
+       + " e.`juguetes_Produccion` AS 'ID juguete',"
+       + " CONCAT ( a.denominacion_universal ,' ',"
+       + "       `Nombre_juguete`,' ',"
+       + "       c.denominacion_universal ) AS 'Juguete' ,"
+       + " CONCAT ( k.nombre1_empleados, ' ',"
+       + "       b.nombre2_empleados, ' ',"
+       + "       g.apellido2_empleados, ' ',"
+       + "       h.apellido2_empleados ) AS 'Persona',"
+       + "  e.Errores_produccion AS 'Errores', "
+       + "  e.Cantidad_producida AS 'Total Creados',"
+       + " ( e.Cantidad_producida - e.Errores_produccion ) AS 'Total Servibles' "
+       + " FROM `th_produccion_juguetes` AS e"
+       + " INNER JOIN `tb_juguetes` AS d ON e.`juguetes_Produccion`= d.`Id_juguetes`"
+       + " INNER JOIN `ct_catalogo_universal` AS a ON a.Id_catalogo_universal = d.tipo_producto "
+       + " INNER JOIN `ct_catalogo_universal` AS c ON c.Id_catalogo_universal = d.color_jugete "
+       + " INNER JOIN `tb_empleados` AS k ON e.empleados_Produccion = k.`Id_empleados`"
+       + " INNER JOIN `tb_empleados` AS b ON e.empleados_Produccion = b.`Id_empleados`"
+       + " INNER JOIN `tb_empleados` AS g ON e.empleados_Produccion = g.`Id_empleados`"
+       + " INNER JOIN `tb_empleados` AS h ON e.empleados_Produccion = h.`Id_empleados`"
+       + " WHERE e.`Fecha_produccion` BETWEEN "+ connection.escape(Finicio)+ "AND "+ connection.escape(Ffinal)+";";
          //console.log id
           console.log("31 tal ")
 
@@ -174,8 +232,8 @@ tipProJugueteModel.getTipProJuguetes = function(callback)
     if (connection)
     { 
         let sql = "UPDATE `th_produccion_juguetes` SET"
-        +" `Id_empleados`= "+ connection.escape(TipProJugueteData.Id_empleados)
-        +", `Id_juguetes`= "+ connection.escape(TipProJugueteData.Id_juguetes)
+        +" `empleados_Produccion`= "+ connection.escape(TipProJugueteData.empleados_Produccion)
+        +", `juguetes_Produccion`= "+ connection.escape(TipProJugueteData.juguetes_Produccion)
         +", `Fecha_produccion`= "+ connection.escape(TipProJugueteData.Fecha_produccion)
         +", `Detalles_produccion`= "+ connection.escape(TipProJugueteData.Detalles_produccion)
         +", `Errores_produccion`= "+ connection.escape(TipProJugueteData.Errores_produccion)
