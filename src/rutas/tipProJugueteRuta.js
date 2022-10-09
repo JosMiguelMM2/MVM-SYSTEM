@@ -23,7 +23,7 @@ module.exports = function()
 
         if(!isNaN(id))
         {
-            tipProJugueteModel.getTipProJuguete(id, function (error, data)
+            tipProJugueteModel.getTipProJuguetei(id, function (error, data)
             
             {
             if(typeof data !== 'undefined' && data.length > 0)
@@ -47,14 +47,14 @@ module.exports = function()
 
     //////////////////////////////////////////////////////////////////////////////
      // fechas
-/*
-     router.get("/:fecha", function (req, res)
+
+     router.get("/:Finicio/:Ffinal", function (req, res)
      {
-         let fecha1 = req.params.fecha;
-         let fecha2 = req.params.fecha;
-         if(!isNaN(fecha1))
+         let Finicio = req.params.Finicio;
+         let Ffinal = req.params.Ffinal;
+         if(!isNaN(Finicio))
          {
-             tipProJugueteModel.getTipProJuguete(fecha1,fecha2, function (error, data)
+             tipProJugueteModel.getTipProJuguete(Ffinal,Finicio, function (error, data)
              
              {
              if(typeof data !== 'undefined' && data.length > 0)
@@ -74,7 +74,7 @@ module.exports = function()
                  res.status(500).json({"msg": "error"});
              }
  
-     });*/
+     });
  //////////////////////////////////////////////////////////////////////////////
     // añadir
 
@@ -88,7 +88,8 @@ module.exports = function()
             Fecha_produccion: req.body.Fecha_produccion,
             Detalles_produccion: req.body.Detalles_produccion,
             Errores_produccion: req.body.Errores_produccion,
-            Cantidad_producida: req.body.Cantidad_producida
+            Cantidad_producida: req.body.Cantidad_producida,
+            Material_Utilizado: req.body.Material_Utilizado
         };
 
         tipProJugueteModel.insertTipProJuguete(TipProJugueteData, function(error, data)
@@ -119,7 +120,8 @@ router.put("/", function (req, res)
             Fecha_produccion: req.body.Fecha_produccion,
             Detalles_produccion: req.body.Detalles_produccion,
             Errores_produccion: req.body.Errores_produccion,
-            Cantidad_producida: req.body.Cantidad_producida
+            Cantidad_producida: req.body.Cantidad_producida,
+            Material_Utilizado: req.body.Material_Utilizado
         };
 
     //usamos la funcion para actualizar
