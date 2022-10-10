@@ -88,6 +88,42 @@ tipMaterialesModel.getTipMaterialess = function (callback)
             });
         }
     }
+
+    //obterner informe 2 
+    tipMaterialesModel.getInforme2 = function (ininicial , infinal, callback)
+    {
+        console.log("aca 258 "+ ininicial + " - " + infinal  );
+         if(connection)
+         {
+            
+           let sql ="  SELECT p.Id_material AS 'ID DEL MATERIAL', "
+          +"  pj.Fecha_produccion,"
+          +" p.cantidad_peso,"
+          +" CONCAT( 'Material ',  p.nombre_material, ', cantidad usada  ', pj.Material_Utilizado, "
+          +"       ' y su color es ', p.color_material ) AS 'Datos material'"
+          
+          +" FROM `tb_materiales` AS p "
+          +" INNER JOIN `th_produccion_juguetes` AS pj  ON p.Id_material= pj.Id_produccion "
+          +" INNER JOIN `ct_catalogo_universal` AS cu  ON p.Id_material= cu.Id_catalogo_universal  "
+          +"  INNER JOIN `ct_catalogo_universal` AS cu1  ON p.Id_material= cu1.catalogo_universal"
+          +" WHERE cu.Id_catalogo_universal=p.Id_material AND  "
+          +   connection.escape(ininicial)+  " AND " +connection.escape(infinal)+";";
+        
+              console.log("31 tal ")
+    
+             connection.query(sql, function (error, row)
+             {
+                 if (error)
+                 {
+                 throw error;
+                 }
+                 else{
+                 callback(null, row);
+                 }
+             });
+         }
+     }
+
  //////////////////////////////////////////////////////////////////////////////
     //añadir registro
 

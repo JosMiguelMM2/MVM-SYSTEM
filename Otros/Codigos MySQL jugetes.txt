@@ -1,20 +1,47 @@
+
+
+SELECT p.Id_material AS 'ID DEL MATERIAL',
+	   pj.Fecha_produccion,
+       p.cantidad_peso,
+       CONCAT( 'Material ',  p.nombre_material, ', cantidad usada  ', pj.Material_Utilizado, 
+              ' y su color es ' ) AS 'Datos material'
+       
+	FROM `tb_materiales` AS p
+    INNER JOIN `th_produccion_juguetes` AS pj  ON p.Id_material= pj.Id_produccion
+    INNER JOIN `ct_catalogo_universal` AS cu  ON cu.Id_catalogo_universal= pj.Id_produccion
+    INNER JOIN `ct_catalogo_universal` AS cu1  ON cu1.Id_catalogo_universal= p.color_material
+    WHERE 
+    pj.Fecha_produccion BETWEEN '2002-05-01' AND '2060-08-05';
+
+
+
 consulta de informe 1
 
-SELECT * FROM `th_produccion_juguetes` WHERE `Fecha_produccion` BETWEEN '2002-10-02' AND '2028-10-04'
 
-SELECT 
-	e.`Id_juguetes`, 
-    d.`Nombre_juguete`,
-    e.Id_produccion,
-    e.`Cantidad_producida`,
-    e.Errores_produccion 
-	
-    FROM `th_produccion_juguetes` AS e 
-    INNER JOIN `tb_juguetes` AS d ON 
-    e.`Id_produccion`= d.`Id_juguetes`
-    WHERE e.`Fecha_produccion`
-	BETWEEN '2013-03-15' AND '2025-08-15';
 
+SELECT e.Id_produccion,
+        e.Fecha_produccion AS 'Fecha',
+        e.`juguetes_Produccion` AS 'ID juguete',
+        CONCAT ( a.denominacion_universal ,' ',
+             `Nombre_juguete`,' ',
+              c.denominacion_universal ) AS 'Juguete' ,
+        CONCAT ( k.nombre1_empleados, ' ',
+              b.nombre2_empleados, ' ',
+              g.apellido2_empleados, ' ',
+              h.apellido2_empleados ) AS 'Persona',
+        e.Errores_produccion AS 'Errores', 
+         e.Cantidad_producida AS 'Total Creados',
+        ( e.Cantidad_producida - e.Errores_produccion ) AS 'Total Servibles' 
+        FROM `th_produccion_juguetes` AS e
+        INNER JOIN `tb_juguetes` AS d ON e.`juguetes_Produccion`= d.`Id_juguetes`
+        INNER JOIN `ct_catalogo_universal` AS a ON a.Id_catalogo_universal = d.tipo_producto 
+        INNER JOIN `ct_catalogo_universal` AS c ON c.Id_catalogo_universal = d.color_jugete 
+        INNER JOIN `tb_empleados` AS k ON e.empleados_Produccion = k.`Id_empleados`
+        INNER JOIN `tb_empleados` AS b ON e.empleados_Produccion = b.`Id_empleados`
+        INNER JOIN `tb_empleados` AS g ON e.empleados_Produccion = g.`Id_empleados`
+        INNER JOIN `tb_empleados` AS h ON e.empleados_Produccion = h.`Id_empleados`
+        WHERE `juguetes_Produccion` = d.Id_juguetes
+        AND e.`Fecha_produccion` BETWEEN '2002-05-01' AND '2060-08-05';
 
 
 

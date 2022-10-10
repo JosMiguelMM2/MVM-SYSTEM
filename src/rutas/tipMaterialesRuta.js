@@ -46,6 +46,34 @@ module.exports = function()
 
     });
 
+
+// ruta informe 2
+router.get("/:ininicial/:infinal", function (req, res)
+{
+    let ininicial= req.params.ininicial;
+    let infinal = req.params.infinal;
+    let id = req.params.id
+    console.log("aca 159 "+ ininicial + " - " + infinal  );
+    //if(!isNaN(Finicio))
+   // {
+    tipMaterialesModel.getInforme2 (ininicial , infinal, function (error, data)
+        
+        {
+        if(typeof data !== 'undefined' && data.length > 0)
+        {
+            res.status(200).json(data);
+        }
+        else{
+            res.json(404,
+                {
+                    "msg": "registro no existe"
+                });
+        }
+        });
+    //}
+        
+
+});
  //////////////////////////////////////////////////////////////////////////////
     // añadir
 
