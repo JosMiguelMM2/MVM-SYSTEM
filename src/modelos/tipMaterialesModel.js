@@ -102,9 +102,8 @@ tipMaterialesModel.getTipMaterialess = function (callback)
               +" CONCAT( 'Material ',  p.nombre_material, ', cantidad usada  ', pj.Material_Utilizado, ', " 
               +"    detalles de produccion ', pj.Detalles_produccion ) AS 'Datos material', "
               +" CONCAT('Color ', ca.denominacion_universal, ' clase material ', caq.denominacion_universal ) AS 'Material' "
-          
               +" FROM `tb_materiales` AS p "
-              +"  INNER JOIN `th_produccion_juguetes` AS pj  ON p.Id_material= pj.Id_produccion "
+              +" INNER JOIN `th_produccion_juguetes` AS pj  ON p.Id_material= pj.Id_produccion "
               +" INNER JOIN `ct_catalogo_universal` AS ca ON p.color_material=ca.Id_catalogo_universal "
               +" INNER JOIN `ct_catalogo_universal` AS caq ON p.clase_material=caq.Id_catalogo_universal "
               +" WHERE pj.Fecha_produccion BETWEEN "
