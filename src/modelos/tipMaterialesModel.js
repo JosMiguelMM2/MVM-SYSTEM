@@ -100,13 +100,15 @@ tipMaterialesModel.getTipMaterialess = function (callback)
           +"  pj.Fecha_produccion,"
           +" p.cantidad_peso,"
           +" CONCAT( 'Material ',  p.nombre_material, ', cantidad usada  ', pj.Material_Utilizado, "
-          +"       ' y su color es ', p.color_material ) AS 'Datos material'"
+          +"       ' y su color es ', p.color_material ) AS 'Datos material',  "
+          +"CONCAT('Productos producidos  ', pj.Cantidad_producida, ' Empleados a cargo de la produccion  ',  em.nombre1_empleados, ' ', em.apellido1_empleados ) AS 'Relacion produccion' "
           
           +" FROM `tb_materiales` AS p "
           +" INNER JOIN `th_produccion_juguetes` AS pj  ON p.Id_material= pj.Id_produccion "
           +" INNER JOIN `ct_catalogo_universal` AS cu  ON p.Id_material= cu.Id_catalogo_universal  "
           +"  INNER JOIN `ct_catalogo_universal` AS cu1  ON p.Id_material= cu1.catalogo_universal"
-          +" WHERE cu.Id_catalogo_universal=p.Id_material AND  "
+          +" INNER JOIN `tb_empleados` AS em ON p.Id_material=em.Id_empleados "
+          +" WHERE cu.Id_catalogo_universal=p.Id_material AND Fecha_produccion BETWEEN "
           +   connection.escape(ininicial)+  " AND " +connection.escape(infinal)+";";
         
               console.log("31 tal ")
