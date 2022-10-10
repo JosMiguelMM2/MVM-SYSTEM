@@ -44,6 +44,36 @@ module.exports = function()
 
     });
 
+       //////////////////////////////////////////////////////////////////////////////
+     // lista de empleados por cargo
+
+     router.get("/c/:id", function (req, res)
+     {
+         let id = req.params.id;
+ 
+         if(!isNaN(id))
+         {
+             tipEmpleadoModel.getTipEmpleadoC(id, function (error, data)
+             {
+             if(typeof data !== 'undefined' && data.length > 0)
+             {
+                 res.status(200).json(data);
+             }
+             else{
+                 res.json(404,
+                     {
+                         "msg": "registro no existe"
+                     });
+             }
+             });
+         }
+             else // si hay error
+             {
+                 res.status(500).json({"msg": "error"});
+             }
+ 
+     });
+
  //////////////////////////////////////////////////////////////////////////////
     // añadir
 

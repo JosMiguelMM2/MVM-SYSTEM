@@ -10,7 +10,7 @@ tipEmpleadoModel.getTipEmpleados= function (callback)
 {
     if(connection)
     {
-        /*let sql = "SELECT `Id_empleados`" 
+        let sql = "SELECT `Id_empleados`" 
         + ", `Id_catalogos_universal`"
         + ", `nombre1_empleados`"
         + ", `nombre2_empleados`"
@@ -20,21 +20,22 @@ tipEmpleadoModel.getTipEmpleados= function (callback)
         + ", `numdoc_empleados`"
         + ", `cargo_empleados`"
         + "FROM `tb_empleados`"
-        + "ORDER BY `Id_empleados`;";*/
-       let sql = " SELECT "+
+        + "ORDER BY `Id_empleados`;";
+       /*let sql = " SELECT "+
        " e.`Id_empleados`,"+
        " D.`denominacion_universal` AS 'Tipo Documento',"+
+       " e.`tipodocu_empleados` AS 'Numero Documento',"+
        " CONCAT( e.`nombre1_empleados`, ' ',"+
        " e.`nombre2_empleados`,  ' ',"+
        " e.`apellido1_empleados`, ' ',"+
        " e.`apellido2_empleados`) AS 'Persona',"+
-       "  e.`numdoc_empleados` AS 'Numero De Documento',"+
+       "  e.`numdoc_empleados` AS 'Codigo Empresa',"+
        " c.`denominacion_universal` AS 'Cargo Empleado'"+
        " FROM `tb_empleados` AS e"+
        " INNER JOIN `ct_catalogo_universal` AS c ON e.`cargo_empleados` = c.`Id_catalogo_universal`"+
        " INNER JOIN `ct_catalogo_universal` AS D ON e.`Id_catalogos_universal` = D.`Id_catalogo_universal`"
        + "ORDER BY `Id_empleados`;";
-      
+      */
        
         connection.query(sql, function (error, rows)
         {            if (error)
@@ -74,16 +75,56 @@ tipEmpleadoModel.getTipEmpleados= function (callback)
             let sql = "SELECT"+
             " e.`Id_empleados`,"+
             " D.`denominacion_universal` AS 'Tipo Documento',"+
+            " e.`tipodocu_empleados` AS 'Numero Documento',"+
             " CONCAT( e.`nombre1_empleados`, ' ',"+
             " e.`nombre2_empleados`,  ' ',"+
             " e.`apellido1_empleados`, ' ',"+
-            " e.`apellido2_empleados`) AS 'Persona',"+
-            "  e.`numdoc_empleados` AS 'Numero De Documento',"+
+            " e.`apellido2_empleados`) AS 'Persona',"+           
+            " e.`numdoc_empleados` AS 'Codigo Empresa',"+
             " c.`denominacion_universal` AS 'Cargo Empleado'"+
             " FROM `tb_empleados` AS e"+
             " INNER JOIN `ct_catalogo_universal` AS c ON e.`cargo_empleados` = c.`Id_catalogo_universal`"+
             " INNER JOIN `ct_catalogo_universal` AS D ON e.`Id_catalogos_universal` = D.`Id_catalogo_universal`"+
             "WHERE `Id_empleados` = "
+            + connection.escape(id) +";";
+
+            // console.log id
+            // console.log("31 tal ";)
+
+            connection.query(sql, function (error, row)
+            {
+                if (error)
+                {
+                throw error;
+                }
+                else{
+                callback(null, row);
+                }
+            });
+        }
+    }
+//-------------------------------------------------------------------------------
+    // obtener empleados por cargo
+
+    tipEmpleadoModel.getTipEmpleadoC = function (id, callback)
+    {
+        if(connection)
+        {
+
+            let sql = "SELECT"+
+            " e.`Id_empleados`,"+
+            " D.`denominacion_universal` AS 'Tipo Documento',"+
+            " e.`tipodocu_empleados` AS 'Numero Documento',"+
+            " CONCAT( e.`nombre1_empleados`, ' ',"+
+            " e.`nombre2_empleados`,  ' ',"+
+            " e.`apellido1_empleados`, ' ',"+
+            " e.`apellido2_empleados`) AS 'Persona',"+
+            "  e.`numdoc_empleados` AS 'Codigo Empresa',"+
+            " c.`denominacion_universal` AS 'Cargo Empleado'"+
+            " FROM `tb_empleados` AS e"+
+            " INNER JOIN `ct_catalogo_universal` AS c ON e.`cargo_empleados` = c.`Id_catalogo_universal`"+
+            " INNER JOIN `ct_catalogo_universal` AS D ON e.`Id_catalogos_universal` = D.`Id_catalogo_universal`"+
+            "WHERE `cargo_empleados` = "
             + connection.escape(id) +";";
 
             // console.log id

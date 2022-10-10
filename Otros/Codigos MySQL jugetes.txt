@@ -170,25 +170,5 @@ INNER JOIN `ct_catalogo_universal` AS a ON a.Id_catalogo_universal = j.tipo_prod
 INNER JOIN `ct_catalogo_universal` AS b ON b.Id_catalogo_universal = j.tama_juguete
 INNER JOIN `ct_catalogo_universal` AS c ON c.Id_catalogo_universal = j.color_jugete
 
-SELECT 
-e.Id_produccion, 
-e.Fecha_produccion, 
-e.`juguetes_Produccion`,
-CONCAT ( a.denominacion_universal ," ", 
-        `Nombre_juguete`," ",
-        c.denominacion_universal ) AS 'juguete' ,
-        e.Errores_produccion, 
-        ( e.Cantidad_producida - e.Errores_produccion ) AS 'total'
-        FROM `th_produccion_juguetes` AS e 
-        INNER JOIN `tb_juguetes` AS d ON e.`juguetes_Produccion`= d.`Id_juguetes`
-        INNER JOIN `ct_catalogo_universal` AS a ON a.Id_catalogo_universal = d.tipo_producto 
-        INNER JOIN `ct_catalogo_universal` AS c ON c.Id_catalogo_universal = d.color_jugete 
-        WHERE `juguetes_Produccion` = 7 and e.`Fecha_produccion` BETWEEN '2019-12-31' AND '2022-12-31';
 
 
-
-
-        k.nombre1_empleados, " ",
-             b.nombre2_empleados, " ",
-             f.nombre2_empleados, " ",
-             g.apellido2_empleados, " ",
