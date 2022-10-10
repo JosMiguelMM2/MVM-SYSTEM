@@ -1,0 +1,26 @@
+
+Contacto :  localhost:4000/tipContac
+--------------
+get listar (nada)
+get mostrar(/5)
+post - put 
+--------------------------------------------
+Empleado 
+--------------
+get mostrar (/4)
+get listar ("nada")
+get mostrar empleados de sierto cargo (/c/5)"nuemeros de cargo 5-10-11-12-13-14"
+post - put 
+	{
+        "Id_empleados": 12,
+        "Id_catalogos_universal": 4,
+        "nombre1_empleados": "carmen",
+        "nombre2_empleados": "Luisa",
+        "apellido1_empleados": "Lopez ",
+        "apellido2_empleados": "Suares",
+        "tipodocu_empleados": 11931483,
+        "numdoc_empleados": "215948",
+        "cargo_empleados": 5
+        }
+
+ 

@@ -14,7 +14,7 @@ SELECT p.Id_material AS 'ID DEL MATERIAL',
     pj.Fecha_produccion BETWEEN '2002-05-01' AND '2060-08-05';
 
 
-consulta de informe 1
+consulta de informe 1 
 
 
 //informe 1
