@@ -96,20 +96,19 @@ tipMaterialesModel.getTipMaterialess = function (callback)
          if(connection)
          {
             
-           let sql ="  SELECT p.Id_material AS 'ID DEL MATERIAL', "
-          +"  pj.Fecha_produccion,"
-          +" p.cantidad_peso,"
-          +" CONCAT( 'Material ',  p.nombre_material, ', cantidad usada  ', pj.Material_Utilizado, "
-          +"       ' y su color es ', p.color_material ) AS 'Datos material',  "
-          +"CONCAT('Productos producidos  ', pj.Cantidad_producida, ' Empleados a cargo de la produccion  ',  em.nombre1_empleados, ' ', em.apellido1_empleados ) AS 'Relacion produccion' "
+           let sql = "SELECT p.Id_material AS 'ID DEL MATERIAL',"
+              + " pj.Fecha_produccion, "
+              +" p.cantidad_peso, "
+              +" CONCAT( 'Material ',  p.nombre_material, ', cantidad usada  ', pj.Material_Utilizado, ', " 
+              +"    detalles de produccion ', pj.Detalles_produccion ) AS 'Datos material', "
+              +" CONCAT('Color ', ca.denominacion_universal, ' clase material ', caq.denominacion_universal ) AS 'Material' "
           
-          +" FROM `tb_materiales` AS p "
-          +" INNER JOIN `th_produccion_juguetes` AS pj  ON p.Id_material= pj.Id_produccion "
-          +" INNER JOIN `ct_catalogo_universal` AS cu  ON p.Id_material= cu.Id_catalogo_universal  "
-          +"  INNER JOIN `ct_catalogo_universal` AS cu1  ON p.Id_material= cu1.catalogo_universal"
-          +" INNER JOIN `tb_empleados` AS em ON p.Id_material=em.Id_empleados "
-          +" WHERE cu.Id_catalogo_universal=p.Id_material AND Fecha_produccion BETWEEN "
-          +   connection.escape(ininicial)+  " AND " +connection.escape(infinal)+";";
+              +" FROM `tb_materiales` AS p "
+              +"  INNER JOIN `th_produccion_juguetes` AS pj  ON p.Id_material= pj.Id_produccion "
+              +" INNER JOIN `ct_catalogo_universal` AS ca ON p.color_material=ca.Id_catalogo_universal "
+              +" INNER JOIN `ct_catalogo_universal` AS caq ON p.clase_material=caq.Id_catalogo_universal "
+              +" WHERE pj.Fecha_produccion BETWEEN "
+            + connection.escape(ininicial)+  " AND " +connection.escape(infinal)+";";
         
               console.log("31 tal ")
     
