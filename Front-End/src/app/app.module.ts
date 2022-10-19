@@ -10,21 +10,33 @@ import { HttpClientModule, } from '@angular/common/http';
 import { RouterModule, Routes} from '@angular/router';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { MenuInicioComponent } from './menu-inicio/menu-inicio.component';
+import { ContactoComponent } from './contacto/contacto.component';
 
 
 const appRoutes: Routes = [
   { path: 'menu-inicio', 
-  component: MenuInicioComponent },
+  component: MenuInicioComponent
+ },
   { path: '',
     redirectTo: '/menu-inicio',
     pathMatch: 'full'
+  },
+  {
+    path: 'contacto',
+    component: ContactoComponent
+  },
+  {
+    path: 'contacto/:id',
+    component: ContactoComponent
+    
   }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    MenuInicioComponent
+    MenuInicioComponent,
+    ContactoComponent
   ],
   imports: [
     BrowserModule,
