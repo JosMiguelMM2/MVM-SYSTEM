@@ -53,16 +53,17 @@ tipMaterialesModel.getTipMaterialess = function (callback)
     {
         if(connection)
         {
-            let sql = "SELECT "+
+            /*let sql = "SELECT "+
             "`Id_material`,"+
             "`clase_material`,"+
             "`color_material`,"+
             "`cantidad_peso`, "+
             "`nombre_material`"+
             "FROM `tb_materiales` "+
-            "WHERE `Id_material` = "+
-/*
+            "WHERE `Id_material` = "+*/
+
             let sql = "SELECT "+ 
+            " `Id_material`,"+
             " M.`nombre_material`," +
             " a.`denominacion_universal` AS 'Clase de material'," +
             " c.`denominacion_universal` AS 'color del material',"+
@@ -70,7 +71,7 @@ tipMaterialesModel.getTipMaterialess = function (callback)
             " FROM `tb_materiales` AS M"+
             " INNER JOIN `ct_catalogo_universal` AS a ON M.clase_material = a.`Id_catalogo_universal`"+
             " INNER JOIN `ct_catalogo_universal` AS c ON M.color_material = c.`Id_catalogo_universal`"+
-            " WHERE `Id_material` = "+*/
+            " WHERE `Id_material` = "+
             connection.escape(id) +";";
 
             // console.log id
