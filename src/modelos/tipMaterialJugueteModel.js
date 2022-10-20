@@ -36,9 +36,9 @@ tipMaterialJugueteModel.getTipMaterialJuguetes = function(callback)
             else
             {
                 //debuelve las filas como un Json
-                callback(null, rows);
+                //callback(null, rows);
                 //comvierte las filas Json a una cadena de texto para Angular
-                //callback(null, JSON.stringify(rows));
+                callback(null, JSON.stringify(rows));
             }
         });
     }
@@ -82,7 +82,9 @@ tipMaterialJugueteModel.getTipMaterialJuguetes = function(callback)
                 throw error;
                 }
                 else{
-                callback(null, row);
+                //callback(null, row);
+                //comvierte las filas Json a una cadena de texto para Angular
+                callback(null, JSON.stringify(rows));
                 }
             });
         }
@@ -135,9 +137,9 @@ tipMaterialJugueteModel.getTipMaterialJuguetes = function(callback)
         {
         //se muestra el mensaje correspondiente
         if(error)
-          {
-        throw error;
-         }
+        {
+            throw error;
+        }
         else
          {
              callback(null, {"msg": "Registro Actualizado"});
