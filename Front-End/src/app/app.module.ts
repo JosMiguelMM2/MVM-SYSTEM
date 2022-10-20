@@ -14,22 +14,21 @@ import { ContactoComponent } from './contacto/contacto.component';
 
 
 const appRoutes: Routes = [
-  { path: 'menu-inicio', 
-  component: MenuInicioComponent
- },
   { path: '',
-    redirectTo: '/menu-inicio',
-    pathMatch: 'full'
+    pathMatch: 'prefix',
+    redirectTo: 'Inicio',
+ },
+  { path: 'Inicio',
+    component: MenuInicioComponent,
+    
   },
+
   {
-    path: 'contacto',
-    component: ContactoComponent
-  },
-  {
-    path: 'contacto/:id',
+    path: 'Contactos',
     component: ContactoComponent
     
   }
+
 ];
 
 @NgModule({
