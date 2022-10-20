@@ -10,7 +10,7 @@ tipEmpleadoModel.getTipEmpleados= function (callback)
 {
     if(connection)
     {
-        let sql = "SELECT `Id_empleados`" 
+        /*let sql = "SELECT `Id_empleados`" 
         + ", `Id_catalogos_universal`"
         + ", `nombre1_empleados`"
         + ", `nombre2_empleados`"
@@ -20,8 +20,8 @@ tipEmpleadoModel.getTipEmpleados= function (callback)
         + ", `numdoc_empleados`"
         + ", `cargo_empleados`"
         + "FROM `tb_empleados`"
-        + "ORDER BY `Id_empleados`;";
-       /*let sql = " SELECT "+
+        + "ORDER BY `Id_empleados`;";*/
+       let sql = " SELECT "+
        " e.`Id_empleados`,"+
        " D.`denominacion_universal` AS 'Tipo Documento',"+
        " e.`tipodocu_empleados` AS 'Numero Documento',"+
@@ -35,7 +35,7 @@ tipEmpleadoModel.getTipEmpleados= function (callback)
        " INNER JOIN `ct_catalogo_universal` AS c ON e.`cargo_empleados` = c.`Id_catalogo_universal`"+
        " INNER JOIN `ct_catalogo_universal` AS D ON e.`Id_catalogos_universal` = D.`Id_catalogo_universal`"
        + "ORDER BY `Id_empleados`;";
-      */
+      
        
         connection.query(sql, function (error, rows)
         {            if (error)
