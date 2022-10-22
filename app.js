@@ -1,6 +1,6 @@
 let  express = require('express');//guarda express que nosotros intalamos
 
-let  bodyParser = require('body-parser'), port = 4000;//rmanejo de cuerpo de la "pagina" y puerto
+let  bodyParser = require('body-parser'), port = 3000;//rmanejo de cuerpo de la "pagina" y puerto
 
 let  http = require('http');//protocolo de intercambio de archivos
 

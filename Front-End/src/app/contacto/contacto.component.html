@@ -1,1 +1,44 @@
-<p>contacto works!</p>
+<html
+  xmlns:mso="urn:schemas-microsoft-com:office:office"
+  xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+>
+  <br /><br /><br />
+
+  <main style="text-align:center">
+    <h1>{{ title }}</h1>
+
+    <div class="lista">
+      <h2>Lista de los Tipos de Documento</h2>
+      <form (ngSubmit)="consultarcontactos(1)" [formGroup]="ListaContacto">
+        <button type="submit" style="margin-right: 30px">
+          Mostrar Lista de Tipos de Documentos
+        </button>
+
+        <button (click)="LimpiarLista()">
+          Limpiar Lista de Tipos de Documentos
+        </button>
+        
+        <h2>{{ TituloContacto }}</h2>
+        <table>
+          <thead>
+            <th>{{ TablaContacto[0] }}</th>
+            <th>{{ TablaContacto[1] }}</th>
+            <th>{{ TablaContacto[2] }}</th>
+            <th>{{ TablaContacto[3] }}</th>
+            <th>{{ TablaContacto[4] }}</th>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let tcont of Contactos">
+              <th>{{ tcont.Id_contactos }}</th>
+              <th>{{ tcont.Numero_Documento }}</th>
+              <th>{{ tcont.Persona }}</th>
+              <th>{{ tcont.Tipo_Contacto }}</th>
+              <th>{{ tcont.Dato_contacto }}</th>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+    </div>
+  </main>
+</html>
