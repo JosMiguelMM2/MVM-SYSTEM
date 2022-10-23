@@ -5,8 +5,7 @@ import {
   HttpErrorResponse,
 } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { map, catchError, tap } from 'rxjs/operators';
-
+import {map, catchError, tap} from 'rxjs/operators';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
@@ -34,22 +33,11 @@ export class JuguetesService {
     };
   }
 
-  //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-  // SERVICIO CRUD DE TIPOS DE DOCUMENTOS
-  //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  //  SERVICIO DE Contactos
 
-  // Método Listar de los Tipos de documentos
-
+  //  MOSTRAR TODOS LOS CONTACTOS
+  //listar
   getTipContacs(): Observable<any> {
     return this.http.get(this.Url + '/tipContac', httpOptions);
-  }
-
-  //-------------------------------------------------------------
-  // Método mostrar un solo Tipo de documento
-
-  getTipContac(id: any): Observable<any> {
-    // console.log("  4555  ***** "+this.Url + "/tipContac"+id )
-    // console.log("211    ");
-    return this.http.get(this.Url + '/tipContac' + id, httpOptions);
   }
 }

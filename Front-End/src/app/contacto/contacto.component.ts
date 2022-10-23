@@ -41,7 +41,7 @@ export class ContactoComponent implements OnInit {
     private formBuilder: FormBuilder,
     private juguetesService: JuguetesService,
     Router: Router
-  ) {}
+  ) { }
 
   //..............................................................................................
   // CRUD
