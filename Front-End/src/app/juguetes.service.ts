@@ -39,9 +39,11 @@ export class JuguetesService {
   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
   // Método Listar de los Tipos de documentos
-
+  
   getTipContacs(): Observable<any> {
+    console.error(" antes "+ this.Url + '/tipContac');
     return this.http.get(this.Url + '/tipContac', httpOptions);
+   
   }
 
   //-------------------------------------------------------------

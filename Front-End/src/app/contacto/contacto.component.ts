@@ -49,9 +49,11 @@ export class ContactoComponent implements OnInit {
   // Lista Tipos de documentos. inicial
 
   public consultarcontactosI() {
+    
     this.juguetesService.getTipContacs().subscribe((data: any) => {
-      let dat = data;
-      this.Contactos = data; //JSON.parse(data);
+     // let dat = data;
+    
+      this.Contactos = JSON.parse(data);//data; 
       this.TituloContacto = ' Listar Contactos';
       this.TablaContacto[0] = 'indicador';
       this.TablaContacto[1] = 'Denominación';
@@ -62,15 +64,16 @@ export class ContactoComponent implements OnInit {
 
   public consultarcontactos(op: any) {
     //console.error(" El listado 1 " );
+    //console.error(" El listado 2 "+ data );
     if (this.controlLista == 1) {
       //console.log("component")
       this.juguetesService.getTipContacs().subscribe(
         (data: any) => {
-          //console.error(" El listado 2 " );
+          console.error(" El listado 2 "+ data );
           if (op == 1) {
-            let dat = data;
+           // let dat = data;
 
-            this.Contactos = data; //JSON.parse(data);
+            this.Contactos = JSON.parse(data);
             this.TituloContacto = 'Listar Contactos';
             this.TablaContacto[0] = 'indicador';
             this.TablaContacto[1] = 'Denominación';
@@ -97,7 +100,7 @@ export class ContactoComponent implements OnInit {
           }
         },
         (error) => {
-          console.error(error + ' ');
+          console.error(error + 'nuevo ');
         }
       );
     } else {

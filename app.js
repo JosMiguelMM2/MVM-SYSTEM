@@ -5,6 +5,7 @@ let  bodyParser = require('body-parser'), port = 3000;//rmanejo de cuerpo de la 
 let  http = require('http');//protocolo de intercambio de archivos
 
 let  path = require('path');//direccion
+let  cors = require('cors');
 
 let  conectado = require('./src/conexion/index');
 //const { getTipEmpleado } = require('./src/modelos/tipEmpleadoModel');
@@ -18,7 +19,7 @@ let  tipMaterialJuguete= require('./src/rutas/tipMaterialesJuguetesRuta');
 let  tipProJuguete= require('./src/rutas/tipProJugueteRuta');
 let  tipEmpaque= require('./src/rutas/tipEmpaqueRuta');
 let  app = express();//recibe un constructor
-
+app.use(cors());
 // todos los entornos
 
 app.set('port', process.env.PORT || port);//metodo para recibir puerto y proceso
