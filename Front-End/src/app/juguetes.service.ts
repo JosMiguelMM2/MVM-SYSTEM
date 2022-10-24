@@ -51,4 +51,13 @@ export class JuguetesService {
     // console.log("211    ");
     return this.http.get(this.Url + '/tipContac' + id, httpOptions);
   }
+
+  //------------------------------------------------------------------
+// servicio crud de tipos de documentos
+// metodo listar tipos de documentos   
+  getEmpleados(): Observable<any>
+  {
+      return this.http.get(this.Url + '/tipEmpleado', httpOptions);
+      
+  }
 }

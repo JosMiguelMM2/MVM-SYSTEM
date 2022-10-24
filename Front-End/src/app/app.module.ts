@@ -13,6 +13,7 @@ import { JuguetesService } from './juguetes.service';
 import { AppComponent } from './app.component';
 import { MenuInicioComponent } from './menu-inicio/menu-inicio.component';
 import { ContactoComponent } from './contacto/contacto.component';
+import { EmpleadoComponent } from './empleado/empleado.component';
 
 const appRoutes: Routes = [
   { path: '', pathMatch: 'prefix', redirectTo: 'Inicio' },
@@ -22,10 +23,14 @@ const appRoutes: Routes = [
     path: 'Contactos',
     component: ContactoComponent,
   },
+  {
+    path: 'Empleados',
+    component: EmpleadoComponent,
+  },
 ];
 
 @NgModule({
-  declarations: [AppComponent, MenuInicioComponent, ContactoComponent],
+  declarations: [AppComponent, MenuInicioComponent, ContactoComponent, EmpleadoComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
