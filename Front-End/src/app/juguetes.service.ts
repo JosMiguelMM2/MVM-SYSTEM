@@ -5,8 +5,7 @@ import {
   HttpErrorResponse,
 } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { map, catchError, tap } from 'rxjs/operators';
-
+import {map, catchError, tap} from 'rxjs/operators';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
@@ -34,9 +33,7 @@ export class JuguetesService {
     };
   }
 
-  //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-  // SERVICIO CRUD DE TIPOS DE DOCUMENTOS
-  //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  //  SERVICIO DE Contactos
 
   // Método Listar de los Tipos de documentos
   

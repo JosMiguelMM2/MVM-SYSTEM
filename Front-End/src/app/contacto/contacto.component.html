@@ -3,7 +3,7 @@
   <title></title></head><body>
   <br /><br /><br />
 
-  <main style="text-align:center">
+  <main  class="principal">
     <h1>{{ title }}</h1>
 
     <div class="lista">
@@ -12,13 +12,15 @@
         <button type="submit" style="margin-right: 30px">
           Mostrar Lista de Tipos de Documentos
         </button>
+        
 
         <button (click)="LimpiarLista()">
           Limpiar Lista de Tipos de Documentos
         </button>
-        
+
         <h2>{{ TituloContacto }}</h2>
         <table>
+          
           <thead>
             <th>{{ TablaContacto[0] }}</th>
             <th>{{ TablaContacto[1] }}</th>
@@ -26,14 +28,17 @@
             <th>{{ TablaContacto[3] }}</th>
             <th>{{ TablaContacto[4] }}</th>
           </thead>
-
+          
           <tbody>
+            
             <tr *ngFor="let tcont of Contactos">
+              
               <th>{{ tcont.Id_contactos }}</th>
               <th>{{ tcont.Numero_Documento }}</th>
               <th>{{ tcont.Persona }}</th>
               <th>{{ tcont.Tipo_Contacto }}</th>
               <th>{{ tcont.Dato_contacto }}</th>
+              
             </tr>
           </tbody>
         </table>
