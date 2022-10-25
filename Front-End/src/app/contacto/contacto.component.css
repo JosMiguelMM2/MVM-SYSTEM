@@ -9,6 +9,7 @@ html{
     height: 100vh;
 }
 .primera{
+    background-color:red;
     margin-top: 100px;
     color: black;
     text-align: center;
@@ -39,6 +40,15 @@ html{
     font-weight: 700;
     font-family: Georgia, 'Times New Roman', Times, serif;
     margin-bottom: 20px;
+}
+
+.buscar_por_id{
+    background-color: aqua;
+    margin: 0 auto;
+    margin-top: 4rem;
+    width: 80%;
+    text-align: center;
+
 }
 
 
