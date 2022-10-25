@@ -128,6 +128,36 @@ export class ContactoComponent implements OnInit {
     this.controlLista = 0;
   }
 
+  // -----------------------------------------------------------------------------------------
+// Consulta un tipo de documento por medio de su id.
+
+public buscarContacto() 
+{
+
+  var filtovalor = this.filtraridcontacto.getRawValue()['combofiltro'];
+  console.log("318    " + filtovalor );
+  this.juguetesService.getTipContac('/' + filtovalor).subscribe((data: {}) => {
+    console.log("313    " + filtovalor );
+
+    this.MiContacto = data;
+
+
+    // console.log("la data es " + data);
+    // console.log("MiTipDoc es " + this.MiTipDoc);
+    //console.log("MiTipDoc es " + this.MiTipDoc[0].id_tip_doc + " - " + this.MiTipDoc[0].tipo_documento + " - " + this.MiTipDoc[0].iniciales_tip_doc);
+
+            this.TituloContact = 'Buscar Contactos';
+            this.TabBusContacto[0] = 'Id Contacto';
+            this.TabBusContacto[1] = 'Numero Documento';
+            this.TabBusContacto[2] = 'Nombre y Apellido';
+            this.TabBusContacto[3] = 'Tipo de contacto';
+            this.TabBusContacto[4] = 'Datos de contacto';
+
+  },error => { console.log(error) });
+
+}
+
+
   ngOnInit(): void {
     this.ListaContacto = this.formBuilder.group({});
     this.filtraridcontacto = this.formBuilder.group(

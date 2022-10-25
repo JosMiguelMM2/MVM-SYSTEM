@@ -58,10 +58,10 @@ tipContacModel.getTipContacs = function(callback)
             /*let sql = "SELECT `Id_contactos`, `Id_empleados`, `Tipo_contacto`, `Dato_contacto` FROM `am_contactos` WHERE Id_contactos = "*/
             let sql = "SELECT" +
             " ct.`Id_contactos`,"+
-            " g.`tipodocu_empleados` AS 'Numero Documento',"+
+            " g.`tipodocu_empleados` AS 'Numero_Documento',"+
             " CONCAT(h.nombre1_empleados, ' ',"+
             " i.apellido1_empleados) as 'Persona',"+
-            " D.`denominacion_universal` AS 'Tipo Contacto', "+
+            " D.`denominacion_universal` AS 'Tipo_Contacto', "+
             " ct.`Dato_contacto`   "  +     
             " FROM `am_contactos` AS ct "+
             " INNER JOIN `ct_catalogo_universal` AS D ON ct.`Tipo_contacto` = D.`Id_catalogo_universal`" +
@@ -81,9 +81,9 @@ tipContacModel.getTipContacs = function(callback)
                 throw error;
                 }
                 else{
-                //callback(null, row);
+                callback(null, row);
                 //comvierte las filas Json a una cadena de texto para Angular
-                callback(null, JSON.stringify(rows));
+                //callback(null, JSON.stringify(rows));
                 }
             });
         }

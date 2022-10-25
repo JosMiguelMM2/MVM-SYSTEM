@@ -1,6 +1,7 @@
-<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"><head>
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+  <head>
 
-  <title></title></head><body>
+  <title></title></head><html>
 
   <main  class="primera">
     <h1 class="titulo1">{{ title }}</h1>
@@ -45,3 +46,58 @@
     </div>
   </main>
 
+<!--------------------------------------------------------------------------------------------->
+<!-- para mostrar el un solo Tipo de Documento -->
+  <div class="buscar por id">
+    <h2>Mostramos el Tipo Contacto seleccionado </h2>
+
+  <form (ngSubmit)="buscarContacto()" [formGroup]="filtraridcontacto">
+    Id del Tipo de Contacto a mostrar
+    <select class="dropdown"  formControlName="combofiltro" (click)="consultarcontactos(2)">
+        <option value="value1">Tipo de Documento a buscar</option>
+
+        <option *ngFor="let TipDoc of comboListaContacto" [value]="TipDoc.Id_contactos">
+          {{TipDoc.Id_contactos}} - {{TipDoc.Persona}} 
+        </option>
+    </select>       
+
+    
+
+
+    <button type="submit">Buscar Tipo Documento</button>
+  </form>
+
+  <ul>
+      <h2>{{TituloContact}}</h2>
+
+      <table class="tabBuscar"> 
+          <thead class="Colb">
+            <th class="b">{{TabBusContacto[0]}}</th> 
+            <th class="b">{{TabBusContacto[1]}}</th> 
+            <th class="b">{{TabBusContacto[2]}}</th> 
+            <th class="b">{{TabBusContacto[3]}}</th>
+            <th class="b">{{TabBusContacto[4]}}</th>
+          </thead>
+  
+          <tbody class="Filb">  
+              <tr class="b" *ngFor="let tcontab of MiContacto">
+                <th>{{ tcontab.Id_contactos }}</th>
+                <th>{{ tcontab.Numero_Documento }}</th>
+                <th>{{ tcontab.Persona }}</th>
+                <th>{{ tcontab.Tipo_Contacto }}</th>
+                <th>{{ tcontab.Dato_contacto }}</th>
+              </tr>
+          </tbody> 
+  
+        </table>
+
+      </ul>
+  </div>
+
+
+  <!--*************************************************************************-->
+    <!-- se incluye el link para la otra página -->
+    <div class="dir">
+      <h3><a routerLink="/Inicio">MENÚ INICIO</a></h3>
+    </div>
+</html>
