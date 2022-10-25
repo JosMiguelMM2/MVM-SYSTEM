@@ -36,6 +36,10 @@ export class ContactoComponent implements OnInit {
   //*****************************************************************************
   //Form group
   ListaContacto = new FormGroup({});
+  filtraridcontacto =  new FormGroup(
+    {
+      combofiltro: new FormControl()
+    });
 
   constructor(
     private formBuilder: FormBuilder,
@@ -74,11 +78,12 @@ export class ContactoComponent implements OnInit {
            // let dat = data;
 
             this.Contactos = JSON.parse(data);
-            this.TituloContacto = 'Listar Contactos';
-            this.TablaContacto[0] = 'indicador';
-            this.TablaContacto[1] = 'Denominación';
-            this.TablaContacto[2] = 'Iniciales';
-            this.TablaContacto[3] = 'Direccion';
+            this.TituloContacto = 'Lista de  Contactos';
+            this.TablaContacto[0] = 'Id Contacto';
+            this.TablaContacto[1] = 'Numero Documento';
+            this.TablaContacto[2] = 'Nombre y Apellido';
+            this.TablaContacto[3] = 'Tipo de contacto';
+            this.TablaContacto[4] = 'Datos de contacto';
             //console.error(" El listado 3 " + this.TipDocs);
           } else if (op == 2) {
             this.comboListaContacto = JSON.parse(data);
@@ -88,6 +93,7 @@ export class ContactoComponent implements OnInit {
             this.TabBusContacto[1] = '';
             this.TabBusContacto[2] = '';
             this.TabBusContacto[3] = '';
+            this.TabBusContacto[4] = '';
 
             //console.error(" El listado 4 " );
           } else if (op == 3) {
@@ -105,10 +111,12 @@ export class ContactoComponent implements OnInit {
       );
     } else {
       this.TituloContacto = '';
+      this.Contactos = null;
       this.TablaContacto[0] = '';
       this.TablaContacto[1] = '';
       this.TablaContacto[2] = '';
       this.TablaContacto[3] = '';
+      this.TablaContacto[4] = '';
       this.controlLista = 1;
     }
   }
@@ -122,5 +130,9 @@ export class ContactoComponent implements OnInit {
 
   ngOnInit(): void {
     this.ListaContacto = this.formBuilder.group({});
+    this.filtraridcontacto = this.formBuilder.group(
+      {
+        combofiltro: []
+      });
   }
 }
