@@ -53,11 +53,32 @@ export class JuguetesService {
   }
 
   //------------------------------------------------------------------
-// servicio crud de tipos de documentos
+// servicio crud Empleados 
 // metodo listar tipos de documentos   
   getEmpleados(): Observable<any>
   {
       return this.http.get(this.Url + '/tipEmpleado', httpOptions);
       
+  }
+  //mostrar un solo Empleado    
+  getTipEmpleado(id: any): Observable<any> 
+  {
+      // console.log("  4555  ***** "+this.Url + "/tipContac"+id )
+      // console.log("211    ");
+      console.log(this.Url + '/tipEmpleado'+id )
+      return this.http.get(this.Url + '/tipEmpleado' + id, httpOptions);
+  }
+//insertar nuevo Empleado 
+  async insertTipEmpleado(TipEmpleados:any):Promise<any>
+  {
+      return new Promise((resolve, reject)=>{
+       this.http.post(this.Url + '/tipEmpleado', TipEmpleados, httpOptions).toPromise()
+      });
+  }
+// metodo modificar empleado
+  async updateTipEmpleado(cadena:any):Promise<any>{
+      return new Promise((resolve, reject)=>{
+          this.http.put(this.Url + '/tipEmpleado', cadena, httpOptions).toPromise()
+      });
   }
 }
