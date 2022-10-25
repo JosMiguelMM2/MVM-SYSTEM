@@ -36,6 +36,10 @@ export class ContactoComponent implements OnInit {
   //*****************************************************************************
   //Form group
   ListaContacto = new FormGroup({});
+  filtraridcontacto =  new FormGroup(
+    {
+      combofiltro: new FormControl()
+    });
 
   constructor(
     private formBuilder: FormBuilder,
@@ -126,5 +130,9 @@ export class ContactoComponent implements OnInit {
 
   ngOnInit(): void {
     this.ListaContacto = this.formBuilder.group({});
+    this.filtraridcontacto = this.formBuilder.group(
+      {
+        combofiltro: []
+      });
   }
 }
