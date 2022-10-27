@@ -52,6 +52,18 @@ export class JuguetesService {
     return this.http.get(this.Url + '/tipContac' + id, httpOptions);
   }
 
+    //-------------------------------------------------------------
+ // Método para insertar un nuevo Tipo de documento 
+
+ async insertTipContac(TipDocD:any): Promise<any> {
+
+  //console.log(TipDocD, this.Url+"/tipdoc")
+
+  return new Promise((resolve, reject) => {
+    this.http.post(this.Url + "/tipContac", TipDocD, httpOptions).toPromise()
+  });
+}
+
   //------------------------------------------------------------------
 // servicio crud Empleados 
 // metodo listar tipos de documentos   

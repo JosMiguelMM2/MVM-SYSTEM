@@ -22,7 +22,7 @@ html{
     margin-bottom: 20px;
 }
 
-.tabla1{
+.tabla1, .tabBuscar{
     margin: 0 auto;
     font-size: 1.9rem;
     width: 80%;
@@ -35,7 +35,7 @@ html{
     margin-bottom: 20px;
 }
 
-.titulo2{
+.titulo2, .titulo5{
     font-size: 2.5rem;
     font-weight: 700;
     font-family: Georgia, 'Times New Roman', Times, serif;
@@ -49,6 +49,14 @@ html{
     width: 80%;
     text-align: center;
 
+}
+
+.crear-contacto{
+    background-color: aqua;
+    margin: 0 auto;
+    margin-top: 4rem;
+    width: 80%;
+    text-align: center;
 }
 
 
