@@ -51,7 +51,7 @@ export class ContactoComponent implements OnInit {
   // CRUD
   //............................................................................................
   // Lista Tipos de documentos. inicial
-
+  
   public consultarcontactosI() {
     
     this.juguetesService.getTipContacs().subscribe((data: any) => {
@@ -133,7 +133,7 @@ export class ContactoComponent implements OnInit {
 
 public buscarContacto() 
 {
-
+  
   var filtovalor = this.filtraridcontacto.getRawValue()['combofiltro'];
   console.log("318    " + filtovalor );
   this.juguetesService.getTipContac('/' + filtovalor).subscribe((data: {}) => {

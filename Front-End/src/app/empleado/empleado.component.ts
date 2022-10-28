@@ -28,6 +28,11 @@ export class EmpleadoComponent implements OnInit {
   controlLista = 1;               //Control para limpiar la lista
   BuscarEvalor = 1;               //Control para carga del valor a buscar
 
+  Catalogo:any=[];
+  TituloCatalogo="";
+  TabBusCatalogo: any=[];
+  comboListarCatalogo: any=[];
+  
   //*****************************************************************************
  //Form group 
  ListaEmpleados = new FormGroup( 
@@ -44,10 +49,15 @@ filtrarTipEmpleado =  new FormGroup(
   InsertarGTipEmpleado =  new FormGroup(
     {
       textTipEmpleado: new FormControl(), 
-      textIniTipEmpleado:new FormControl()
+      textPrNoTipEmpleado:new FormControl(),
+      textSgNoTipEmpleado:new FormControl(),
+      textPrApTipEmpleado:new FormControl(),
+      textSgApTipEmpleado:new FormControl(),
+      textNumTipEmpleado:new FormControl(),
+      textCodTipEmpleado:new FormControl(),
+      textCarTipEmpleado:new FormControl(),
     });
   
-
   ActualizarATipEmpleado =  new FormGroup(
     {
       BuscarIdTipEmpleado:new FormControl(),  
@@ -55,6 +65,11 @@ filtrarTipEmpleado =  new FormGroup(
       textnuevoinicialestipempleado: new FormControl()
       });
   
+      constructor(
+        private formBuilder: FormBuilder,
+        private servi: JuguetesService,
+        Router : Router
+      ) { }
 //..............................................................................................
 // CRUD
 //............................................................................................
@@ -65,21 +80,21 @@ public consultaEmpleadosI()
       this.servi.getEmpleados ().subscribe((data: any) => 
       {
 
-          let dat = data;
+          //let data = data;
          
           this.TipEmpleado = JSON.parse(data);
-          this.TituloEmpleado = "LISTA DE Empleados";
+          this.TituloEmpleado = "Lista Dd Empleados";
           this.tablaEmpleado[0] = "Indicador";
           this.tablaEmpleado[1] = "Tipo documento";
           this.tablaEmpleado[2] = "N. documento";
-          this.tablaEmpleado[6] = "Persona";
-          this.tablaEmpleado[7] = "Codigo E";
-          this.tablaEmpleado[8] = "Cargo";
+          this.tablaEmpleado[3] = "Persona";
+          this.tablaEmpleado[4] = "Codigo E";
+          this.tablaEmpleado[5] = "Cargo";
       });
   }
 
 //............................................................................................
-// Lista Tipos de documentos.
+// Lista Tipos de Empleados.
 
 public consultaEmpleados(op:any)
 {
@@ -91,7 +106,7 @@ public consultaEmpleados(op:any)
         //console.error(" El listado 2 " );
         if (op == 1)
         {
-          let dat = data;
+          //let dat = data;
          
             this.TipEmpleado = JSON.parse(data);
             this.TituloEmpleado = "LISTA DE Empleados";
@@ -114,9 +129,7 @@ public consultaEmpleados(op:any)
             this.TabBusTipEmpleados[3] = "";
             this.TabBusTipEmpleados[4] = "";
             this.TabBusTipEmpleados[5] = "";
-            this.TabBusTipEmpleados[6] = "";
-            this.TabBusTipEmpleados[7] = "";
-            this.TabBusTipEmpleados[8] = "";
+ 
             //console.error(" El listado 4 " );
           }
           else if(op == 3)
@@ -142,13 +155,22 @@ public consultaEmpleados(op:any)
     this.tablaEmpleado[3] = "";
     this.tablaEmpleado[4] = "";
     this.tablaEmpleado[5] = ""; 
-    this.tablaEmpleado[6] = "";
-    this.tablaEmpleado[7] = "";
-    this.tablaEmpleado[8] = ""; 
       
     this.controlLista = 1; 
   }
  
+}
+
+public consultaCatalogo(op:any){
+  if(this.controlLista==1){
+    this.servi.getTipCatalogos().subscribe((data: any)=>{
+      if(op==1){
+        let dat=data;
+        this.comboListarCatalogo=JSON.parse(data);
+        this.Catalogo=null;
+      }
+    })
+  }
 }
 
 
@@ -167,7 +189,7 @@ public buscarTipEmpleado()
 {
 
   var filtovalor = this.filtrarTipEmpleado.getRawValue()['combofiltro'];
-  console.log("318    " + filtovalor );
+  //console.log("318    " + filtovalor );
   this.servi.getTipEmpleado('/'+filtovalor).subscribe((data: {})=>
   {
     console.log("313    " + filtovalor );
@@ -175,9 +197,9 @@ public buscarTipEmpleado()
     this.MiTipEmpleado = data;
 
 
-    console.log("la data es " + data);
-    console.log("MiTipEmpleado es " + this.MiTipEmpleado);
-    //console.log("MiTipDoc es " + this.MiTipDoc[0].id_tip_doc + " - " + this.MiTipDoc[0].tipo_documento + " - " + this.MiTipDoc[0].iniciales_tip_doc);
+    //console.log("la data es " + data);
+    //console.log("MiTipEmpleado es " + this.MiTipEmpleado);
+   // console.log("MiTipEmpleado es " + this.MiTipEmpleado[0].Id_empleados + " - " + this.MiTipEmpleado[0].tipo_documento /*+ " - " + this.MiTipDoc[0].iniciales_tip_doc*/);
 
     this.TituloTipEmpleado = "TIPO EMPLEADO SELECCIONADO";
     this.TabBusTipEmpleados[0] = "indicador";
@@ -274,12 +296,6 @@ public InsertarTipEmpleado() {
 
 //----------------------++++++++++++++
 
-  
-  constructor(
-    private formBuilder: FormBuilder,
-    private servi: JuguetesService,
-    Router : Router
-  ) { }
 
   ngOnInit(): void {
     this.ListaEmpleados = this.formBuilder.group(
@@ -297,7 +313,7 @@ public InsertarTipEmpleado() {
           textIniTipEmpleado:[]
         });    
         this.formBuilder.group
-  
+        
         this.ActualizarATipEmpleado = this.formBuilder.group(
           {
             BuscarIdTipDoc: [], 
