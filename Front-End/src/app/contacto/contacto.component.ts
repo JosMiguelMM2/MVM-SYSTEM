@@ -36,35 +36,43 @@ export class ContactoComponent implements OnInit {
   //*****************************************************************************
   //Form group
   ListaContacto = new FormGroup({});
-  filtraridcontacto =  new FormGroup(
-    {
-      combofiltro: new FormControl()
-    });
 
+  //BUSCAR CONTACTO POR ID
+  filtraridcontacto = new FormGroup({
+    combofiltro: new FormControl(),
+  });
+
+  //insertar nuevo contacto
+  InsertarContacto = new FormGroup({
+    numberidcontacto: new FormControl(),
+    numberidtipcontacto: new FormControl(),
+    textdatocontacto: new FormControl(),
+  });
+
+  
   constructor(
     private formBuilder: FormBuilder,
     private juguetesService: JuguetesService,
     Router: Router
-  ) { }
+  ) {}
 
   //..............................................................................................
   // CRUD
   //............................................................................................
   // Lista Tipos de documentos. inicial
-  
-  public consultarcontactosI() {
-    
-    this.juguetesService.getTipContacs().subscribe((data: any) => {
-     // let dat = data;
-    
-      this.Contactos = JSON.parse(data);//data; 
-      this.TituloContacto = ' Listar Contactos';
-      this.TablaContacto[0] = 'indicador';
-      this.TablaContacto[1] = 'Denominación';
-      this.TablaContacto[2] = 'Iniciales';
-      this.TablaContacto[3] = 'Direccion';
-    });
-  }
+
+  // public consultarcontactosI() {
+  //   this.juguetesService.getTipContacs().subscribe((data: any) => {
+  //     // let dat = data;
+
+  //     this.Contactos = JSON.parse(data); //data;
+  //     this.TituloContacto = ' Listar Contactos';
+  //     this.TablaContacto[0] = 'indicador';
+  //     this.TablaContacto[1] = 'Denominación';
+  //     this.TablaContacto[2] = 'Iniciales';
+  //     this.TablaContacto[3] = 'Direccion';
+  //   });
+  // }
 
   public consultarcontactos(op: any) {
     //console.error(" El listado 1 " );
@@ -73,9 +81,9 @@ export class ContactoComponent implements OnInit {
       //console.log("component")
       this.juguetesService.getTipContacs().subscribe(
         (data: any) => {
-          console.error(" El listado 2 "+ data );
+          console.error(' El listado 2 ' + data);
           if (op == 1) {
-           // let dat = data;
+            // let dat = data;
 
             this.Contactos = JSON.parse(data);
             this.TituloContacto = 'Lista de  Contactos';
@@ -129,40 +137,61 @@ export class ContactoComponent implements OnInit {
   }
 
   // -----------------------------------------------------------------------------------------
-// Consulta un tipo de documento por medio de su id.
+  // Consulta un tipo de documento por medio de su id.
 
-public buscarContacto() 
-{
-  
-  var filtovalor = this.filtraridcontacto.getRawValue()['combofiltro'];
-  console.log("318    " + filtovalor );
-  this.juguetesService.getTipContac('/' + filtovalor).subscribe((data: {}) => {
-    console.log("313    " + filtovalor );
+  public buscarContacto() {
+    var filtovalor = this.filtraridcontacto.getRawValue()['combofiltro'];
+    console.log('318    ' + filtovalor);
+    this.juguetesService.getTipContac('/' + filtovalor).subscribe(
+      (data: {}) => {
+        console.log('313    ' + filtovalor);
 
-    this.MiContacto = data;
+        this.MiContacto = data;
 
+        // console.log("la data es " + data);
+        // console.log("MiTipDoc es " + this.MiTipDoc);
+        //console.log("MiTipDoc es " + this.MiTipDoc[0].id_tip_doc + " - " + this.MiTipDoc[0].tipo_documento + " - " + this.MiTipDoc[0].iniciales_tip_doc);
 
-    // console.log("la data es " + data);
-    // console.log("MiTipDoc es " + this.MiTipDoc);
-    //console.log("MiTipDoc es " + this.MiTipDoc[0].id_tip_doc + " - " + this.MiTipDoc[0].tipo_documento + " - " + this.MiTipDoc[0].iniciales_tip_doc);
+        this.TituloContact = 'Buscar Contactos';
+        this.TabBusContacto[0] = 'Id Contacto';
+        this.TabBusContacto[1] = 'Numero Documento';
+        this.TabBusContacto[2] = 'Nombre y Apellido';
+        this.TabBusContacto[3] = 'Tipo de contacto';
+        this.TabBusContacto[4] = 'Datos de contacto';
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 
-            this.TituloContact = 'Buscar Contactos';
-            this.TabBusContacto[0] = 'Id Contacto';
-            this.TabBusContacto[1] = 'Numero Documento';
-            this.TabBusContacto[2] = 'Nombre y Apellido';
-            this.TabBusContacto[3] = 'Tipo de contacto';
-            this.TabBusContacto[4] = 'Datos de contacto';
+  public InsertarnuevoContacto() {
+    let datosvalo1 = this.InsertarContacto.getRawValue()['numberidcontacto'];
+    let datosvalo2 = this.InsertarContacto.getRawValue()['numberidtipcontacto'];
+    let datosvalo3 = this.InsertarContacto.getRawValue()['textdatocontacto'];
+    let cadena = { "Id_empleados": datosvalo1, "Tipo_contacto":datosvalo2, "Dato_contacto":datosvalo3 };
 
-  },error => { console.log(error) });
-
-}
-
-
+  this.juguetesService.insertTipContac(cadena).then
+    ( res => {
+        console.log(res)
+      }
+    ).catch(err => {
+      console.log(err)
+    });
+    this.InsertarContacto.reset();
+  }
+//-------------------------------------------------------
   ngOnInit(): void {
     this.ListaContacto = this.formBuilder.group({});
-    this.filtraridcontacto = this.formBuilder.group(
-      {
-        combofiltro: []
-      });
+    this.filtraridcontacto = this.formBuilder.group({
+      combofiltro: [],
+    });
+
+    this.InsertarContacto = this.formBuilder.group({
+      numberidcontacto: [],
+      numberidtipcontacto: [],
+      textdatocontacto: [],
+    });
+    this.formBuilder.group;
   }
 }
