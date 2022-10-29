@@ -5,7 +5,7 @@ import {
   HttpErrorResponse,
 } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import {map, catchError, tap} from 'rxjs/operators';
+import { map, catchError, tap } from 'rxjs/operators';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
@@ -35,16 +35,15 @@ export class JuguetesService {
 
   //  SERVICIO DE Contactos
 
-  // Método Listar de los Tipos de documentos
-  
+  // Método Listar contactos
+
   getTipContacs(): Observable<any> {
-    console.error(" antes "+ this.Url + '/tipContac');
+    console.error(' antes ' + this.Url + '/tipContac');
     return this.http.get(this.Url + '/tipContac', httpOptions);
-   
   }
 
   //-------------------------------------------------------------
-  // Método mostrar un solo Tipo de documento
+  // Método mostrar un solo contacto
 
   getTipContac(id: any): Observable<any> {
     // console.log("  4555  ***** "+this.Url + "/tipContac"+id )
@@ -52,45 +51,54 @@ export class JuguetesService {
     return this.http.get(this.Url + '/tipContac' + id, httpOptions);
   }
 
-    //-------------------------------------------------------------
- // Método para insertar un nuevo Tipo de documento 
+  //-------------------------------------------------------------
+  // Método para insertar un nuevo Tipo de documento
 
- async insertTipContac(TipDocD:any): Promise<any> {
+  async insertTipContac(NuevoContacto: any): Promise<any> {
+    //console.log(TipDocD, this.Url+"/tipdoc")
 
-  //console.log(TipDocD, this.Url+"/tipdoc")
+    return new Promise((resolve, reject) => {
+      this.http.post(this.Url + '/tipContac', NuevoContacto, httpOptions).toPromise();
+    });
+  }
 
-  return new Promise((resolve, reject) => {
-    this.http.post(this.Url + "/tipContac", TipDocD, httpOptions).toPromise()
-  });
-}
+  //-------------------------------------------------------------
+  // Método para modificar un  Contacto
+
+  async updateTipContac(cadena: any): Promise<any> {
+    //console.log("33 " + cadena)
+    //console.log("tales 60  " + cadena.id_tip_doc + " - " + cadena.tipo_documento+ " - " +  cadena.iniciales_tip_doc, this.Url + "/tipdoc")
+
+    return new Promise((resolve, reject) => {
+      this.http.put(this.Url + '/tipContac', cadena, httpOptions).toPromise();
+    });
+  }
 
   //------------------------------------------------------------------
-// servicio crud Empleados 
-// metodo listar tipos de documentos   
-  getEmpleados(): Observable<any>
-  {
-      return this.http.get(this.Url + '/tipEmpleado', httpOptions);
-      
+  // servicio crud Empleados
+  // metodo listar tipos de documentos
+  getEmpleados(): Observable<any> {
+    return this.http.get(this.Url + '/tipEmpleado', httpOptions);
   }
-  //mostrar un solo Empleado    
-  getTipEmpleado(id: any): Observable<any> 
-  {
-      // console.log("  4555  ***** "+this.Url + "/tipContac"+id )
-      // console.log("211    ");
-      console.log(this.Url + '/tipEmpleado'+id )
-      return this.http.get(this.Url + '/tipEmpleado' + id, httpOptions);
+  //mostrar un solo Empleado
+  getTipEmpleado(id: any): Observable<any> {
+    // console.log("  4555  ***** "+this.Url + "/tipContac"+id )
+    // console.log("211    ");
+    console.log(this.Url + '/tipEmpleado' + id);
+    return this.http.get(this.Url + '/tipEmpleado' + id, httpOptions);
   }
-//insertar nuevo Empleado 
-  async insertTipEmpleado(TipEmpleados:any):Promise<any>
-  {
-      return new Promise((resolve, reject)=>{
-       this.http.post(this.Url + '/tipEmpleado', TipEmpleados, httpOptions).toPromise()
-      });
+  //insertar nuevo Empleado
+  async insertTipEmpleado(TipEmpleados: any): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http
+        .post(this.Url + '/tipEmpleado', TipEmpleados, httpOptions)
+        .toPromise();
+    });
   }
-// metodo modificar empleado
-  async updateTipEmpleado(cadena:any):Promise<any>{
-      return new Promise((resolve, reject)=>{
-          this.http.put(this.Url + '/tipEmpleado', cadena, httpOptions).toPromise()
-      });
+  // metodo modificar empleado
+  async updateTipEmpleado(cadena: any): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.put(this.Url + '/tipEmpleado', cadena, httpOptions).toPromise();
+    });
   }
 }

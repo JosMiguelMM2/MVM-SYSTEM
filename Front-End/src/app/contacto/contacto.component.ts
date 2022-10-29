@@ -180,6 +180,8 @@ export class ContactoComponent implements OnInit {
     });
     this.InsertarContacto.reset();
   }
+
+  
 //-------------------------------------------------------
   ngOnInit(): void {
     this.ListaContacto = this.formBuilder.group({});
