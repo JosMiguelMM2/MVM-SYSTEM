@@ -101,4 +101,13 @@ export class JuguetesService {
       this.http.put(this.Url + '/tipEmpleado', cadena, httpOptions).toPromise();
     });
   }
+  ///////////////catalogo
+getTipCatalogos(): Observable<any>
+{
+    return this.http.get(this.Url + '/tipCatalogo', httpOptions);  
+}
+getTipJuguetes(): Observable<any>
+{
+    return this.http.get(this.Url + '/tipCatalogo', httpOptions);  
+}
 }

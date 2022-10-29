@@ -21,10 +21,10 @@ tipJuguetesModel.getTipJuguetes= function (callback)
 
        let sql = "SELECT "
        +" j.`Id_juguetes`, "
-       +" D.`denominacion_universal` AS 'Tipo Jugete',"
+       +" D.`denominacion_universal` AS 'Tipo_Jugete',"
        +" j.`Nombre_juguete`, "
        +" j.`tama_juguete`, "
-       +" a.`denominacion_universal` AS 'Color Jugete' "      
+       +" a.`denominacion_universal` AS 'Color_Jugete' "      
        + " FROM `tb_juguetes` AS j"
        + " INNER JOIN `ct_catalogo_universal` AS D ON j.`tipo_producto` = D.`Id_catalogo_universal` "
        + " INNER JOIN `ct_catalogo_universal` AS a ON j.`color_jugete` = a.`Id_catalogo_universal` "

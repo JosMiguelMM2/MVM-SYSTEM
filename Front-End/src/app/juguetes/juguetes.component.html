@@ -1,0 +1,73 @@
+<br><br><br><br>
+<!--<p>tipos-doc works!</p>-->
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"><head>
+
+    <title></title></head><body>
+    
+      <div style="text-align:center">
+        <h1>{{ title }}</h1>
+        <img width="300" alt="Logo Proyecto" src="/assets/CC.jpg">
+      </div>
+    
+      <br><br><br><br>
+     <!--*************************************************************************-->
+    <!-- se incluye el link para la otra página -->
+    <div class="dir">
+      <h3><a routerLink="/Inicio">MENÚ INICIO</a></h3>
+    </div>
+
+       <!--------------------------------------------------------------------------------------------->
+      <!-- para mostrar el listado de Empleados -->
+    
+      <div class="lista">
+          
+        <h2>Lista de los Tipos de juguetes: </h2>
+    
+        <form (ngSubmit)="consultaJuguetes(1)" [formGroup]="ListaJuguetes" [formGroup]="ListaJuguetes">
+    
+          <button type="submit" style="margin-right: 30px" class="btn btn-outline-dark">Mostrar Lista de Tipos de Juguetes</button>
+          <button (click)="LimpiarLista()" class="btn btn-outline-dark">Linpiar Lista de Tipos de Juguetes</button>
+    
+          <br><br>
+    
+          <h2>{{TituloJuguete}}</h2>   
+          <table> 
+              <thead>
+                  <th>{{tablaJuguete[0]}}</th>
+                  <th>{{tablaJuguete[1]}}</th>
+                  <th>{{tablaJuguete[2]}}</th>   
+                  <th>{{tablaJuguete[3]}}</th>
+                  <th>{{tablaJuguete[4]}}</th>
+                
+              </thead>
+    
+              <tbody>
+                  <tr  *ngFor="let temp of TipJuguete">
+                      
+                    <th>{{ temp.Id_juguetes}} </th>
+                    <th>{{ temp.Tipo_Jugete}} </th>
+                    <th>{{ temp.Nombre_juguete}} </th>
+                    <th>{{ temp.tama_juguete}} </th>
+                    <th>{{ temp.Color_Jugete}} </th>
+                   
+                   
+                      
+                  </tr>
+              </tbody> 
+          </table>
+    
+        </form>
+    
+      </div>
+      <br><br><br><br>
+    
+       <!--*************************************************************************-->
+    <!-- se incluye el link para la otra página -->
+    <div class="dir">
+        <h3><a routerLink="/Inicio">MENÚ INICIO</a></h3>
+      </div>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+   </body>  

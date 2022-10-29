@@ -1,4 +1,5 @@
 <!--<p>tipos-doc works!</p>-->
+<br><br><br><br>
 <html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"><head>
 
     <title></title></head><body>
@@ -9,9 +10,13 @@
       </div>
     
       <br><br><br><br>
-    
+     <!--*************************************************************************-->
+    <!-- se incluye el link para la otra página -->
+    <div class="dir">
+      <h3><a routerLink="/Inicio">MENÚ INICIO</a></h3>
+    </div>
       <!--------------------------------------------------------------------------------------------->
-      <!-- para mostrar el listado de Tipos de Documentos -->
+      <!-- para mostrar el listado de Empleados -->
     
       <div class="lista">
           
@@ -19,7 +24,7 @@
     
         <form (ngSubmit)="consultaEmpleados(1)" [formGroup]="ListaEmpleados" [formGroup]="ListaEmpleados">
     
-          <button type="submit" style="margin-right: 30px" >Mostrar Lista de Tipos de Empleado</button>
+          <button type="submit" style="margin-right: 30px" class="btn btn-outline-dark">Mostrar Lista de Tipos de Empleado</button>
           <button (click)="LimpiarLista()" >Linpiar Lista de Tipos de Empleado</button>
     
           <br><br>
@@ -61,20 +66,14 @@
                             
   <div class="buscar">
     <h2>Mostramos el Empleado seleccionado: </h2>
-  
+    
     <form (ngSubmit)="buscarTipEmpleado()" [formGroup]="filtrarTipEmpleado">
-      Id del Tipo de Documento a mostrar
+      Id del Empleado a mostrar
       <select class="dropdown"  formControlName="combofiltro" (click)="consultaEmpleados(2)">
-          <option value="value1">Tipo de Documento a buscar</option>
+          <option value="value1">Empleado a buscar</option>
           <option *ngFor="let TipEmpleado of comboListaTipEmpleado" [value]="TipEmpleado.Id_empleados">
-            {{TipEmpleado.Id_catalogos_universal}} - 
-            {{TipEmpleado.nombre1_empleados}} 
-            {{TipEmpleado.nombre2_empleados}} 
-            {{TipEmpleado.apellido1_empleados}} 
-            {{TipEmpleado.apellido2_empleados}} 
-            {{TipEmpleado.tipodocu_empleados}} 
-            {{TipEmpleado.numdoc_empleados}} 
-            {{TipEmpleado.cargo_empleados}} 
+            {{TipEmpleado.Id_empleados}} - {{TipEmpleado.Persona}} 
+            
           </option>
       </select>       
   
@@ -85,7 +84,7 @@
     </form>
   
     <ul>
-        <h2>{{TituloTipEmpleado}}</h2>
+        <h2>{{TituloEmpleado}}</h2>
   
         <table class="tabBuscar"> 
             <thead class="Colb">
@@ -95,23 +94,18 @@
               <th class="b">{{TabBusTipEmpleados[3]}}</th> 
               <th class="b">{{TabBusTipEmpleados[4]}}</th> 
               <th class="b">{{TabBusTipEmpleados[5]}}</th> 
-              <th class="b">{{TabBusTipEmpleados[6]}}</th> 
-              <th class="b">{{TabBusTipEmpleados[7]}}</th> 
-              <th class="b">{{TabBusTipEmpleados[8]}}</th> 
+              
 
             </thead>
     
             <tbody class="Filb">  
                 <tr class="b" *ngFor="let tEmpleado of MiTipEmpleado">
-                    <th class="b">{{TipEmpleado.Id_catalogos_universal}}  </th>
-                    <th class="b">{{TipEmpleado.nombre1_empleados}}  </th>
-                    <th class="b"> {{TipEmpleado.nombre2_empleados}}  </th>
-                    <th class="b">{{TipEmpleado.apellido1_empleados}}  </th>
-                    <th class="b">{{TipEmpleado.apellido2_empleados}}  </th>
-                    <th class="b">{{TipEmpleado.tipodocu_empleados}}  </th>
-                    <th class="b">{{TipEmpleado.numdoc_empleados}}  </th>
-                    <th class="b">{{TipEmpleado.cargo_empleados}} </th>
-                       
+                    <th class="b">{{tEmpleado.Id_empleados}}  </th>
+                    <th class="b">{{tEmpleado.Tipo_Documento}}  </th>
+                    <th class="b">{{tEmpleado.Numero_Documento}}  </th>
+                    <th class="b">{{tEmpleado.Persona}}  </th>
+                    <th class="b">{{tEmpleado.Codigo_Empresa}}  </th>
+                    <th class="b">{{tEmpleado.Cargo_Empleado}}  </th>
                 </tr>
             </tbody> 
     
@@ -132,14 +126,41 @@
   <h2>Registrar un Nuevo Empleado</h2>
 
   <form (ngSubmit)="InsertarTipEmpleado()" [formGroup]="InsertarGTipEmpleado">
-    Nuevo Empleado
-    <label for="CTipEmpleado"><input type="text" name="CTipEmpleado" id="CTipEmpleado" formControlName="textTipEmpleado"></label>
+    Tipo de Documento
+    <select class="dropdown"  formControlName="combofiltroCatalogo" (click)="consultaCatalogo(2)">
+      <option value="value1">Tipo de Documento</option>
+      <option *ngFor="let doc of comboListarCatalogo" [value]="doc.Id_catalogo_universal">
+        {{doc.denominacion_universal}} 
+      </option>
+    </select>    
+    <br><br>
+    Primer Nombre
+    <label for="prnTipEmpleado"><input type="text" name="prnTipEmpleado" id="prnTipEmpleado" formControlName="textPrNoTipEmpleado" maxlength="15"></label>
+ 
+    <br><br>
+    Segundo Nombre 
+    <label for="sgnTipEmpleado"><input type="text" name="sgnTipEmpleado" id="sgnTipEmpleado" formControlName="textSgNoTipEmpleado" maxlength="15"></label>
 
 
     <br><br>
-    Iniciales Nuevo Empleado
-    <label for="InTipEmpleado"><input type="text" name="InTipEmpleado" id="InTipEmpleado" formControlName="textIniTipEmpleado" maxlength="3"></label>
+    Primer Apellido
+    <label for="praTipEmpleado"><input type="text" name="praTipEmpleado" id="praTipEmpleado" formControlName="textPrApTipEmpleado" maxlength="15"></label>
 
+    <br><br>
+    Segundo Apellido 
+    <label for="sgaTipEmpleado"><input type="text" name="sgaTipEmpleado" id="sgaTipEmpleado" formControlName="textSgApTipEmpleado" maxlength="15"></label>
+
+    <br><br>
+    Numero de documento 
+    <label for="nuTipEmpleado"><input type="text" name="nuTipEmpleado" id="nuTipEmpleado" formControlName="textNumTipEmpleado" maxlength="15"></label>
+
+    <br><br>
+    Codigo de la Empresa 
+    <label for="coTipEmpleado"><input type="text" name="coTipEmpleado" id="coTipEmpleado" formControlName="textCodTipEmpleado" maxlength="15"></label>
+
+    <br><br>
+    Cargo en la Empresa
+    <label for="caTipEmpleado"><input type="text" name="caTipEmpleado" id="caTipEmpleado" formControlName="textCarTipEmpleado" maxlength="15"></label>
 
     <br><br>
     <button type="submit">Insertar Empleado</button>
@@ -161,14 +182,7 @@
         <select class="dropdown"  formControlName="BuscarIdTipEmpleado" (click)="consultaEmpleados(3)">
             <option value="value1">Empleado a editar</option>
             <option *ngFor="let TEmpleado of comboEditarTipEmpleado" [value]="TEmpleado.Id_empleados"> 
-                {{TEmpleado.Id_catalogos_universal}}  
-                {{TEmpleado.nombre1_empleados}} 
-                {{TEmpleado.nombre2_empleados}}  
-                {{TEmpleado.apellido1_empleados}}  
-                {{TEmpleado.apellido2_empleados}} 
-                {{TEmpleado.tipodocu_empleados}}  
-                {{TEmpleado.numdoc_empleados}} 
-                {{TEmpleado.cargo_empleados}} 
+              {{TEmpleado.Id_empleados}} - {{TEmpleado.Persona}} 
                    
             </option>
         </select>
@@ -205,6 +219,10 @@
     <div class="dir">
       <h3><a routerLink="/Inicio">MENÚ INICIO</a></h3>
     </div>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     </body>
     
   
