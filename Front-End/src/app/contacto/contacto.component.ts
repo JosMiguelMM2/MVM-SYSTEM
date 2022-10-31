@@ -44,17 +44,25 @@ export class ContactoComponent implements OnInit {
 
   //insertar nuevo contacto
   InsertarContacto = new FormGroup({
-    numberidcontacto: new FormControl(),
+    numberidempleados: new FormControl(),
     numberidtipcontacto: new FormControl(),
     textdatocontacto: new FormControl(),
   });
 
-  
+  ActualizarContacto = new FormGroup(
+    {
+      BuscarIdContacto: new FormControl(),
+      nunumberidempleados: new FormControl(),
+      nunumberidtipcontacto: new FormControl(),
+      nutextdatocontacto: new FormControl(),
+    });
+
+
   constructor(
     private formBuilder: FormBuilder,
     private juguetesService: JuguetesService,
     Router: Router
-  ) {}
+  ) { }
 
   //..............................................................................................
   // CRUD
@@ -166,23 +174,69 @@ export class ContactoComponent implements OnInit {
   }
 
   public InsertarnuevoContacto() {
-    let datosvalo1 = this.InsertarContacto.getRawValue()['numberidcontacto'];
+    let datosvalo1 = this.InsertarContacto.getRawValue()['numberidempleados'];
     let datosvalo2 = this.InsertarContacto.getRawValue()['numberidtipcontacto'];
     let datosvalo3 = this.InsertarContacto.getRawValue()['textdatocontacto'];
-    let cadena = { "Id_empleados": datosvalo1, "Tipo_contacto":datosvalo2, "Dato_contacto":datosvalo3 };
+    let cadena = { "Id_empleados": datosvalo1, "Tipo_contacto": datosvalo2, "Dato_contacto": datosvalo3 };
 
-  this.juguetesService.insertTipContac(cadena).then
-    ( res => {
+    this.juguetesService.insertTipContac(cadena).then
+      (res => {
         console.log(res)
       }
-    ).catch(err => {
-      console.log(err)
-    });
+      ).catch(err => {
+        console.log(err)
+      });
     this.InsertarContacto.reset();
   }
 
-  
-//-------------------------------------------------------
+  //----------------------------------------------------------------------------
+  // Consulta un tipo de contacto por medio de su id para editarlo
+
+  buscarEditarContacto() {
+    if (this.BuscarEvalor != 0) {
+      this.BuscarEvalor = this.ActualizarContacto.getRawValue()['BuscarIdContactoE'];
+      //console.error(" dos el filtro " + this.BuscarEvalor);
+    }
+    //console.error(" tres el filtro " + this.BuscarEvalor);
+
+    this.juguetesService.getTipContac('/' + this.BuscarEvalor).subscribe((data: {}) => {
+
+      this.MiContactoE = data;
+      this.TituloContactoEdit = "TIPO DE CONTACTO A EDITAR";
+
+    }, error => { console.log(error) });
+
+  }
+
+
+
+  //--------------------------------------------------------------
+  // Actualiza el Contacto 
+
+  public ActualizarTipContacto() {
+
+    let nuevonumberidempleados = this.ActualizarContacto.getRawValue()['nuonumberidempleados'];
+    let nuevonumberidtipcontact = this.ActualizarContacto.getRawValue()['nunumberidtipcontacto'];
+    let nuevotextdatocontacto = this.ActualizarContacto.getRawValue()['nutextdatocontacto'];
+
+    let cadenaup = { "Id_contactos": this.BuscarEvalor, "Id_empleados": nuevonumberidempleados, "Tipo_contacto": nuevonumberidtipcontact, "Dato_contacto": nuevotextdatocontacto };
+
+    this.juguetesService.updateTipContac(cadenaup).then
+      (
+        res => {
+          console.log("res  ", res)
+        }
+      ).catch(err => {
+        console.log(err)
+      });
+
+    this.BuscarEvalor = 0;
+    this.ActualizarContacto.reset();
+
+
+  }
+
+  //-------------------------------------------------------
   ngOnInit(): void {
     this.ListaContacto = this.formBuilder.group({});
     this.filtraridcontacto = this.formBuilder.group({
@@ -190,10 +244,17 @@ export class ContactoComponent implements OnInit {
     });
 
     this.InsertarContacto = this.formBuilder.group({
-      numberidcontacto: [],
+      numberidempleados: [],
       numberidtipcontacto: [],
       textdatocontacto: [],
     });
     this.formBuilder.group;
+
+    this.ActualizarContacto = this.formBuilder.group({
+      BuscarIdContacto: [],
+      nunumberidempleados: [],
+      nunumberidtipcontacto: [],
+      nutextdatocontacto: [],
+    }); this.formBuilder.group;
   }
 }

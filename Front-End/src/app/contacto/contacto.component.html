@@ -1,147 +1,163 @@
-<html
-  xmlns:mso="urn:schemas-microsoft-com:office:office"
-  xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
->
-  <head>
-    <title></title>
-  </head>
-  
-    <main class="primera">
-      <h1 class="titulo1">{{ title }}</h1>
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
 
-      <div class="lista">
-        <h2 class="titulo2">Lista de Contactos</h2>
-        <form (ngSubmit)="consultarcontactos(1)" [formGroup]="ListaContacto">
-          <button type="submit">Mostrar Lista Contactos</button>
+<head>
+  <title></title>
+</head>
 
-          <button (click)="LimpiarLista()">Limpiar Lista de Contactos</button>
+<main class="primera">
+  <h1 class="titulo1">{{ title }}</h1>
 
-          <h2>{{ TituloContacto }}</h2>
-          <table class="tabla1">
-            <thead>
-              <th>{{ TablaContacto[0] }}</th>
-              <th>{{ TablaContacto[1] }}</th>
-              <th>{{ TablaContacto[2] }}</th>
-              <th>{{ TablaContacto[3] }}</th>
-              <th>{{ TablaContacto[4] }}</th>
-            </thead>
+  <div class="lista">
+    <h2 class="titulo2">Lista de Contactos</h2>
+    <form (ngSubmit)="consultarcontactos(1)" [formGroup]="ListaContacto">
+      <button type="submit">Mostrar Lista Contactos</button>
 
-            <tbody>
-              <tr *ngFor="let tcont of Contactos">
-                <th>{{ tcont.Id_contactos }}</th>
-                <th>{{ tcont.Numero_Documento }}</th>
-                <th>{{ tcont.Persona }}</th>
-                <th>{{ tcont.Tipo_Contacto }}</th>
-                <th>{{ tcont.Dato_contacto }}</th>
-              </tr>
-            </tbody>
-          </table>
-        </form>
-      </div>
-    </main>
+      <button (click)="LimpiarLista()">Limpiar Lista de Contactos</button>
 
-    <!--------------------------------------------------------------------------------------------->
-    <!-- para mostrar el un solo Tipo de Documento -->
-    <div class="buscar_por_id">
-      <h2 class="titulo2">Mostramos el Tipo Contacto seleccionado</h2>
+      <h2>{{ TituloContacto }}</h2>
+      <table class="tabla1">
+        <thead>
+          <th>{{ TablaContacto[0] }}</th>
+          <th>{{ TablaContacto[1] }}</th>
+          <th>{{ TablaContacto[2] }}</th>
+          <th>{{ TablaContacto[3] }}</th>
+          <th>{{ TablaContacto[4] }}</th>
+        </thead>
 
-      <form (ngSubmit)="buscarContacto()" [formGroup]="filtraridcontacto">
-        <h5 class="titulo5">Id del Tipo de Contacto a mostrar</h5>
-        <select
-          class="dropdown"
-          formControlName="combofiltro"
-          (click)="consultarcontactos(2)"
-        >
-          <option value="value1">Tipo de Documento a buscar</option>
+        <tbody>
+          <tr *ngFor="let tcont of Contactos">
+            <th>{{ tcont.Id_contactos }}</th>
+            <th>{{ tcont.Numero_Documento }}</th>
+            <th>{{ tcont.Persona }}</th>
+            <th>{{ tcont.Tipo_Contacto }}</th>
+            <th>{{ tcont.Dato_contacto }}</th>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+</main>
 
-          <option
-            *ngFor="let TipDoc of comboListaContacto"
-            [value]="TipDoc.Id_contactos"
-          >
-            {{ TipDoc.Id_contactos }} - {{ TipDoc.Persona }}
-          </option>
-        </select>
+<!--------------------------------------------------------------------------------------------->
+<!-- para mostrar el un solo Tipo de Documento -->
+<div class="buscar_por_id">
+  <h2 class="titulo2">Mostramos el Tipo Contacto seleccionado</h2>
 
-        <button type="submit">Buscar Tipo Documento</button>
-      </form>
+  <form (ngSubmit)="buscarContacto()" [formGroup]="filtraridcontacto">
+    <h5 class="titulo5">Id del Tipo de Contacto a mostrar</h5>
+    <select class="dropdown" formControlName="combofiltro" (click)="consultarcontactos(2)">
+      <option value="value1">Tipo de Documento a buscar</option>
 
-      <ul>
-        <h2 class="titulo2">{{ TituloContact }}</h2>
+      <option *ngFor="let TipDoc of comboListaContacto" [value]="TipDoc.Id_contactos">
+        {{ TipDoc.Id_contactos }} - {{ TipDoc.Persona }}
+      </option>
+    </select>
 
-        <table class="tabBuscar">
-          <thead class="Colb">
-            <th class="b">{{ TabBusContacto[0] }}</th>
-            <th class="b">{{ TabBusContacto[1] }}</th>
-            <th class="b">{{ TabBusContacto[2] }}</th>
-            <th class="b">{{ TabBusContacto[3] }}</th>
-            <th class="b">{{ TabBusContacto[4] }}</th>
-          </thead>
+    <button type="submit">Buscar Tipo Documento</button>
+  </form>
 
-          <tbody class="Filb">
-            <tr class="b" *ngFor="let tcontab of MiContacto">
-              <th>{{ tcontab.Id_contactos }}</th>
-              <th>{{ tcontab.Numero_Documento }}</th>
-              <th>{{ tcontab.Persona }}</th>
-              <th>{{ tcontab.Tipo_Contacto }}</th>
-              <th>{{ tcontab.Dato_contacto }}</th>
-            </tr>
-          </tbody>
-        </table>
-      </ul>
-    </div>
+  <ul>
+    <h2 class="titulo2">{{ TituloContact }}</h2>
 
+    <table class="tabBuscar">
+      <thead class="Colb">
+        <th class="b">{{ TabBusContacto[0] }}</th>
+        <th class="b">{{ TabBusContacto[1] }}</th>
+        <th class="b">{{ TabBusContacto[2] }}</th>
+        <th class="b">{{ TabBusContacto[3] }}</th>
+        <th class="b">{{ TabBusContacto[4] }}</th>
+      </thead>
 
+      <tbody class="Filb">
+        <tr class="b" *ngFor="let tcontab of MiContacto">
+          <th>{{ tcontab.Id_contactos }}</th>
+          <th>{{ tcontab.Numero_Documento }}</th>
+          <th>{{ tcontab.Persona }}</th>
+          <th>{{ tcontab.Tipo_Contacto }}</th>
+          <th>{{ tcontab.Dato_contacto }}</th>
+        </tr>
+      </tbody>
+    </table>
+  </ul>
+</div>
 
-    <!--------------------------------------------------------------------------------------------->
-    <!-- para crear un  Tipo de documento -->
+<!--------------------------------------------------------------------------------------------->
+<!-- para crear un  Tipo de documento -->
 
-    <div class="crear-contacto">
-      <br /><br />
-      <h2 class="titulo2">Registrar un Nuevo Tipo de Documento</h2>
+<div class="crear-contacto">
+  <br /><br />
+  <h2 class="titulo2">Registrar un Nuevo Tipo de Documento</h2>
 
-      <form (ngSubmit)="InsertarnuevoContacto()" [formGroup]="InsertarContacto">
-        <h4>Nuevo Contacto</h4>
+  <form (ngSubmit)="InsertarnuevoContacto()" [formGroup]="InsertarContacto">
+    <h4>Nuevo Contacto</h4>
 
-        <h5>Numero de Id Empleado</h5>
-        <label for="idcontacto">
-          <input
-            type="number"
-            name="idcontacto"
-            id="idcontacto"
-            formControlName="numberidcontacto"
-        />
+    <h5>Numero de Id Empleado</h5>
+    <label for="idcontacto">
+      <input type="number" name="idcontacto" id="idcontacto" formControlName="numberidempleados" />
+    </label>
+
+    <br /><br />
+    <h5>Id tipo de Contacto</h5>
+    <label for="idtipcontacto"><input type="number" name="idtipcontacto" id="idtipcontacto"
+        formControlName="numberidtipcontacto" maxlength="3" /></label>
+
+    <h5>Dato del Contacto</h5>
+    <label for="datocontacto">
+      <input type="text" name="datocontacto" id="datocontacto" formControlName="textdatocontacto" />
+    </label>
+
+    <button class="agregar-contacto" type="submit">
+      Insertar Tipo de Documento
+    </button>
+  </form>
+  >
+</div>
+
+<!--------------------------------------------------------------------------------------------->
+<!-- actualizar un contacto -->
+<div class="mificar-contacto">
+  <h2>Editar contacto</h2>
+
+  <form (ngSubmit)="buscarEditarContacto()" [formGroup]="ActualizarContacto">
+    <h3>Id del contacto editar:</h3>
+    <select class="dropdown" formControlName="BuscarIdContacto" (click)="consultarcontactos(3)">
+      <option value="value1">Contacto a editar</option>
+      <option *ngFor="let conte of comboEditarContacto" [value]="conte.Id_contactos">
+        {{ conte.Id_contactos }} - {{ conte.Persona }}-{{
+        conte.Dato_contacto
+        }}
+      </option>
+    </select>
+
+    <br /><br />
+    <button type="submit">Buscar Tipo Documento a Editar</button>
+
+    <h4>{{ TituloContactoEdit }}</h4>
+
+    <li *ngFor="let edit of MiContactoE">
+      <h5>Numero de Id Empleado</h5>
+      <label for="idcontacto">
+        <input type="number" name="idcontacto" id="idcontacto" formControlName="nunumberidempleados" />
       </label>
 
-        <br /><br />
-        <h5>Id tipo de Contacto</h5>
-        <label for="idtipcontacto"
-          ><input
-            type="number"
-            name="idtipcontacto"
-            id="idtipcontacto"
-            formControlName="numberidtipcontacto"
-            maxlength="3"
-        /></label>
+      <br /><br />
+      <h5>Id tipo de Contacto</h5>
+      <label for="idtipcontacto"><input type="number" name="idtipcontacto" id="idtipcontacto"
+          formControlName="nunumberidtipcontacto" maxlength="3" /></label>
 
-        <h5>Dato del Contacto</h5>
-        <label for="datocontacto">
-          <input
-            type="text"
-            name="datocontacto"
-            id="datocontacto"
-            formControlName="textdatocontacto"/>
-          </label>
+      <h5>Dato del Contacto</h5>
+      <label for="datocontacto">
+        <input type="text" name="datocontacto" id="datocontacto" formControlName="nutextdatocontacto" />
+      </label>
+    </li>
+    <button (click)="(ActualizarTipContacto)">Actualizar Contacto</button>
+  </form>
+</div>
 
-      
-        <button class="agregar-contacto" type="submit">Insertar Tipo de Documento</button>
-      </form>
-      >
-    </div>
+<!--*************************************************************************-->
+<!-- se incluye el link para la otra página -->
+<div class="dir">
+  <h3><a routerLink="/Inicio">MENÚ INICIO</a></h3>
+</div>
 
-    <!--*************************************************************************-->
-    <!-- se incluye el link para la otra página -->
-    <div class="dir">
-      <h3><a routerLink="/Inicio">MENÚ INICIO</a></h3>
-    </div>
-  </html>
-
+</html>
