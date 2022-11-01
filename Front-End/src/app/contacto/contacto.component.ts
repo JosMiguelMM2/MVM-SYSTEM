@@ -51,10 +51,10 @@ export class ContactoComponent implements OnInit {
 
   ActualizarContacto = new FormGroup(
     {
-      BuscarIdContacto: new FormControl(),
-      nunumberidempleados: new FormControl(),
-      nunumberidtipcontacto: new FormControl(),
-      nutextdatocontacto: new FormControl(),
+      BuscarIdContactoE: new FormControl(),
+      nuidemple: new FormControl(),
+      nuidtipcontac: new FormControl(),
+      nudatcontac: new FormControl(),
     });
 
 
@@ -89,7 +89,7 @@ export class ContactoComponent implements OnInit {
       //console.log("component")
       this.juguetesService.getTipContacs().subscribe(
         (data: any) => {
-          console.error(' El listado 2 ' + data);
+          //console.error(' El listado 2 ' + data);
           if (op == 1) {
             // let dat = data;
 
@@ -197,8 +197,9 @@ export class ContactoComponent implements OnInit {
       this.BuscarEvalor = this.ActualizarContacto.getRawValue()['BuscarIdContactoE'];
       //console.error(" dos el filtro " + this.BuscarEvalor);
     }
+    
     //console.error(" tres el filtro " + this.BuscarEvalor);
-
+    //console.log(" aca 33 " + this.BuscarEvalor);
     this.juguetesService.getTipContac('/' + this.BuscarEvalor).subscribe((data: {}) => {
 
       this.MiContactoE = data;
@@ -215,12 +216,16 @@ export class ContactoComponent implements OnInit {
 
   public ActualizarTipContacto() {
 
-    let nuevonumberidempleados = this.ActualizarContacto.getRawValue()['nuonumberidempleados'];
-    let nuevonumberidtipcontact = this.ActualizarContacto.getRawValue()['nunumberidtipcontacto'];
-    let nuevotextdatocontacto = this.ActualizarContacto.getRawValue()['nutextdatocontacto'];
+    let nuevonumberidempleados = this.ActualizarContacto.getRawValue()['nuidemple'];
+    let nuevonumberidtipcontact = this.ActualizarContacto.getRawValue()['nuidtipcontac'];
+    let nuevotextdatocontacto = this.ActualizarContacto.getRawValue()['nudatcontac'];
 
     let cadenaup = { "Id_contactos": this.BuscarEvalor, "Id_empleados": nuevonumberidempleados, "Tipo_contacto": nuevonumberidtipcontact, "Dato_contacto": nuevotextdatocontacto };
-
+    console.log(" aca 44 " + this.BuscarEvalor);
+    console.log(" aca 55 " + nuevonumberidempleados);
+    console.log(" aca 66 " + nuevonumberidtipcontact);
+    console.log(" aca 77 " + nuevotextdatocontacto);
+    
     this.juguetesService.updateTipContac(cadenaup).then
       (
         res => {
@@ -251,10 +256,10 @@ export class ContactoComponent implements OnInit {
     this.formBuilder.group;
 
     this.ActualizarContacto = this.formBuilder.group({
-      BuscarIdContacto: [],
-      nunumberidempleados: [],
-      nunumberidtipcontacto: [],
-      nutextdatocontacto: [],
+      BuscarIdContactoE: [],
+      nuidemple: [],
+      nuidtipcontac: [],
+      nudatcontac: [],
     }); this.formBuilder.group;
   }
 }

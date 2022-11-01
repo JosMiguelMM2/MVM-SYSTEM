@@ -59,4 +59,10 @@ html{
     text-align: center;
 }
 
-
+.modificar-contacto{
+    background-color: aqua;
+    margin: 0 auto;
+    margin-top: 4rem;
+    width: 80%;
+    text-align: center;
+}
