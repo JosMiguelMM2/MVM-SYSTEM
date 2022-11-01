@@ -140,7 +140,21 @@ public consultaEmpleados(op:any)
             // this.ActualizarATipDoc.removeControl("textnuevotipdoc");
             // this.ActualizarATipDoc.removeControl("textnuevoinicialestipdoc");
             console.error(" El listado 5 " );
-          }              
+          }    
+          else if(op == 4)
+          {
+            this.comboListarCatalogo = JSON.parse(data);
+            this.Catalogo = null;
+            this.TituloCatalogo = "";
+            this.TabBusCatalogo[0] = "";
+            this.TabBusCatalogo[1] = "";
+            this.TabBusCatalogo[2] = "";
+            this.TabBusCatalogo[3] = "";
+            this.TabBusCatalogo[4] = "";
+            this.TabBusCatalogo[5] = "";
+ 
+            //console.error(" El listado 4 " );
+          }          
 
     },
       error => { console.error(error + " ") });
@@ -163,10 +177,10 @@ public consultaEmpleados(op:any)
 
 public consultaCatalogo(op:any){
   if(this.controlLista==1){
-    this.servi.getTipCatalogos().subscribe((data: any)=>{
+    this.servi.getTipCatalogosa().subscribe((data: any)=>{
       if(op==1){
         let dat=data;
-        this.comboListarCatalogo=JSON.parse(data);
+        this.comboListarCatalogo=JSON.parse("2");
         this.Catalogo=null;
       }
     })
@@ -196,10 +210,10 @@ public buscarTipEmpleado()
 
     this.MiTipEmpleado = data;
 
-
+    
     //console.log("la data es " + data);
     //console.log("MiTipEmpleado es " + this.MiTipEmpleado);
-   // console.log("MiTipEmpleado es " + this.MiTipEmpleado[0].Id_empleados + " - " + this.MiTipEmpleado[0].tipo_documento /*+ " - " + this.MiTipDoc[0].iniciales_tip_doc*/);
+    //console.log("MiTipEmpleado es " + this.MiTipEmpleado[0].Id_empleados + " - " + this.MiTipEmpleado[0].tipo_documento + " - " + this.MiTipEmpleado[0].Numero_Documento+ " - " + this.MiTipEmpleado[0].Persona);
 
     this.TituloTipEmpleado = "TIPO EMPLEADO SELECCIONADO";
     this.TabBusTipEmpleados[0] = "indicador";

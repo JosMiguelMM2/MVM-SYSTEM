@@ -57,7 +57,7 @@ tipCatalogoModel.getTipCatalogosa = function (cts, callback)
        let sql = "SELECT " 
         +" cu.`Id_catalogo_universal`,"
         +" cu.`denominacion_universal`,"
-        +" a.`denominacion_universal` AS ' Pertenece a '"
+        +" a.`denominacion_universal` AS ' Pertenece_a '"
         +" FROM `ct_catalogo_universal` AS cu "
         +" INNER JOIN `ct_catalogo_universal` AS a ON cu.catalogo_universal = a.Id_catalogo_universal"
         +" WHERE cu.`catalogo_universal`= " +connection.escape(cts) +";";
