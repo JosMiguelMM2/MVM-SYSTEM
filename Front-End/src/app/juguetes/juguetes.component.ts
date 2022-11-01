@@ -34,7 +34,10 @@ export class JuguetesComponent implements OnInit {
   { 
 
 } );
-
+filtrarTipJuguete =  new FormGroup(
+  {
+    combofiltro: new FormControl()
+  });
 
   constructor(
     private formBuilder: FormBuilder,
@@ -48,7 +51,7 @@ export class JuguetesComponent implements OnInit {
 
   public consultaJuguetesI() {
     
-    this.servi.getTipJuguetes().subscribe((data: any) => {
+    this.servi.getTipJuguetess().subscribe((data: any) => {
      //let dat = data;
     
       this.TipJuguete = JSON.parse(data);//data; 
@@ -70,12 +73,12 @@ public consultaJuguetes(op:any)
   //console.error(" El listado 1 " );
   if(this.controlLista == 1)
   {
-      //console.log("component")
-      this.servi.getTipJuguetes().subscribe((data: any) => {
+      console.log("component")
+      this.servi.getTipJuguetess().subscribe((data: any) => {
         //console.error(" El listado 2 " );
         if (op == 1)
         {
-            let dat = data;
+            //let dat = data;
          
             this.TipJuguete = JSON.parse(data);
             this.TituloJuguete = "LISTA DE Juguetes";
@@ -138,6 +141,36 @@ public LimpiarLista()
   this.controlLista = 0;
 }
 
+// -----------------------------------------------------------------------------------------
+// Consulta un tipo de documento por medio de su id.
+
+public buscarTipJuguete() 
+{
+
+  var filtovalor = this.filtrarTipJuguete.getRawValue()['combofiltro'];
+  //console.log("318    " + filtovalor );
+  this.servi.getTipJuguetes('/'+filtovalor).subscribe((data: {})=>
+  {
+    console.log("313    " + filtovalor );
+
+    this.MiTipJuguete = data;
+
+    
+    console.log("la data es " + data);
+    console.log("MiTipEmpleado es " + this.MiTipJuguete);
+    console.log("MiTipJugute es " + this.MiTipJuguete[0].Id_juguetes/* + " - " + this.MiTipEmpleado[0].tipo_documento + " - " + this.MiTipEmpleado[0].Numero_Documento+ " - " + this.MiTipEmpleado[0].Persona*/);
+
+    this.TituloTipJuguete = "TIPO EMPLEADO SELECCIONADO";
+    this.TabBusTipJuguete[0] = "indicador";
+    this.TabBusTipJuguete[1] = "Tipo Jugute";
+    this.TabBusTipJuguete[2] = "Nombre del Jugute";
+    this.TabBusTipJuguete[3] = "Tamaño";
+    this.TabBusTipJuguete[4] = "Color";
+   
+  },
+    error => { console.log(error) });
+
+}
 
 
   ngOnInit(): void {
@@ -147,6 +180,11 @@ public LimpiarLista()
       });
       
           this.formBuilder.group
+    this.filtrarTipJuguete = this.formBuilder.group(
+      {
+          combofiltro: []
+        }); 
+      
   }
-
+  
 }

@@ -6,7 +6,7 @@
     
       <div style="text-align:center">
         <h1>{{ title }}</h1>
-        <img width="300" alt="Logo Proyecto" src="/assets/CC.jpg">
+        <img width="300" alt="imagen_juguetes" src="/assets/juguetes.jpg">
       </div>
     
       <br><br><br><br>
@@ -42,13 +42,13 @@
               </thead>
     
               <tbody>
-                  <tr  *ngFor="let temp of TipJuguete">
+                  <tr  *ngFor="let tJug of TipJuguete">
                       
-                    <th>{{ temp.Id_juguetes}} </th>
-                    <th>{{ temp.Tipo_Jugete}} </th>
-                    <th>{{ temp.Nombre_juguete}} </th>
-                    <th>{{ temp.tama_juguete}} </th>
-                    <th>{{ temp.Color_Jugete}} </th>
+                    <th>{{ tJug.Id_juguetes}} </th>
+                    <th>{{ tJug.Tipo_Jugete}} </th>
+                    <th>{{ tJug.Nombre_juguete}} </th>
+                    <th>{{ tJug.tama_juguete}} </th>
+                    <th>{{ tJug.Color_Jugete}} </th>
                    
                    
                       
@@ -60,7 +60,63 @@
     
       </div>
       <br><br><br><br>
+    <!--------------------------------------------------------------------------------------------->
+  <!-- para mostrar el un solo Empleado -->
+                            
+  <div class="buscar">
+    <h2>Mostramos el Juguete seleccionado: </h2>
     
+    <form (ngSubmit)="buscarTipJuguete()" [formGroup]="filtrarTipJuguete">
+      Id del Juguete a mostrar
+      <select class="dropdown"  formControlName="combofiltro" (click)="consultaJuguetes(2)">
+          <option value="value1">Juguete a buscar</option>
+          <option *ngFor="let TipJuguete of comboListaTipJuguete" [value]="TipJuguete.Id_juguetes">
+            {{TipJuguete.Id_juguetes}} - {{TipJuguete.Nombre_juguete}} 
+            
+          </option>
+      </select>       
+  
+      <br><br>
+  
+  
+      <button type="submit" class="btn btn-outline-dark">Buscar Juguete</button>
+    </form>
+  
+    <ul>
+        <h2>{{TituloJuguete}}</h2>
+  
+        <table class="tabBuscar"> 
+            <thead class="Colb">
+              <th class="b">{{TabBusTipJuguete[0]}}</th> 
+              <th class="b">{{TabBusTipJuguete[1]}}</th> 
+              <th class="b">{{TabBusTipJuguete[2]}}</th> 
+              <th class="b">{{TabBusTipJuguete[3]}}</th> 
+              <th class="b">{{TabBusTipJuguete[4]}}</th> 
+          
+              
+
+            </thead>
+    
+            <tbody class="Filb">  
+                <tr class="b" *ngFor="let tJuguete of MiTipJuguete">
+                    <th class="b">{{tJuguete.Id_juguetes}}  </th>
+                    <th class="b">{{tJuguete.Tipo_Jugete}}  </th>
+                    <th class="b">{{tJuguete.Nombre_juguete}}  </th>
+                    <th class="b">{{tJuguete.tama_juguete}}  </th>
+                    <th class="b">{{tJuguete.Color_Jugete}}  </th>
+              
+                </tr>
+            </tbody> 
+    
+          </table>
+  
+        </ul>
+  
+      <br>
+  
+    </div>
+    <br><br><br><br>
+  
        <!--*************************************************************************-->
     <!-- se incluye el link para la otra página -->
     <div class="dir">

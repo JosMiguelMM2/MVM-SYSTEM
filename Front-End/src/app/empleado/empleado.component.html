@@ -6,7 +6,7 @@
     
       <div style="text-align:center">
         <h1>{{ title }}</h1>
-        <img width="300" alt="Logo Proyecto" src="/assets/CC.jpg">
+        <img width="300" alt="Logo Proyecto1" src="/assets/Empleado.jpg">
       </div>
     
       <br><br><br><br>
@@ -25,7 +25,7 @@
         <form (ngSubmit)="consultaEmpleados(1)" [formGroup]="ListaEmpleados" [formGroup]="ListaEmpleados">
     
           <button type="submit" style="margin-right: 30px" class="btn btn-outline-dark">Mostrar Lista de Tipos de Empleado</button>
-          <button (click)="LimpiarLista()" >Linpiar Lista de Tipos de Empleado</button>
+          <button (click)="LimpiarLista()" class="btn btn-outline-dark">Linpiar Lista de Tipos de Empleado</button>
     
           <br><br>
     
@@ -80,7 +80,7 @@
       <br><br>
   
   
-      <button type="submit">Buscar Empleado</button>
+      <button type="submit" class="btn btn-outline-dark">Buscar Empleado</button>
     </form>
   
     <ul>
@@ -127,10 +127,10 @@
 
   <form (ngSubmit)="InsertarTipEmpleado()" [formGroup]="InsertarGTipEmpleado">
     Tipo de Documento
-    <select class="dropdown"  formControlName="combofiltroCatalogo" (click)="consultaCatalogo(2)">
+    <select class="dropdown"  formControlName="combofiltro" (click)="consultaEmpleados(2)">
       <option value="value1">Tipo de Documento</option>
-      <option *ngFor="let doc of comboListarCatalogo" [value]="doc.Id_catalogo_universal">
-        {{doc.denominacion_universal}} 
+      <option *ngFor="let doc of comboListarCatalogo" [value]="doc.denominacion_universal">
+        {{doc.Tipo_Documento}} 
       </option>
     </select>    
     <br><br>

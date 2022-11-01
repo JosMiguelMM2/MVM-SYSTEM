@@ -94,12 +94,21 @@ export class JuguetesService {
       });
   }
   ///////////////catalogo
-getTipCatalogos(): Observable<any>
+  getTipCatalogosa(): Observable<any>
 {
     return this.http.get(this.Url + '/tipCatalogo', httpOptions);  
 }
-getTipJuguetes(): Observable<any>
+/// JUGUETES
+getTipJuguetess(): Observable<any>
 {
-    return this.http.get(this.Url + '/tipCatalogo', httpOptions);  
+    return this.http.get(this.Url + '/tipJuguete', httpOptions);  
 }
+ //mostrar un solo Jugute    
+ getTipJuguetes(id: any): Observable<any> 
+ {
+     // console.log("  4555  ***** "+this.Url + "/tipContac"+id )
+     // console.log("211    ");
+     console.log(this.Url + '/tipJuguete'+id )
+     return this.http.get(this.Url + '/tipJuguete' + id, httpOptions);
+ }
 }
