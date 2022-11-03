@@ -21,9 +21,9 @@ tipMaterialesModel.getTipMaterialess = function (callback)
         let sql = "SELECT "+ 
         " M.`Id_material`, " +
         " M.`nombre_material`," +
-        " a.`denominacion_universal` AS 'Clase de material' ," +
-        " c.`denominacion_universal` AS 'color del material' ,"+
-        " M.`cantidad_peso` as 'Peso gr'"+        
+        " a.`denominacion_universal` AS 'Clase_material' ," +
+        " c.`denominacion_universal` AS 'color_material' ,"+
+        " M.`cantidad_peso` as 'Peso_gr'"+        
         " FROM `tb_materiales` AS M"+
         " INNER JOIN `ct_catalogo_universal` AS a ON M.clase_material = a.`Id_catalogo_universal`"+
         " INNER JOIN `ct_catalogo_universal` AS c ON M.color_material = c.`Id_catalogo_universal`"+
@@ -65,9 +65,9 @@ tipMaterialesModel.getTipMaterialess = function (callback)
             let sql = "SELECT "+ 
             " `Id_material`,"+
             " M.`nombre_material`," +
-            " a.`denominacion_universal` AS 'Clase de material'," +
-            " c.`denominacion_universal` AS 'color del material',"+
-            " M.`cantidad_peso` as 'Peso gr'"+        
+            " a.`denominacion_universal` AS 'Clase_material'," +
+            " c.`denominacion_universal` AS 'color_material',"+
+            " M.`cantidad_peso` as 'Peso_gr'"+        
             " FROM `tb_materiales` AS M"+
             " INNER JOIN `ct_catalogo_universal` AS a ON M.clase_material = a.`Id_catalogo_universal`"+
             " INNER JOIN `ct_catalogo_universal` AS c ON M.color_material = c.`Id_catalogo_universal`"+
@@ -84,9 +84,9 @@ tipMaterialesModel.getTipMaterialess = function (callback)
                 throw error;
                 }
                 else{
-                //callback(null, row);
+                callback(null, row);
                 //comvierte las filas Json a una cadena de texto para Angular
-                callback(null, JSON.stringify(rows));
+                //callback(null, JSON.stringify(rows));
                 }
             });
         }
@@ -99,7 +99,7 @@ tipMaterialesModel.getTipMaterialess = function (callback)
          if(connection)
          {
             
-           let sql = "SELECT p.Id_material AS 'ID DEL MATERIAL',"
+           let sql = "SELECT p.Id_material,"
               + " pj.Fecha_produccion, "
               +" p.cantidad_peso, "
               +" CONCAT( 'Material ',  p.nombre_material, ', cantidad usada  ', pj.Material_Utilizado, ', " 

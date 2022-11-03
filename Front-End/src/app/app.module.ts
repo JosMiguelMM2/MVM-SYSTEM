@@ -40,6 +40,10 @@ const appRoutes: Routes = [
   {
     path: 'Juguetes',
     component: JuguetesComponent,
+  },
+  {
+    path: 'Materiales',
+    component: MaterialesComponent,
   }
 ];
 
