@@ -101,6 +101,15 @@ export class JuguetesService {
     });
   }
 
+  //MODIFICAR EMPAQUE
+  async updateTipEmpaque(cadena: any): Promise<any> {
+    
+    return new Promise((resolve, reject) => {
+      this.http.put(this.Url + '/tipEmpaque', cadena, httpOptions).toPromise();
+    });
+  }
+
+
   //------------------------------------------------------------------
   // servicio crud Empleados
   // metodo listar tipos de documentos

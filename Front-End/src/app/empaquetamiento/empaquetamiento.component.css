@@ -38,3 +38,23 @@ html{
     border-radius: 1rem 1rem 1rem 1rem;
     
 }
+
+.regresar-menu{
+    width: 10rem;
+    height: 5rem;
+    border-radius: 1rem 1rem 1rem 1rem;
+    background-color: dimgrey;
+    margin: 0 auto;
+    margin-top: 4rem;
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+span{
+    font-size: 1.5rem;
+    font-family: 'Roboto', sans-serif;
+}

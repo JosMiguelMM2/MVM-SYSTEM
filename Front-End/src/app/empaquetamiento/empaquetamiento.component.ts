@@ -50,6 +50,14 @@ export class EmpaquetamientoComponent implements OnInit {
     EmpleaEmpa: new FormControl(),
   });
 
+  //ACTUALIZAR EMPAQUE
+  ActualizarEmpaque= new FormGroup({
+    BuscarIdEmpaqueE: new FormControl(),
+    TipEmpaE: new FormControl(),
+    JugueteEmpE: new FormControl(),
+    EmpleaEmpaE: new FormControl(),
+  });
+
   constructor(private formBuilder: FormBuilder,
     private juguetesService: JuguetesService,
     Router: Router) { }
@@ -144,18 +152,72 @@ export class EmpaquetamientoComponent implements OnInit {
  
   }
 
+
+  buscarEditarEmpaque() {
+    if (this.BuscarEvalor != 0) {
+      this.BuscarEvalor = this.ActualizarEmpaque.getRawValue()['BuscarIdEmpaqueE'];
+      //console.error(" dos el filtro " + this.BuscarEvalor);
+    }
+    
+    //console.error(" tres el filtro " + this.BuscarEvalor);
+    //console.log(" aca 33 " + this.BuscarEvalor);
+    this.juguetesService.getTipContac('/' + this.BuscarEvalor).subscribe((data: {}) => {
+
+      this.MiEmpaqueE = data;
+      this.TituloEmpaqueEdit = "TIPO DE EMPAQUE A EDITAR";
+      console.log("hasta aqui va bien "+ this.BuscarEvalor);
+    }, error => { console.log(error) });
+    
+  }
+
+  //ACTUALIZAR EMPAQUE
+  public ActualizarEmpaqueM() {
+    
+    let TipoEmpaqueEdit= this.ActualizarEmpaque.getRawValue()['TipEmpaE'];
+    let JugueteEmpaqueEdit = this.ActualizarEmpaque.getRawValue()['JugueteEmpE'];
+    let EmpleadoEmpaqueEdit = this.ActualizarEmpaque.getRawValue()['EmpleaEmpaE'];
+
+    let cadenaup = { "Id_Empaque": this.BuscarEvalor, "Tipo_Empaque": TipoEmpaqueEdit, "Juguete_Empaque": JugueteEmpaqueEdit, "Empleado_Empaque": EmpleadoEmpaqueEdit };
+    
+    
+    this.juguetesService.updateTipEmpaque(cadenaup).then
+      (
+        res => {
+          console.log("res  ", res)
+        }
+      ).catch(err => {
+        console.log(err)
+      });
+      
+    this.BuscarEvalor = 0;
+    this.ActualizarEmpaque.reset();
+
+ }
+
   ngOnInit(): void {
+
+    //LISTAR EMPAQUE
     this.ListaEmpaque = this.formBuilder.group({});
 
+    //LISTAR EMPAQUE POR ID
     this.filtraridempaque = this.formBuilder.group({
       combofiltro: [],
     });
 
+    //INSERTAR EMPAQUE
     this.InsertarEmpaque = this.formBuilder.group({
       TipEmpa: [],
       JugueteEmp: [],
       EmpleaEmpa: [],
     }); this.formBuilder.group;
+
+    //ACTUALIZAR EMPAQUE
+    this.ActualizarEmpaque = this.formBuilder.group({
+      BuscarIdEmpaqueE: [],
+      TipEmpaE: [],
+      JugueteEmpE: [],
+      EmpleaEmpaE: [],
+    });this.formBuilder.group;
 
 
   }
