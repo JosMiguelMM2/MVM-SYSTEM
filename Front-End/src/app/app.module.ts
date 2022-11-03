@@ -44,6 +44,10 @@ const appRoutes: Routes = [
   {
     path: 'Materiales',
     component: MaterialesComponent,
+  },
+  {
+    path: 'Empaque',
+    component: EmpaquetamientoComponent,
   }
 ];
 

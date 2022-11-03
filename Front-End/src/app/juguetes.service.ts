@@ -16,7 +16,7 @@ const httpOptions = {
 export class JuguetesService {
   private Url: string = 'http://localhost:3000';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   private extractData(res: Response) {
     //console.log("22    ");
@@ -67,12 +67,32 @@ export class JuguetesService {
 
   async updateTipContac(cadena: any): Promise<any> {
     //console.log("33 " + cadena)
-    //console.log("tales 60  " + cadena.id_tip_doc + " - " + cadena.tipo_documento+ " - " +  cadena.iniciales_tip_doc, this.Url + "/tipdoc")
+    console.log("tales 60  " + cadena.Id_contactos + " - " + cadena.Id_empleados + " - " + cadena.Tipo_contacto + " - " + cadena.Dato_contacto, this.Url + "/tipdoc")
 
     return new Promise((resolve, reject) => {
       this.http.put(this.Url + '/tipContac', cadena, httpOptions).toPromise();
     });
   }
+
+
+
+
+  // Método Listar Empaque
+
+  getTipEmpaques(): Observable<any> {
+    console.error(' antes ' + this.Url + '/tipEmpaque');
+    return this.http.get(this.Url + '/tipEmpaque', httpOptions);
+  }
+
+//-------------------------------------------------------------
+  // Método mostrar un solo empaque
+
+  getTipEmpaque(id: any): Observable<any> {
+    // console.log("  4555  ***** "+this.Url + "/tipContac"+id )
+    // console.log("211    ");
+    return this.http.get(this.Url + '/tipEmpaque' + id, httpOptions);
+  }
+
 
   //------------------------------------------------------------------
   // servicio crud Empleados
