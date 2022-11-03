@@ -9,10 +9,12 @@ html{
     height: 100vh;
 }
 .primera{
-    background-color:red;
-    margin-top: 100px;
-    color: black;
+    background-color: aqua;
+    margin: 0 auto;
+    margin-top: 6rem;
+    width: 80%;
     text-align: center;
+
 }
 
 .primera h1{

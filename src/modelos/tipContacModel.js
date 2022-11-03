@@ -129,7 +129,7 @@ tipContacModel.getTipContacs = function(callback)
         +" WHERE Id_contactos = "
         + connection.escape(TipContacData.Id_contactos)+";";
       
-        //console.log(" 37 tal "+ sql);
+        console.log(" 37 tal "+ sql);
 
         connection.query(sql, function (error, result)
         {
