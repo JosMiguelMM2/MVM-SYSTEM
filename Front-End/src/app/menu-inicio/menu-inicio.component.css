@@ -77,6 +77,14 @@ html{
     border-radius: 1rem 1rem 1rem 1rem;
 }
 
+.pruebacontactos, .pruebaempleado, .pruebaJuguetes, .pruebaempaque, .pruebaMateriales, .pruebaCatalogo{
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    text-decoration: none;
+    
+}
+
 h3{
     color: #fff;
     font-size: 30px;

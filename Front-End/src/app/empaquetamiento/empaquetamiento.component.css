@@ -49,6 +49,16 @@ html{
     text-align: center;
 }
 
+.actualizar-empaque{
+    background-color: aqua;
+    margin: 0 auto;
+    margin-top: 10rem;
+    width: 60%;
+    height: auto;
+    text-align: center;
+    border-radius: 1rem 1rem 1rem 1rem;
+}
+
 a{
     text-decoration: none;
     color: black;

@@ -138,18 +138,22 @@
     <h4>{{ TituloContactoEdit }}</h4>
 
     <li *ngFor="let edit of MiContactoE">
-      <h5>Numero de Id Empleado</h5>
+      
       <label for="nidcontacto">
+        <span>Numero de Id Empleado</span>
         <input type="number" name="nidcontacto" id="nidcontacto" formControlName="nuidemple"  value="{{edit.Id_empleados}}" ngModel="edif.Id_empleados"/>
       </label>
 
       <br /><br />
-      <h5>Id tipo de Contacto</h5>
-      <label for="nidtipcontacto"><input type="number" name="nidtipcontacto" id="nidtipcontacto"
+      
+      <label for="nidtipcontacto">
+        <span>Id tipo de Contacto</span>
+        <input type="number" name="nidtipcontacto" id="nidtipcontacto"
           formControlName="nuidtipcontac" maxlength="3" value="{{edit.Tipo_contacto}}" ngModel="edif.Tipo_contacto"/></label>
 
-      <h5>Dato del Contacto</h5>
+      
       <label for="datocontacto">
+        <span>Dato del Contacto</span>
         <input type="text" name="datocontacto" id="datocontacto" formControlName="nudatcontac" value="{{edit.Dato_contacto}}" ngModel="edif.Dato_contacto"   />
       
       </label>

@@ -71,9 +71,9 @@ tipCatalogoModel.getTipCatalogosa = function (cts, callback)
             else
             {
                 //debuelve las filas como un Json
-                //callback(null, rows);
+                callback(null, rows);
                 //comvierte las filas Json a una cadena de texto para Angular
-                callback(null, JSON.stringify(rows));
+                //callback(null, JSON.stringify(rows));
             }
         });
     }
