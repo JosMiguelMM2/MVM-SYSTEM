@@ -21,7 +21,7 @@
     
       <div class="lista">
           
-        <h2>Lista de los Tipos de Catalogos: </h2>
+        <h2>Lista de Catalogo: </h2>
     
         <form (ngSubmit)="consultaCatalogo(1)" [formGroup]="ListaCatalogo" [formGroup]="ListaCatalogo">
     
@@ -105,6 +105,45 @@
     </div>
     <br><br><br><br>
   
+  <!--------------------------------------------------------------------------------------------->
+      <!-- para mostrar solo Catalogos -->
+    
+      <div class="lista">
+          
+        <h2>Lista de los Tipos de Catalogos: </h2>
+    
+        <form (ngSubmit)="consultaCatalogo(4)" [formGroup]="ListaCatalogo2" [formGroup]="ListaCatalogo2">
+    
+          <button type="submit" style="margin-right: 30px" class="btn btn-outline-dark">Mostrar Lista de Tipos de Catalogo</button>
+          <button (click)="LimpiarLista2()" class="btn btn-outline-dark">Linpiar Lista de Tipos de Catalogos</button>
+    
+          <br><br>
+          
+          <h2>{{TituloCatalogo}}</h2>   
+          <table> 
+              <thead>
+                  <th>{{tablaCatalogoE[0]}}</th>
+                  <th>{{tablaCatalogoE[1]}}</th>
+                  <th>{{tablaCatalogoE[2]}}</th>   
+                 
+                
+              </thead>
+    
+              <tbody>
+                  <tr  *ngFor="let tCat2 of TipCatalogoE">
+                      
+                    <th>{{ tCat2.Id_catalogo_universal}} </th>
+                    <th>{{ tCat2.denominacion_universal}} </th>
+                    <th>{{ tCat2.Pertenece_a}} </th>  
+                      
+                  </tr>
+              </tbody> 
+          </table>
+    
+        </form>
+    
+      </div>
+      <br><br><br><br>
        <!--*************************************************************************-->
     <!-- se incluye el link para la otra página -->
     <div class="dir">
