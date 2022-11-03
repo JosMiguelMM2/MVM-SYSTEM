@@ -1,1 +1,129 @@
-<p>materiales works!</p>
+<br><br><br><br>
+<!--<p>tipos-doc works!</p>-->
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"><head>
+
+    <title></title></head><body>
+    
+      <div style="text-align:center">
+        <h1>{{ title }}</h1>
+        <img width="300" alt="imagen_juguetes" src="/assets/juguetes.jpg">
+      </div>
+    
+      <br><br><br><br>
+     <!--*************************************************************************-->
+    <!-- se incluye el link para la otra página -->
+    <div class="dir">
+      <h3><a routerLink="/Inicio">MENÚ INICIO</a></h3>
+    </div>
+
+       <!--------------------------------------------------------------------------------------------->
+      <!-- para mostrar el listado de Empleados -->
+    
+      <div class="lista">
+          
+        <h2>Lista de los Tipos de Materiales: </h2>
+    
+        <form (ngSubmit)="consultaMaterial(1)" [formGroup]="ListaMaterial" [formGroup]="ListaMaterial">
+    
+          <button type="submit" style="margin-right: 30px" class="btn btn-outline-dark">Mostrar Lista de Tipos de Materiales</button>
+          <button (click)="LimpiarLista()" class="btn btn-outline-dark">Linpiar Lista de Tipos de Materiales</button>
+    
+          <br><br>
+    
+          <h2>{{TituloMaterial}}</h2>   
+          <table> 
+              <thead>
+                  <th>{{tablaMaterial[0]}}</th>
+                  <th>{{tablaMaterial[1]}}</th>
+                  <th>{{tablaMaterial[2]}}</th>   
+                  <th>{{tablaMaterial[3]}}</th>
+                  <th>{{tablaMaterial[4]}}</th>
+                
+              </thead>
+    
+              <tbody>
+                  <tr  *ngFor="let tMat of TipMaterial">
+                      
+                    <th>{{ tMat.Id_material}} </th>
+                    <th>{{ tMat.nombre_material}} </th>
+                    <th>{{ tMat.Clase_material}} </th>
+                    <th>{{ tMat.color_material}} </th>
+                    <th>{{ tMat.Peso_gr}} </th>
+                   
+                   
+                      
+                  </tr>
+              </tbody> 
+          </table>
+    
+        </form>
+    
+      </div>
+      <br><br><br><br>
+    <!--------------------------------------------------------------------------------------------->
+  <!-- para mostrar el un solo Material -->
+                            
+  <div class="buscar">
+    <h2>Mostramos el Material seleccionado: </h2>
+    
+    <form (ngSubmit)="buscarTipMaterial()" [formGroup]="filtrarTipMaterial">
+      Id del Material a mostrar
+      <select class="dropdown"  formControlName="combofiltro" (click)="consultaMaterial(2)">
+          <option value="value1">Material a buscar</option>
+          <option *ngFor="let TipMaterial of comboListaTipMaterial" [value]="TipMaterial.Id_material">
+            {{TipMaterial.Id_material}} - {{TipMaterial.nombre_material}} 
+            
+          </option>
+      </select>       
+  
+      <br><br>
+  
+  
+      <button type="submit" class="btn btn-outline-dark">Buscar Material</button>
+    </form>
+  
+    <ul>
+        <h2>{{TituloMaterial}}</h2>
+  
+        <table class="tabBuscar"> 
+            <thead class="Colb">
+              <th class="b">{{TabBusTipMaterial[0]}}</th> 
+              <th class="b">{{TabBusTipMaterial[1]}}</th> 
+              <th class="b">{{TabBusTipMaterial[2]}}</th> 
+              <th class="b">{{TabBusTipMaterial[3]}}</th> 
+              <th class="b">{{TabBusTipMaterial[4]}}</th> 
+          
+              
+
+            </thead>
+    
+            <tbody class="Filb">  
+                <tr class="b" *ngFor="let tMaterial of MiTipMaterial">
+                    <th class="b">{{tMaterial.Id_material}}  </th>
+                    <th class="b">{{tMaterial.nombre_material}}  </th>
+                    <th class="b">{{tMaterial.Clase_material}}  </th>
+                    <th class="b">{{tMaterial.color_material}}  </th>
+                    <th class="b">{{tMaterial.Peso_gr}}  </th>
+              
+                </tr>
+            </tbody> 
+    
+          </table>
+  
+        </ul>
+  
+      <br>
+  
+    </div>
+    <br><br><br><br>
+  
+       <!--*************************************************************************-->
+    <!-- se incluye el link para la otra página -->
+    <div class="dir">
+        <h3><a routerLink="/Inicio">MENÚ INICIO</a></h3>
+      </div>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+   </body>  

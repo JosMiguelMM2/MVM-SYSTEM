@@ -28,10 +28,10 @@ export class EmpleadoComponent implements OnInit {
   controlLista = 1;               //Control para limpiar la lista
   BuscarEvalor = 1;               //Control para carga del valor a buscar
 
-  Catalogo:any=[];
-  TituloCatalogo="";
-  TabBusCatalogo: any=[];
-  comboListarCatalogo: any=[];
+  CatalogoTipDoc:any=[];
+  TituloCatalogoTipDoc="";
+  TabBusCatalogoTipDoc: any=[];
+  comboListarCatalogoTipDoc: any=[];
   
   //*****************************************************************************
  //Form group 
@@ -48,21 +48,28 @@ filtrarTipEmpleado =  new FormGroup(
 
   InsertarGTipEmpleado =  new FormGroup(
     {
-      textTipEmpleado: new FormControl(), 
-      textPrNoTipEmpleado:new FormControl(),
-      textSgNoTipEmpleado:new FormControl(),
-      textPrApTipEmpleado:new FormControl(),
-      textSgApTipEmpleado:new FormControl(),
-      textNumTipEmpleado:new FormControl(),
-      textCodTipEmpleado:new FormControl(),
-      textCarTipEmpleado:new FormControl(),
+      combofiltroDocumento:new FormControl(),
+      textTipDocum: new FormControl(), 
+      textPrimeNombreEmp:new FormControl(),
+      textSegundoNombreEmp:new FormControl(),
+      textPrimerApellidoEmp:new FormControl(),
+      textSegundoApellodoEmp:new FormControl(),
+      textNumDocEmp:new FormControl(),
+      textCodigoEmp:new FormControl(),
+      textCargoEmp:new FormControl(),
     });
   
   ActualizarATipEmpleado =  new FormGroup(
     {
-      BuscarIdTipEmpleado:new FormControl(),  
-      textnuevotipempleado:new FormControl(), 
-      textnuevoinicialestipempleado: new FormControl()
+      BuscarIdEmpleado:new FormControl(),
+      textnuevoTipDocum: new FormControl(), 
+      textnuevoPrimeNombreEmp:new FormControl(),
+      textnuevoSegundoNombreEmp:new FormControl(),
+      textnuevoPrimerApellidoEmp:new FormControl(),
+      textnuevoSegundoApellodoEmp:new FormControl(),
+      textnuevoNumDocEmp:new FormControl(),
+      textnuevoCodigoEmp:new FormControl(),
+      textnuevoCargoEmp:new FormControl(),
       });
   
       constructor(
@@ -140,7 +147,7 @@ public consultaEmpleados(op:any)
             // this.ActualizarATipDoc.removeControl("textnuevotipdoc");
             // this.ActualizarATipDoc.removeControl("textnuevoinicialestipdoc");
             console.error(" El listado 5 " );
-          }    
+          }    /*
           else if(op == 4)
           {
             this.comboListarCatalogo = JSON.parse(data);
@@ -154,7 +161,7 @@ public consultaEmpleados(op:any)
             this.TabBusCatalogo[5] = "";
  
             //console.error(" El listado 4 " );
-          }          
+          }  */        
 
     },
       error => { console.error(error + " ") });
@@ -174,18 +181,18 @@ public consultaEmpleados(op:any)
   }
  
 }
-
-public consultaCatalogo(op:any){
+/*
+public consultaCatalogoTipDoc(op:any){
   if(this.controlLista==1){
     this.servi.getTipCatalogosa().subscribe((data: any)=>{
       if(op==1){
         let dat=data;
-        this.comboListarCatalogo=JSON.parse("2");
-        this.Catalogo=null;
+        this.comboListarCatalogoTipDoc=JSON.parse("2");
+        this.CatalogoTipDoc=null;
       }
     })
   }
-}
+}*/
 
 
 //--------------------------------------------------------------------------------------------->

@@ -1,1 +1,118 @@
-<p>catalogo works!</p>
+<br><br><br><br>
+<!--<p>tipos-doc works!</p>-->
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"><head>
+
+    <title></title></head><body>
+    
+      <div style="text-align:center">
+        <h1>{{ title }}</h1>
+        <img width="300" alt="imagen_juguetes" src="/assets/juguetes.jpg">
+      </div>
+    
+      <br><br><br><br>
+     <!--*************************************************************************-->
+    <!-- se incluye el link para la otra página -->
+    <div class="dir">
+      <h3><a routerLink="/Inicio">MENÚ INICIO</a></h3>
+    </div>
+
+       <!--------------------------------------------------------------------------------------------->
+      <!-- para mostrar el listado de Catalogo -->
+    
+      <div class="lista">
+          
+        <h2>Lista de los Tipos de Catalogos: </h2>
+    
+        <form (ngSubmit)="consultaCatalogo(1)" [formGroup]="ListaCatalogo" [formGroup]="ListaCatalogo">
+    
+          <button type="submit" style="margin-right: 30px" class="btn btn-outline-dark">Mostrar Lista de Tipos de Catalogo</button>
+          <button (click)="LimpiarLista()" class="btn btn-outline-dark">Linpiar Lista de Tipos de Catalogos</button>
+    
+          <br><br>
+    
+          <h2>{{TituloCatalogo}}</h2>   
+          <table> 
+              <thead>
+                  <th>{{tablaCatalogo[0]}}</th>
+                  <th>{{tablaCatalogo[1]}}</th>
+                  <th>{{tablaCatalogo[2]}}</th>   
+                 
+                
+              </thead>
+    
+              <tbody>
+                  <tr  *ngFor="let tCat of TipCatalogo">
+                      
+                    <th>{{ tCat.Id_catalogo_universal}} </th>
+                    <th>{{ tCat.denominacion_universal}} </th>
+                    <th>{{ tCat.Pertenece_a}} </th>  
+                      
+                  </tr>
+              </tbody> 
+          </table>
+    
+        </form>
+    
+      </div>
+      <br><br><br><br>
+    <!--------------------------------------------------------------------------------------------->
+  <!-- para mostrar el un solo Catalogo -->
+                            
+  <div class="buscar">
+    <h2>Mostramos el Catalogo seleccionado: </h2>
+    
+    <form (ngSubmit)="buscarTipCatalogo()" [formGroup]="filtrarTipCatalogo">
+      Id del Catalogo a mostrar
+      <select class="dropdown"  formControlName="combofiltro" (click)="consultaCatalogo(2)">
+          <option value="value1">Catalogo a buscar</option>
+          <option *ngFor="let TipCatalogo of comboListaTipCatalogo" [value]="TipCatalogo.Id_catalogo_universal">
+            {{TipCatalogo.Id_catalogo_universal}} - {{TipCatalogo.denominacion_universal}} 
+            
+          </option>
+      </select>       
+  
+      <br><br>
+  
+  
+      <button type="submit" class="btn btn-outline-dark">Buscar Catalogo</button>
+    </form>
+  
+    <ul>
+        <h2>{{TituloCatalogo}}</h2>
+  
+        <table class="tabBuscar"> 
+            <thead class="Colb">
+              <th class="b">{{TabBusTipCatalogo[0]}}</th> 
+              <th class="b">{{TabBusTipCatalogo[1]}}</th> 
+              <th class="b">{{TabBusTipCatalogo[2]}}</th>                   
+
+            </thead>
+    
+            <tbody class="Filb">  
+                <tr class="b" *ngFor="let tCatalogo of MiTipCatalogo">
+                    <th class="b">{{tCatalogo.Id_catalogo_universal}}  </th>
+                    <th class="b">{{tCatalogo.denominacion_universal}}  </th>
+                    <th class="b">{{tCatalogo.Pertenece_a}}  </th>
+                </tr>
+            </tbody> 
+    
+          </table>
+  
+        </ul>
+  
+      <br>
+  
+    </div>
+    <br><br><br><br>
+  
+       <!--*************************************************************************-->
+    <!-- se incluye el link para la otra página -->
+    <div class="dir">
+        <h3><a routerLink="/Inicio">MENÚ INICIO</a></h3>
+      </div>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+   </body>  
+
