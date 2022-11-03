@@ -93,6 +93,13 @@ export class JuguetesService {
     return this.http.get(this.Url + '/tipEmpaque' + id, httpOptions);
   }
 
+  //INSAERTAR NUEVO EMPAQUE
+  async insertTipEmpaque(NuevoEmpaque: any): Promise<any> {
+    console.log("id"+NuevoEmpaque.Id_Empaque+"nombre"+NuevoEmpaque.tipo_de_empaque+"descripcion"+NuevoEmpaque.Juguete+ "ultimo dato"+NuevoEmpaque.Persona);
+    return new Promise((resolve, reject) => {
+      this.http.post(this.Url + '/tipEmpaque', NuevoEmpaque, httpOptions).toPromise();
+    });
+  }
 
   //------------------------------------------------------------------
   // servicio crud Empleados

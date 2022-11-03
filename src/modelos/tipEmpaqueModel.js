@@ -67,7 +67,7 @@ tipEmpaqueModel.getTipEmpaques = function(callback)
 
             let sql = "SELECT " 
             +" `Id_Empaque`," 
-            +" c.denominacion_universal AS 'tipo de empaque',"
+            +" c.denominacion_universal AS 'tipo_de_empaque',"
             +" j.Nombre_juguete AS 'Juguete',"
             +" CONCAT(d.nombre1_empleados, ' ', "
             +" f.nombre2_empleados, ' ', "
@@ -93,9 +93,9 @@ tipEmpaqueModel.getTipEmpaques = function(callback)
                 throw error;
                 }
                 else{
-                //callback(null, row);
+                callback(null, row);
                 //comvierte las filas Json a una cadena de texto para Angular
-                callback(null, JSON.stringify(rows));
+                //callback(null, JSON.stringify(rows));
                 }
             });
         }

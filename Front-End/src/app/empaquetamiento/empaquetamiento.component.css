@@ -18,3 +18,23 @@ html{
     text-align: center;
     border-radius: 1rem 1rem 1rem 1rem;
 }
+
+.buscar-por-id{
+    background-color: aqua;
+    margin: 0 auto;
+    margin-top: 10rem;
+    width: 60%;
+    text-align: center;
+    border-radius: 1rem 1rem 1rem 1rem;
+}
+
+.insertar-empaque{
+    background-color: aqua;
+    margin: 0 auto;
+    margin-top: 4rem;
+    width: 60%;
+    height: 10rem;
+    text-align: center;
+    border-radius: 1rem 1rem 1rem 1rem;
+    
+}

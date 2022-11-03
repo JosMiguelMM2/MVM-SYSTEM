@@ -156,6 +156,9 @@ export class ContactoComponent implements OnInit {
     );
   }
 
+
+  // -----------------------------------------------------------------------------------------
+  // Inserta un nuevo Contacto.
   public InsertarnuevoContacto() {
     let datosvalo1 = this.InsertarContacto.getRawValue()['numberidempleados'];
     let datosvalo2 = this.InsertarContacto.getRawValue()['numberidtipcontacto'];

@@ -9,7 +9,7 @@
             <button (click)="LimpiarLista()">Limpiar Lista</button>
 
             <h2>{{TituloEmpaque}}</h2>
-            
+
             <table class="tabla-mostrarempaque">
                 <thead>
                     <th>{{TablaEmpaque[0]}}</th>
@@ -31,4 +31,78 @@
         </form>
     </div>
 </main>
+
+<!-- MOSTRAR UN SOLO DATO DE Empaquetamiento
+CON ID -->
+<main class="buscar-por-id">
+    <h2 class="titulo-2">Mostar el Empaquetamiendo seleccionado</h2>
+
+    <form (ngSubmit)="getEmpaqueId()" [formGroup]="filtraridempaque">
+        <span>Id del Tipo de Contacto a mostrar</span>
+        <select class="dropdown" formControlName="combofiltro" (click)="getEmpaquetamiento(2)">
+          <option value="value1">Tipo de Empaque</option>
+    
+          <option *ngFor="let TipEmp of comboListaEmpaque" [value]="TipEmp.Id_Empaque">
+            {{ TipEmp.Id_Empaque }} - {{ TipEmp.tipo_de_empaque}}
+          </option>
+        </select>
+    
+        <button type="submit">Buscar Tipo Documento</button>
+      </form>
+    
+      <ul>
+        <h2 class="titulo2">{{ TituloEmpaq}}</h2>
+    
+        <table class="tabBuscar">
+          <thead class="Colb">
+            <th class="b">{{ TabBusEmpaque[0] }}</th>
+            <th class="b">{{ TabBusEmpaque[1] }}</th>
+            <th class="b">{{ TabBusEmpaque[2] }}</th>
+            <th class="b">{{ TabBusEmpaque[3] }}</th>
+          </thead>
+    
+          <tbody class="Filb">
+            <tr class="b" *ngFor="let tempa of MiEmpaque">
+              <th>{{ tempa.Id_Empaque }}</th>
+              <th>{{ tempa.tipo_de_empaque }}</th>
+              <th>{{ tempa.Juguete }}</th>
+              <th>{{ tempa.Persona }}</th>
+            </tr>
+          </tbody>
+        </table>
+      </ul>
+</main>
+
+<!-- INSERTAR NUEVO EMPAQUE -->
+<main class="insertar-empaque">
+    <h2 class="titulo2">Registrar un nuevo empaque</h2>
+
+  <form (ngSubmit)="InsertarEmpaqueM()" [formGroup]="InsertarEmpaque">
+    
+
+    <label for="Tipo-empaque">
+      <span>Numero de tipo de empaque</span>
+      <input type="number" name="Tipo-empaque" id="Tipo-empaque" formControlName="TipEmpa" />
+    </label>
+
+    
+    <label for="juguete-empaque">
+      <span>Empaque de Juguete</span>
+      <input type="number" name="juguete-empaque" id="juguete-empaque"
+        formControlName="JugueteEmp" />
+    </label>
+
+    
+    <label for="empleado-empaque">
+      <span>Empleado encargado del empaque</span>
+      <input type="number" name="empleado-empaque" id="empleado-empaque" formControlName="EmpleaEmpa" />
+    </label>
+
+    <button class="agregar-empaque" type="submit">
+      Insertar Tipo de Documento
+    </button>
+  </form>
+
+</main>
+
 </html>
