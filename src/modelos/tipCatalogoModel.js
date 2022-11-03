@@ -19,10 +19,10 @@ tipCatalogoModel.getTipCatalogos = function (callback)
        let sql = "SELECT " 
         +" cu.`Id_catalogo_universal`,"
         +" cu.`denominacion_universal`,"
-        +" a.`denominacion_universal` AS ' Pertenece_a '"
+        +" a.`denominacion_universal` AS 'Pertenece_a'"
         +" FROM `ct_catalogo_universal` AS cu "
         +" INNER JOIN `ct_catalogo_universal` AS a ON cu.catalogo_universal = a.Id_catalogo_universal"
-        +" ORDER BY cu.`catalogo_universal`"
+        +" ORDER BY cu.`Id_catalogo_universal`"
         connection.query(sql, function (error, rows)
         {
             if (error)
@@ -57,7 +57,7 @@ tipCatalogoModel.getTipCatalogosa = function (cts, callback)
        let sql = "SELECT " 
         +" cu.`Id_catalogo_universal`,"
         +" cu.`denominacion_universal`,"
-        +" a.`denominacion_universal` AS ' Pertenece_a '"
+        +" a.`denominacion_universal` AS 'Pertenece_a'"
         +" FROM `ct_catalogo_universal` AS cu "
         +" INNER JOIN `ct_catalogo_universal` AS a ON cu.catalogo_universal = a.Id_catalogo_universal"
         +" WHERE cu.`catalogo_universal`= " +connection.escape(cts) +";";
@@ -96,7 +96,7 @@ tipCatalogoModel.getTipCatalogosa = function (cts, callback)
             let sql ="SELECT " 
             +" cu.`Id_catalogo_universal`,"
             +" cu.`denominacion_universal`,"
-            +" a.`denominacion_universal` AS ' Pertenece_a ',"
+            +" a.`denominacion_universal` AS 'Pertenece_a',"
             +" cu.`catalogo_universal`"
             +" FROM `ct_catalogo_universal` AS cu "
             +" INNER JOIN `ct_catalogo_universal` AS a ON cu.catalogo_universal = a.Id_catalogo_universal"
@@ -113,9 +113,9 @@ tipCatalogoModel.getTipCatalogosa = function (cts, callback)
                 throw error;
                 }
                 else{
-                //callback(null, row);
+                callback(null, row);
                 //comvierte las filas Json a una cadena de texto para Angular
-                callback(null, JSON.stringify(rows));
+                //callback(null, JSON.stringify(rows));
                 }
             });
         }

@@ -5,7 +5,7 @@ let tipCatalogoModel = require('../modelos/tipCatalogoModel');
 
 module.exports = function()
 {
-    router.get("/t", function (req, res)
+    router.get("/", function (req, res)
     {
         tipCatalogoModel.getTipCatalogos(function(error, data)
         {

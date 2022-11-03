@@ -138,12 +138,18 @@ export class JuguetesService {
     });
   }
   ///////////////catalogo
+  //---lista total
   getTipCatalogos(): Observable<any>
 {
     return this.http.get(this.Url + '/tipCatalogo', httpOptions);  
 }
+////-------lista catalogos
+  getTipCatalogoE(): Observable<any>
+{
+    return this.http.get(this.Url + '/tipCatalogo', httpOptions);  
+}
 //mostrar un solo Jugute    
-getTipCatalogo(id: any): Observable<any> 
+getTipCatalogosa(id: any): Observable<any> 
 {
     // console.log("  4555  ***** "+this.Url + "/tipContac"+id )
     // console.log("211    ");

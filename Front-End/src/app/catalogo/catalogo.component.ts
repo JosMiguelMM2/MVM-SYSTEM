@@ -11,7 +11,10 @@ import { JuguetesService } from '../juguetes.service'
 })
 export class CatalogoComponent implements OnInit {
   title = "MANEJO DE Catalogos";
-  
+  TipCatalogoE: any =[];               //Lista de Tipos de Empleado
+  TituloCatalogoE: any=[];          //Titulo Lista de Tipos de Empleado
+  tablaCatalogoE: any=[];           //Encabezados tabla Lista de Tipos de Empleado
+
   TipCatalogo: any =[];               //Lista de Tipos de Empleado
   TituloCatalogo: any=[];          //Titulo Lista de Tipos de Empleado
   tablaCatalogo: any=[];           //Encabezados tabla Lista de Tipos de Empleado
@@ -31,6 +34,10 @@ export class CatalogoComponent implements OnInit {
     //*****************************************************************************
  //Form group 
  ListaCatalogo = new FormGroup( 
+  { 
+
+} );
+ListaCatalogo2 = new FormGroup( 
   { 
 
 } );
@@ -68,7 +75,7 @@ public consultaCatalogoI() {
 
 public consultaCatalogo(op:any)
 {
-//console.error(" El listado 1 " );
+console.error(" El listado 1 " );
 if(this.controlLista == 1)
 {
     console.log("component")
@@ -81,8 +88,8 @@ if(this.controlLista == 1)
           this.TipCatalogo = JSON.parse(data);
           this.TituloCatalogo = "LISTA DE Juguetes";
           this.tablaCatalogo[0] = "indicador";
-          this.tablaCatalogo[1] = "Nombre Material";
-          this.tablaCatalogo[2] = "Clase Material";
+          this.tablaCatalogo[1] = "Denominacion";
+          this.tablaCatalogo[2] = "Grupo";
 
           //console.error(" El listado 3 " + this.TipDocs);
         }
@@ -105,7 +112,19 @@ if(this.controlLista == 1)
           // this.ActualizarATipDoc.removeControl("textnuevotipdoc");
           // this.ActualizarATipDoc.removeControl("textnuevoinicialestipdoc");
           console.error(" El listado 5 " );
-        }              
+        } 
+        else if (op == 4)
+        {
+            //let dat = data;
+         
+            this.TipCatalogoE = JSON.parse(data);
+            this.TituloCatalogoE = "LISTA DE Juguetes";
+            this.tablaCatalogoE[0] = "indicador";
+            this.tablaCatalogoE[1] = "Denominacion";
+            this.tablaCatalogoE[2] = "Grupo";
+  
+            //console.error(" El listado 3 " + this.TipDocs);
+          }           
 
   },
     error => { console.error(error + " ") });
@@ -117,9 +136,6 @@ else
   this.tablaCatalogo[0] = "";
   this.tablaCatalogo[1] = "";
   this.tablaCatalogo[2] = ""; 
-  this.tablaCatalogo[3] = "";
-  this.tablaCatalogo[4] = "";
-    
   this.controlLista = 1; 
 }
 
@@ -133,7 +149,10 @@ public LimpiarLista()
 {
 this.controlLista = 0;
 }
-
+public LimpiarLista2() 
+{
+this.controlLista = 0;
+}
 // -----------------------------------------------------------------------------------------
 // Consulta un tipo de documento por medio de su id.
 
@@ -142,24 +161,21 @@ public buscarTipCatalogo()
 
 var filtovalor = this.filtrarTipCatalogo.getRawValue()['combofiltro'];
 //console.log("318    " + filtovalor );
-this.servi.getTipCatalogo('/'+filtovalor).subscribe((data: {})=>
+this.servi.getTipCatalogosa('/'+filtovalor).subscribe((data: {})=>
 {
   console.log("313    " + filtovalor );
 
   this.MiTipCatalogo = data;
 
   
-  console.log("la data es " + data);
-  console.log("MiTipEmpleado es " + this.MiTipCatalogo);
-  console.log("MiTipJugute es " + this.MiTipCatalogo[0].Id_catalogo_universal/* + " - " + this.MiTipEmpleado[0].tipo_documento + " - " + this.MiTipEmpleado[0].Numero_Documento+ " - " + this.MiTipEmpleado[0].Persona*/);
+  console.log("la data es: " + data);
+  console.log("MiTipEmpleado es: " + this.MiTipCatalogo);
+  console.log("MiTipJugute es: " + this.MiTipCatalogo[0].Id_catalogo_universal/* + " - " + this.MiTipEmpleado[0].tipo_documento + " - " + this.MiTipEmpleado[0].Numero_Documento+ " - " + this.MiTipEmpleado[0].Persona*/);
 
-  this.TituloTipCatalogo = "TIPO EMPLEADO SELECCIONADO";
+  this.TituloTipCatalogo = "TIPO Catalogo SELECCIONADO";
   this.TabBusTipCatalogo[0] = "indicador";
-  this.TabBusTipCatalogo[1] = "Nombre del material";
-  this.TabBusTipCatalogo[2] = "Clase de material";
-  this.TabBusTipCatalogo[3] = "Color";
-  this.TabBusTipCatalogo[4] = "Peso gr";
- 
+  this.TabBusTipCatalogo[1] = "Denominacion";
+  this.TabBusTipCatalogo[2] = "Grupo";
 },
   error => { console.log(error) });
 
@@ -174,8 +190,12 @@ this.servi.getTipCatalogo('/'+filtovalor).subscribe((data: {})=>
           this.formBuilder.group
     this.filtrarTipCatalogo = this.formBuilder.group(
       {
-          combofiltro: []
-        }); 
+        combofiltro: []
+      }); 
+    this.ListaCatalogo2 = this.formBuilder.group(
+      {
+    
+      });
   }
 
 }
