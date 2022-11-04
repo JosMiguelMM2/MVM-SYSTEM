@@ -18,7 +18,7 @@ tipMaterialJugueteModel.getTipMaterialJuguetes = function(callback)
         */
         let sql = "SELECT "
         + " mj.`Id_materiales_productos`, "
-    	+ " j.`Nombre_juguete` as 'nombre jugete',"
+    	+ " j.`Nombre_juguete` as 'nombre_juguete',"
         + " n.`nombre_material` as 'Material',"
         + " mj.`Descripcion`,"
         + " mj.`cantidad`"

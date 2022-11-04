@@ -84,7 +84,7 @@ export class JuguetesService {
     return this.http.get(this.Url + '/tipEmpaque', httpOptions);
   }
 
-//-------------------------------------------------------------
+  //-------------------------------------------------------------
   // Método mostrar un solo empaque
 
   getTipEmpaque(id: any): Observable<any> {
@@ -93,9 +93,9 @@ export class JuguetesService {
     return this.http.get(this.Url + '/tipEmpaque' + id, httpOptions);
   }
 
-  //INSAERTAR NUEVO EMPAQUE
+  //INSERTAR NUEVO EMPAQUE
   async insertTipEmpaque(NuevoEmpaque: any): Promise<any> {
-    console.log("id"+NuevoEmpaque.Id_Empaque+"nombre"+NuevoEmpaque.tipo_de_empaque+"descripcion"+NuevoEmpaque.Juguete+ "ultimo dato"+NuevoEmpaque.Persona);
+    console.log("id" + NuevoEmpaque.Id_Empaque + "nombre" + NuevoEmpaque.tipo_de_empaque + "descripcion" + NuevoEmpaque.Juguete + "ultimo dato" + NuevoEmpaque.Persona);
     return new Promise((resolve, reject) => {
       this.http.post(this.Url + '/tipEmpaque', NuevoEmpaque, httpOptions).toPromise();
     });
@@ -103,7 +103,7 @@ export class JuguetesService {
 
   //MODIFICAR EMPAQUE
   async updateTipEmpaque(cadena: any): Promise<any> {
-    
+
     return new Promise((resolve, reject) => {
       this.http.put(this.Url + '/tipEmpaque', cadena, httpOptions).toPromise();
     });
@@ -139,47 +139,54 @@ export class JuguetesService {
   }
   ///////////////catalogo
   //---lista total
-  getTipCatalogos(): Observable<any>
-{
-    return this.http.get(this.Url + '/tipCatalogo', httpOptions);  
-}
-////-------lista catalogos
-  getTipCatalogoE(): Observable<any>
-{
-    return this.http.get(this.Url + '/tipCatalogo', httpOptions);  
-}
-//mostrar un solo Jugute    
-getTipCatalogosa(id: any): Observable<any> 
-{
+  getTipCatalogos(): Observable<any> {
+    return this.http.get(this.Url + '/tipCatalogo', httpOptions);
+  }
+  ////-------lista catalogos
+  getTipCatalogoE(): Observable<any> {
+    return this.http.get(this.Url + '/tipCatalogo', httpOptions);
+  }
+  //mostrar un solo Jugute    
+  getTipCatalogosa(id: any): Observable<any> {
     // console.log("  4555  ***** "+this.Url + "/tipContac"+id )
     // console.log("211    ");
-    console.log(this.Url + '/tipCatalogo'+id )
+    console.log(this.Url + '/tipCatalogo' + id)
     return this.http.get(this.Url + '/tipCatalogo' + id, httpOptions);
-}
-/// JUGUETES********************************************
-getTipJuguetess(): Observable<any>
-{
-    return this.http.get(this.Url + '/tipJuguete', httpOptions);  
-}
- //mostrar un solo Jugute    
- getTipJuguetes(id: any): Observable<any> 
- {
-     // console.log("  4555  ***** "+this.Url + "/tipContac"+id )
-     // console.log("211    ");
-     console.log(this.Url + '/tipJuguete'+id )
-     return this.http.get(this.Url + '/tipJuguete' + id, httpOptions);
- }
- //materiales *****************************************
- getTipMateriales(): Observable<any>
-{
-    return this.http.get(this.Url + '/tipMaterial', httpOptions);  
-}
- //mostrar un solo material   
- getTipMaterial(id: any): Observable<any> 
- {
-     // console.log("  4555  ***** "+this.Url + "/tipContac"+id )
-     // console.log("211    ");
-     console.log(this.Url + '/tipMaterial'+id )
-     return this.http.get(this.Url + '/tipMaterial' + id, httpOptions);
- }
+  }
+  /// JUGUETES********************************************
+  getTipJuguetess(): Observable<any> {
+    return this.http.get(this.Url + '/tipJuguete', httpOptions);
+  }
+  //mostrar un solo Jugute    
+  getTipJuguetes(id: any): Observable<any> {
+    // console.log("  4555  ***** "+this.Url + "/tipContac"+id )
+    // console.log("211    ");
+    console.log(this.Url + '/tipJuguete' + id)
+    return this.http.get(this.Url + '/tipJuguete' + id, httpOptions);
+  }
+  //materiales *****************************************
+  getTipMateriales(): Observable<any> {
+    return this.http.get(this.Url + '/tipMaterial', httpOptions);
+  }
+  //mostrar un solo material   
+  getTipMaterial(id: any): Observable<any> {
+    // console.log("  4555  ***** "+this.Url + "/tipContac"+id )
+    // console.log("211    ");
+    console.log(this.Url + '/tipMaterial' + id)
+    return this.http.get(this.Url + '/tipMaterial' + id, httpOptions);
+  }
+
+
+  //LISTAR MATERIALES-JUGUETES
+  getTipMaterialJuguetes(): Observable<any> {
+    console.error(' antes ' + this.Url + '/tipMaterialJuguete');
+    return this.http.get(this.Url + '/tipMaterialJuguete', httpOptions);
+  }
+
+  //mostrar un solo material-juguete
+  getTipMaterialJuguete(id: any): Observable<any> {
+     console.log("  4555  ***** "+this.Url + "/tipContac"+id )
+    // console.log("211    ");
+    return this.http.get(this.Url + '/tipMaterialJuguete' + id, httpOptions);
+  }
 }
