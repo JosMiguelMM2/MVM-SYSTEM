@@ -194,6 +194,7 @@ this.servi.getTipCatalogosa('/'+filtovalor).subscribe((data: {})=>
     this.TabBusTipCatalogo[0] = "indicador";
     this.TabBusTipCatalogo[1] = "Denominacion";
     this.TabBusTipCatalogo[2] = "Grupo";
+    
   },
     error => { console.log(error) });
 
@@ -213,6 +214,7 @@ this.servi.getTipCatalogosa('/'+2+'/'+filtovalor).subscribe((data: {})=>
     this.TabBusTipCatalogo[0] = "indicador";
     this.TabBusTipCatalogo[1] = "Denominacion";
     this.TabBusTipCatalogo[2] = "Grupo";
+    this.TabBusTipCatalogo[3] = "indicador de Grupo";
   },
     error => { console.log(error) });
 }

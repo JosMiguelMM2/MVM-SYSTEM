@@ -182,4 +182,17 @@ getTipJuguetess(): Observable<any>
      console.log(this.Url + '/tipMaterial'+id )
      return this.http.get(this.Url + '/tipMaterial' + id, httpOptions);
  }
+  //materiales-juguete *****************************************
+  getTipMaterialJuguetes(): Observable<any>
+  {
+      return this.http.get(this.Url + '/tipMaterialJuguete', httpOptions);  
+  }
+   //mostrar un solo material   
+   getTipMaterialJuguete(id: any): Observable<any> 
+   {
+       // console.log("  4555  ***** "+this.Url + "/tipContac"+id )
+       // console.log("211    ");
+       console.log(this.Url + '/tipMaterialJuguete'+id )
+       return this.http.get(this.Url + '/tipMaterialJuguete' + id, httpOptions);
+   }
 }

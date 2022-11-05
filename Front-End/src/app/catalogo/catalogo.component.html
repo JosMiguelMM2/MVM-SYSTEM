@@ -84,7 +84,8 @@
             <thead class="Colb">
               <th class="b">{{TabBusTipCatalogo[0]}}</th> 
               <th class="b">{{TabBusTipCatalogo[1]}}</th> 
-              <th class="b">{{TabBusTipCatalogo[2]}}</th>                   
+              <th class="b">{{TabBusTipCatalogo[2]}}</th>    
+                          
 
             </thead>
     
@@ -93,6 +94,7 @@
                     <th class="b">{{tCatalogo.Id_catalogo_universal}}  </th>
                     <th class="b">{{tCatalogo.denominacion_universal}}  </th>
                     <th class="b">{{tCatalogo.Pertenece_a}}  </th>
+                   
                 </tr>
             </tbody> 
     
@@ -114,7 +116,7 @@
     <form (ngSubmit)="buscarTipCatalogo2()" [formGroup]="filtrarTipCatalogoD">
       Id del Catalogo a mostrar
       <select class="dropdown"  formControlName="combofiltro2" (click)="ListComboDocu()">
-          <option value="value2">Catalogo a buscar</option>
+          <option value="value2">documento a buscar</option>
           <option *ngFor="let TipDocum of comboListaDocum" [value]="TipDocum.Id_catalogo_universal">
             {{TipDocum.Id_catalogo_universal}} - {{TipDocum.denominacion_universal}} 
             
@@ -135,7 +137,7 @@
               <th class="b">{{TabBusTipCatalogo[0]}}</th> 
               <th class="b">{{TabBusTipCatalogo[1]}}</th> 
               <th class="b">{{TabBusTipCatalogo[2]}}</th>   
-                              
+              <th class="b">{{TabBusTipCatalogo[3]}}</th>                
 
             </thead>
     
@@ -144,7 +146,7 @@
                     <th class="b">{{tDocum.Id_catalogo_universal}}  </th>
                     <th class="b">{{tDocum.denominacion_universal}}  </th>
                     <th class="b">{{tDocum.Pertenece_a}}  </th>
-                   
+                    <th class="b">{{tDocum.catalogo_universal}}  </th>
                 </tr>
             </tbody> 
     
