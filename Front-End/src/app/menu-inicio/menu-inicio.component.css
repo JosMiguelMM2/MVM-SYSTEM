@@ -1,99 +1,72 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-html{
+
+html {
     font-size: 62.5%;
 }
 
-.principal{
+.principal {
     background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
     width: 100vw;
     height: 100vh;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+
 }
 
-.Estilo-contactos{
+.Estilo-contactos,
+.Estilo-empleados,
+.Estilo-Produccion,
+.Estilo-Materiales,
+.Estilo-MaterialesJuguetes,
+.Estilo-juguetes,
+.Estilo-empaque,
+.Estilo-Catalogo {
     background-color: rgb(255, 166, 0);
-    margin: 0 auto;
-    margin-top: 6rem;
-    width: 20rem;
-    height: 8rem;
-    text-align: center;
     border-radius: 1rem 1rem 1rem 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 1rem;
+    padding: 1rem;
+    text-align: center;
+    width: 15rem;
+    height: 15rem;
 }
 
-.Estilo-empleados{
-    background-color: rgb(255, 166, 0);
-    margin: 0 auto;
-    margin-top: 6rem;
-    width: 20rem;
-    height: 8rem;
-    text-align: center;
-    border-radius: 1rem 1rem 1rem 1rem;
-}
 
-.Estilo-juguetes{
-    background-color: rgb(255, 166, 0);
-    margin: 0 auto;
-    margin-top: 6rem;
-    width: 20rem;
-    height: 8rem;
-    text-align: center;
-    border-radius: 1rem 1rem 1rem 1rem;
-}
 
-.Estilo-empaque{
-    background-color: rgb(255, 166, 0);
-    margin: 0 auto;
-    margin-top: 6rem;
-    width: 20rem;
-    height: 8rem;
-    text-align: center;
-    border-radius: 1rem 1rem 1rem 1rem;
-}
-.Estilo-Catalogo{
-    background-color: rgb(255, 166, 0);
-    margin: 0 auto;
-    margin-top: 6rem;
-    width: 20rem;
-    height: 8rem;
-    text-align: center;
-    border-radius: 1rem 1rem 1rem 1rem;
-}
-.Estilo-Materiales{
-    background-color: rgb(255, 166, 0);
-    margin: 0 auto;
-    margin-top: 6rem;
-    width: 20rem;
-    height: 8rem;
-    text-align: center;
-    border-radius: 1rem 1rem 1rem 1rem;
-}
-
-.pruebacontactos, .pruebaempleado, .pruebaJuguetes, .pruebaempaque, .pruebaMateriales, .pruebaCatalogo{
+.pruebacontactos,
+.pruebaempleado,
+.pruebaJuguetes,
+.pruebaempaque,
+.pruebaMateriales,
+.pruebaCatalogo,
+.pruebaMaterialesJuguetes,
+.pruebaProduccion {
     color: white;
     font-size: 2rem;
     font-weight: bold;
     text-decoration: none;
-    
+
 }
 
-h3{
+h3 {
     color: #fff;
     font-size: 30px;
     font-weight: 600;
     text-align: center;
     margin-bottom: 30px;
+    margin-top: 2.5rem;
+    
 }
 
-a{
+a {
     text-decoration: none;
     color: black;
 }

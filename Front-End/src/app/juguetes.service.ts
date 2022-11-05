@@ -84,7 +84,7 @@ export class JuguetesService {
     return this.http.get(this.Url + '/tipEmpaque', httpOptions);
   }
 
-//-------------------------------------------------------------
+  //-------------------------------------------------------------
   // Método mostrar un solo empaque
 
   getTipEmpaque(id: any): Observable<any> {
@@ -93,9 +93,9 @@ export class JuguetesService {
     return this.http.get(this.Url + '/tipEmpaque' + id, httpOptions);
   }
 
-  //INSAERTAR NUEVO EMPAQUE
+  //INSERTAR NUEVO EMPAQUE
   async insertTipEmpaque(NuevoEmpaque: any): Promise<any> {
-    console.log("id"+NuevoEmpaque.Id_Empaque+"nombre"+NuevoEmpaque.tipo_de_empaque+"descripcion"+NuevoEmpaque.Juguete+ "ultimo dato"+NuevoEmpaque.Persona);
+    console.log("id" + NuevoEmpaque.Id_Empaque + "nombre" + NuevoEmpaque.tipo_de_empaque + "descripcion" + NuevoEmpaque.Juguete + "ultimo dato" + NuevoEmpaque.Persona);
     return new Promise((resolve, reject) => {
       this.http.post(this.Url + '/tipEmpaque', NuevoEmpaque, httpOptions).toPromise();
     });
@@ -103,7 +103,7 @@ export class JuguetesService {
 
   //MODIFICAR EMPAQUE
   async updateTipEmpaque(cadena: any): Promise<any> {
-    
+
     return new Promise((resolve, reject) => {
       this.http.put(this.Url + '/tipEmpaque', cadena, httpOptions).toPromise();
     });
@@ -139,31 +139,23 @@ export class JuguetesService {
   }
   ///////////////catalogo
   //---lista total
-  
   getTipCatalogos(): Observable<any>
 {
     return this.http.get(this.Url + '/tipCatalogo', httpOptions);  
 }
 ////-------lista catalogos
-  getTipCatalogoE(id: any): Observable<any>
+  getTipCatalogoE(id:any): Observable<any>
 {
-  console.log(this.Url + '/tipCatalogo'+id )
     return this.http.get(this.Url + '/tipCatalogo'+id, httpOptions);  
 }
-//mostrar un solo registro    
+//mostrar un solo Jugute    
 getTipCatalogosa(id: any): Observable<any> 
 {
     // console.log("  4555  ***** "+this.Url + "/tipContac"+id )
     // console.log("211    ");
-    console.log(this.Url + '/tipCatalogo'+id )
+    console.log(this.Url + '/tipCatalogo' + id)
     return this.http.get(this.Url + '/tipCatalogo' + id, httpOptions);
 }
-getTipCatalogoDocum(id:any,cts:any): Observable<any>
-{
-  console.log(this.Url + '/tipCatalogo'+ id+ cts  )
-  return this.http.get(this.Url + '/tipCatalogo' + id+ cts , httpOptions);
-}
-
 /// JUGUETES********************************************
 getTipJuguetess(): Observable<any>
 {

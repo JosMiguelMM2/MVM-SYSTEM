@@ -18,20 +18,20 @@ import { JuguetesService } from '../juguetes.service';
 export class EmpaquetamientoComponent implements OnInit {
   title = 'Empaque';
   Empaquetamiento: any = [];
-  TituloEmpaque = ''; //Titulo Lista de Tipos de Documentos
-  TablaEmpaque: any = []; //Encabezados tabla Lista de Tipos de Documentos
+  TituloEmpaque = ''; //Titulo Lista de Tipos de Empaques
+  TablaEmpaque: any = []; //Encabezados tabla Lista de Tipos de Empaques
 
   controlLista = 1; //Control para limpiar la lista
   BuscarEvalor = 1; //Control para carga del valor a buscar
 
-  MiEmpaque: any = []; //Tipo de Documento Buscado
-  TituloEmpaq = ''; //Titulo de Tipo de Documento Buscado
-  TabBusEmpaque: any = []; //Encabezados tabla Tipo de Documento Buscado
-  comboListaEmpaque: any = []; //Combo Buscar Tipo de Documento
+  MiEmpaque: any = []; //Tipo de Empaque Buscado
+  TituloEmpaq = ''; //Titulo de Tipo de Empaque Buscado
+  TabBusEmpaque: any = []; //Encabezados tabla Tipo de Empaque Buscado
+  comboListaEmpaque: any = []; //Combo Buscar Tipo de Empaque
 
-  TituloEmpaqueEdit = ''; //Titulo de Tipo de Documento a Editar
-  MiEmpaqueE: any = []; //Tipo de Documento a Editar
-  comboEditarEmpaque: any = []; //Combo Editar Tipo de Documento
+  TituloEmpaqueEdit = ''; //Titulo de Tipo de Empaque a Editar
+  MiEmpaqueE: any = []; //Tipo de Empaque a Editar
+  comboEditarEmpaque: any = []; //Combo Editar Tipo de Empaque
 
   //*****************************************************************************
   //Form group
@@ -117,11 +117,6 @@ export class EmpaquetamientoComponent implements OnInit {
         console.log('313    ' + filtovalor);
 
         this.MiEmpaque = data;
-
-        // console.log("la data es " + data);
-        // console.log("MiTipDoc es " + this.MiTipDoc);
-        //console.log("MiTipDoc es " + this.MiTipDoc[0].id_tip_doc + " - " + this.MiTipDoc[0].tipo_documento + " - " + this.MiTipDoc[0].iniciales_tip_doc);
-
         this.TituloEmpaq = 'Buscar Empaque por Id';
         this.TabBusEmpaque[0] = 'Id Empaque';
         this.TabBusEmpaque[1] = 'Tipo de empaque';

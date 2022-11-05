@@ -1,6 +1,60 @@
 <html>
     <!-- LISTAR MATERIALES-JUGUETES -->
     <main class="listar-materiales">
+        <h1 class="titulo1">{{title}}</h1>
+        <div>
+            <h2 class="titulo2">Lista de Materiales de los Juguetes</h2>
+            
+            <form (ngSubmit)="getMaterialesJuguetesM(1)" [formGroup]="ListaMaterialesJuguetes">
+                <button type="submit">Mostrar lista </button>
+                <button (click)="LimpiarLista()">Limpiar Lista</button>
+    
+                <h2 class="titulo2">{{TituloMaterialesJ}}</h2>
+    
+                <table class="tabla-mostrarempaque">
+                    <thead>
+                        <th>{{TablaMaterialesJuguetes[0]}}</th>
+                        <th>{{TablaMaterialesJuguetes[1]}}</th>
+                        <th>{{TablaMaterialesJuguetes[2]}}</th>
+                        <th>{{TablaMaterialesJuguetes[3]}}</th>
+                        <th>{{TablaMaterialesJuguetes[4]}}</th>
+                    </thead>
+    
+                    <tbody>
+                        <tr *ngFor="let MaJu of MaterialesJuguetes">
+                            <th>{{MaJu.Id_materiales_productos}}</th>
+                            <th>{{MaJu.nombre_juguete}}</th>
+                            <th>{{MaJu.Material}}</th>
+                            <th>{{MaJu.Descripcion}}</th>
+                            <th>{{MaJu.cantidad}}</th>
+                        </tr>
+                    </tbody>
+                </table>
+    
+            </form>
 
+        </div>
+
+    </main>
+
+    <!-- MOSTRAR UN SOLO DATO DE MATERIALES-JUGUETES-->
+    <main class="buscar-id-MJ">
+        <h2 class="titulo-2">Mostrar el Material del Juguete seleccionado</h2>
+        <form (ngSubmit)="getEmpaqueId()" [formGroup]="filtrarIdMaterialesJuguetes">
+            <span>Id Matelial-Juguete a mostrar</span>
+            <select class="dropdown" formControlName="combofiltro" (click)="getMaterialesJuguetesM(2)">
+              <option value="value1">Id material-juguete</option>
+        
+              <option *ngFor="let TipMateJugue of comboListaMaterialesJuguetes" [value]="TipMateJugue.Id_materiales_productos">
+                {{ TipMateJugue.Id_materiales_productos }} - {{ TipMateJugue.Descripcion}}
+              </option>
+            </select>
+        
+            <button type="submit">Buscar Tipo Documento</button>
+          </form>
+
+          <ul>
+            <h2 class="titulo2">{{TituloMaterialesJ}}</h2>
+          </ul>
     </main>
 </html>
