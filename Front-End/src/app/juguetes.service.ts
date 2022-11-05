@@ -148,7 +148,7 @@ export class JuguetesService {
 {
     return this.http.get(this.Url + '/tipCatalogo'+id, httpOptions);  
 }
-//mostrar un solo Jugute    
+//mostrar un solo documento    
 getTipCatalogosa(id: any): Observable<any> 
 {
     // console.log("  4555  ***** "+this.Url + "/tipContac"+id )
