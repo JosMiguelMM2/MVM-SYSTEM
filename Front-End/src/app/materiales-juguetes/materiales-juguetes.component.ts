@@ -44,6 +44,14 @@ export class MaterialesJuguetesComponent implements OnInit {
     combofiltro: new FormControl(),
   });
 
+  //INSERTAR NUEVO EMPAQUE
+  InsertarMateriJuguetes = new FormGroup({
+    Id_juguetes: new FormControl(),
+    Id_material: new FormControl(),
+    Descripcion: new FormControl(),
+    Cantidad: new FormControl(),
+  });
+
   constructor(private formBuilder: FormBuilder,
     private juguetesService: JuguetesService,
     Router: Router) { }
@@ -111,6 +119,26 @@ export class MaterialesJuguetesComponent implements OnInit {
     );
   }
 
+  //INSERTAR NUEVO MATERIALES JUGUETES
+  public InsertarMaterialesJuguetes() {
+    let Id_juguetes1 = this.InsertarMateriJuguetes.getRawValue()['Id_juguetes'];
+    let Id_material1 = this.InsertarMateriJuguetes.getRawValue()['Id_material'];
+    let Descripcion1 = this.InsertarMateriJuguetes.getRawValue()['Descripcion'];
+    let Cantidad1 = this.InsertarMateriJuguetes.getRawValue()['Cantidad'];
+
+    let cadenaup={"Id_juguetes":Id_juguetes1,"Id_material":Id_material1,"Descripcion":Descripcion1,"cantidad":Cantidad1};
+    
+    this.juguetesService.insertTipMaterialJuguete(cadenaup).then
+    (res => {
+      console.log(res)
+    }
+    ).catch(err => {
+      console.log(err)
+    });
+
+    this.InsertarMateriJuguetes.reset();
+}
+
   ngOnInit(): void {
 
     //LISTAR MATERIALES JUGUETES
@@ -119,6 +147,14 @@ export class MaterialesJuguetesComponent implements OnInit {
     //BUSCAR MATERIALES JUGUETES POR ID
     this.filtrarIdMaterialesJuguetes = this.formBuilder.group({
       combofiltro: [],
-    });
+    })
+
+    //INSERTAR NUEVO MATERIALES JUGUETES
+    this.InsertarMateriJuguetes = this.formBuilder.group({
+      Id_juguetes: [],
+      Id_material: [],
+      Descripcion: [],
+      Cantidad: [],
+    });this.formBuilder.group;
   }
 }
