@@ -14,6 +14,7 @@ export class CatalogoComponent implements OnInit {
   TipCatalogoE: any =[];               //Lista de Tipos de Empleado
   TituloCatalogoE: any=[];          //Titulo Lista de Tipos de Empleado
   tablaCatalogoE: any=[];           //Encabezados tabla Lista de Tipos de Empleado
+  MiTipCatalogoEs: any=[];
 
   TipCatalogo: any =[];               //Lista de Tipos de Empleado
   TituloCatalogo: any=[];          //Titulo Lista de Tipos de Empleado
@@ -23,6 +24,12 @@ export class CatalogoComponent implements OnInit {
   TituloTipCatalogo = "";              //Titulo de Tipo de Documento Buscado
   TabBusTipCatalogo: any = [];        //Encabezados tabla Tipo de Documento Buscado 
   comboListaTipCatalogo: any = [];     //Combo Buscar Tipo de Documento
+  
+  MiTipCatalogos: any = [];             //Tipo de Documento Buscado
+  TituloTipCatalogos = "";              //Titulo de Tipo de Documento Buscado
+  TabBusTipCatalogos: any = [];        //Encabezados tabla Tipo de Documento Buscado 
+  comboListaCatalogos:any=[];
+  comboListaDocum:any=[];
 
   TituloTipCatalogoEdit = "";          //Titulo de Tipo de Documento a Editar
   MiTipCatalogoE: any = [];            //Tipo de Documento a Editar
@@ -37,15 +44,18 @@ export class CatalogoComponent implements OnInit {
   { 
 
 } );
-ListaCatalogo2 = new FormGroup( 
+ListaCatalogoE = new FormGroup( 
   { 
 
 } );
-filtrarTipCatalogo =  new FormGroup(
+filtrarTipCatalogoE =  new FormGroup(
   {
     combofiltro: new FormControl()
   });
-
+  filtrarTipCatalogoD =  new FormGroup(
+    {
+      combofiltro2: new FormControl()
+    });
   constructor(
     private formBuilder: FormBuilder,
     private servi: JuguetesService,
@@ -69,7 +79,26 @@ public consultaCatalogoI() {
 
   });
 }
-
+//filtros listas 
+//-----catalogos----
+public ListComboCatalogo() {
+  this.servi.getTipCatalogoE('/'+1).subscribe((data:{})=>
+  {
+    this.comboListaCatalogos=data;
+    console.log("por aca 23 "+ this.comboListaCatalogos.denominacion_universal)
+  },
+  error =>{ console.log(error)});
+  };
+//-----documentos----
+public ListComboDocu() {
+  this.servi.getTipCatalogoE('/'+2).subscribe((data:{})=>
+  {
+    this.comboListaDocum=data;
+    console.log("por aca 23 "+ this.comboListaDocum.denominacion_universal)
+  },
+  error =>{ console.log(error)});
+  };
+  
 //............................................................................................
 // Lista Tipos de Juguetes.
 
@@ -112,19 +141,7 @@ if(this.controlLista == 1)
           // this.ActualizarATipDoc.removeControl("textnuevotipdoc");
           // this.ActualizarATipDoc.removeControl("textnuevoinicialestipdoc");
           console.error(" El listado 5 " );
-        } 
-        else if (op == 4)
-        {
-            //let dat = data;
-         
-            this.TipCatalogoE = JSON.parse(data);
-            this.TituloCatalogoE = "LISTA DE Juguetes";
-            this.tablaCatalogoE[0] = "indicador";
-            this.tablaCatalogoE[1] = "Denominacion";
-            this.tablaCatalogoE[2] = "Grupo";
-  
-            //console.error(" El listado 3 " + this.TipDocs);
-          }           
+        }          
 
   },
     error => { console.error(error + " ") });
@@ -142,6 +159,7 @@ else
 }
 
 
+
 //--------------------------------------------------------------------------------------------->
 //para Limpiar la lista
 
@@ -149,7 +167,7 @@ public LimpiarLista()
 {
 this.controlLista = 0;
 }
-public LimpiarLista2() 
+public LimpiarListaE() 
 {
 this.controlLista = 0;
 }
@@ -159,40 +177,61 @@ this.controlLista = 0;
 public buscarTipCatalogo() 
 {
 
-var filtovalor = this.filtrarTipCatalogo.getRawValue()['combofiltro'];
+var filtovalor = this.filtrarTipCatalogoE.getRawValue()['combofiltro'];
 //console.log("318    " + filtovalor );
 this.servi.getTipCatalogosa('/'+filtovalor).subscribe((data: {})=>
-{
-  console.log("313    " + filtovalor );
+  {
+    console.log("313    " + filtovalor );
 
-  this.MiTipCatalogo = data;
+    this.MiTipCatalogo = data;
+    
+    
+    //console.log("la data es: " + data);
+    //console.log("MiTipEmpleado es: " + this.MiTipCatalogo);
+    //console.log("MiTipJugute es: " + this.MiTipCatalogo[0].Id_catalogo_universal/* + " - " + this.MiTipEmpleado[0].tipo_documento + " - " + this.MiTipEmpleado[0].Numero_Documento+ " - " + this.MiTipEmpleado[0].Persona*/);
 
-  
-  console.log("la data es: " + data);
-  console.log("MiTipEmpleado es: " + this.MiTipCatalogo);
-  console.log("MiTipJugute es: " + this.MiTipCatalogo[0].Id_catalogo_universal/* + " - " + this.MiTipEmpleado[0].tipo_documento + " - " + this.MiTipEmpleado[0].Numero_Documento+ " - " + this.MiTipEmpleado[0].Persona*/);
-
-  this.TituloTipCatalogo = "TIPO Catalogo SELECCIONADO";
-  this.TabBusTipCatalogo[0] = "indicador";
-  this.TabBusTipCatalogo[1] = "Denominacion";
-  this.TabBusTipCatalogo[2] = "Grupo";
-},
-  error => { console.log(error) });
+    this.TituloTipCatalogo = "TIPO Catalogo SELECCIONADO";
+    this.TabBusTipCatalogo[0] = "indicador";
+    this.TabBusTipCatalogo[1] = "Denominacion";
+    this.TabBusTipCatalogo[2] = "Grupo";
+  },
+    error => { console.log(error) });
 
 }
 
+// -----------------------------------------------------------------------------------------
+// Consulta un tipo de documento por medio de su id.
+
+public buscarTipCatalogo2() 
+{
+var filtovalor = this.filtrarTipCatalogoD.getRawValue()['combofiltro2'];
+
+this.servi.getTipCatalogosa('/'+2+'/'+filtovalor).subscribe((data: {})=>
+  {
+    this.MiTipCatalogo = data;
+    this.TituloTipCatalogo = "TIPO Catalogo SELECCIONADO";
+    this.TabBusTipCatalogo[0] = "indicador";
+    this.TabBusTipCatalogo[1] = "Denominacion";
+    this.TabBusTipCatalogo[2] = "Grupo";
+  },
+    error => { console.log(error) });
+}
   ngOnInit(): void {
     this.ListaCatalogo = this.formBuilder.group(
       {
-
+        
       });
       
           this.formBuilder.group
-    this.filtrarTipCatalogo = this.formBuilder.group(
+    this.filtrarTipCatalogoE = this.formBuilder.group(
       {
         combofiltro: []
       }); 
-    this.ListaCatalogo2 = this.formBuilder.group(
+      this.filtrarTipCatalogoD = this.formBuilder.group(
+        {
+          combofiltro2: []
+        }); 
+    this.ListaCatalogoE = this.formBuilder.group(
       {
     
       });

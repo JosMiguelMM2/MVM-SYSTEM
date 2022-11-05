@@ -56,16 +56,16 @@
       </div>
       <br><br><br><br>
     <!--------------------------------------------------------------------------------------------->
-  <!-- para mostrar el un solo Catalogo -->
+  <!-- para mostrar el un solo Catalogo catalogo-->
                             
   <div class="buscar">
     <h2>Mostramos el Catalogo seleccionado: </h2>
     
-    <form (ngSubmit)="buscarTipCatalogo()" [formGroup]="filtrarTipCatalogo">
+    <form (ngSubmit)="buscarTipCatalogo()" [formGroup]="filtrarTipCatalogoE">
       Id del Catalogo a mostrar
-      <select class="dropdown"  formControlName="combofiltro" (click)="consultaCatalogo(2)">
+      <select class="dropdown"  formControlName="combofiltro" (click)="ListComboCatalogo()">
           <option value="value1">Catalogo a buscar</option>
-          <option *ngFor="let TipCatalogo of comboListaTipCatalogo" [value]="TipCatalogo.Id_catalogo_universal">
+          <option *ngFor="let TipCatalogo of comboListaCatalogos" [value]="TipCatalogo.Id_catalogo_universal">
             {{TipCatalogo.Id_catalogo_universal}} - {{TipCatalogo.denominacion_universal}} 
             
           </option>
@@ -104,46 +104,59 @@
   
     </div>
     <br><br><br><br>
+
+     <!--------------------------------------------------------------------------------------------->
+  <!-- para mostrar el un solo Catalogo documento-->
+                            
+  <div class="buscar">
+    <h2>Mostramos el Documento seleccionado: </h2>
+    
+    <form (ngSubmit)="buscarTipCatalogo2()" [formGroup]="filtrarTipCatalogoD">
+      Id del Catalogo a mostrar
+      <select class="dropdown"  formControlName="combofiltro2" (click)="ListComboDocu()">
+          <option value="value2">Catalogo a buscar</option>
+          <option *ngFor="let TipDocum of comboListaDocum" [value]="TipDocum.Id_catalogo_universal">
+            {{TipDocum.Id_catalogo_universal}} - {{TipDocum.denominacion_universal}} 
+            
+          </option>
+      </select>       
   
-  <!--------------------------------------------------------------------------------------------->
-      <!-- para mostrar solo Catalogos -->
+      <br><br>
+  
+  
+      <button type="submit" class="btn btn-outline-dark">Buscar Documento</button>
+    </form>
+  
+    <ul>
+        <h2>{{TituloCatalogo}}</h2>
+  
+        <table class="tabBuscar"> 
+            <thead class="Colb">
+              <th class="b">{{TabBusTipCatalogo[0]}}</th> 
+              <th class="b">{{TabBusTipCatalogo[1]}}</th> 
+              <th class="b">{{TabBusTipCatalogo[2]}}</th>   
+                              
+
+            </thead>
     
-      <div class="lista">
-          
-        <h2>Lista de los Tipos de Catalogos: </h2>
+            <tbody class="Filb">  
+                <tr class="b" *ngFor="let tDocum of MiTipCatalogo">
+                    <th class="b">{{tDocum.Id_catalogo_universal}}  </th>
+                    <th class="b">{{tDocum.denominacion_universal}}  </th>
+                    <th class="b">{{tDocum.Pertenece_a}}  </th>
+                   
+                </tr>
+            </tbody> 
     
-        <form (ngSubmit)="consultaCatalogo(4)" [formGroup]="ListaCatalogo2" [formGroup]="ListaCatalogo2">
-    
-          <button type="submit" style="margin-right: 30px" class="btn btn-outline-dark">Mostrar Lista de Tipos de Catalogo</button>
-          <button (click)="LimpiarLista2()" class="btn btn-outline-dark">Linpiar Lista de Tipos de Catalogos</button>
-    
-          <br><br>
-          
-          <h2>{{TituloCatalogo}}</h2>   
-          <table> 
-              <thead>
-                  <th>{{tablaCatalogoE[0]}}</th>
-                  <th>{{tablaCatalogoE[1]}}</th>
-                  <th>{{tablaCatalogoE[2]}}</th>   
-                 
-                
-              </thead>
-    
-              <tbody>
-                  <tr  *ngFor="let tCat2 of TipCatalogoE">
-                      
-                    <th>{{ tCat2.Id_catalogo_universal}} </th>
-                    <th>{{ tCat2.denominacion_universal}} </th>
-                    <th>{{ tCat2.Pertenece_a}} </th>  
-                      
-                  </tr>
-              </tbody> 
           </table>
-    
-        </form>
-    
-      </div>
-      <br><br><br><br>
+  
+        </ul>
+  
+      <br>
+  
+    </div>
+    <br><br><br><br>
+     
        <!--*************************************************************************-->
     <!-- se incluye el link para la otra página -->
     <div class="dir">
