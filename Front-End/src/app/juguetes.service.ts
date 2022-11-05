@@ -139,6 +139,7 @@ export class JuguetesService {
   }
   ///////////////catalogo
   //---lista total
+<<<<<<< HEAD
   getTipCatalogos(): Observable<any>
 {
     return this.http.get(this.Url + '/tipCatalogo', httpOptions);  
@@ -151,48 +152,61 @@ export class JuguetesService {
 //mostrar un solo documento    
 getTipCatalogosa(id: any): Observable<any> 
 {
+=======
+  getTipCatalogos(): Observable<any> {
+    return this.http.get(this.Url + '/tipCatalogo', httpOptions);
+  }
+  ////-------lista catalogos
+  getTipCatalogoE(id: any): Observable<any> {
+    return this.http.get(this.Url + '/tipCatalogo' + id, httpOptions);
+  }
+  //mostrar un solo Jugute    
+  getTipCatalogosa(id: any): Observable<any> {
+>>>>>>> a2b7f5d652553de9db9db700858b070d8960f5df
     // console.log("  4555  ***** "+this.Url + "/tipContac"+id )
     // console.log("211    ");
     console.log(this.Url + '/tipCatalogo' + id)
     return this.http.get(this.Url + '/tipCatalogo' + id, httpOptions);
-}
-/// JUGUETES********************************************
-getTipJuguetess(): Observable<any>
-{
-    return this.http.get(this.Url + '/tipJuguete', httpOptions);  
-}
- //mostrar un solo Jugute    
- getTipJuguetes(id: any): Observable<any> 
- {
-     // console.log("  4555  ***** "+this.Url + "/tipContac"+id )
-     // console.log("211    ");
-     console.log(this.Url + '/tipJuguete'+id )
-     return this.http.get(this.Url + '/tipJuguete' + id, httpOptions);
- }
- //materiales *****************************************
- getTipMateriales(): Observable<any>
-{
-    return this.http.get(this.Url + '/tipMaterial', httpOptions);  
-}
- //mostrar un solo material   
- getTipMaterial(id: any): Observable<any> 
- {
-     // console.log("  4555  ***** "+this.Url + "/tipContac"+id )
-     // console.log("211    ");
-     console.log(this.Url + '/tipMaterial'+id )
-     return this.http.get(this.Url + '/tipMaterial' + id, httpOptions);
- }
-  //materiales-juguete *****************************************
-  getTipMaterialJuguetes(): Observable<any>
-  {
-      return this.http.get(this.Url + '/tipMaterialJuguete', httpOptions);  
   }
-   //mostrar un solo material   
-   getTipMaterialJuguete(id: any): Observable<any> 
-   {
-       // console.log("  4555  ***** "+this.Url + "/tipContac"+id )
-       // console.log("211    ");
-       console.log(this.Url + '/tipMaterialJuguete'+id )
-       return this.http.get(this.Url + '/tipMaterialJuguete' + id, httpOptions);
-   }
+  /// JUGUETES********************************************
+  getTipJuguetess(): Observable<any> {
+    return this.http.get(this.Url + '/tipJuguete', httpOptions);
+  }
+  //mostrar un solo Jugute    
+  getTipJuguetes(id: any): Observable<any> {
+    // console.log("  4555  ***** "+this.Url + "/tipContac"+id )
+    // console.log("211    ");
+    console.log(this.Url + '/tipJuguete' + id)
+    return this.http.get(this.Url + '/tipJuguete' + id, httpOptions);
+  }
+  //materiales *****************************************
+  getTipMateriales(): Observable<any> {
+    return this.http.get(this.Url + '/tipMaterial', httpOptions);
+  }
+  //mostrar un solo material   
+  getTipMaterial(id: any): Observable<any> {
+    // console.log("  4555  ***** "+this.Url + "/tipContac"+id )
+    // console.log("211    ");
+    console.log(this.Url + '/tipMaterial' + id)
+    return this.http.get(this.Url + '/tipMaterial' + id, httpOptions);
+  }
+  //materiales-juguete *****************************************
+  getTipMaterialJuguetes(): Observable<any> {
+    return this.http.get(this.Url + '/tipMaterialJuguete', httpOptions);
+  }
+  //mostrar un solo material   
+  getTipMaterialJuguete(id: any): Observable<any> {
+    // console.log("  4555  ***** "+this.Url + "/tipContac"+id )
+    // console.log("211    ");
+    console.log(this.Url + '/tipMaterialJuguete' + id)
+    return this.http.get(this.Url + '/tipMaterialJuguete' + id, httpOptions);
+  }
+
+  //insertar nuevo MaterialeJuguetes
+  async insertTipMaterialJuguete(TipMateJuguet: any): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http
+        .post(this.Url + '/tipMaterialJuguete', TipMateJuguet, httpOptions).toPromise();
+    });
+  }
 }
