@@ -209,7 +209,7 @@ var filtovalor = this.filtrarTipCatalogoD.getRawValue()['combofiltro2'];
 
 this.servi.getTipCatalogosa('/'+2+'/'+filtovalor).subscribe((data: {})=>
   {
-    this.MiTipCatalogo = data;
+    this.MiTipCatalogos = data;
     this.TituloTipCatalogo = "TIPO Catalogo SELECCIONADO";
     this.TabBusTipCatalogo[0] = "indicador";
     this.TabBusTipCatalogo[1] = "Denominacion";

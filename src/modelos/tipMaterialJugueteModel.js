@@ -16,17 +16,16 @@ tipMaterialJugueteModel.getTipMaterialJuguetes = function(callback)
         +" `cantidad` "
         +" FROM `tp_materiales_juguetes` ";
         */
-        let sql = "SELECT "
-        + " mj.`Id_materiales_productos`, "
-    	+ " j.`Nombre_juguete` as 'nombre_juguete',"
-        + " n.`nombre_material` as 'Material',"
-        + " mj.`Descripcion`,"
-        + " mj.`cantidad`"
-        + " FROM `tp_materiales_juguetes` AS mj"
-        + " INNER JOIN `tb_juguetes` AS j ON mj.`Id_materiales_productos` = j.`Id_juguetes`"
-        + " INNER JOIN `tb_materiales` AS n ON mj.`Id_material` = n.`Id_material`"
-        + " ORDER BY j.`Nombre_juguete` "
-
+        let sql ="SELECT"
+		+" mj.`Id_materiales_productos`,"
+        +" j.`Nombre_juguete` as 'nombre_juguete',"
+        +" n.`nombre_material` as 'Material',"
+        +" mj.`Descripcion`,"
+        +" mj.`cantidad`      "
+        +" FROM `tp_materiales_juguetes` AS mj"
+        +" INNER JOIN `tb_juguetes` AS j ON mj.Id_juguetes= j.`Id_juguetes`"
+        +" INNER JOIN `tb_materiales` AS n ON mj.`Id_material` = n.`Id_material`"
+        +" ORDER BY mj.Id_materiales_productos";
         connection.query(sql, function (error, rows)
         {
             if (error)
@@ -36,9 +35,9 @@ tipMaterialJugueteModel.getTipMaterialJuguetes = function(callback)
             else
             {
                 //debuelve las filas como un Json
-                //callback(null, rows);
+                callback(null, rows);
                 //comvierte las filas Json a una cadena de texto para Angular
-                callback(null, JSON.stringify(rows));
+                //callback(null, JSON.stringify(rows));
             }
         });
     }
@@ -61,15 +60,15 @@ tipMaterialJugueteModel.getTipMaterialJuguetes = function(callback)
             +" WHERE `Id_materiales_productos` = "
             + connection.escape(id) +";";
             */
-            let sql = "SELECT "
-            + " mj.`Id_materiales_productos`, "
-            + " j.`Nombre_juguete` as 'nombre jugete',"
-            + " n.`nombre_material` as 'Material',"
-            + " mj.`Descripcion`,"
-            + " mj.`cantidad`"
-            + " FROM `tp_materiales_juguetes` AS mj"
-            + " INNER JOIN `tb_juguetes` AS j ON mj.`Id_materiales_productos` = j.`Id_juguetes`"
-            + " INNER JOIN `tb_materiales` AS n ON mj.`Id_material` = n.`Id_material`"
+            let sql = "SELECT"
+            +" mj.`Id_materiales_productos`,"
+            +" j.`Nombre_juguete` as 'nombre_juguete',"
+            +" n.`nombre_material` as 'Material',"
+            +" mj.`Descripcion`,"
+            +" mj.`cantidad`      "
+            +" FROM `tp_materiales_juguetes` AS mj"
+            +" INNER JOIN `tb_juguetes` AS j ON mj.Id_juguetes= j.`Id_juguetes`"
+            +" INNER JOIN `tb_materiales` AS n ON mj.`Id_material` = n.`Id_material`"
             + " WHERE `Id_materiales_productos` = "
             + connection.escape(id) +";";
             // console.log id
