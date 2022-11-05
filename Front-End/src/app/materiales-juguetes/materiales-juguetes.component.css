@@ -10,7 +10,7 @@ html{
     margin-top: 6rem;
 }
 
-.listar-materiales{
+.listar-materiales, .buscar-id-MJ{
     background-color:rgb(83, 236, 83);
     margin: 0 auto;
     margin-top: 10rem;
