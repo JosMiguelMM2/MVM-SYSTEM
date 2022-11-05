@@ -59,8 +59,8 @@ export class EmpaquetamientoComponent implements OnInit {
   });
 
   constructor(private formBuilder: FormBuilder,
-    private juguetesService: JuguetesService,
-    Router: Router) { }
+              private juguetesService: JuguetesService,
+              Router: Router) { }
 
   public LimpiarLista() {
     this.controlLista = 0;

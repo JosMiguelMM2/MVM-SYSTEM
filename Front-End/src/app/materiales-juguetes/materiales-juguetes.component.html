@@ -55,6 +55,25 @@
 
           <ul>
             <h2 class="titulo2">{{TituloMaterialesJ}}</h2>
-          </ul>
+            <table class="tabBuscar">
+                <thead class="Colb">
+                  <th class="b">{{ TabBusMaterialesJuguetes[0]}}</th>
+                  <th class="b">{{ TabBusMaterialesJuguetes[1]}}</th>
+                  <th class="b">{{TabBusMaterialesJuguetes[2]}}</th>
+                  <th class="b">{{ TabBusMaterialesJuguetes[3]}}</th>
+                  <th class="b">{{ TabBusMaterialesJuguetes[4]}}</th>
+                </thead>
+          
+                <tbody class="Filb">
+                  <tr class="b" *ngFor="let Umj of MiMaterialesJuguetes">
+                    <th>{{ Umj.Id_materiales_productos }}</th>
+                    <th>{{ Umj.nombre_juguete }}</th>
+                    <th>{{ Umj.Material }}</th>
+                    <th>{{ Umj.Descripcion }}</th>
+                    <th>{{ Umj.cantidad }}</th>
+                  </tr>
+                </tbody>
+              </table>
+        </ul>
     </main>
 </html>

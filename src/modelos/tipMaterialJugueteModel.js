@@ -82,9 +82,9 @@ tipMaterialJugueteModel.getTipMaterialJuguetes = function(callback)
                 throw error;
                 }
                 else{
-                //callback(null, row);
+                callback(null, row);
                 //comvierte las filas Json a una cadena de texto para Angular
-                callback(null, JSON.stringify(rows));
+                //callback(null, JSON.stringify(rows));
                 }
             });
         }
