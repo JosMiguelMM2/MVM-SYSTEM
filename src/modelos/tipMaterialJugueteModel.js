@@ -65,7 +65,7 @@ tipMaterialJugueteModel.getTipMaterialJuguetes = function(callback)
             +" j.`Nombre_juguete` as 'nombre_juguete',"
             +" n.`nombre_material` as 'Material',"
             +" mj.`Descripcion`,"
-            +" mj.`cantidad`      "
+            +" mj.`cantidad`"
             +" FROM `tp_materiales_juguetes` AS mj"
             +" INNER JOIN `tb_juguetes` AS j ON mj.Id_juguetes= j.`Id_juguetes`"
             +" INNER JOIN `tb_materiales` AS n ON mj.`Id_material` = n.`Id_material`"

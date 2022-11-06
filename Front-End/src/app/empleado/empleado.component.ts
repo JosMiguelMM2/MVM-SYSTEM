@@ -24,15 +24,23 @@ export class EmpleadoComponent implements OnInit {
   TituloTipEmpleadoEdit = "";          //Titulo de Tipo de Documento a Editar
   MiTipEmpleadoE: any = [];            //Tipo de Documento a Editar
   comboEditarTipEmpleado: any = [];    //Combo Editar Tipo de Documento
-
+  
   controlLista = 1;               //Control para limpiar la lista
   BuscarEvalor = 1;               //Control para carga del valor a buscar
 
-  CatalogoTipDoc:any=[];
-  TituloCatalogoTipDoc="";
-  TabBusCatalogoTipDoc: any=[];
-  comboListarCatalogoTipDoc: any=[];
-  
+  MiTipCatalogo: any = [];             //Tipo de Documento Buscado
+  TituloTipCatalogo = "";              //Titulo de Tipo de Documento Buscado
+  TabBusTipCatalogo: any = [];        //Encabezados tabla Tipo de Documento Buscado 
+  comboListaTipCatalogo: any = [];     //Combo Buscar Tipo de Documento
+  MiTipCatalogos: any = []; 
+  comboListaDocum:any =[];
+
+  ///------cargos---
+  comboListacargo:any=[];
+  MiTipCatalogoCar: any=[];
+  comboListaCargo: any=[];
+  TituloTipCargo:any=[];
+  TabBusTipCargo: any = [];
   //*****************************************************************************
  //Form group 
  ListaEmpleados = new FormGroup( 
@@ -44,11 +52,15 @@ filtrarTipEmpleado =  new FormGroup(
   {
     combofiltro: new FormControl()
   });
-
+filtrarTipCatalogoD =  new FormGroup(
+    {
+      combofiltro2: new FormControl()
+    });
 
   InsertarGTipEmpleado =  new FormGroup(
     {
-      combofiltroDocumento:new FormControl(),
+      combofiltroCargo:new FormControl(),
+      combofiltro2:new FormControl(),
       textTipDocum: new FormControl(), 
       textPrimeNombreEmp:new FormControl(),
       textSegundoNombreEmp:new FormControl(),
@@ -99,7 +111,23 @@ public consultaEmpleadosI()
           this.tablaEmpleado[5] = "Cargo";
       });
   }
-
+  public ListComboDocu() {
+    this.servi.getTipCatalogoE('/'+2).subscribe((data:{})=>
+    {
+      this.comboListaDocum=data;
+      console.log("por aca 23 "+ this.comboListaDocum.denominacion_universal)
+    },
+    error =>{ console.log(error)});
+    };
+    
+    public ListComboCargo() {
+      this.servi.getTipCatalogoE('/'+3).subscribe((data:{})=>
+      {
+        this.comboListaCargo=data;
+        console.log("por aca 23 "+ this.comboListaCargo.denominacion_universal)
+      },
+      error =>{ console.log(error)});
+      }; 
 //............................................................................................
 // Lista Tipos de Empleados.
 
@@ -147,22 +175,7 @@ public consultaEmpleados(op:any)
             // this.ActualizarATipDoc.removeControl("textnuevotipdoc");
             // this.ActualizarATipDoc.removeControl("textnuevoinicialestipdoc");
             console.error(" El listado 5 " );
-          }    /*
-          else if(op == 4)
-          {
-            this.comboListarCatalogo = JSON.parse(data);
-            this.Catalogo = null;
-            this.TituloCatalogo = "";
-            this.TabBusCatalogo[0] = "";
-            this.TabBusCatalogo[1] = "";
-            this.TabBusCatalogo[2] = "";
-            this.TabBusCatalogo[3] = "";
-            this.TabBusCatalogo[4] = "";
-            this.TabBusCatalogo[5] = "";
- 
-            //console.error(" El listado 4 " );
-          }  */        
-
+          }             
     },
       error => { console.error(error + " ") });
   }
@@ -181,19 +194,22 @@ public consultaEmpleados(op:any)
   }
  
 }
-/*
-public consultaCatalogoTipDoc(op:any){
-  if(this.controlLista==1){
-    this.servi.getTipCatalogosa().subscribe((data: any)=>{
-      if(op==1){
-        let dat=data;
-        this.comboListarCatalogoTipDoc=JSON.parse("2");
-        this.CatalogoTipDoc=null;
-      }
-    })
-  }
-}*/
+//------------lista de catalogos--------------
+public buscarTipCatalogo2() 
+{
+var filtovalor = this.filtrarTipCatalogoD.getRawValue()['combofiltro2'];
 
+this.servi.getTipCatalogosa('/'+2+'/'+filtovalor).subscribe((data: {})=>
+  {
+    this.MiTipCatalogos = data;
+    this.TituloTipCatalogo = "TIPO Catalogo SELECCIONADO";
+    this.TabBusTipCatalogo[0] = "indicador";
+    this.TabBusTipCatalogo[1] = "Denominacion";
+    this.TabBusTipCatalogo[2] = "Grupo";
+    this.TabBusTipCatalogo[3] = "indicador de Grupo";
+  },
+    error => { console.log(error) });
+}
 
 //--------------------------------------------------------------------------------------------->
 //para Limpiar la lista
@@ -243,17 +259,19 @@ public buscarTipEmpleado()
 
 public InsertarTipEmpleado() {
 
-
-  var datosvalo1 = this.InsertarGTipEmpleado.getRawValue()['textTipIdCat'];
-  var datosvalo2 = this.InsertarGTipEmpleado.getRawValue()['textIniTipNom1emp'];
-  var datosvalo3 = this.InsertarGTipEmpleado.getRawValue()['textIniTipNom2emp'];
-  var datosvalo4 = this.InsertarGTipEmpleado.getRawValue()['textIniTipApe1emp'];
-  var datosvalo5 = this.InsertarGTipEmpleado.getRawValue()['textIniTipApe2emp'];
-  var datosvalo6 = this.InsertarGTipEmpleado.getRawValue()['textIniTipDocEmple'];
-  var datosvalo7 = this.InsertarGTipEmpleado.getRawValue()['textIniTipNumEmple'];
-  var datosvalo8 = this.InsertarGTipEmpleado.getRawValue()['textIniTipCarEmple'];
+  var datosvalo1 = this.InsertarGTipEmpleado.getRawValue()['textTipDocum'];
+  var datosvalo2 = this.InsertarGTipEmpleado.getRawValue()['textPrimeNombreEmp'];
+  var datosvalo3 = this.InsertarGTipEmpleado.getRawValue()['textSegundoNombreEmp'];
+  var datosvalo4 = this.InsertarGTipEmpleado.getRawValue()['textPrimerApellidoEmp'];
+  var datosvalo5 = this.InsertarGTipEmpleado.getRawValue()['textSegundoApellodoEmp'];
+  var datosvalo6 = this.InsertarGTipEmpleado.getRawValue()['textNumDocEmp'];
+  var datosvalo7 = this.InsertarGTipEmpleado.getRawValue()['textCodigoEmp'];
+  var datosvalo8 = this.InsertarGTipEmpleado.getRawValue()['textCargoEmp'];
   
-  var cadena = { "Id_catalogos_universal": datosvalo1, "nombre1_empleados":datosvalo2,  "nombre2_empleados":datosvalo3, "apellido1_empleados":datosvalo4, "apellido2_empleados":datosvalo5, "tipodocu_empleados":datosvalo6, "numdoc_empleados":datosvalo7, "cargo_empleados":datosvalo8 };
+  var cadena = { "Id_catalogos_universal": datosvalo1, "nombre1_empleados":datosvalo2, 
+                  "nombre2_empleados":datosvalo3, "apellido1_empleados":datosvalo4, 
+                  "apellido2_empleados":datosvalo5, "tipodocu_empleados":datosvalo6,
+                   "numdoc_empleados":datosvalo7, "cargo_empleados":datosvalo8 };
 
   
   this.servi.insertTipEmpleado(cadena).then
@@ -330,8 +348,16 @@ public InsertarTipEmpleado() {
   
       this.InsertarGTipEmpleado = this.formBuilder.group(
         {   
-          textTipEmpleado: [], 
-          textIniTipEmpleado:[]
+          combofiltroCargo:[],
+          combofiltro2:[],
+          textTipDocum: [], 
+          textPrimeNombreEmp: [],
+          textSegundoNombreEmp:[],
+          textPrimerApellidoEmp:[],
+          textSegundoApellodoEmp:[],
+          textNumDocEmp:[],
+          textCodigoEmp:[],
+          textCargoEmp:[],
         });    
         this.formBuilder.group
         

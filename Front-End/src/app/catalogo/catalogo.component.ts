@@ -19,7 +19,7 @@ export class CatalogoComponent implements OnInit {
   TipCatalogo: any =[];               //Lista de Tipos de Empleado
   TituloCatalogo: any=[];          //Titulo Lista de Tipos de Empleado
   tablaCatalogo: any=[];           //Encabezados tabla Lista de Tipos de Empleado
-
+  
   MiTipCatalogo: any = [];             //Tipo de Documento Buscado
   TituloTipCatalogo = "";              //Titulo de Tipo de Documento Buscado
   TabBusTipCatalogo: any = [];        //Encabezados tabla Tipo de Documento Buscado 
@@ -30,11 +30,17 @@ export class CatalogoComponent implements OnInit {
   TabBusTipCatalogos: any = [];        //Encabezados tabla Tipo de Documento Buscado 
   comboListaCatalogos:any=[];
   comboListaDocum:any=[];
-
+//cargos-------------------------
+  comboListacargo:any=[];
+  MiTipCatalogoCar: any=[];
+  comboListaCargo: any=[];
+  TituloTipCargo:any=[];
+  TabBusTipCargo: any = [];
+//editar-------------------------
   TituloTipCatalogoEdit = "";          //Titulo de Tipo de Documento a Editar
   MiTipCatalogoE: any = [];            //Tipo de Documento a Editar
   comboEditarTipCatalogo: any = [];    //Combo Editar Tipo de Documento
-
+  
   controlLista = 1;               //Control para limpiar la lista
   BuscarEvalor = 1;  
 
@@ -55,6 +61,10 @@ filtrarTipCatalogoE =  new FormGroup(
   filtrarTipCatalogoD =  new FormGroup(
     {
       combofiltro2: new FormControl()
+    });
+filtrarTipCatalogoCargo =  new FormGroup(
+    {
+      combofiltroCargo: new FormControl()
     });
   constructor(
     private formBuilder: FormBuilder,
@@ -98,7 +108,15 @@ public ListComboDocu() {
   },
   error =>{ console.log(error)});
   };
-  
+  //-----cargos----
+public ListComboCargo() {
+  this.servi.getTipCatalogoE('/'+3).subscribe((data:{})=>
+  {
+    this.comboListaCargo=data;
+    console.log("por aca 23 "+ this.comboListaCargo.denominacion_universal)
+  },
+  error =>{ console.log(error)});
+  };
 //............................................................................................
 // Lista Tipos de Juguetes.
 
@@ -210,11 +228,29 @@ var filtovalor = this.filtrarTipCatalogoD.getRawValue()['combofiltro2'];
 this.servi.getTipCatalogosa('/'+2+'/'+filtovalor).subscribe((data: {})=>
   {
     this.MiTipCatalogos = data;
-    this.TituloTipCatalogo = "TIPO Catalogo SELECCIONADO";
-    this.TabBusTipCatalogo[0] = "indicador";
-    this.TabBusTipCatalogo[1] = "Denominacion";
-    this.TabBusTipCatalogo[2] = "Grupo";
-    this.TabBusTipCatalogo[3] = "indicador de Grupo";
+    this.TituloTipCatalogos = "TIPO Catalogo SELECCIONADO";
+    this.TabBusTipCatalogos[0] = "indicador";
+    this.TabBusTipCatalogos[1] = "Denominacion";
+    this.TabBusTipCatalogos[2] = "Grupo";
+    this.TabBusTipCatalogos[3] = "indicador de Grupo";
+  },
+    error => { console.log(error) });
+}
+// -----------------------------------------------------------------------------------------
+// Consulta un tipo de cargos por medio de su id.
+
+public buscarTipCatalogoCargos() 
+{
+var filtovalor = this.filtrarTipCatalogoCargo.getRawValue()['combofiltroCargo'];
+
+this.servi.getTipCatalogosa('/'+3+'/'+filtovalor).subscribe((data: {})=>
+  {
+    this.MiTipCatalogoCar = data;
+    this.TituloTipCargo = "TIPO Catalogo SELECCIONADO";
+    this.TabBusTipCargo[0] = "indicador";
+    this.TabBusTipCargo[1] = "Denominacion";
+    this.TabBusTipCargo[2] = "Grupo";
+    this.TabBusTipCargo[3] = "indicador de Grupo";
   },
     error => { console.log(error) });
 }
@@ -229,9 +265,13 @@ this.servi.getTipCatalogosa('/'+2+'/'+filtovalor).subscribe((data: {})=>
       {
         combofiltro: []
       }); 
-      this.filtrarTipCatalogoD = this.formBuilder.group(
+    this.filtrarTipCatalogoD = this.formBuilder.group(
         {
           combofiltro2: []
+        }); 
+    this.filtrarTipCatalogoCargo = this.formBuilder.group(
+        {
+          combofiltroCargo: []
         }); 
     this.ListaCatalogoE = this.formBuilder.group(
       {

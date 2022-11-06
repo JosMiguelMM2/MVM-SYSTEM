@@ -118,7 +118,66 @@
     </div>
     <br><br><br><br>
   
-  
+    <div class="crea">
+      <br><br>
+      <h2>Registrar una nueva persona</h2>
+
+      <form (ngSubmit)="InsertarTipEmpleado()" [formGroup]="InsertarGTipEmpleado">
+          Tipo de Documento
+          <select class="dropdown" formControlName="combofiltro2" (click)="ListComboDocu()" formControlName="textTipDocum" >
+              <option value="value2">Seleccione tipo de Documento</option>
+              <option *ngFor="let TipDocum of comboListaDocum" [value]="TipDocum.Id_catalogo_universal">
+                {{TipDocum.Id_catalogo_universal}} - {{TipDocum.denominacion_universal}} 
+              </option>
+          </select>
+
+          <br><br>
+          Primer Nombre
+          <label for="N1Persona"><input type="text" name="N1Persona" id="N1Persona" 
+             formControlName="textPrimeNombreEmp"></label>
+          
+          <br><br>
+          Segundo Nombre
+          <label for="N2Persona"><input type="text" name="N2Persona" id="N2Persona" 
+             formControlName="textSegundoNombreEmp"></label>
+          <br><br>
+
+          Primer Apellido
+          <label for="A1Persona"><input type="text" name="A1Persona" id="A1Persona" 
+             formControlName="textPrimerApellidoEmp"></label>
+
+          <br><br>
+          Segundo Apellido
+          <label for="A2Persona"><input type="text" name="A2Persona" id="A2Persona" 
+             formControlName="textSegundoApellodoEmp"></label>
+          
+          <br><br>
+          Numero documento 
+          <label for="documento"><input type="text" name="documento" id="documento" 
+             formControlName="textNumDocEmp"></label>
+          
+          <br><br>
+          Codigo Emleado 
+          <label for="Codigo"><input type="text" name="Codigo" id="Codigo" 
+             formControlName="textCodigoEmp"></label>
+          <br><br>
+          Id del Cargo a mostrar
+          <select class="dropdown"  formControlName="combofiltroCargo" (click)="ListComboCargo()" formControlName="textCargoEmp"  >
+          <option value="value2">Cargo a buscar</option>
+          <option *ngFor="let TipCargo of comboListaCargo" [value]="TipCargo.Id_catalogo_universal">
+            {{TipCargo.Id_catalogo_universal}} - {{TipCargo.denominacion_universal}} 
+            
+          </option>
+      </select>  
+
+          <br><br>
+          <button type="submit" class="btn btn-outline-dark">Insertar persona</button>
+      </form>
+      <br>
+
+  </div>
+  <br><br><br><br>
+
     
     <!--*************************************************************************-->
     <!-- se incluye el link para la otra página -->
