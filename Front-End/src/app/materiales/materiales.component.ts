@@ -10,7 +10,7 @@ import { JuguetesService } from '../juguetes.service'
   styleUrls: ['./materiales.component.css']
 })
 export class MaterialesComponent implements OnInit {
-  title = "MANEJO DE Materiales";
+  title = "MANEJO DE MATERIALES";
   
   TipMaterial: any =[];               //Lista de Tipos de Empleado
   TituloMaterial: any=[];          //Titulo Lista de Tipos de Empleado
@@ -24,6 +24,18 @@ export class MaterialesComponent implements OnInit {
   TituloTipMaterialEdit = "";          //Titulo de Tipo de Documento a Editar
   MiTipMaterialE: any = [];            //Tipo de Documento a Editar
   comboEditarTipMaterial: any = [];    //Combo Editar Tipo de Documento
+
+  //TipoMaterial-------------------------
+  MiTipCatalogoMaterial: any=[];
+  comboListaMaterial: any=[];
+  //TituloTipMaterial:any=[];
+  //TabBusTipMaterial: any = [];
+
+  //colores-------------------------
+  MiTipCatalogoColor: any=[];
+  comboListaColor: any=[];
+  TituloTipColor:any=[];
+  TabBusTipColor: any = [];
 
   controlLista = 1;               //Control para limpiar la lista
   BuscarEvalor = 1;  
@@ -39,6 +51,16 @@ filtrarTipMaterial =  new FormGroup(
     combofiltro: new FormControl()
   });
 
+  InsertarGTipMaterial =  new FormGroup(
+    {
+      combofiltroMaterial:new FormControl(),
+      combofiltroColor:new FormControl(),
+      textClaseMaterial:new FormControl(),
+      textColorMaterial:new FormControl(),
+      textCPeso:new FormControl(),
+      textNombre:new FormControl(),
+
+    });
   constructor(
     private formBuilder: FormBuilder,
     private servi: JuguetesService,
@@ -65,7 +87,24 @@ public consultaMaterialI() {
 
   });
 }
-
+//------TipoMaterial-----
+public ListComboTipoMaterial() {
+  this.servi.getTipCatalogoE('/'+28).subscribe((data:{})=>
+  {
+    this.comboListaMaterial=data;
+    console.log("por aca 23 "+ this.comboListaMaterial.denominacion_universal)
+  },
+  error =>{ console.log(error)});
+  };
+ //------colores---
+ public ListCombocolor() {
+  this.servi.getTipCatalogoE('/'+15).subscribe((data:{})=>
+  {
+    this.comboListaColor=data;
+    console.log("por aca 23 "+ this.comboListaColor.denominacion_universal)
+  },
+  error =>{ console.log(error)});
+  };
 //............................................................................................
 // Lista Tipos de Juguetes.
 
@@ -172,7 +211,29 @@ this.servi.getTipMaterial('/'+filtovalor).subscribe((data: {})=>
   error => { console.log(error) });
 
 }
+//--------------------------------------------------------------
+ //Para insertar un nuevo Material
 
+ public InsertarTipMaterial() {
+
+  var datosvalo1 = this.InsertarGTipMaterial.getRawValue()['textClaseMaterial'];
+  var datosvalo2 = this.InsertarGTipMaterial.getRawValue()['textColorMaterial'];
+  var datosvalo3 = this.InsertarGTipMaterial.getRawValue()['textCPeso'];
+  var datosvalo4 = this.InsertarGTipMaterial.getRawValue()['textNombre'];
+  
+  var cadena = { "clase_material": datosvalo1, "color_material":datosvalo2, 
+                  "cantidad_peso":datosvalo3, "nombre_material":datosvalo4};
+
+  
+  this.servi.insertTipMaterial(cadena).then
+    ( res => {
+        console.log(res)
+      }
+    ).catch(err => {
+      console.log(err)
+    });
+    this.InsertarGTipMaterial.reset();
+}
   ngOnInit(): void {
     this.ListaMaterial = this.formBuilder.group(
       {
@@ -184,6 +245,17 @@ this.servi.getTipMaterial('/'+filtovalor).subscribe((data: {})=>
       {
           combofiltro: []
         }); 
+     this.InsertarGTipMaterial = this.formBuilder.group(
+        {   
+          combofiltroMaterial:[],
+          combofiltroColor:[],
+          textClaseMaterial:[],
+          textColorMaterial:[],
+          textCPeso:[],
+          textNombre:[],
+          
+        });    
+        this.formBuilder.group
   }
 
 }

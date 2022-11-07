@@ -149,6 +149,15 @@ export class JuguetesService {
 {
     return this.http.get(this.Url + '/tipCatalogo'+id, httpOptions);  
 }
+ //insertar nuevo Catalogo
+ async insertTipCatalogo(TipCatalogo: any): Promise<any> {
+  return new Promise((resolve, reject) => {
+    this.http
+      .post(this.Url + '/tipCatalogo', TipCatalogo, httpOptions)
+      .toPromise();
+  });
+}
+
   //mostrar un solo Jugute    
   getTipCatalogosa(id: any): Observable<any> {
 
@@ -168,6 +177,14 @@ export class JuguetesService {
     console.log(this.Url + '/tipJuguete' + id)
     return this.http.get(this.Url + '/tipJuguete' + id, httpOptions);
   }
+  //insertar nuevo Juguete
+  async insertTipJuguete(TipJuguete: any): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http
+        .post(this.Url + '/tipJuguete', TipJuguete, httpOptions)
+        .toPromise();
+    });
+  }
   //materiales *****************************************
   getTipMateriales(): Observable<any> {
     return this.http.get(this.Url + '/tipMaterial', httpOptions);
@@ -178,6 +195,14 @@ export class JuguetesService {
     // console.log("211    ");
     console.log(this.Url + '/tipMaterial' + id)
     return this.http.get(this.Url + '/tipMaterial' + id, httpOptions);
+  }
+  //insertar nuevo Material
+  async insertTipMaterial(TipMaterial: any): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http
+        .post(this.Url + '/tipMaterial', TipMaterial, httpOptions)
+        .toPromise();
+    });
   }
   //materiales-juguete *****************************************
   getTipMaterialJuguetes(): Observable<any> {

@@ -73,7 +73,7 @@ filtrarTipCatalogoD =  new FormGroup(
   
   ActualizarATipEmpleado =  new FormGroup(
     {
-      BuscarIdEmpleado:new FormControl(),
+      BuscarIdTipEmpleado:new FormControl(),
       textnuevoTipDocum: new FormControl(), 
       textnuevoPrimeNombreEmp:new FormControl(),
       textnuevoSegundoNombreEmp:new FormControl(),
@@ -115,7 +115,7 @@ public consultaEmpleadosI()
     this.servi.getTipCatalogoE('/'+2).subscribe((data:{})=>
     {
       this.comboListaDocum=data;
-      console.log("por aca 23 "+ this.comboListaDocum.denominacion_universal)
+      console.log("por aca docum 23 "+ this.comboListaDocum.denominacion_universal)
     },
     error =>{ console.log(error)});
     };
@@ -124,10 +124,12 @@ public consultaEmpleadosI()
       this.servi.getTipCatalogoE('/'+3).subscribe((data:{})=>
       {
         this.comboListaCargo=data;
-        console.log("por aca 23 "+ this.comboListaCargo.denominacion_universal)
+        console.log("por aca cargo 23 "+ this.comboListaCargo.denominacion_universal)
       },
       error =>{ console.log(error)});
       }; 
+
+    
 //............................................................................................
 // Lista Tipos de Empleados.
 
@@ -255,7 +257,7 @@ public buscarTipEmpleado()
 
 
 //--------------------------------------------------------------
- //Para insertar un nuevo Tipo de Documento
+ //Para insertar un nuevo Empleado
 
 public InsertarTipEmpleado() {
 
@@ -309,16 +311,17 @@ public InsertarTipEmpleado() {
   public ActualizarTipEmpleado() 
   {
 
-    var nuevotipIdcat = this.ActualizarATipEmpleado.getRawValue()['textnuevotipIdcat'];
-    var nuevoinitipNom1emp = this.ActualizarATipEmpleado.getRawValue()['textnuevoinicialestipNom1emp'];
-    var nuevoinitipNom2emp = this.ActualizarATipEmpleado.getRawValue()['textnuevoinicialestipNom2emple'];
-    var nuevoinitipApe1emp = this.ActualizarATipEmpleado.getRawValue()['textnuevoinicialestipApe1emp'];
-    var nuevoinitipApe2emp = this.ActualizarATipEmpleado.getRawValue()['textnuevoinicialestipApe2emp'];
-    var nuevoinitipDocEmple = this.ActualizarATipEmpleado.getRawValue()['textnuevoinicialestipDocEmpl'];
-    var nuevoinitipNumEmple = this.ActualizarATipEmpleado.getRawValue()['textnuevoinicialestipNumEmple'];
-    var nuevoinitipCarEmple = this.ActualizarATipEmpleado.getRawValue()['textnuevoinicialestipCarEmple'];
+    var nuevotipIdcat = this.ActualizarATipEmpleado.getRawValue()['textnuevoTipDocum'];
+    var nuevoinitipNom1emp = this.ActualizarATipEmpleado.getRawValue()['textnuevoPrimeNombreEmp'];
+    var nuevoinitipNom2emp = this.ActualizarATipEmpleado.getRawValue()['textnuevoSegundoNombreEmp'];
+    var nuevoinitipApe1emp = this.ActualizarATipEmpleado.getRawValue()['textnuevoPrimerApellidoEmp'];
+    var nuevoinitipApe2emp = this.ActualizarATipEmpleado.getRawValue()['textnuevoSegundoApellodoEmp'];
+    var nuevoinitipDocEmple = this.ActualizarATipEmpleado.getRawValue()['textnuevoNumDocEmp'];
+    var nuevoinitipNumEmple = this.ActualizarATipEmpleado.getRawValue()['textnuevoCodigoEmp'];
+    var nuevoinitipCarEmple = this.ActualizarATipEmpleado.getRawValue()['textnuevoCargoEmp'];
 
-    var cadena = { "Id_empleados": this.BuscarEvalor,"Id_catalogos_universal":nuevotipIdcat , "nombre1_empleados":nuevoinitipNom1emp,  "nombre2_empleados":nuevoinitipNom2emp, "apellido1_empleados":nuevoinitipApe1emp, "apellido2_empleados":nuevoinitipApe2emp, "tipodocu_empleados":nuevoinitipDocEmple, "numdoc_empleados":nuevoinitipNumEmple, "cargo_empleados":nuevoinitipCarEmple };
+    var cadena = { "Id_empleados": this.BuscarEvalor,"Id_catalogos_universal":nuevotipIdcat , "nombre1_empleados":nuevoinitipNom1emp,  "nombre2_empleados":nuevoinitipNom2emp, 
+    "apellido1_empleados":nuevoinitipApe1emp, "apellido2_empleados":nuevoinitipApe2emp, "tipodocu_empleados":nuevoinitipDocEmple, "numdoc_empleados":nuevoinitipNumEmple, "cargo_empleados":nuevoinitipCarEmple };
     
     this.servi.updateTipEmpleado(cadena).then
       (
@@ -363,9 +366,15 @@ public InsertarTipEmpleado() {
         
         this.ActualizarATipEmpleado = this.formBuilder.group(
           {
-            BuscarIdTipDoc: [], 
-            textnuevotipdoc: [], 
-            textnuevoinicialestipdoc: []
+            BuscarIdTipEmpleado:[],
+            textnuevoTipDocum: [], 
+            textnuevoPrimeNombreEmp:[],
+            textnuevoSegundoNombreEmp:[],
+            textnuevoPrimerApellidoEmp:[],
+            textnuevoSegundoApellodoEmp:[],
+            textnuevoNumDocEmp:[],
+            textnuevoCodigoEmp:[],
+            textnuevoCargoEmp:[],
           });
           this.formBuilder.group
   }

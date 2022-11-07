@@ -1,10 +1,12 @@
 <!--<p>tipos-doc works!</p>-->
-<br><br><br><br>
+
+
 <html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"><head>
 
-    <title></title></head><body>
-    
-      <div style="text-align:center">
+    </head><body>
+      <br><br><br><br>
+    <main class="principal" id="header2">
+      <div style="text-align:center" >
         <h1>{{ title }}</h1>
         <img width="300" alt="Logo Proyecto1" src="/assets/Empleado.jpg">
       </div>
@@ -12,26 +14,30 @@
       <br><br><br><br>
      <!--*************************************************************************-->
     <!-- se incluye el link para la otra página -->
-    <div class="dir">
-      <h3><a routerLink="/Inicio">MENÚ INICIO</a></h3>
-    </div>
+    <div id="borde">
+      <div id="header">
+          <ul class="nav" > 
+             <li><a href="/Inicio"><h5>MENÚ INICIO</h5></a></li>
+          </ul>       
+      </div><br>
+  </div>
       <!--------------------------------------------------------------------------------------------->
       <!-- para mostrar el listado de Empleados -->
     
-      <div class="lista">
+      <div class="lista"  style="text-align:center">
           
         <h2>Lista de los Tipos de Empleado: </h2>
     
         <form (ngSubmit)="consultaEmpleados(1)" [formGroup]="ListaEmpleados" [formGroup]="ListaEmpleados">
     
-          <button type="submit" style="margin-right: 30px" class="btn btn-outline-dark">Mostrar Lista de Tipos de Empleado</button>
-          <button (click)="LimpiarLista()" class="btn btn-outline-dark">Linpiar Lista de Tipos de Empleado</button>
+          <button type="submit" style="margin-right: 30px" class="btn btn-outline-dark"><h4>Mostrar Lista de Tipos de Empleado</h4></button>
+          <button (click)="LimpiarLista()" class="btn btn-outline-dark"><h4>Linpiar Lista de Tipos de Empleado</h4></button>
     
           <br><br>
     
           <h2>{{TituloEmpleado}}</h2>   
           <table> 
-              <thead>
+              <thead id="header2">
                   <th>{{tablaEmpleado[0]}}</th>
                   <th>{{tablaEmpleado[1]}}</th>
                   <th>{{tablaEmpleado[2]}}</th>   
@@ -41,7 +47,7 @@
               </thead>
     
               <tbody>
-                  <tr  *ngFor="let temp of TipEmpleado">
+                  <tr id="header2" *ngFor="let temp of TipEmpleado">
                       
                     <th>{{ temp.Id_empleados}} </th>
                     <th>{{ temp.Tipo_Documento}} </th>
@@ -59,16 +65,16 @@
     
       </div>
       <br><br><br><br>
-    
+      
     
      <!--------------------------------------------------------------------------------------------->
   <!-- para mostrar el un solo Empleado -->
                             
-  <div class="buscar">
+  <div class="buscar" id="header2" style="text-align:center">
     <h2>Mostramos el Empleado seleccionado: </h2>
     
     <form (ngSubmit)="buscarTipEmpleado()" [formGroup]="filtrarTipEmpleado">
-      Id del Empleado a mostrar
+      <h5>Id del Empleado a mostrar </h5>
       <select class="dropdown"  formControlName="combofiltro" (click)="consultaEmpleados(2)">
           <option value="value1">Empleado a buscar</option>
           <option *ngFor="let TipEmpleado of comboListaTipEmpleado" [value]="TipEmpleado.Id_empleados">
@@ -80,14 +86,14 @@
       <br><br>
   
   
-      <button type="submit" class="btn btn-outline-dark">Buscar Empleado</button>
+      <button type="submit" class="btn btn-outline-dark"><h5>Buscar Empleado</h5></button>
     </form>
   
     <ul>
         <h2>{{TituloEmpleado}}</h2>
   
-        <table class="tabBuscar"> 
-            <thead class="Colb">
+        <table id="header2" class="tabBuscar"> 
+            <thead class="Colb" id="header2" >
               <th class="b">{{TabBusTipEmpleados[0]}}</th> 
               <th class="b">{{TabBusTipEmpleados[1]}}</th> 
               <th class="b">{{TabBusTipEmpleados[2]}}</th> 
@@ -98,8 +104,8 @@
 
             </thead>
     
-            <tbody class="Filb">  
-                <tr class="b" *ngFor="let tEmpleado of MiTipEmpleado">
+            <tbody class="Filb" id="header2" >  
+                <tr id="header2" class="b" *ngFor="let tEmpleado of MiTipEmpleado">
                     <th class="b">{{tEmpleado.Id_empleados}}  </th>
                     <th class="b">{{tEmpleado.Tipo_Documento}}  </th>
                     <th class="b">{{tEmpleado.Numero_Documento}}  </th>
@@ -118,12 +124,12 @@
     </div>
     <br><br><br><br>
   
-    <div class="crea">
+    <div class="crea" id="header2">
       <br><br>
       <h2>Registrar una nueva persona</h2>
 
       <form (ngSubmit)="InsertarTipEmpleado()" [formGroup]="InsertarGTipEmpleado">
-          Tipo de Documento
+         Tipo de Documento
           <select class="dropdown" formControlName="combofiltro2" (click)="ListComboDocu()" formControlName="textTipDocum" >
               <option value="value2">Seleccione tipo de Documento</option>
               <option *ngFor="let TipDocum of comboListaDocum" [value]="TipDocum.Id_catalogo_universal">
@@ -178,12 +184,83 @@
   </div>
   <br><br><br><br>
 
+
+  <div class="edit" id="header2">
+    <h2>Persona a modificar</h2>
+    <br>
+    <form (ngSubmit)="buscarEditarTipEmpleado()" [formGroup]="ActualizarATipEmpleado">
+      
+     Empleado a modificar:
+        <select class="dropdown" formControlName="BuscarIdTipEmpleado" (click)="consultaEmpleados(3)">
+            <option  hidden [selected]="true">persona a Buscar</option>
+            <option *ngFor="let TipDoc of comboEditarTipEmpleado"[value]="TipDoc.Id_empleados">
+              {{TipDoc.Id_empleados}} - {{TipDoc.Persona}}
+            </option>
+        </select>
+        <br><br>
+        <button type="submit" class="btn btn-outline-dark">Buscar Empleado a Modificar</button>
+        <br><br>
+        <h4>{{TituloTipEmpleadoEdit}}</h4>
+        <br>
+        
+
+        <li *ngFor="let Doc of MiTipEmpleadoE">
+                Nuevo Tipo de Documento
+                <select class="dropdown" formControlName="combofiltro2" (click)="ListComboDocu()"
+                    value={{Doc.Id_catalogo_universal}} [(ngModel)]="Doc.Id_catalogo_universal" formControlName="textnuevoTipDocum" >
+                    <option hidden [selected]="true">{{Doc.Id_catalogo_universal}}</option>
+                    <option *ngFor="let Doc of comboListaDocum" [value]="Doc.Id_catalogos_universal">
+                    {{Doc.Id_catalogo_universal}} - {{Doc.denominacion_universal}}
+                    </option>
+                </select>
+                <br><br> 
+                Nuevo Primer Nombre 
+                <label for="N1Persona"><input type="text" name="N1Persona" id="N1Persona" 
+                value={{Doc.nombre1_empleados}} [(ngModel)]="Doc.nombre1_empleados" formControlName="textnuevoPrimeNombreEmp"></label>
+                <br><br>
+                Nuevo Segundo Nombre
+                <label for="N2Persona"><input type="text" name="N2Persona" id="N2Persona" 
+                value={{Doc.nombre2_empleados}} [(ngModel)]="Doc.nombre2_empleados" formControlName="textnuevoSegundoNombreEmp" ></label>
+                <br><br> 
+                Nuevo Primer Apellido
+                <label for="A1Persona"><input type="text" name="A1Persona" id="A1Persona" 
+                value={{Doc.apellido1_empleados}} [(ngModel)]="Doc.apellido1_empleados" formControlName="textnuevoPrimerApellidoEmp"></label>
+                <br><br> 
+                Nuevo Segundo Apellido
+                <label for="A2Persona"><input type="text" name="A2Persona" id="A2Persona" 
+                value={{Doc.apellido2_empleados}} [(ngModel)]="Doc.apellido2_empleados" formControlName="textnuevoSegundoApellodoEmp" ></label>
+                <br><br>
+                Nuevo Numero de Documento
+                <label for="NPersona"><input type="text" name="NPersona" id="NPersona" 
+                value={{Doc.tipodocu_empleados}} [(ngModel)]="Doc.tipodocu_empleados" formControlName="textnuevoNumDocEmp" maxlength="10"></label>
+                <br><br>  
+                Nuevo Numero de Documento
+                <label for="CPersona"><input type="text" name="CPersona" id="CPersona" 
+                value={{Doc.numdoc_empleados}} [(ngModel)]="Doc.numdoc_empleados" formControlName="textnuevoCodigoEmp" maxlength="10"></label>
+                <br><br> 
+                Nuevo Cargo
+                <select class="dropdown" formControlName="combofiltroCargo" (click)="ListComboCargo()"
+                    value={{Doc.cargo_empleados}} [(ngModel)]="Doc.cargo_empleados" formControlName="textnuevoCargoEmp" >
+                    <option hidden [selected]="true">{{Doc.denominacion_universal}}</option>
+                    <option *ngFor="let equ of comboListaCargo" [value]="equ.Id_catalogo_universal">
+                    {{equ.Id_catalogo_universal}} - {{equ.denominacion_universal}}
+                    </option>
+                </select>     
+        </li>
+        <br>
+        <button (click)="ActualizarTipEmpleado()"class="btn btn-outline-dark">Actualizar</button>
+      
+      </form>
+    <br>
+</div>
+
     
     <!--*************************************************************************-->
     <!-- se incluye el link para la otra página -->
-    <div class="dir">
+    <div class="dir" style="text-align:center">
       <h3><a routerLink="/Inicio">MENÚ INICIO</a></h3>
     </div>
+  </main>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

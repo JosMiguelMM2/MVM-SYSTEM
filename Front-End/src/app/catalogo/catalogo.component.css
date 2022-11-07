@@ -1,7 +1,7 @@
 div.lista /*---*/
 {
     position: relative;
-    left: 400px;
+    left: 0px;
     border: 3px  solid rgb(248, 77, 205); 
     width: 580px;
     background-color:rgb(243, 238, 174);
@@ -12,7 +12,7 @@ div.lista /*---*/
 div.buscar  /*---*/
 {
     position: relative;
-    left: 400px;
+    left: 0px;
     border: 3px  solid rgb(73, 110, 70); 
     width: 580px;
     background-color:rgb(159, 216, 154);
@@ -22,7 +22,7 @@ div.buscar  /*---*/
 div.crea
 {
     position: relative;
-    left: 400px;
+    left: 0px;
     border: 3px  solid rgb(182, 91, 194); 
     width: 580px;
     background-color:rgb(198, 158, 224);
@@ -32,7 +32,7 @@ div.crea
 div.infoVeh
 {
     position: relative;
-    left: 400px;
+    left: 0px;
     border: 3px  solid rgb(182, 91, 194); 
     width: 580px;
     background-color:rgb(24, 90, 57);
@@ -42,7 +42,7 @@ div.infoVeh
 div.edit
 {
     position: relative;
-    left: 400px;
+    left: 0px;
     border: 3px  solid rgb(0, 4, 255); 
     width: 580px;
     background-color:rgb(153, 151, 245);
@@ -133,4 +133,67 @@ tbody.Filb
 th.b, tr.b 
 {
     border: none;
+}
+#header{
+    margin: 0px 400px;
+    width: 100px;
+    font-family: Times, Helvetica, sans-serif;
+    text-align:center
+    
+}
+#header2{
+    margin: 0px 400px;
+    width: 700px;
+    font-family: Times, Helvetica, sans-serif;
+    text-align:center
+}
+
+.nav li {
+    background-color:rgb(13, 11, 150);
+    color: rgb(218, 31, 31);
+    text-decoration: none;
+    padding: 3px 3px;
+    display: block;
+}
+.nav li a{
+    background-color: rgb(247, 37, 37);
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+}
+.nav li a:hover{                        /*color al pasar el mouse*/
+    background-color: rgba(245, 222, 179, 0.384);
+}
+.nav>li{
+    float: left;
+}
+.nav li ul{
+    display: none;
+    position: absolute;
+    min-width: 140px;
+}
+.nav li:hover>ul{
+    display: block;
+}
+.nav li ul li{
+    position: relative;
+    
+}
+.nav li ul li ul{
+    right: -190px;
+    top: 0px;   
+}
+p.img{
+    text-align: center;
+}
+.principal {
+    background: linear-gradient(to right, #0f2027, #3bc4f1, #2c5364);
+    width: 100vw;
+    height: 400vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
 }

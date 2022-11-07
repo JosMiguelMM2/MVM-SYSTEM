@@ -10,7 +10,7 @@ import { JuguetesService } from '../juguetes.service'
   styleUrls: ['./catalogo.component.css']
 })
 export class CatalogoComponent implements OnInit {
-  title = "MANEJO DE Catalogos";
+  title = "MANEJO DE CATALOGOS";
   TipCatalogoE: any =[];               //Lista de Tipos de Empleado
   TituloCatalogoE: any=[];          //Titulo Lista de Tipos de Empleado
   tablaCatalogoE: any=[];           //Encabezados tabla Lista de Tipos de Empleado
@@ -31,11 +31,35 @@ export class CatalogoComponent implements OnInit {
   comboListaCatalogos:any=[];
   comboListaDocum:any=[];
 //cargos-------------------------
-  comboListacargo:any=[];
   MiTipCatalogoCar: any=[];
   comboListaCargo: any=[];
   TituloTipCargo:any=[];
   TabBusTipCargo: any = [];
+//colores-------------------------
+  MiTipCatalogoColor: any=[];
+  comboListaColor: any=[];
+  TituloTipColor:any=[];
+  TabBusTipColor: any = [];
+//TipoProducto-------------------------
+  MiTipCatalogoTipoProducto: any=[];
+  comboListaTipoProducto: any=[];
+  TituloTipTipoProducto:any=[];
+  TabBusTipTipoProducto: any = [];
+//TipoMaterial-------------------------
+  MiTipCatalogoMaterial: any=[];
+  comboListaMaterial: any=[];
+  TituloTipMaterial:any=[];
+  TabBusTipMaterial: any = [];
+//TipoMaterial-------------------------
+  MiTipCatalogoEmpaque: any=[];
+  comboListaEmpaque: any=[];
+  TituloTipEmpaque:any=[];
+  TabBusTipEmpaque: any = [];
+//TipoContacto-------------------------
+  MiTipCatalogoContacto: any=[];
+  comboListaContacto: any=[];
+  TituloTipContacto:any=[];
+  TabBusTipContacto: any = [];
 //editar-------------------------
   TituloTipCatalogoEdit = "";          //Titulo de Tipo de Documento a Editar
   MiTipCatalogoE: any = [];            //Tipo de Documento a Editar
@@ -54,7 +78,7 @@ ListaCatalogoE = new FormGroup(
   { 
 
 } );
-filtrarTipCatalogoE =  new FormGroup(
+  filtrarTipCatalogoE =  new FormGroup(
   {
     combofiltro: new FormControl()
   });
@@ -62,10 +86,39 @@ filtrarTipCatalogoE =  new FormGroup(
     {
       combofiltro2: new FormControl()
     });
-filtrarTipCatalogoCargo =  new FormGroup(
+  filtrarTipCatalogoCargo =  new FormGroup(
     {
       combofiltroCargo: new FormControl()
     });
+  filtrarTipCatalogoColor =  new FormGroup(
+    {
+      combofiltroColor: new FormControl()
+    });
+  filtrarTipCatalogoTipoProducto =  new FormGroup(
+    {
+      combofiltroTipoProducto: new FormControl()
+    });
+  filtrarTipCatalogoMaterial =  new FormGroup(
+    {
+      combofiltroMaterial: new FormControl()
+    });
+  filtrarTipCatalogoEmpaque =  new FormGroup(
+    {
+      combofiltroEmpaque: new FormControl()
+    });
+  filtrarTipCatalogoContacto =  new FormGroup(
+    {
+      combofiltroContacto: new FormControl()
+    });
+  InsertarGTipCatalogo =  new FormGroup(
+    {
+      combofiltro:new FormControl(),
+      textDenominacio:new FormControl(),
+      textCatalogo:new FormControl(),
+
+    });
+  
+
   constructor(
     private formBuilder: FormBuilder,
     private servi: JuguetesService,
@@ -117,8 +170,53 @@ public ListComboCargo() {
   },
   error =>{ console.log(error)});
   };
+  //------colores---
+  public ListCombocolor() {
+    this.servi.getTipCatalogoE('/'+15).subscribe((data:{})=>
+    {
+      this.comboListaColor=data;
+      console.log("por aca 23 "+ this.comboListaColor.denominacion_universal)
+    },
+    error =>{ console.log(error)});
+    };
+//------TipoProducto-----
+public ListComboTipoProducto() {
+  this.servi.getTipCatalogoE('/'+17).subscribe((data:{})=>
+  {
+    this.comboListaTipoProducto=data;
+    console.log("por aca 23 "+ this.comboListaTipoProducto.denominacion_universal)
+  },
+  error =>{ console.log(error)});
+  };
+//------TipoMaterial-----
+public ListComboTipoMaterial() {
+  this.servi.getTipCatalogoE('/'+28).subscribe((data:{})=>
+  {
+    this.comboListaMaterial=data;
+    console.log("por aca 23 "+ this.comboListaMaterial.denominacion_universal)
+  },
+  error =>{ console.log(error)});
+  };
+//------TipoEmpaque-----
+public ListComboTipoEmpaque() {
+  this.servi.getTipCatalogoE('/'+38).subscribe((data:{})=>
+  {
+    this.comboListaEmpaque=data;
+    console.log("por aca 23 "+ this.comboListaEmpaque.denominacion_universal)
+  },
+  error =>{ console.log(error)});
+  };
+//------TipoEmpaque-----
+public ListComboTipoContacto() {
+  this.servi.getTipCatalogoE('/'+6).subscribe((data:{})=>
+  {
+    this.comboListaContacto=data;
+    console.log("por aca 23 "+ this.comboListaContacto.denominacion_universal)
+  },
+  error =>{ console.log(error)});
+  };
 //............................................................................................
-// Lista Tipos de Juguetes.
+// Lista catalogo total.
 
 public consultaCatalogo(op:any)
 {
@@ -254,6 +352,106 @@ this.servi.getTipCatalogosa('/'+3+'/'+filtovalor).subscribe((data: {})=>
   },
     error => { console.log(error) });
 }
+
+public buscarTipCatalogoColor() 
+{
+var filtovalor = this.filtrarTipCatalogoColor.getRawValue()['combofiltroColor'];
+
+this.servi.getTipCatalogosa('/'+15+'/'+filtovalor).subscribe((data: {})=>
+  {
+    this.MiTipCatalogoColor = data;
+    this.TituloTipColor = "TIPO Catalogo SELECCIONADO";
+    this.TabBusTipColor[0] = "indicador";
+    this.TabBusTipColor[1] = "Denominacion";
+    this.TabBusTipColor[2] = "Grupo";
+    this.TabBusTipColor[3] = "indicador de Grupo";
+  },
+    error => { console.log(error) });
+}
+
+public buscarTipCatalogoTipoProducto() 
+{
+var filtovalor = this.filtrarTipCatalogoTipoProducto.getRawValue()['combofiltroTipoProducto'];
+
+this.servi.getTipCatalogosa('/'+17+'/'+filtovalor).subscribe((data: {})=>
+  {
+    this.MiTipCatalogoTipoProducto = data;
+    this.TituloTipTipoProducto = "TIPO Catalogo SELECCIONADO";
+    this.TabBusTipTipoProducto[0] = "indicador";
+    this.TabBusTipTipoProducto[1] = "Denominacion";
+    this.TabBusTipTipoProducto[2] = "Grupo";
+    this.TabBusTipTipoProducto[3] = "indicador de Grupo";
+  },
+    error => { console.log(error) });
+}
+
+public buscarTipCatalogoMaterial() 
+{
+var filtovalor = this.filtrarTipCatalogoMaterial.getRawValue()['combofiltroMaterial'];
+
+this.servi.getTipCatalogosa('/'+28+'/'+filtovalor).subscribe((data: {})=>
+  {
+    this.MiTipCatalogoMaterial = data;
+    this.TituloTipMaterial = "TIPO Catalogo SELECCIONADO";
+    this.TabBusTipMaterial[0] = "indicador";
+    this.TabBusTipMaterial[1] = "Denominacion";
+    this.TabBusTipMaterial[2] = "Grupo";
+    this.TabBusTipMaterial[3] = "indicador de Grupo";
+  },
+    error => { console.log(error) });
+}
+
+public buscarTipCatalogoEmpaque() 
+{
+var filtovalor = this.filtrarTipCatalogoEmpaque.getRawValue()['combofiltroEmpaque'];
+
+this.servi.getTipCatalogosa('/'+38+'/'+filtovalor).subscribe((data: {})=>
+  {
+    this.MiTipCatalogoEmpaque = data;
+    this.TituloTipEmpaque = "TIPO Catalogo SELECCIONADO";
+    this.TabBusTipEmpaque[0] = "indicador";
+    this.TabBusTipEmpaque[1] = "Denominacion";
+    this.TabBusTipEmpaque[2] = "Grupo";
+    this.TabBusTipEmpaque[3] = "indicador de Grupo";
+  },
+    error => { console.log(error) });
+}
+
+public buscarTipCatalogoContacto() 
+{
+var filtovalor = this.filtrarTipCatalogoContacto.getRawValue()['combofiltroContacto'];
+
+this.servi.getTipCatalogosa('/'+6+'/'+filtovalor).subscribe((data: {})=>
+  {
+    this.MiTipCatalogoContacto = data;
+    this.TituloTipContacto = "TIPO Catalogo SELECCIONADO";
+    this.TabBusTipContacto[0] = "indicador";
+    this.TabBusTipContacto[1] = "Denominacion";
+    this.TabBusTipContacto[2] = "Grupo";
+    this.TabBusTipContacto[3] = "indicador de Grupo";
+  },
+    error => { console.log(error) });
+}
+//--------------------------------------------------------------
+ //Para insertar un nuevo elemento a catalogo 
+
+ public InsertarTipCatalogo() {
+
+  var datosvalo1 = this.InsertarGTipCatalogo.getRawValue()['textDenominacio'];
+  var datosvalo2 = this.InsertarGTipCatalogo.getRawValue()['textCatalogo'];
+  
+  var cadena = { "denominacion_universal": datosvalo1, "catalogo_universal":datosvalo2, };
+
+  
+  this.servi.insertTipCatalogo(cadena).then
+    ( res => {
+        console.log(res)
+      }
+    ).catch(err => {
+      console.log(err)
+    });
+    this.InsertarGTipCatalogo.reset();
+}
   ngOnInit(): void {
     this.ListaCatalogo = this.formBuilder.group(
       {
@@ -273,9 +471,38 @@ this.servi.getTipCatalogosa('/'+3+'/'+filtovalor).subscribe((data: {})=>
         {
           combofiltroCargo: []
         }); 
+    this.filtrarTipCatalogoColor = this.formBuilder.group(
+        {
+          combofiltroColor: []
+        }); 
+    this.filtrarTipCatalogoTipoProducto = this.formBuilder.group(
+        {
+          combofiltroTipoProducto: []
+        }); 
+    this.filtrarTipCatalogoMaterial = this.formBuilder.group(
+        {
+          combofiltroMaterial: []
+        }); 
+    this.filtrarTipCatalogoEmpaque = this.formBuilder.group(
+        {
+          combofiltroEmpaque: []
+        }); 
+    this.filtrarTipCatalogoContacto = this.formBuilder.group(
+        {
+          combofiltroContacto: []
+        }); 
+    
+    this.InsertarGTipCatalogo = this.formBuilder.group(
+        {   
+          combofiltro:[],
+          textDenominacio:[],
+          textCatalogo:[],
+          
+        });    
+        this.formBuilder.group
     this.ListaCatalogoE = this.formBuilder.group(
       {
-    
+        
       });
   }
 

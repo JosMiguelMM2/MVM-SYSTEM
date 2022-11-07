@@ -1,10 +1,11 @@
-<br><br><br><br>
+
 <!--<p>tipos-doc works!</p>-->
 <html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"><head>
 
     <title></title></head><body>
-    
-      <div style="text-align:center">
+      <br><br><br><br>
+      <main class="principal">
+      <div style="text-align:center" id="header2" >
         <h1>{{ title }}</h1>
         <img width="300" alt="imagen_juguetes" src="/assets/juguetes.jpg">
       </div>
@@ -12,27 +13,30 @@
       <br><br><br><br>
      <!--*************************************************************************-->
     <!-- se incluye el link para la otra página -->
-    <div class="dir">
-      <h3><a routerLink="/Inicio">MENÚ INICIO</a></h3>
-    </div>
-
+    <div id="borde">
+      <div id="header">
+          <ul class="nav" > 
+             <li><a href="/Inicio">MENÚ INICIO</a></li>
+          </ul>       
+      </div><br>
+  </div>
        <!--------------------------------------------------------------------------------------------->
       <!-- para mostrar el listado de Catalogo -->
     
-      <div class="lista">
+      <div class="lista" id="header2">
           
         <h2>Lista de Catalogo: </h2>
     
         <form (ngSubmit)="consultaCatalogo(1)" [formGroup]="ListaCatalogo" [formGroup]="ListaCatalogo">
     
-          <button type="submit" style="margin-right: 30px" class="btn btn-outline-dark">Mostrar Lista de Tipos de Catalogo</button>
-          <button (click)="LimpiarLista()" class="btn btn-outline-dark">Linpiar Lista de Tipos de Catalogos</button>
+          <button type="submit" style="margin-right: 30px" class="btn btn-outline-dark"><h4>Mostrar Lista de Tipos de Catalogo</h4></button>
+          <button (click)="LimpiarLista()" class="btn btn-outline-dark"><h4>Linpiar Lista de Tipos de Catalogos</h4></button>
     
           <br><br>
     
-          <h2>{{TituloCatalogo}}</h2>   
+          <h2 >{{TituloCatalogo}}</h2>   
           <table> 
-              <thead>
+              <thead id="header2">
                   <th>{{tablaCatalogo[0]}}</th>
                   <th>{{tablaCatalogo[1]}}</th>
                   <th>{{tablaCatalogo[2]}}</th>   
@@ -41,7 +45,7 @@
               </thead>
     
               <tbody>
-                  <tr  *ngFor="let tCat of TipCatalogo">
+                  <tr id="header2" *ngFor="let tCat of TipCatalogo">
                       
                     <th>{{ tCat.Id_catalogo_universal}} </th>
                     <th>{{ tCat.denominacion_universal}} </th>
@@ -58,11 +62,11 @@
     <!--------------------------------------------------------------------------------------------->
   <!-- para mostrar el un solo Catalogo catalogo-->
                             
-  <div class="buscar">
+  <div class="buscar" id="header2">
     <h2>Mostramos el Catalogo seleccionado: </h2>
     
     <form (ngSubmit)="buscarTipCatalogo()" [formGroup]="filtrarTipCatalogoE">
-      Id del Catalogo a mostrar
+      <h5>Id del Catalogo a mostrar</h5>
       <select class="dropdown"  formControlName="combofiltro" (click)="ListComboCatalogo()">
           <option value="value1">Catalogo a buscar</option>
           <option *ngFor="let TipCatalogo of comboListaCatalogos" [value]="TipCatalogo.Id_catalogo_universal">
@@ -74,14 +78,14 @@
       <br><br>
   
   
-      <button type="submit" class="btn btn-outline-dark">Buscar Catalogo</button>
+      <button type="submit" class="btn btn-outline-dark"><h5>Buscar Catalogo</h5></button>
     </form>
   
     <ul>
         <h2>{{TituloCatalogo}}</h2>
   
-        <table class="tabBuscar"> 
-            <thead class="Colb">
+        <table class="tabBuscar" id="header2"> 
+            <thead class="Colb" id="header2">
               <th class="b">{{TabBusTipCatalogo[0]}}</th> 
               <th class="b">{{TabBusTipCatalogo[1]}}</th> 
               <th class="b">{{TabBusTipCatalogo[2]}}</th>    
@@ -89,7 +93,7 @@
 
             </thead>
     
-            <tbody class="Filb">  
+            <tbody class="Filb" id="header2">  
                 <tr class="b" *ngFor="let tCatalogo of MiTipCatalogo">
                     <th class="b">{{tCatalogo.Id_catalogo_universal}}  </th>
                     <th class="b">{{tCatalogo.denominacion_universal}}  </th>
@@ -110,11 +114,11 @@
      <!--------------------------------------------------------------------------------------------->
   <!-- para mostrar el un solo Catalogo documento-->
                             
-  <div class="buscar">
+  <div class="buscar" id="header2">
     <h2>Mostramos el Documento seleccionado: </h2>
     
     <form (ngSubmit)="buscarTipCatalogo2()" [formGroup]="filtrarTipCatalogoD">
-      Id del Catalogo a mostrar
+      <h5>Id del Catalogo a mostrar</h5>
       <select class="dropdown"  formControlName="combofiltro2" (click)="ListComboDocu()" >
           <option value="value2">documento a buscar</option>
           <option *ngFor="let TipDocum2 of comboListaDocum" [value]="TipDocum2.Id_catalogo_universal">
@@ -126,14 +130,14 @@
       <br><br>
   
   
-      <button type="submit" class="btn btn-outline-dark">Buscar Documento</button>
+      <button type="submit" class="btn btn-outline-dark"><h4>Buscar Documento</h4></button>
     </form>
   
     <ul>
         <h2>{{TituloTipCatalogos}}</h2>
   
-        <table class="tabBuscar"> 
-            <thead class="Colb">
+        <table class="tabBuscar" id="header2"> 
+            <thead class="Colb" id="header2">
               <th class="b">{{TabBusTipCatalogos[0]}}</th> 
               <th class="b">{{TabBusTipCatalogos[1]}}</th> 
               <th class="b">{{TabBusTipCatalogos[2]}}</th>   
@@ -141,7 +145,7 @@
 
             </thead>
     
-            <tbody class="Filb">  
+            <tbody class="Filb" id="header2">  
                 <tr class="b" *ngFor="let tDocum of MiTipCatalogos">
                     <th class="b">{{tDocum.Id_catalogo_universal}}  </th>
                     <th class="b">{{tDocum.denominacion_universal}}  </th>
@@ -162,11 +166,11 @@
      <!--------------------------------------------------------------------------------------------->
   <!-- para mostrar el un solo Catalogo cargo-->
                             
-  <div class="buscar">
-    <h2>Mostramos el Documento seleccionado: </h2>
+  <div class="buscar" id="header2">
+    <h2>Mostramos Cargo seleccionado: </h2>
     
     <form (ngSubmit)="buscarTipCatalogoCargos()" [formGroup]="filtrarTipCatalogoCargo">
-      Id del Cargo a mostrar
+      <h5>Id del Cargo a mostrar</h5>
       <select class="dropdown"  formControlName="combofiltroCargo" (click)="ListComboCargo()" >
           <option value="value2">Cargo a buscar</option>
           <option *ngFor="let TipCargo of comboListaCargo" [value]="TipCargo.Id_catalogo_universal">
@@ -178,14 +182,14 @@
       <br><br>
   
   
-      <button type="submit" class="btn btn-outline-dark">Buscar Documento</button>
+      <button type="submit" class="btn btn-outline-dark"><h4>Buscar Documento</h4></button>
     </form>
   
     <ul>
         <h2>{{TituloTipCargo}}</h2>
   
-        <table class="tabBuscar"> 
-            <thead class="Colb">
+        <table class="tabBuscar" id="header2"> 
+            <thead class="Colb" id="header2">
               <th class="b">{{TabBusTipCargo[0]}}</th> 
               <th class="b">{{TabBusTipCargo[1]}}</th> 
               <th class="b">{{TabBusTipCargo[2]}}</th>   
@@ -193,7 +197,7 @@
 
             </thead>
     
-            <tbody class="Filb">  
+            <tbody class="Filb" id="header2">  
                 <tr class="b" *ngFor="let tCarg of MiTipCatalogoCar">
                     <th class="b">{{tCarg.Id_catalogo_universal}}  </th>
                     <th class="b">{{tCarg.denominacion_universal}}  </th>
@@ -210,11 +214,301 @@
   
     </div>
     <br><br><br><br>
+
+     <!--------------------------------------------------------------------------------------------->
+  <!-- para mostrar el un solo Catalogo tipos de Contacto-->
+                            
+  <div class="buscar" id="header2">
+    <h2>Mostramos tipos de Contacto seleccionado: </h2>
+    
+    <form (ngSubmit)="buscarTipCatalogoContacto()" [formGroup]="filtrarTipCatalogoContacto">
+      <h5>Id del tipo de Contacto a mostrar</h5>
+      <select class="dropdown"  formControlName="combofiltroContacto" (click)="ListComboTipoContacto()" >
+          <option value="value2">Empaque a buscar</option>
+          <option *ngFor="let TipCont of comboListaContacto" [value]="TipCont.Id_catalogo_universal">
+            {{TipCont.Id_catalogo_universal}} - {{TipCont.denominacion_universal}} 
+            
+          </option>
+      </select>       
+  
+      <br><br>
+  
+  
+      <button type="submit" class="btn btn-outline-dark"><h4>Buscar Contacto</h4></button>
+    </form>
+  
+    <ul>
+        <h2>{{TituloTipContacto}}</h2>
+  
+        <table class="tabBuscar" id="header2"> 
+            <thead class="Colb" id="header2">
+              <th class="b">{{TabBusTipContacto[0]}}</th> 
+              <th class="b">{{TabBusTipContacto[1]}}</th> 
+              <th class="b">{{TabBusTipContacto[2]}}</th>   
+              <th class="b">{{TabBusTipContacto[3]}}</th>                
+
+            </thead>
+    
+            <tbody class="Filb" id="header2">  
+                <tr class="b" *ngFor="let tConta of MiTipCatalogoContacto">
+                    <th class="b">{{tConta.Id_catalogo_universal}}  </th>
+                    <th class="b">{{tConta.denominacion_universal}}  </th>
+                    <th class="b">{{tConta.Pertenece_a}}  </th>
+                    <th class="b">{{tConta.catalogo_universal}}  </th>
+                </tr>
+            </tbody> 
+    
+          </table>
+  
+        </ul>
+  
+      <br>
+  
+    </div>
+    <br><br><br><br>
+     <!--------------------------------------------------------------------------------------------->
+  <!-- para mostrar el un solo Catalogo color-->
+                            
+  <div class="buscar" id="header2">
+    <h2>Mostramos Color seleccionado: </h2>
+    
+    <form (ngSubmit)="buscarTipCatalogoColor()" [formGroup]="filtrarTipCatalogoColor">
+      <h5>Id del Color a mostrar</h5>
+      <select class="dropdown"  formControlName="combofiltroColor" (click)="ListCombocolor()" >
+          <option value="value2">Color a buscar</option>
+          <option *ngFor="let TipColor of comboListaColor" [value]="TipColor.Id_catalogo_universal">
+            {{TipColor.Id_catalogo_universal}} - {{TipColor.denominacion_universal}} 
+            
+          </option>
+      </select>       
+  
+      <br><br>
+  
+  
+      <button type="submit" class="btn btn-outline-dark"><h4>Buscar Color</h4></button>
+    </form>
+  
+    <ul>
+        <h2>{{TituloTipColor}}</h2>
+  
+        <table class="tabBuscar" id="header2"> 
+            <thead class="Colb" id="header2">
+              <th class="b">{{TabBusTipColor[0]}}</th> 
+              <th class="b">{{TabBusTipColor[1]}}</th> 
+              <th class="b">{{TabBusTipColor[2]}}</th>   
+              <th class="b">{{TabBusTipColor[3]}}</th>                
+
+            </thead>
+    
+            <tbody class="Filb" id="header2">  
+                <tr class="b" *ngFor="let tColo of MiTipCatalogoColor">
+                    <th class="b">{{tColo.Id_catalogo_universal}}  </th>
+                    <th class="b">{{tColo.denominacion_universal}}  </th>
+                    <th class="b">{{tColo.Pertenece_a}}  </th>
+                    <th class="b">{{tColo.catalogo_universal}}  </th>
+                </tr>
+            </tbody> 
+    
+          </table>
+  
+        </ul>
+  
+      <br>
+  
+    </div>
+    <br><br><br><br>
+   <!--------------------------------------------------------------------------------------------->
+  <!-- para mostrar el un solo Catalogo tipos de producto-->
+                            
+  <div class="buscar" id="header2">
+    <h2>Mostramos tipos de productos seleccionado: </h2>
+    
+    <form (ngSubmit)="buscarTipCatalogoTipoProducto()" [formGroup]="filtrarTipCatalogoTipoProducto">
+      <h5>Id del tipo de Producto a mostrar</h5>
+      <select class="dropdown"  formControlName="combofiltroTipoProducto" (click)="ListComboTipoProducto()" >
+          <option value="value2">Producto a buscar</option>
+          <option *ngFor="let TipProducto of comboListaTipoProducto" [value]="TipProducto.Id_catalogo_universal">
+            {{TipProducto.Id_catalogo_universal}} - {{TipProducto.denominacion_universal}} 
+            
+          </option>
+      </select>       
+  
+      <br><br>
+  
+      <button type="submit" class="btn btn-outline-dark"><h4>Buscar Color</h4></button>
+    </form>
+  
+    <ul>
+        <h2>{{TituloTipTipoProducto}}</h2>
+  
+        <table class="tabBuscar"> 
+            <thead class="Colb" id="header2">
+              <th class="b">{{TabBusTipTipoProducto[0]}}</th> 
+              <th class="b">{{TabBusTipTipoProducto[1]}}</th> 
+              <th class="b">{{TabBusTipTipoProducto[2]}}</th>   
+              <th class="b">{{TabBusTipTipoProducto[3]}}</th>                
+
+            </thead>
+    
+            <tbody class="Filb" id="header2">  
+                <tr class="b" *ngFor="let tProd of MiTipCatalogoTipoProducto">
+                    <th class="b">{{tProd.Id_catalogo_universal}}  </th>
+                    <th class="b">{{tProd.denominacion_universal}}  </th>
+                    <th class="b">{{tProd.Pertenece_a}}  </th>
+                    <th class="b">{{tProd.catalogo_universal}}  </th>
+                </tr>
+            </tbody> 
+    
+          </table>
+  
+        </ul>
+  
+      <br>
+  
+    </div>
+    <br><br><br><br>
+
+ <!--------------------------------------------------------------------------------------------->
+  <!-- para mostrar el un solo Catalogo tipos de Material-->
+                            
+  <div class="buscar" id="header2">
+    <h2>Mostramos tipos de Materiales seleccionado: </h2>
+    
+    <form (ngSubmit)="buscarTipCatalogoMaterial()" [formGroup]="filtrarTipCatalogoMaterial">
+      <h5> Id del tipo de Material a mostrar</h5>
+      <select class="dropdown"  formControlName="combofiltroMaterial" (click)="ListComboTipoMaterial()" >
+          <option value="value2">Material a buscar</option>
+          <option *ngFor="let TipMaterial of comboListaMaterial" [value]="TipMaterial.Id_catalogo_universal">
+            {{TipMaterial.Id_catalogo_universal}} - {{TipMaterial.denominacion_universal}} 
+            
+          </option>
+      </select>       
+  
+      <br><br>
+  
+  
+      <button type="submit" class="btn btn-outline-dark"><h4>Buscar Material</h4></button>
+    </form>
+  
+    <ul>
+        <h2>{{TituloTipMaterial}}</h2>
+  
+        <table class="tabBuscar" id="header2"> 
+            <thead class="Colb" id="header2">
+              <th class="b">{{TabBusTipMaterial[0]}}</th> 
+              <th class="b">{{TabBusTipMaterial[1]}}</th> 
+              <th class="b">{{TabBusTipMaterial[2]}}</th>   
+              <th class="b">{{TabBusTipMaterial[3]}}</th>                
+
+            </thead>
+    
+            <tbody class="Filb" id="header2">  
+                <tr class="b" id="header2" *ngFor="let tMater of MiTipCatalogoMaterial">
+                    <th class="b">{{tMater.Id_catalogo_universal}}  </th>
+                    <th class="b">{{tMater.denominacion_universal}}  </th>
+                    <th class="b">{{tMater.Pertenece_a}}  </th>
+                    <th class="b">{{tMater.catalogo_universal}}  </th>
+                </tr>
+            </tbody> 
+    
+          </table>
+  
+        </ul>
+  
+      <br>
+  
+    </div>
+    <br><br><br><br>
+
+     <!--------------------------------------------------------------------------------------------->
+  <!-- para mostrar el un solo Catalogo tipos de Empaque-->
+                            
+  <div class="buscar" id="header2">
+    <h2>Mostramos tipos de Empaque seleccionado: </h2>
+    
+    <form (ngSubmit)="buscarTipCatalogoEmpaque()" [formGroup]="filtrarTipCatalogoEmpaque">
+      <h5>Id del tipo de Empaque a mostrar</h5> 
+      <select class="dropdown"  formControlName="combofiltroEmpaque" (click)="ListComboTipoEmpaque()" >
+          <option value="value2">Empaque a buscar</option>
+          <option *ngFor="let TipEmpaque of comboListaEmpaque" [value]="TipEmpaque.Id_catalogo_universal">
+            {{TipEmpaque.Id_catalogo_universal}} - {{TipEmpaque.denominacion_universal}} 
+            
+          </option>
+      </select>       
+  
+      <br><br>
+  
+  
+      <button type="submit" class="btn btn-outline-dark"><h4>Empaque</h4> </button>
+    </form>
+  
+    <ul>
+        <h2>{{TituloTipEmpaque}}</h2>
+  
+        <table class="tabBuscar" id="header2"> 
+            <thead class="Colb" id="header2">
+              <th class="b">{{TabBusTipEmpaque[0]}}</th> 
+              <th class="b">{{TabBusTipEmpaque[1]}}</th> 
+              <th class="b">{{TabBusTipEmpaque[2]}}</th>   
+              <th class="b">{{TabBusTipEmpaque[3]}}</th>                
+
+            </thead>
+    
+            <tbody class="Filb" id="header2">  
+                <tr class="b" *ngFor="let tEmpaq of MiTipCatalogoEmpaque">
+                    <th class="b">{{tEmpaq.Id_catalogo_universal}}  </th>
+                    <th class="b">{{tEmpaq.denominacion_universal}}  </th>
+                    <th class="b">{{tEmpaq.Pertenece_a}}  </th>
+                    <th class="b">{{tEmpaq.catalogo_universal}}  </th>
+                </tr>
+            </tbody> 
+    
+          </table>
+  
+        </ul>
+  
+      <br>
+  
+    </div>
+    <br><br><br><br>
+    <!--******************insertar catalogo***************-->
+    <div class="crea" id="header2">
+      <br><br>
+      <h2>Registrar una nuevo Material</h2>
+
+      <form (ngSubmit)="InsertarTipCatalogo()" [formGroup]="InsertarGTipCatalogo">
+          <h5>Clase de Catalogo</h5> 
+          <select class="dropdown" formControlName="combofiltro" (click)="ListComboCatalogo()" formControlName="textCatalogo" >
+              <option value="value2">Seleccione tipo de Catalogo </option>
+              <option *ngFor="let TipDocum of comboListaCatalogos" [value]="TipDocum.Id_catalogo_universal">
+                {{TipDocum.Id_catalogo_universal}} - {{TipDocum.denominacion_universal}} 
+              </option>
+          </select>
+          <br><br>
+          
+         
+          <h5>Denominacion</h5> 
+          <label for="N2Persona"><input type="text" name="N2Persona" id="N2Persona" 
+             formControlName="textDenominacio"></label>
+          <br><br> 
+
+          <br><br>
+          <button type="submit" class="btn btn-outline-dark"><h4>Insertar Juguete</h4> </button>
+      </form>
+      <br>
+
+  </div>
+  <br><br><br><br>
        <!--*************************************************************************-->
     <!-- se incluye el link para la otra página -->
-    <div class="dir">
-        <h3><a routerLink="/Inicio">MENÚ INICIO</a></h3>
-      </div>
+    <div id="borde">
+      <div id="header">
+          <ul class="nav" > 
+             <li><a href="/Inicio">MENÚ INICIO</a></li>
+          </ul>       
+      </div><br>
+  </div>
+</main>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

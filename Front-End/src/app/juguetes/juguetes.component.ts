@@ -25,6 +25,17 @@ export class JuguetesComponent implements OnInit {
   MiTipJugueteE: any = [];            //Tipo de Documento a Editar
   comboEditarTipJuguete: any = [];    //Combo Editar Tipo de Documento
 
+  //colores-------------------------
+  MiTipCatalogoColor: any=[];
+  comboListaColor: any=[];
+  TituloTipColor:any=[];
+  TabBusTipColor: any = [];
+//TipoProducto-------------------------
+  MiTipCatalogoTipoProducto: any=[];
+  comboListaTipoProducto: any=[];
+  TituloTipTipoProducto:any=[];
+  TabBusTipTipoProducto: any = [];
+
   controlLista = 1;               //Control para limpiar la lista
   BuscarEvalor = 1;               //Control para carga del valor a buscar
 
@@ -38,6 +49,15 @@ filtrarTipJuguete =  new FormGroup(
   {
     combofiltro: new FormControl()
   });
+  InsertarGTipJuguete =  new FormGroup(
+    {
+      combofiltroTipoProducto:new FormControl(),
+      combofiltroColor:new FormControl(),
+      textTipProducto: new FormControl(), 
+      textNombreJuguete:new FormControl(),
+      textTamanoJuguete:new FormControl(),
+      textcolor:new FormControl(),
+    });
 
   constructor(
     private formBuilder: FormBuilder,
@@ -65,6 +85,24 @@ filtrarTipJuguete =  new FormGroup(
     });
   }
 
+   //------colores---
+   public ListCombocolor() {
+    this.servi.getTipCatalogoE('/'+15).subscribe((data:{})=>
+    {
+      this.comboListaColor=data;
+      console.log("por aca 23 "+ this.comboListaColor.denominacion_universal)
+    },
+    error =>{ console.log(error)});
+    };
+//------TipoProducto-----
+public ListComboTipoProducto() {
+  this.servi.getTipCatalogoE('/'+17).subscribe((data:{})=>
+  {
+    this.comboListaTipoProducto=data;
+    console.log("por aca 23 "+ this.comboListaTipoProducto.denominacion_universal)
+  },
+  error =>{ console.log(error)});
+  };
 //............................................................................................
 // Lista Tipos de Juguetes.
 
@@ -172,7 +210,29 @@ public buscarTipJuguete()
 
 }
 
+//--------------------------------------------------------------
+ //Para insertar un nuevo Juguete
 
+ public InsertarTipJuguete() {
+
+  var datosvalo1 = this.InsertarGTipJuguete.getRawValue()['textTipProducto'];
+  var datosvalo2 = this.InsertarGTipJuguete.getRawValue()['textNombreJuguete'];
+  var datosvalo3 = this.InsertarGTipJuguete.getRawValue()['textTamanoJuguete'];
+  var datosvalo4 = this.InsertarGTipJuguete.getRawValue()['textcolor'];
+  
+  var cadena = { "tipo_producto": datosvalo1, "Nombre_juguete":datosvalo2, 
+                  "tama_juguete":datosvalo3, "color_jugete":datosvalo4};
+
+  
+  this.servi.insertTipJuguete(cadena).then
+    ( res => {
+        console.log(res)
+      }
+    ).catch(err => {
+      console.log(err)
+    });
+    this.InsertarGTipJuguete.reset();
+}
   ngOnInit(): void {
     this.ListaJuguetes = this.formBuilder.group(
       {
@@ -184,7 +244,16 @@ public buscarTipJuguete()
       {
           combofiltro: []
         }); 
-      
+    this.InsertarGTipJuguete = this.formBuilder.group(
+        {   
+          combofiltroTipoProducto:[],
+          combofiltroColor:[],
+          textTipProducto:[], 
+          textNombreJuguete:[],
+          textTamanoJuguete:[],
+          textcolor:[],
+        });    
+        this.formBuilder.group
   }
-  
+
 }

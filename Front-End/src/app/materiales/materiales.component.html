@@ -1,10 +1,11 @@
-<br><br><br><br>
+
 <!--<p>tipos-doc works!</p>-->
 <html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"><head>
 
     <title></title></head><body>
-    
-      <div style="text-align:center">
+      <br><br><br><br>
+      <main class="principal">
+      <div style="text-align:center" id="header2">
         <h1>{{ title }}</h1>
         <img width="300" alt="imagen_juguetes" src="/assets/materiales.jpg">
       </div>
@@ -12,18 +13,21 @@
       <br><br><br><br>
      <!--*************************************************************************-->
     <!-- se incluye el link para la otra página -->
-    <div class="dir">
-      <h3><a routerLink="/Inicio">MENÚ INICIO</a></h3>
-    </div>
-
+    <div id="borde">
+      <div id="header">
+          <ul class="nav" > 
+             <li><a href="/Inicio"><h5>MENÚ INICIO</h5></a></li>
+          </ul>       
+      </div><br>
+  </div>
        <!--------------------------------------------------------------------------------------------->
       <!-- para mostrar el listado de Empleados -->
     
-      <div class="lista">
+      <div class="lista" id="header2">
           
         <h2>Lista de los Tipos de Materiales: </h2>
     
-        <form (ngSubmit)="consultaMaterial(1)" [formGroup]="ListaMaterial" [formGroup]="ListaMaterial">
+        <form (ngSubmit)="consultaMaterial(1)" [formGroup]="ListaMaterial" [formGroup]="ListaMaterial" >
     
           <button type="submit" style="margin-right: 30px" class="btn btn-outline-dark">Mostrar Lista de Tipos de Materiales</button>
           <button (click)="LimpiarLista()" class="btn btn-outline-dark">Linpiar Lista de Tipos de Materiales</button>
@@ -32,7 +36,7 @@
     
           <h2>{{TituloMaterial}}</h2>   
           <table> 
-              <thead>
+              <thead id="header2">
                   <th>{{tablaMaterial[0]}}</th>
                   <th>{{tablaMaterial[1]}}</th>
                   <th>{{tablaMaterial[2]}}</th>   
@@ -42,7 +46,7 @@
               </thead>
     
               <tbody>
-                  <tr  *ngFor="let tMat of TipMaterial">
+                  <tr id="header2" *ngFor="let tMat of TipMaterial">
                       
                     <th>{{ tMat.Id_material}} </th>
                     <th>{{ tMat.nombre_material}} </th>
@@ -63,11 +67,11 @@
     <!--------------------------------------------------------------------------------------------->
   <!-- para mostrar el un solo Material -->
                             
-  <div class="buscar">
+  <div class="buscar" id="header2">
     <h2>Mostramos el Material seleccionado: </h2>
     
     <form (ngSubmit)="buscarTipMaterial()" [formGroup]="filtrarTipMaterial">
-      Id del Material a mostrar
+      <h5>Id del Material a mostrar</h5>
       <select class="dropdown"  formControlName="combofiltro" (click)="consultaMaterial(2)">
           <option value="value1">Material a buscar</option>
           <option *ngFor="let TipMaterial of comboListaTipMaterial" [value]="TipMaterial.Id_material">
@@ -79,14 +83,14 @@
       <br><br>
   
   
-      <button type="submit" class="btn btn-outline-dark">Buscar Material</button>
+      <button type="submit" class="btn btn-outline-dark"><h5>Buscar Material</h5></button>
     </form>
   
     <ul>
         <h2>{{TituloMaterial}}</h2>
   
-        <table class="tabBuscar"> 
-            <thead class="Colb">
+        <table id="header2" class="tabBuscar"> 
+            <thead id="header2"  class="Colb">
               <th class="b">{{TabBusTipMaterial[0]}}</th> 
               <th class="b">{{TabBusTipMaterial[1]}}</th> 
               <th class="b">{{TabBusTipMaterial[2]}}</th> 
@@ -97,8 +101,8 @@
 
             </thead>
     
-            <tbody class="Filb">  
-                <tr class="b" *ngFor="let tMaterial of MiTipMaterial">
+            <tbody class="Filb" id="header2" >  
+                <tr id="header2" class="b" *ngFor="let tMaterial of MiTipMaterial">
                     <th class="b">{{tMaterial.Id_material}}  </th>
                     <th class="b">{{tMaterial.nombre_material}}  </th>
                     <th class="b">{{tMaterial.Clase_material}}  </th>
@@ -116,12 +120,56 @@
   
     </div>
     <br><br><br><br>
-  
+
+    <div class="crea" id="header2" >
+      <br><br>
+      <h2>Registrar una nuevo Material</h2>
+
+      <form (ngSubmit)="InsertarTipMaterial()" [formGroup]="InsertarGTipMaterial">
+          Clase de Material
+          <select class="dropdown" formControlName="combofiltroMaterial" (click)="ListComboTipoMaterial()" formControlName="textClaseMaterial" >
+              <option value="value2">Seleccione tipo de Material</option>
+              <option *ngFor="let TipDocum of comboListaMaterial" [value]="TipDocum.Id_catalogo_universal">
+                {{TipDocum.Id_catalogo_universal}} - {{TipDocum.denominacion_universal}} 
+              </option>
+          </select>
+          <br><br>
+          Color de Material
+          <select class="dropdown"  formControlName="combofiltroColor" (click)="ListCombocolor()" formControlName="textColorMaterial"  >
+          <option value="value2">Color a buscar</option>
+          <option *ngFor="let TipCargo of comboListaColor" [value]="TipCargo.Id_catalogo_universal">
+            {{TipCargo.Id_catalogo_universal}} - {{TipCargo.denominacion_universal}}           
+          </option>
+      </select> 
+          <br><br>
+          Peso Material
+          <label for="NJuguete"><input type="text" name="NJuguete" id="NJuguete" 
+             formControlName="textCPeso"></label>
+          
+          <br><br>
+          Nombre Material
+          <label for="N2Persona"><input type="text" name="N2Persona" id="N2Persona" 
+             formControlName="textNombre"></label>
+          <br><br> 
+
+          <br><br>
+          <button type="submit" class="btn btn-outline-dark"><h4>Insertar Juguete</h4></button>
+      </form>
+      <br>
+
+  </div>
+  <br><br><br><br>
+
        <!--*************************************************************************-->
     <!-- se incluye el link para la otra página -->
-    <div class="dir">
-        <h3><a routerLink="/Inicio">MENÚ INICIO</a></h3>
-      </div>
+    <div id="borde">
+      <div id="header">
+          <ul class="nav" > 
+             <li><a href="/Inicio"><h5>MENÚ INICIO</h5></a></li>
+          </ul>       
+      </div><br>
+  </div>
+</main>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
