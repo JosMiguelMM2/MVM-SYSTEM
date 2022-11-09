@@ -5,6 +5,36 @@
 
   <div class="contenedor">
     <form (ngSubmit)="getEmpaquetamiento(1)" [formGroup]="ListaProduccion">
+      <button type="submit">Mostrar lista de Producción</button>
+      <button (click)="LimpiarLista()">Limpiar Lista</button>
+
+      <h2 class="titulo2">{{TituloProducc}}</h2>
+
+      <table class="tabla-mostrarproduccion">
+        <thead>
+        <th>{{TablaProduccion[0]}}</th>
+        <th>{{TablaProduccion[1]}}</th>
+        <th>{{TablaProduccion[2]}}</th>
+        <th>{{TablaProduccion[3]}}</th>
+        <th>{{TablaProduccion[4]}}</th>
+        <th>{{TablaProduccion[5]}}</th>
+        <th>{{TablaProduccion[6]}}</th>
+        <th>{{TablaProduccion[7]}}</th>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let pro of Produccion">
+          <td>{{pro.Id_produccion}}</td>
+          <td>{{pro.Nombre_Encargado}}</td>
+          <td>{{pro.nombre_juguete}}</td>
+          <td>{{pro.Fecha_produccion}}</td>
+          <td>{{pro.Detalles_produccion}}</td>
+          <td>{{pro.Errores_produccion}}</td>
+          <td>{{pro.Cantidad_producida}}</td>
+          <td>{{pro.nombre_material}}</td>
+        </tbody>
+
+      </table>
 
     </form>
   </div>

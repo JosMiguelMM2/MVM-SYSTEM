@@ -64,7 +64,7 @@ export class ProduccionComponent implements OnInit {
           this.TablaProduccion[3] = 'Fecha de Producción';
           this.TablaProduccion[4] = 'Detalle de Producción';
           this.TablaProduccion[5] = 'Errores de Producción';
-          this.TablaProduccion[6] = 'Cantidad de Producida';
+          this.TablaProduccion[6] = 'Cantidad Producida';
           this.TablaProduccion[7] = 'Material utilizado';
 
 
