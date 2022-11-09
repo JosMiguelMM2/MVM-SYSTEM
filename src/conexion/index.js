@@ -3,31 +3,19 @@ let mysql = require('mysql');
 let settings = require('./confing.json');
 let connection;
 
-function connectDatabase()
+function connectDatabase() {
 
-{
-
-    if(!connection)
-
-    {
+    if (!connection) {
 
         connection = mysql.createConnection(settings);
-        
-        connection.connect(function(err)
 
-        {
+        connection.connect(function (err) {
 
-        if(!err)
-
-            {
+            if (!err) {
 
                 console.log('Base de Datos Conectada: ' + settings.database);
 
-            }
-
-        else
-
-            {
+            } else {
 
                 console.log('Error en la conexión con la Base de Datos');
 

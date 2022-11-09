@@ -1,13 +1,6 @@
 {
-
-    "host": "localhost",
-    
-    "user": "root",
-    
-    "password": "", 
-    
-    "database": "bdjugetesa"
-
-    
-    
-    }
+  "host": "localhost",
+  "user": "root",
+  "password": "",
+  "database": "bdjugetesa"
+}
