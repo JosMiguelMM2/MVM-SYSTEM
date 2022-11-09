@@ -7,7 +7,7 @@ html{
     font-size: 62.5%;
     width: 100vw;
     height: 100vh;
-    margin-top: 6rem;
+    margin-top: 0;
 }
 
 .mostrarlista{
@@ -36,7 +36,7 @@ html{
     height: 10rem;
     text-align: center;
     border-radius: 1rem 1rem 1rem 1rem;
-    
+
 }
 
 .regresar-menu{

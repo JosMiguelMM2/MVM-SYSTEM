@@ -142,12 +142,12 @@ export class JuguetesService {
 
   getTipCatalogos(): Observable<any>
 {
-    return this.http.get(this.Url + '/tipCatalogo', httpOptions);  
+    return this.http.get(this.Url + '/tipCatalogo', httpOptions);
 }
 ////-------lista catalogos
   getTipCatalogoE(id:any): Observable<any>
 {
-    return this.http.get(this.Url + '/tipCatalogo'+id, httpOptions);  
+    return this.http.get(this.Url + '/tipCatalogo'+id, httpOptions);
 }
  //insertar nuevo Catalogo
  async insertTipCatalogo(TipCatalogo: any): Promise<any> {
@@ -158,7 +158,7 @@ export class JuguetesService {
   });
 }
 
-  //mostrar un solo Jugute    
+  //mostrar un solo Jugute
   getTipCatalogosa(id: any): Observable<any> {
 
     // console.log("  4555  ***** "+this.Url + "/tipContac"+id )
@@ -170,7 +170,7 @@ export class JuguetesService {
   getTipJuguetess(): Observable<any> {
     return this.http.get(this.Url + '/tipJuguete', httpOptions);
   }
-  //mostrar un solo Jugute    
+  //mostrar un solo Jugute
   getTipJuguetes(id: any): Observable<any> {
     // console.log("  4555  ***** "+this.Url + "/tipContac"+id )
     // console.log("211    ");
@@ -189,7 +189,7 @@ export class JuguetesService {
   getTipMateriales(): Observable<any> {
     return this.http.get(this.Url + '/tipMaterial', httpOptions);
   }
-  //mostrar un solo material   
+  //mostrar un solo material
   getTipMaterial(id: any): Observable<any> {
     // console.log("  4555  ***** "+this.Url + "/tipContac"+id )
     // console.log("211    ");
@@ -208,7 +208,7 @@ export class JuguetesService {
   getTipMaterialJuguetes(): Observable<any> {
     return this.http.get(this.Url + '/tipMaterialJuguete', httpOptions);
   }
-  //mostrar un solo material   
+  //mostrar un solo material
   getTipMaterialJuguete(id: any): Observable<any> {
     // console.log("  4555  ***** "+this.Url + "/tipContac"+id )
     // console.log("211    ");
@@ -222,5 +222,11 @@ export class JuguetesService {
       this.http
         .post(this.Url + '/tipMaterialJuguete', TipMateJuguet, httpOptions).toPromise();
     });
+  }
+
+  //metodo mostrar PRODUCCION
+  //materiales *****************************************
+ getTipProJuguetes(): Observable<any> {
+    return this.http.get(this.Url + '/tipProJuguete', httpOptions);
   }
 }
