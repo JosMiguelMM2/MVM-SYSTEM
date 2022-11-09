@@ -2,9 +2,9 @@
 <!--<p>tipos-doc works!</p>-->
 <html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"><head>
 
-    <title></title></head><body>
+    <title></title></head><body class="principal">
       <br><br><br><br>
-      <main class="principal">
+    
       <div style="text-align:center" id="header2">
         <h1>{{ title }}</h1>
         <img width="300" alt="imagen_juguetes" src="/assets/materiales.jpg">
@@ -105,8 +105,8 @@
                 <tr id="header2" class="b" *ngFor="let tMaterial of MiTipMaterial">
                     <th class="b">{{tMaterial.Id_material}}  </th>
                     <th class="b">{{tMaterial.nombre_material}}  </th>
-                    <th class="b">{{tMaterial.Clase_material}}  </th>
-                    <th class="b">{{tMaterial.color_material}}  </th>
+                    <th class="b">{{tMaterial.Clase_materiales}}  </th>
+                    <th class="b">{{tMaterial.color_materiales}}  </th>
                     <th class="b">{{tMaterial.Peso_gr}}  </th>
               
                 </tr>
@@ -160,6 +160,63 @@
   </div>
   <br><br><br><br>
 
+  
+  <div class="edit" id="header2">
+    <h2>Persona a modificar</h2>
+    <br>
+    <form (ngSubmit)="buscarEditarTipMaterial()" [formGroup]="ActualizarATipMaterial">
+      
+     Material modificar:
+        <select class="dropdown" formControlName="BuscarIdTipMaterial" (click)="consultaMaterial(3)">
+            <option  hidden [selected]="true">Material a Buscar</option>
+            <option *ngFor="let TipDoc of comboEditarTipMaterial"[value]="TipDoc.Id_material">
+              {{TipDoc.Id_material}} - {{TipDoc.nombre_material}}
+            </option>
+        </select>
+        <br><br>
+        <button type="submit" class="btn btn-outline-dark" (click)="ListComboTipoMaterial()"  (click)="ListCombocolor()">Buscar Empleado a Modificar</button>
+        <br><br>
+        <h4>{{TituloTipMaterialEdit}}</h4>
+        <br>
+        
+
+              <li *ngFor="let Doc of MiTipMaterialE">
+                Clase de material
+                <select class="dropdown" formControlName="textnuevoClaseMaterial"  
+                    [(ngModel)]="Doc.clase_material"  >
+                   
+                    <option *ngFor="let equ of comboListaMaterial" [value]="equ.Id_catalogo_universal">
+                    {{equ.Id_catalogo_universal}} - {{equ.denominacion_universal}}
+                    </option>              
+                </select>
+
+                <br><br> 
+                Nuevo Color
+                <select class="dropdown" formControlName="textnuevoColorMaterial"
+                    [(ngModel)]="Doc.color_material"  >
+                    <option *ngFor="let equ of comboListaColor" [value]="equ.Id_catalogo_universal">
+                    {{equ.Id_catalogo_universal}} - {{equ.denominacion_universal}}
+                    </option>
+                </select>  
+                <br><br> 
+                Cantidad Peso gr 
+                <label for="CanPeso"><input type="text" name="CanPeso" id="CanPeso" 
+                value={{Doc.Peso_gr}} [(ngModel)]="Doc.Peso_gr" formControlName="textnuevoCantidadPeso"></label>
+                <br><br>
+                nombre material
+                <label for="N2Persona"><input type="text" name="N2Persona" id="N2Persona" 
+                value={{Doc.nombre_material}} [(ngModel)]="Doc.nombre_material" formControlName="textnuevoNombreMaterial" ></label>
+                <br><br> 
+               
+        </li>
+        <br>
+        <button (click)="ActualizarTipMaterial()"class="btn btn-outline-dark">Actualizar</button>
+      
+      </form>
+    <br>
+</div>
+
+    
        <!--*************************************************************************-->
     <!-- se incluye el link para la otra página -->
     <div id="borde">
@@ -169,7 +226,7 @@
           </ul>       
       </div><br>
   </div>
-</main>
+
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

@@ -189,8 +189,7 @@ p.img{
 }
 .principal {
     background: linear-gradient(to right, #0f2027, #44c6f1, #2c5364);
-    width: 100vw;
-    height: 180vh;
+   
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

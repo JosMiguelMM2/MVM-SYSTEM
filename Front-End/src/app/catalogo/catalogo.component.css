@@ -142,7 +142,7 @@ th.b, tr.b
     
 }
 #header2{
-    margin: 0px 400px;
+    margin: 5px -2px;
     width: 700px;
     font-family: Times, Helvetica, sans-serif;
     text-align:center
@@ -189,8 +189,7 @@ p.img{
 }
 .principal {
     background: linear-gradient(to right, #0f2027, #3bc4f1, #2c5364);
-    width: 100vw;
-    height: 400vh;
+    
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

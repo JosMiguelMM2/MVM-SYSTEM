@@ -3,10 +3,10 @@
 
 <html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"><head>
 
-    </head><body>
+    </head><body class="principal">
       <br><br><br><br>
-    <main class="principal" id="header2">
-      <div style="text-align:center" >
+     
+      <div style="text-align:center"  id="header2" >
         <h1>{{ title }}</h1>
         <img width="300" alt="Logo Proyecto1" src="/assets/Empleado.jpg">
       </div>
@@ -16,7 +16,7 @@
     <!-- se incluye el link para la otra página -->
     <div id="borde">
       <div id="header">
-          <ul class="nav" > 
+          <ul class="nav"  > 
              <li><a href="/Inicio"><h5>MENÚ INICIO</h5></a></li>
           </ul>       
       </div><br>
@@ -24,7 +24,7 @@
       <!--------------------------------------------------------------------------------------------->
       <!-- para mostrar el listado de Empleados -->
     
-      <div class="lista"  style="text-align:center">
+      <div class="lista"  style="text-align:center"  id="header2">
           
         <h2>Lista de los Tipos de Empleado: </h2>
     
@@ -198,20 +198,21 @@
             </option>
         </select>
         <br><br>
-        <button type="submit" class="btn btn-outline-dark">Buscar Empleado a Modificar</button>
+        <button type="submit" class="btn btn-outline-dark" (click)="ListComboDocu()"  (click)="ListComboCargo()">Buscar Empleado a Modificar</button>
         <br><br>
         <h4>{{TituloTipEmpleadoEdit}}</h4>
         <br>
         
 
-        <li *ngFor="let Doc of MiTipEmpleadoE">
-                Nuevo Tipo de Documento
-                <select class="dropdown" formControlName="combofiltro2" (click)="ListComboDocu()"
-                    value={{Doc.Id_catalogo_universal}} [(ngModel)]="Doc.Id_catalogo_universal" formControlName="textnuevoTipDocum" >
-                    <option hidden [selected]="true">{{Doc.Id_catalogo_universal}}</option>
-                    <option *ngFor="let Doc of comboListaDocum" [value]="Doc.Id_catalogos_universal">
-                    {{Doc.Id_catalogo_universal}} - {{Doc.denominacion_universal}}
+              <li *ngFor="let Doc of MiTipEmpleadoE">
+                Nuevo Tipo de documento
+                <select class="dropdown" formControlName="textnuevoTipDocum"  
+                    [(ngModel)]="Doc.numTdoc"  >
+                   
+                    <option *ngFor="let equ of comboListaDocum" [value]="equ.Id_catalogo_universal">
+                    {{equ.Id_catalogo_universal}} - {{equ.denominacion_universal}}
                     </option>
+                    
                 </select>
                 <br><br> 
                 Nuevo Primer Nombre 
@@ -232,16 +233,15 @@
                 <br><br>
                 Nuevo Numero de Documento
                 <label for="NPersona"><input type="text" name="NPersona" id="NPersona" 
-                value={{Doc.tipodocu_empleados}} [(ngModel)]="Doc.tipodocu_empleados" formControlName="textnuevoNumDocEmp" maxlength="10"></label>
+                value={{Doc.Numero_Documento}} [(ngModel)]="Doc.Numero_Documento" formControlName="textnuevoNumDocEmp" maxlength="10"></label>
                 <br><br>  
-                Nuevo Numero de Documento
+                Nuevo Codigo Empresa
                 <label for="CPersona"><input type="text" name="CPersona" id="CPersona" 
-                value={{Doc.numdoc_empleados}} [(ngModel)]="Doc.numdoc_empleados" formControlName="textnuevoCodigoEmp" maxlength="10"></label>
+                value={{Doc.Codigo_Empresa}} [(ngModel)]="Doc.Codigo_Empresa" formControlName="textnuevoCodigoEmp" maxlength="10"></label>
                 <br><br> 
                 Nuevo Cargo
-                <select class="dropdown" formControlName="combofiltroCargo" (click)="ListComboCargo()"
-                    value={{Doc.cargo_empleados}} [(ngModel)]="Doc.cargo_empleados" formControlName="textnuevoCargoEmp" >
-                    <option hidden [selected]="true">{{Doc.denominacion_universal}}</option>
+                <select class="dropdown" formControlName="textnuevoCargoEmp"
+                    [(ngModel)]="Doc.Cargo_Empleados"  >
                     <option *ngFor="let equ of comboListaCargo" [value]="equ.Id_catalogo_universal">
                     {{equ.Id_catalogo_universal}} - {{equ.denominacion_universal}}
                     </option>
@@ -257,10 +257,14 @@
     
     <!--*************************************************************************-->
     <!-- se incluye el link para la otra página -->
-    <div class="dir" style="text-align:center">
-      <h3><a routerLink="/Inicio">MENÚ INICIO</a></h3>
-    </div>
-  </main>
+    <div id="borde">
+      <div id="header">
+          <ul class="nav" > 
+             <li><a href="/Inicio"><h5>MENÚ INICIO</h5></a></li>
+          </ul>       
+      </div><br>
+  </div>
+ 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
