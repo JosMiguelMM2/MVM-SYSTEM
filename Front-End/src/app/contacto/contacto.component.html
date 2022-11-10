@@ -95,7 +95,7 @@
     <span>Empleado</span>
     <select class="dropdown" formControlName="combofiltro2" (click)="consultarEmpleados()"
             formControlName="numberidempleados">
-      <option value="value2">Seleccione tipo de Documento</option>
+      <option value="value2" >Seleccione tipo de Documento</option>
       <option *ngFor="let TipEmple of comboListEmplo" [value]="TipEmple.Id_empleados">
         {{TipEmple.Id_empleados}} - {{TipEmple.Persona}}
       </option>
@@ -149,9 +149,9 @@
 
       <span>Editar Empleado</span>
       <select class="dropdown" formControlName="nuidemple" [(ngModel)]="edit.Persona">
-        <option value="value2">Seleccione el empleado</option>
+        <option   selected >{{edit.Persona}}</option>
         <option *ngFor="let TipEmple of comboListEmplo" [value]="TipEmple.Id_empleados">
-          {{TipEmple.Id_empleados}} - {{TipEmple.Persona}}
+           {{TipEmple.Persona}}
         </option>
       </select>
 
@@ -159,9 +159,9 @@
       <br/><br/>
 
 
-        <span>Tipo de Contacto</span>
-      <select class="dropdown" formControlName="nuidtipcontac">
-        <option value="value2">Seleccione tipo Contacto</option>
+      <span>Tipo de Contacto</span>
+      <select class="dropdown" formControlName="nuidtipcontac" [(ngModel)]="edit.Tipo_Contacto">
+        <option selected>{{edit.Tipo_Contacto}}</option>
         <option *ngFor="let TipContac of comboTipoConta" [value]="TipContac.Id_catalogo_universal">
           {{TipContac.Id_catalogo_universal}} - {{TipContac.denominacion_universal}}
         </option>
@@ -171,7 +171,7 @@
       <label for="datocontacto">
         <span>Dato del Contacto</span>
         <input type="text" name="datocontacto" id="datocontacto" formControlName="nudatcontac"
-               value="{{edit.Dato_contacto}}" ngModel="edif.Dato_contacto"/>
+                [(ngModel)]="edit.Dato_contacto"/>
 
       </label>
 
