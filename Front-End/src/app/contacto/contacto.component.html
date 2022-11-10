@@ -91,6 +91,7 @@
   <form (ngSubmit)="InsertarnuevoContacto()" [formGroup]="InsertarContacto">
     <h4>Nuevo Contacto</h4>
     <br>
+    <!--Empleado-->
     <span>Empleado</span>
     <select class="dropdown" formControlName="combofiltro2" (click)="consultarEmpleados()" formControlName="numberidempleados" >
       <option value="value2">Seleccione tipo de Documento</option>
@@ -99,12 +100,13 @@
       </option>
     </select>
 
-    <br/><br/>
-    <label for="idtipcontacto">
-      <span>Id tipo de Contacto</span>
-      <input type="number" name="idtipcontacto" id="idtipcontacto"
-             formControlName="numberidtipcontacto" maxlength="3"/>
-    </label>
+    <span>Tipo de Contacto</span>
+    <select class="dropdown" formControlName="combofiltro2" (click)="ListTipoContacto()" formControlName="numberidtipcontacto" >
+      <option value="value2">Seleccione tipo Contacto</option>
+      <option *ngFor="let TipContac of comboTipoConta" [value]="TipContac.Id_catalogo_universal">
+        {{TipContac.Id_catalogo_universal}} - {{TipContac.denominacion_universal}}
+      </option>
+    </select>
 
 
     <label for="datocontacto">
@@ -169,10 +171,11 @@
   </form>
 </div>
 
-<!--*************************************************************************-->
-<!-- se incluye el link para la otra página -->
-<div class="dir">
-  <h3><a routerLink="/Inicio">MENÚ INICIO</a></h3>
-</div>
+
+<!--boton para enviar a /Inicio-->
+<footer class="pie-de-pagina">
+  <button class="redirigue" routerLink="/Inicio">Menú inicio</button>
+</footer>
+
 </body>
 </html>

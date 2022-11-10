@@ -32,7 +32,7 @@ export class ContactoComponent implements OnInit {
   TituloContactoEdit = ''; //Titulo de Tipo de Documento a Editar
   MiContactoE: any = []; //Tipo de Documento a Editar
   comboEditarContacto: any = []; //Combo Editar Tipo de Documento
-
+  comboTipoConta: any = [];
   comboListEmplo: any = [];
   //*****************************************************************************
   //Form group
@@ -192,7 +192,20 @@ export class ContactoComponent implements OnInit {
         console.log(err)
       });
     this.InsertarContacto.reset();
-    console.log('318    ' + datosvalo1 + ' - ' + datosvalo2 + ' - ' + datosvalo3);
+    console.log('nombre del empleado '+ datosvalo1);
+    console.log('tipo de contacto '+ datosvalo2);
+    console.log('dato de contacto '+ datosvalo3);
+  }
+
+  // -----------------------------------------------------------------------------------------
+  //Tipo Contacto
+  public ListTipoContacto() {
+    this.juguetesService.getTipCatalogoE('/'+6).subscribe((data:{})=>
+      {
+        this.comboTipoConta=data;
+        console.log("por aca cargo 23 "+ this.comboTipoConta.denominacion_universal)
+      },
+      error =>{ console.log(error)});
   }
 
   //----------------------------------------------------------------------------
