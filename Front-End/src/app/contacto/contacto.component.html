@@ -93,7 +93,8 @@
     <br>
     <!--Empleado-->
     <span>Empleado</span>
-    <select class="dropdown" formControlName="combofiltro2" (click)="consultarEmpleados()" formControlName="numberidempleados" >
+    <select class="dropdown" formControlName="combofiltro2" (click)="consultarEmpleados()"
+            formControlName="numberidempleados">
       <option value="value2">Seleccione tipo de Documento</option>
       <option *ngFor="let TipEmple of comboListEmplo" [value]="TipEmple.Id_empleados">
         {{TipEmple.Id_empleados}} - {{TipEmple.Persona}}
@@ -101,7 +102,8 @@
     </select>
 
     <span>Tipo de Contacto</span>
-    <select class="dropdown" formControlName="combofiltro2" (click)="ListTipoContacto()" formControlName="numberidtipcontacto" >
+    <select class="dropdown" formControlName="combofiltro2" (click)="ListTipoContacto()"
+            formControlName="numberidtipcontacto">
       <option value="value2">Seleccione tipo Contacto</option>
       <option *ngFor="let TipContac of comboTipoConta" [value]="TipContac.Id_catalogo_universal">
         {{TipContac.Id_catalogo_universal}} - {{TipContac.denominacion_universal}}
@@ -138,25 +140,32 @@
     </select>
 
     <br/><br/>
-    <button type="submit">Buscar Contacto a Editar</button>
+    <button type="submit" (click)="consultarEmpleados()" (click)="ListTipoContacto()">Buscar Contacto a Editar</button>
 
     <h4>{{ TituloContactoEdit }}</h4>
 
     <li *ngFor="let edit of MiContactoE">
 
-      <label for="nidcontacto">
-        <span>Numero de Id Empleado</span>
-        <input type="number" name="nidcontacto" id="nidcontacto" formControlName="nuidemple"
-               value="{{edit.Id_empleados}}" ngModel="edif.Id_empleados"/>
-      </label>
+
+      <span>Editar Empleado</span>
+      <select class="dropdown" formControlName="nuidemple" [(ngModel)]="edit.Persona">
+        <option value="value2">Seleccione el empleado</option>
+        <option *ngFor="let TipEmple of comboListEmplo" [value]="TipEmple.Id_empleados">
+          {{TipEmple.Id_empleados}} - {{TipEmple.Persona}}
+        </option>
+      </select>
+
 
       <br/><br/>
 
-      <label for="nidtipcontacto">
-        <span>Id tipo de Contacto</span>
-        <input type="number" name="nidtipcontacto" id="nidtipcontacto"
-               formControlName="nuidtipcontac" maxlength="3" value="{{edit.Tipo_contacto}}"
-               ngModel="edif.Tipo_contacto"/></label>
+
+        <span>Tipo de Contacto</span>
+      <select class="dropdown" formControlName="nuidtipcontac">
+        <option value="value2">Seleccione tipo Contacto</option>
+        <option *ngFor="let TipContac of comboTipoConta" [value]="TipContac.Id_catalogo_universal">
+          {{TipContac.Id_catalogo_universal}} - {{TipContac.denominacion_universal}}
+        </option>
+      </select>
 
 
       <label for="datocontacto">

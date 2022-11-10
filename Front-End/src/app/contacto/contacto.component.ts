@@ -222,6 +222,7 @@ export class ContactoComponent implements OnInit {
     this.juguetesService.getTipContac('/' + this.BuscarEvalor).subscribe((data: {}) => {
 
       this.MiContactoE = data;
+
       this.TituloContactoEdit = "TIPO DE CONTACTO A EDITAR";
       console.log("hasta aqui va bien "+ this.BuscarEvalor);
     }, error => { console.log(error) });
