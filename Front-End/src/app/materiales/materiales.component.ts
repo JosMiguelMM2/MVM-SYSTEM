@@ -61,6 +61,16 @@ filtrarTipMaterial =  new FormGroup(
       textNombre:new FormControl(),
 
     });
+
+    ActualizarATipMaterial =  new FormGroup(
+      {
+        BuscarIdTipMaterial:new FormControl(),
+        textnuevoClaseMaterial: new FormControl(), 
+        textnuevoColorMaterial:new FormControl(),
+        textnuevoCantidadPeso:new FormControl(),
+        textnuevoNombreMaterial:new FormControl(),
+        
+        });
   constructor(
     private formBuilder: FormBuilder,
     private servi: JuguetesService,
@@ -234,6 +244,54 @@ this.servi.getTipMaterial('/'+filtovalor).subscribe((data: {})=>
     });
     this.InsertarGTipMaterial.reset();
 }
+
+//----------------------------------------------------------------------------
+// Consulta un tipo de documento por medio de su id para editarlo
+
+buscarEditarTipMaterial() 
+{
+  if ( this.BuscarEvalor != 0)
+  {
+    this.BuscarEvalor = this.ActualizarATipMaterial.getRawValue()['BuscarIdTipMaterial'];
+    //console.error(" dos el filtro " + this.BuscarEvalor);
+  }
+  //console.error(" tres el filtro " + this.BuscarEvalor);
+
+  this.servi.getTipMaterial('/' + this.BuscarEvalor).subscribe((data: {}) => {
+
+    this.MiTipMaterialE = data; 
+    this.TituloTipMaterialEdit = "MATERIAL A EDITAR";
+       
+    console.log("inten 159 "+ this.MiTipMaterialE[0].clase_material )
+    console.log("inten 158 "+ this.MiTipMaterialE[0].color_material)
+  }, error => { console.log(error) });
+
+}
+//--------------------------------------------------------------
+// Actualiza el Tipo de Material 
+
+public ActualizarTipMaterial() 
+{
+  var nuevoinitipClaseMaterial = this.ActualizarATipMaterial.getRawValue()['textnuevoClaseMaterial'];
+  var nuevoiniColorMaterial = this.ActualizarATipMaterial.getRawValue()['textnuevoColorMaterial'];
+  var nuevoiniCantidadPeso = this.ActualizarATipMaterial.getRawValue()['textnuevoCantidadPeso'];
+  var nuevoiniNombreMaterial = this.ActualizarATipMaterial.getRawValue()['textnuevoNombreMaterial'];
+   //console.log("dat 158 "+ nuevotipIdMate)
+  var cadena = { "Id_material": this.BuscarEvalor,"clase_material":nuevoinitipClaseMaterial , "color_material":nuevoiniColorMaterial,  "cantidad_peso":nuevoiniCantidadPeso, 
+  "nombre_material":nuevoiniNombreMaterial};
+  //console.log("actu 123" + nuevotipIdMate)
+  this.servi.updateTipMaterial(cadena).then
+    (
+      res => {
+        console.log("res  ",res)
+      }
+    ).catch(err => {
+      console.log(err)
+    });
+
+    this.BuscarEvalor = 0;
+    this.ActualizarATipMaterial.reset();
+}
   ngOnInit(): void {
     this.ListaMaterial = this.formBuilder.group(
       {
@@ -256,6 +314,16 @@ this.servi.getTipMaterial('/'+filtovalor).subscribe((data: {})=>
           
         });    
         this.formBuilder.group
+
+        this.ActualizarATipMaterial = this.formBuilder.group(
+          {
+            BuscarIdTipMaterial:[],
+            textnuevoClaseMaterial: [], 
+            textnuevoColorMaterial:[],
+            textnuevoCantidadPeso:[],
+            textnuevoNombreMaterial:[],
+          });
+          this.formBuilder.group
   }
 
 }

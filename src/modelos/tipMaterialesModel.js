@@ -63,10 +63,12 @@ tipMaterialesModel.getTipMaterialess = function (callback)
             "WHERE `Id_material` = "+*/
 
             let sql = "SELECT "+ 
-            " `Id_material`,"+
+            " M.`Id_material`,"+
+            " M.`clase_material`,"+
             " M.`nombre_material`," +
-            " a.`denominacion_universal` AS 'Clase_material'," +
-            " c.`denominacion_universal` AS 'color_material',"+
+            " M.`color_material`,"+
+            " a.`denominacion_universal` AS 'Clase_materiales'," +
+            " c.`denominacion_universal` AS 'color_materiales',"+
             " M.`cantidad_peso` as 'Peso_gr'"+        
             " FROM `tb_materiales` AS M"+
             " INNER JOIN `ct_catalogo_universal` AS a ON M.clase_material = a.`Id_catalogo_universal`"+
@@ -184,7 +186,7 @@ tipMaterialesModel.getTipMaterialess = function (callback)
          }
         });
     }
-}
+} 
     
 
 module.exports = tipMaterialesModel;

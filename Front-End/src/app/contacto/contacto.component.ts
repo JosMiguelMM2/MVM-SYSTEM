@@ -66,6 +66,7 @@ export class ContactoComponent implements OnInit {
     Router: Router
   ) { }
 
+ 
 
   public consultarcontactos(op: any) {
     //console.error(" El listado 1 " );

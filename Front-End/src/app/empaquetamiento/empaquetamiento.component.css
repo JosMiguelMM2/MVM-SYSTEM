@@ -76,3 +76,12 @@ th{
     border-radius: 1rem 1rem 1rem 1rem;
     font-size: 2rem;
 }
+.principal {
+    background: linear-gradient(to right, #0f2027, #4ec2e9, #2c5364);
+  
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+}

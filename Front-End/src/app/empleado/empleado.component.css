@@ -135,14 +135,14 @@ th.b, tr.b
     border: none;
 }
 #header{
-    margin: 0px 100px;
-    width: 700px;
+    margin: 5px 400px;
+    width: 150px;
     font-family: Times, Helvetica, sans-serif;
     text-align:center
     
 }
 #header2{
-    margin: 0px 00px;
+    margin: 5px 00px;
     width: 700px;
     font-family: Times, Helvetica, sans-serif;
     text-align:center
@@ -189,8 +189,7 @@ p.img{
 }
 .principal {
     background: linear-gradient(to right, #0f2027, #4ec2e9, #2c5364);
-    width: 100vw;
-    height: 180vh;
+  
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

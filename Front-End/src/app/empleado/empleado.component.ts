@@ -41,6 +41,11 @@ export class EmpleadoComponent implements OnInit {
   comboListaCargo: any=[];
   TituloTipCargo:any=[];
   TabBusTipCargo: any = [];
+
+  TipDoc: any=[];
+  TituloTipDoc="";
+  TabBusTipDoc: any=[];
+  comboListarTipDoc: any=[];
   //*****************************************************************************
  //Form group 
  ListaEmpleados = new FormGroup( 
@@ -115,6 +120,7 @@ public consultaEmpleadosI()
     this.servi.getTipCatalogoE('/'+2).subscribe((data:{})=>
     {
       this.comboListaDocum=data;
+      console.log("DATA" + data)
       console.log("por aca docum 23 "+ this.comboListaDocum.denominacion_universal)
     },
     error =>{ console.log(error)});
@@ -129,7 +135,18 @@ public consultaEmpleadosI()
       error =>{ console.log(error)});
       }; 
 
-    
+    public consultaDocumento(op: any) {
+        if (this.controlLista == 1) {
+          this.servi.getTipCatalogos().subscribe((data: any) => {
+            if (op == 1) {
+              //let dat = data;
+              this.comboListarTipDoc = JSON.parse(data);
+              this.TipDoc = null;
+            }
+          },
+            error => { console.error(error + " ") });
+        }
+      }
 //............................................................................................
 // Lista Tipos de Empleados.
 
@@ -300,8 +317,10 @@ public InsertarTipEmpleado() {
     this.servi.getTipEmpleado('/' + this.BuscarEvalor).subscribe((data: {}) => {
 
       this.MiTipEmpleadoE = data; 
-      this.TituloTipEmpleadoEdit = "EMPLEADO A EDITAR";   
-      
+      this.TituloTipEmpleadoEdit = "EMPLEADO A EDITAR";
+         
+      console.log("inten 159 "+ this.MiTipEmpleadoE[0].Cargo_Empleados )
+      console.log("inten 158 "+ this.MiTipEmpleadoE[0].Tipo_Documento)
     }, error => { console.log(error) });
 
   }
@@ -319,10 +338,10 @@ public InsertarTipEmpleado() {
     var nuevoinitipDocEmple = this.ActualizarATipEmpleado.getRawValue()['textnuevoNumDocEmp'];
     var nuevoinitipNumEmple = this.ActualizarATipEmpleado.getRawValue()['textnuevoCodigoEmp'];
     var nuevoinitipCarEmple = this.ActualizarATipEmpleado.getRawValue()['textnuevoCargoEmp'];
-
+    console.log("dat 158 "+ nuevotipIdcat)
     var cadena = { "Id_empleados": this.BuscarEvalor,"Id_catalogos_universal":nuevotipIdcat , "nombre1_empleados":nuevoinitipNom1emp,  "nombre2_empleados":nuevoinitipNom2emp, 
     "apellido1_empleados":nuevoinitipApe1emp, "apellido2_empleados":nuevoinitipApe2emp, "tipodocu_empleados":nuevoinitipDocEmple, "numdoc_empleados":nuevoinitipNumEmple, "cargo_empleados":nuevoinitipCarEmple };
-    
+    console.log("actu 123" + nuevotipIdcat)
     this.servi.updateTipEmpleado(cadena).then
       (
         res => {
@@ -378,5 +397,5 @@ public InsertarTipEmpleado() {
           });
           this.formBuilder.group
   }
-
+  
 }

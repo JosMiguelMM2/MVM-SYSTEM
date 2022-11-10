@@ -1,3 +1,4 @@
+const e = require('express');
 const connection = require('../conexion');
 
 
@@ -74,14 +75,20 @@ tipEmpleadoModel.getTipEmpleados= function (callback)
             + "WHERE `Id_empleados` = "*/
             let sql = "SELECT"+
             " e.`Id_empleados`,"+
+            " e.`Id_catalogos_universal` AS 'numTdoc',"+
             " D.`denominacion_universal` AS 'Tipo_Documento',"+
             " e.`tipodocu_empleados` AS 'Numero_Documento',"+
             " CONCAT( e.`nombre1_empleados`, ' ',"+
             " e.`nombre2_empleados`,  ' ',"+
             " e.`apellido1_empleados`, ' ',"+
-            " e.`apellido2_empleados`) AS 'Persona',"+           
+            " e.`apellido2_empleados`) AS 'Persona',"+ 
+            " e.`nombre1_empleados`,"+
+            " e.`nombre2_empleados`,"+
+            " e.`apellido1_empleados`,"+
+            " e.`apellido2_empleados`,"  +        
             " e.`numdoc_empleados` AS 'Codigo_Empresa',"+
-            " c.`denominacion_universal` AS 'Cargo_Empleado'"+
+            " c.`denominacion_universal` AS 'Cargo',"+
+            " e.Cargo_Empleados"+
             " FROM `tb_empleados` AS e"+
             " INNER JOIN `ct_catalogo_universal` AS c ON e.`cargo_empleados` = c.`Id_catalogo_universal`"+
             " INNER JOIN `ct_catalogo_universal` AS D ON e.`Id_catalogos_universal` = D.`Id_catalogo_universal`"+
