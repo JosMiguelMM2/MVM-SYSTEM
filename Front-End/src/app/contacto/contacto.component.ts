@@ -33,6 +33,7 @@ export class ContactoComponent implements OnInit {
   MiContactoE: any = []; //Tipo de Documento a Editar
   comboEditarContacto: any = []; //Combo Editar Tipo de Documento
 
+  comboListEmplo: any = [];
   //*****************************************************************************
   //Form group
   ListaContacto = new FormGroup({});
@@ -41,6 +42,11 @@ export class ContactoComponent implements OnInit {
   filtraridcontacto = new FormGroup({
     combofiltro: new FormControl(),
   });
+
+  filtrarTipEmple =  new FormGroup(
+    {
+      combofiltro2: new FormControl()
+    });
 
   //insertar nuevo contacto
   InsertarContacto = new FormGroup({
@@ -66,7 +72,7 @@ export class ContactoComponent implements OnInit {
     Router: Router
   ) { }
 
- 
+
 
   public consultarcontactos(op: any) {
     //console.error(" El listado 1 " );
@@ -159,6 +165,15 @@ export class ContactoComponent implements OnInit {
     );
   }
 
+  // -----------------------------------------------------------------------------------------
+  //MOSTRAR LOS EMPLEADOS DISPONIBLES
+  public consultarEmpleados() {
+    this.juguetesService.getEmpleados ().subscribe((data: any) =>
+    {
+      this.comboListEmplo = JSON.parse(data);
+
+    });
+  }
 
   // -----------------------------------------------------------------------------------------
   // Inserta un nuevo Contacto.

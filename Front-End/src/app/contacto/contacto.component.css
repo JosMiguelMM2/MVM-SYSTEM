@@ -71,10 +71,17 @@ html{
 
 .principal {
     background: linear-gradient(to right, #0f2027, #4ec2e9, #2c5364);
-  
+
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-  
+
   }
+
+span{
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-bottom: 20px;
+}
