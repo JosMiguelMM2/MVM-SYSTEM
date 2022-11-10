@@ -229,4 +229,10 @@ export class JuguetesService {
  getTipProJuguetes(): Observable<any> {
     return this.http.get(this.Url + '/tipProJuguete', httpOptions);
   }
+
+  //BUSCAR POR ID getTipProJuguetei
+  getTipProJuguetei(id: any): Observable<any> {
+    console.log(this.Url + '/tipProJuguete' + id)
+    return this.http.get(this.Url + '/tipProJuguete' + id, httpOptions);
+  }
 }

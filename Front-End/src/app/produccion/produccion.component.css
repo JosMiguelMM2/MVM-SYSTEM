@@ -20,3 +20,15 @@ html {
   text-align: center;
   background-color: #3691b4;
 }
+
+.botonlimpiarp, .botonMostrarp {
+  margin-left: 2rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  width: 14rem;
+  height: 5rem;
+  border-radius: 1rem 1rem 1rem 1rem;
+  background-color: #0d6f98;
+
+
+}
