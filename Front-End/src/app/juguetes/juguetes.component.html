@@ -107,7 +107,7 @@
                     <th class="b">{{tJuguete.Tipo_Jugete}}  </th>
                     <th class="b">{{tJuguete.Nombre_juguete}}  </th>
                     <th class="b">{{tJuguete.tama_juguete}}  </th>
-                    <th class="b">{{tJuguete.Color_Jugete}}  </th>
+                    <th class="b">{{tJuguete.Color_Jugetes}}  </th>
               
                 </tr>
             </tbody> 
@@ -161,6 +161,62 @@
 
   </div>
   <br><br><br><br>
+
+  <div class="edit" id="header2">
+    <h2>Juguete a modificar</h2>
+    <br>
+    <form (ngSubmit)="buscarEditarTipJuguete()" [formGroup]="ActualizarATipJuguete">
+      
+     Juguete modificar:
+        <select class="dropdown" formControlName="BuscarIdTipJuguete" (click)="consultaJuguetes(3)">
+            <option  hidden [selected]="true">Juguete a Buscar</option>
+            <option *ngFor="let TipDoc of comboEditarTipJuguete"[value]="TipDoc.Id_juguetes">
+              {{TipDoc.Id_juguetes}} - {{TipDoc.Nombre_juguete}}
+            </option>
+        </select>
+        <br><br>
+        <button type="submit" class="btn btn-outline-dark" (click)="ListComboTipoProducto()"  (click)="ListCombocolor()">Buscar Juguete a Modificar</button>
+        <br><br>
+        <h4>{{TituloTipJugueteEdit}}</h4>
+        <br>
+        
+
+              <li *ngFor="let Doc of MiTipJugueteE">
+                Tipo de Jugute
+                <select class="dropdown" formControlName="textnuevotipoProducto"  
+                    [(ngModel)]="Doc.tipo_producto"  >
+                   
+                    <option *ngFor="let equ of comboListaTipoProducto" [value]="equ.Id_catalogo_universal">
+                    {{equ.Id_catalogo_universal}} - {{equ.denominacion_universal}}
+                    </option>              
+                </select>
+                <br><br> 
+                nombre material
+                <label for="N2Persona"><input type="text" name="N2Persona" id="N2Persona" 
+                value={{Doc.Nombre_juguete}} [(ngModel)]="Doc.Nombre_juguete" formControlName="textnuevoNomJuguete" ></label>
+                <br><br> 
+                Cantidad Peso gr 
+                <label for="CanPeso"><input type="text" name="CanPeso" id="CanPeso" 
+                value={{Doc.tama_juguete}} [(ngModel)]="Doc.tama_juguete" formControlName="textnuevoTamaJuguete"></label>
+                <br><br>
+                Nuevo Color
+                <select class="dropdown" formControlName="textnuevocolorJugete"
+                    [(ngModel)]="Doc.color_jugete"  >
+                    <option *ngFor="let equ of comboListaColor" [value]="equ.Id_catalogo_universal">
+                    {{equ.Id_catalogo_universal}} - {{equ.denominacion_universal}}
+                    </option>
+                </select>  
+                <br><br> 
+                
+               
+               
+        </li>
+        <br>
+        <button (click)="ActualizarTipJuguete()"class="btn btn-outline-dark">Actualizar</button>
+      
+      </form>
+    <br>
+</div>
 
        <!--*************************************************************************-->
     <!-- se incluye el link para la otra página -->

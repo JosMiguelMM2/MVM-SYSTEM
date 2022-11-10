@@ -58,7 +58,15 @@ filtrarTipJuguete =  new FormGroup(
       textTamanoJuguete:new FormControl(),
       textcolor:new FormControl(),
     });
-
+    ActualizarATipJuguete =  new FormGroup(
+      {
+        BuscarIdTipJuguete:new FormControl(),
+        textnuevotipoProducto: new FormControl(), 
+        textnuevoNomJuguete:new FormControl(),
+        textnuevoTamaJuguete:new FormControl(),
+        textnuevocolorJugete:new FormControl(),
+        
+        });
   constructor(
     private formBuilder: FormBuilder,
     private servi: JuguetesService,
@@ -79,7 +87,7 @@ filtrarTipJuguete =  new FormGroup(
       this.tablaJuguete[0] = 'Indicador';
       this.tablaJuguete[1] = 'Denominación';
       this.tablaJuguete[2] = 'Nombre Juguete';
-      this.tablaJuguete[3] = 'Tamaño';
+      this.tablaJuguete[3] = 'Tamaño cm';
       this.tablaJuguete[4] = 'Color';
 
     });
@@ -123,7 +131,7 @@ public consultaJuguetes(op:any)
             this.tablaJuguete[0] = "indicador";
             this.tablaJuguete[1] = "Denominación";
             this.tablaJuguete[2] = "Nombre Juguete";
-            this.tablaJuguete[3] = "Tamaño";
+            this.tablaJuguete[3] = "Tamaño cm ";
             this.tablaJuguete[4] = "Color";
 
             //console.error(" El listado 3 " + this.TipDocs);
@@ -233,6 +241,56 @@ public buscarTipJuguete()
     });
     this.InsertarGTipJuguete.reset();
 }
+//----------------------------------------------------------------------------
+// Consulta un tipo de documento por medio de su id para editarlo
+
+buscarEditarTipJuguete() 
+{
+  if ( this.BuscarEvalor != 0)
+  {
+    this.BuscarEvalor = this.ActualizarATipJuguete.getRawValue()['BuscarIdTipJuguete'];
+    //console.error(" dos el filtro " + this.BuscarEvalor);
+  }
+  //console.error(" tres el filtro " + this.BuscarEvalor);
+
+  this.servi.getTipJuguetes('/' + this.BuscarEvalor).subscribe((data: {}) => {
+
+    this.MiTipJugueteE = data; 
+    this.TituloTipJugueteEdit = "Juguete A EDITAR";
+       
+    console.log("inten 159 "+ this.MiTipJugueteE[0].tipo_producto )
+    console.log("inten 158 "+ this.MiTipJugueteE[0].color_jugete)
+  }, error => { console.log(error) });
+
+}
+//--------------------------------------------------------------
+// Actualiza el Tipo de Material 
+
+public ActualizarTipJuguete() 
+{
+  var nuevoinitipTipProducto = this.ActualizarATipJuguete.getRawValue()['textnuevotipoProducto'];
+  var nuevoiniNomJuguete = this.ActualizarATipJuguete.getRawValue()['textnuevoNomJuguete'];
+  var nuevoiniTamaJuguete = this.ActualizarATipJuguete.getRawValue()['textnuevoTamaJuguete'];
+  var nuevoiniColorJugute = this.ActualizarATipJuguete.getRawValue()['textnuevocolorJugete'];
+   //console.log("dat 158 "+ nuevotipIdMate)
+  var cadena = { "Id_juguetes": this.BuscarEvalor,"tipo_producto":nuevoinitipTipProducto , 
+  "Nombre_juguete":nuevoiniNomJuguete,  "tama_juguete":nuevoiniTamaJuguete, 
+  "color_jugete":nuevoiniColorJugute};
+  //console.log("actu 123" + nuevotipIdMate)
+  this.servi.updateTipJugute(cadena).then
+    (
+      res => {
+        console.log("res  ",res)
+      }
+    ).catch(err => {
+      console.log(err)
+    });
+
+    this.BuscarEvalor = 0;
+    this.ActualizarATipJuguete.reset();
+}
+
+
   ngOnInit(): void {
     this.ListaJuguetes = this.formBuilder.group(
       {
@@ -254,6 +312,15 @@ public buscarTipJuguete()
           textcolor:[],
         });    
         this.formBuilder.group
-  }
 
+        this.ActualizarATipJuguete = this.formBuilder.group(
+          {
+            BuscarIdTipJuguete:[],
+            textnuevotipoProducto: [], 
+            textnuevoNomJuguete:[],
+            textnuevoTamaJuguete:[],
+            textnuevocolorJugete:[],
+          });
+          this.formBuilder.group
+  }
 }

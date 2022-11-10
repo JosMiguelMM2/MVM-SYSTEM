@@ -71,6 +71,12 @@ filtrarTipMaterial =  new FormGroup(
         textnuevoNombreMaterial:new FormControl(),
         
         });
+    BuscarATipInforme2 =  new FormGroup(
+      {
+        BuscarFechainicial:new FormControl(),
+        BuscarFechaFinal:new FormControl(),
+        
+        });
   constructor(
     private formBuilder: FormBuilder,
     private servi: JuguetesService,
@@ -292,6 +298,27 @@ public ActualizarTipMaterial()
     this.BuscarEvalor = 0;
     this.ActualizarATipMaterial.reset();
 }
+//-----------informe 2-----------------
+buscarInforme2() 
+{
+  if ( this.BuscarEvalor != 0)
+  {
+    this.BuscarEvalor = this.ActualizarATipMaterial.getRawValue()['BuscarIdTipMaterial'];
+    //console.error(" dos el filtro " + this.BuscarEvalor);
+  }
+  //console.error(" tres el filtro " + this.BuscarEvalor);
+
+  this.servi.getTipMaterial('/' + this.BuscarEvalor).subscribe((data: {}) => {
+
+    this.MiTipMaterialE = data; 
+    this.TituloTipMaterialEdit = "MATERIAL A EDITAR";
+       
+    console.log("inten 159 "+ this.MiTipMaterialE[0].clase_material )
+    console.log("inten 158 "+ this.MiTipMaterialE[0].color_material)
+  }, error => { console.log(error) });
+
+}
+
   ngOnInit(): void {
     this.ListaMaterial = this.formBuilder.group(
       {

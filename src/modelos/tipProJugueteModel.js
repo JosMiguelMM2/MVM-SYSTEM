@@ -75,7 +75,7 @@ tipProJugueteModel.getTipProJuguetei = function (id, callback) {
             + " pj.`Fecha_produccion`, "
             + " pj.`Detalles_produccion`,"
             + " pj.`Errores_produccion`, "
-            + " mat.nombre_material` "
+            + " mat.`nombre_material` "
             + " FROM `th_produccion_juguetes` AS pj"
             + " INNER JOIN `tb_empleados` AS h ON pj.`empleados_Produccion` = h.`Id_empleados`"
             + " INNER JOIN `tb_empleados` AS i ON pj.`empleados_Produccion` = i.`Id_empleados`"
@@ -177,9 +177,9 @@ tipProJugueteModel.getTipProJuguetef = function (Finicio, Ffinal, callback) {
             if (error) {
                 throw error;
             } else {
-                //callback(null, row);
+                callback(null, row);
                 //comvierte las filas Json a una cadena de texto para Angular
-                callback(null, JSON.stringify(rows));
+                //callback(null, JSON.stringify(rows));
             }
         });
     }

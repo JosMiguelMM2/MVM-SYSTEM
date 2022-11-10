@@ -185,6 +185,12 @@ export class JuguetesService {
         .toPromise();
     });
   }
+  // metodo modificar Juguete
+  async updateTipJugute(cadena: any): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.put(this.Url + '/tipJuguete', cadena, httpOptions).toPromise();
+    });
+  }
   //materiales *****************************************
   getTipMateriales(): Observable<any> {
     return this.http.get(this.Url + '/tipMaterial', httpOptions);
