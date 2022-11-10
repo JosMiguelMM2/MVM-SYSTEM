@@ -1,5 +1,5 @@
 <html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
-  <body class="principal">
+<body class="principal">
 <head>
   <title></title>
 </head>
@@ -17,21 +17,21 @@
       <h2>{{ TituloContacto }}</h2>
       <table class="tabla1">
         <thead>
-          <th>{{ TablaContacto[0] }}</th>
-          <th>{{ TablaContacto[1] }}</th>
-          <th>{{ TablaContacto[2] }}</th>
-          <th>{{ TablaContacto[3] }}</th>
-          <th>{{ TablaContacto[4] }}</th>
+        <th>{{ TablaContacto[0] }}</th>
+        <th>{{ TablaContacto[1] }}</th>
+        <th>{{ TablaContacto[2] }}</th>
+        <th>{{ TablaContacto[3] }}</th>
+        <th>{{ TablaContacto[4] }}</th>
         </thead>
 
         <tbody>
-          <tr *ngFor="let tcont of Contactos">
-            <th>{{ tcont.Id_contactos }}</th>
-            <th>{{ tcont.Numero_Documento }}</th>
-            <th>{{ tcont.Persona }}</th>
-            <th>{{ tcont.Tipo_Contacto }}</th>
-            <th>{{ tcont.Dato_contacto }}</th>
-          </tr>
+        <tr *ngFor="let tcont of Contactos">
+          <th>{{ tcont.Id_contactos }}</th>
+          <th>{{ tcont.Numero_Documento }}</th>
+          <th>{{ tcont.Persona }}</th>
+          <th>{{ tcont.Tipo_Contacto }}</th>
+          <th>{{ tcont.Dato_contacto }}</th>
+        </tr>
         </tbody>
       </table>
     </form>
@@ -62,21 +62,21 @@
 
     <table class="tabBuscar">
       <thead class="Colb">
-        <th class="b">{{ TabBusContacto[0] }}</th>
-        <th class="b">{{ TabBusContacto[1] }}</th>
-        <th class="b">{{ TabBusContacto[2] }}</th>
-        <th class="b">{{ TabBusContacto[3] }}</th>
-        <th class="b">{{ TabBusContacto[4] }}</th>
+      <th class="b">{{ TabBusContacto[0] }}</th>
+      <th class="b">{{ TabBusContacto[1] }}</th>
+      <th class="b">{{ TabBusContacto[2] }}</th>
+      <th class="b">{{ TabBusContacto[3] }}</th>
+      <th class="b">{{ TabBusContacto[4] }}</th>
       </thead>
 
       <tbody class="Filb">
-        <tr class="b" *ngFor="let tcontab of MiContacto">
-          <th>{{ tcontab.Id_contactos }}</th>
-          <th>{{ tcontab.Numero_Documento }}</th>
-          <th>{{ tcontab.Persona }}</th>
-          <th>{{ tcontab.Tipo_Contacto }}</th>
-          <th>{{ tcontab.Dato_contacto }}</th>
-        </tr>
+      <tr class="b" *ngFor="let tcontab of MiContacto">
+        <th>{{ tcontab.Id_contactos }}</th>
+        <th>{{ tcontab.Numero_Documento }}</th>
+        <th>{{ tcontab.Persona }}</th>
+        <th>{{ tcontab.Tipo_Contacto }}</th>
+        <th>{{ tcontab.Dato_contacto }}</th>
+      </tr>
       </tbody>
     </table>
   </ul>
@@ -91,23 +91,27 @@
   <form (ngSubmit)="InsertarnuevoContacto()" [formGroup]="InsertarContacto">
     <h4>Nuevo Contacto</h4>
     <br>
+    <!--Empleado-->
+    <span>Empleado</span>
+    <select class="dropdown" formControlName="combofiltro2" (click)="consultarEmpleados()" formControlName="numberidempleados" >
+      <option value="value2">Seleccione tipo de Documento</option>
+      <option *ngFor="let TipEmple of comboListEmplo" [value]="TipEmple.Id_empleados">
+        {{TipEmple.Id_empleados}} - {{TipEmple.Persona}}
+      </option>
+    </select>
 
-    <label for="idcontacto">
-      <span>Numero de Id Empleado</span>
-      <input type="number" name="idcontacto" id="idcontacto" formControlName="numberidempleados" />
-    </label>
-
-    <br /><br />
-    <label for="idtipcontacto">
-      <span>Id tipo de Contacto</span>
-      <input type="number" name="idtipcontacto" id="idtipcontacto"
-        formControlName="numberidtipcontacto" maxlength="3" />
-    </label>
+    <span>Tipo de Contacto</span>
+    <select class="dropdown" formControlName="combofiltro2" (click)="ListTipoContacto()" formControlName="numberidtipcontacto" >
+      <option value="value2">Seleccione tipo Contacto</option>
+      <option *ngFor="let TipContac of comboTipoConta" [value]="TipContac.Id_catalogo_universal">
+        {{TipContac.Id_catalogo_universal}} - {{TipContac.denominacion_universal}}
+      </option>
+    </select>
 
 
     <label for="datocontacto">
       <span>Dato del Contacto</span>
-      <input type="text" name="datocontacto" id="datocontacto" formControlName="textdatocontacto" />
+      <input type="text" name="datocontacto" id="datocontacto" formControlName="textdatocontacto"/>
     </label>
 
     <button class="agregar-contacto" type="submit">
@@ -133,7 +137,7 @@
       </option>
     </select>
 
-    <br /><br />
+    <br/><br/>
     <button type="submit">Buscar Contacto a Editar</button>
 
     <h4>{{ TituloContactoEdit }}</h4>
@@ -142,20 +146,23 @@
 
       <label for="nidcontacto">
         <span>Numero de Id Empleado</span>
-        <input type="number" name="nidcontacto" id="nidcontacto" formControlName="nuidemple"  value="{{edit.Id_empleados}}" ngModel="edif.Id_empleados"/>
+        <input type="number" name="nidcontacto" id="nidcontacto" formControlName="nuidemple"
+               value="{{edit.Id_empleados}}" ngModel="edif.Id_empleados"/>
       </label>
 
-      <br /><br />
+      <br/><br/>
 
       <label for="nidtipcontacto">
         <span>Id tipo de Contacto</span>
         <input type="number" name="nidtipcontacto" id="nidtipcontacto"
-          formControlName="nuidtipcontac" maxlength="3" value="{{edit.Tipo_contacto}}" ngModel="edif.Tipo_contacto"/></label>
+               formControlName="nuidtipcontac" maxlength="3" value="{{edit.Tipo_contacto}}"
+               ngModel="edif.Tipo_contacto"/></label>
 
 
       <label for="datocontacto">
         <span>Dato del Contacto</span>
-        <input type="text" name="datocontacto" id="datocontacto" formControlName="nudatcontac" value="{{edit.Dato_contacto}}" ngModel="edif.Dato_contacto"   />
+        <input type="text" name="datocontacto" id="datocontacto" formControlName="nudatcontac"
+               value="{{edit.Dato_contacto}}" ngModel="edif.Dato_contacto"/>
 
       </label>
 
@@ -164,10 +171,11 @@
   </form>
 </div>
 
-<!--*************************************************************************-->
-<!-- se incluye el link para la otra página -->
-<div class="dir">
-  <h3><a routerLink="/Inicio">MENÚ INICIO</a></h3>
-</div>
-  </body>
+
+<!--boton para enviar a /Inicio-->
+<footer class="pie-de-pagina">
+  <button class="redirigue" routerLink="/Inicio">Menú inicio</button>
+</footer>
+
+</body>
 </html>

@@ -39,6 +39,9 @@ export class ProduccionComponent implements OnInit {
 
   ListaProduccion = new FormGroup({});
 
+  filtrarProduccion = new FormGroup({
+    combofiltro: new FormControl(),
+  });
 
   constructor(private formBuilder: FormBuilder,
               private juguetesService: JuguetesService,
@@ -49,7 +52,7 @@ export class ProduccionComponent implements OnInit {
     this.controlLista = 0;
   }
 
-  public getEmpaquetamiento(op: any) {
+  public getProduccion(op: any) {
     if (this.controlLista == 1) {
 
       this.juguetesService.getTipProJuguetes().subscribe((data: any) => {
@@ -57,7 +60,7 @@ export class ProduccionComponent implements OnInit {
         if (op == 1) {
 
           this.Produccion = JSON.parse(data);
-          this.TituloProducc = 'Lista de Producción';
+          this.TituloProduccion = 'Lista de Producción';
           this.TablaProduccion[0] = 'Id Empaque';
           this.TablaProduccion[1] = 'Empleados por producción';
           this.TablaProduccion[2] = 'Juguete Producido';
@@ -68,6 +71,18 @@ export class ProduccionComponent implements OnInit {
           this.TablaProduccion[7] = 'Material utilizado';
 
 
+        }else if (op==2){
+          this.comboListaProduccion = JSON.parse(data);
+          this.MiProduccion=null;
+          this.TituloProducc='';
+          this.TabBusProduccion[0] = '';
+          this.TabBusProduccion[1] = '';
+          this.TabBusProduccion[2] = '';
+          this.TabBusProduccion[3] = '';
+          this.TabBusProduccion[4] = '';
+          this.TabBusProduccion[5] = '';
+          this.TabBusProduccion[6] = '';
+          this.TabBusProduccion[7] = '';
         }
       })
     } else {
@@ -85,9 +100,39 @@ export class ProduccionComponent implements OnInit {
     }
   }
 
+  public buscarIdProduccion() {
+    let filtovalor = this.filtrarProduccion.getRawValue()['combofiltro'];
+    console.log('318    ' + filtovalor);
+    this.juguetesService.getTipProJuguetei('/' + filtovalor).subscribe(
+      (data: {}) => {
+        console.log('313    ' + filtovalor);
+
+        this.MiProduccion = data;
+        this.TituloProducc = 'Buscar Empaque por Id';
+        this.TabBusProduccion[0] = 'Id Empaque';
+        this.TabBusProduccion[1] = 'Empleados por producción';
+        this.TabBusProduccion[2] = 'Juguete Producido';
+        this.TabBusProduccion[3] = 'Fecha de Producción';
+        this.TabBusProduccion[4] = 'Detalle de Producción';
+        this.TabBusProduccion[5] = 'Errores de Producción';
+        this.TabBusProduccion[6] = 'Cantidad Producida';
+        this.TabBusProduccion[7] = 'Material utilizado';
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
   ngOnInit(): void {
     //LISTAR PRODUCCION
     this.ListaProduccion = this.formBuilder.group({});
-  }
 
+    //FILTRAR POR ID
+    this.filtrarProduccion = this.formBuilder.group({
+      combofiltro: [],
+    });
+  }
 }
+
+

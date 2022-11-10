@@ -89,13 +89,16 @@ export class EmpaquetamientoComponent implements OnInit {
           this.TabBusEmpaque[1] = '';
           this.TabBusEmpaque[2] = '';
           this.TabBusEmpaque[3] = '';
+
         } else if (op == 3) {
+
           this.comboEditarEmpaque = JSON.parse(data);
           this.MiEmpaqueE = null;
           this.TituloEmpaqueEdit = '';
           // this.ActualizarATipDoc.removeControl("textnuevotipdoc");
           // this.ActualizarATipDoc.removeControl("textnuevoinicialestipdoc");
           console.error(' El listado 5 ');
+
         }
       })
     } else {
@@ -133,7 +136,7 @@ export class EmpaquetamientoComponent implements OnInit {
     let datosvalo1 = this.InsertarEmpaque.getRawValue()['TipEmpa'];
     let datosvalo2 = this.InsertarEmpaque.getRawValue()['JugueteEmp'];
     let datosvalo3 = this.InsertarEmpaque.getRawValue()['EmpleaEmpa'];
-    
+
     let cadena = { "Tipo_Empaque": datosvalo1, "Juguete_Empaque": datosvalo2, "Empleado_Empaque": datosvalo3 };
      this.juguetesService.insertTipEmpaque(cadena).then
       (res => {
@@ -144,7 +147,7 @@ export class EmpaquetamientoComponent implements OnInit {
       });
     this.InsertarEmpaque.reset();
     console.log('318    ' + datosvalo1 + ' - ' + datosvalo2 + ' - ' + datosvalo3);
- 
+
   }
 
 
@@ -153,7 +156,7 @@ export class EmpaquetamientoComponent implements OnInit {
       this.BuscarEvalor = this.ActualizarEmpaque.getRawValue()['BuscarIdEmpaqueE'];
       //console.error(" dos el filtro " + this.BuscarEvalor);
     }
-    
+
     //console.error(" tres el filtro " + this.BuscarEvalor);
     //console.log(" aca 33 " + this.BuscarEvalor);
     this.juguetesService.getTipContac('/' + this.BuscarEvalor).subscribe((data: {}) => {
@@ -162,19 +165,19 @@ export class EmpaquetamientoComponent implements OnInit {
       this.TituloEmpaqueEdit = "TIPO DE EMPAQUE A EDITAR";
       console.log("hasta aqui va bien "+ this.BuscarEvalor);
     }, error => { console.log(error) });
-    
+
   }
 
   //ACTUALIZAR EMPAQUE
   public ActualizarEmpaqueM() {
-    
+
     let TipoEmpaqueEdit= this.ActualizarEmpaque.getRawValue()['TipEmpaE'];
     let JugueteEmpaqueEdit = this.ActualizarEmpaque.getRawValue()['JugueteEmpE'];
     let EmpleadoEmpaqueEdit = this.ActualizarEmpaque.getRawValue()['EmpleaEmpaE'];
 
     let cadenaup = { "Id_Empaque": this.BuscarEvalor, "Tipo_Empaque": TipoEmpaqueEdit, "Juguete_Empaque": JugueteEmpaqueEdit, "Empleado_Empaque": EmpleadoEmpaqueEdit };
-    
-    
+
+
     this.juguetesService.updateTipEmpaque(cadenaup).then
       (
         res => {
@@ -183,7 +186,7 @@ export class EmpaquetamientoComponent implements OnInit {
       ).catch(err => {
         console.log(err)
       });
-      
+
     this.BuscarEvalor = 0;
     this.ActualizarEmpaque.reset();
 

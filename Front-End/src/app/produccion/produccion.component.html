@@ -4,11 +4,11 @@
   <h1 class="titulo1">{{ title }}</h1>
 
   <div class="contenedor">
-    <form (ngSubmit)="getEmpaquetamiento(1)" [formGroup]="ListaProduccion">
-      <button type="submit">Mostrar lista de Producción</button>
-      <button (click)="LimpiarLista()">Limpiar Lista</button>
+    <form (ngSubmit)="getProduccion(1)" [formGroup]="ListaProduccion">
+      <button class="botonMostrarp" type="submit">Mostrar lista de Producción</button>
+      <button class="botonlimpiarp" (click)="LimpiarLista()">Limpiar Lista</button>
 
-      <h2 class="titulo2">{{TituloProducc}}</h2>
+      <h2 class="titulo2">{{TituloProduccion}}</h2>
 
       <table class="tabla-mostrarproduccion">
         <thead>
@@ -40,4 +40,20 @@
   </div>
 </main>
 
+
+//MOSTRAR UN SOLO DATO DE PRODUCCION
+<main class="mostrarporId">
+  <h2 class="titulo2">Buscar dato de Producción por Id</h2>
+
+  <form (ngSubmit)="buscarIdProduccion()" [formGroup]="filtrarProduccion">
+    <span>Eliga el Id de la Producción que quiere ver</span>
+    <select class="dropdown" formControlName="combofiltro" (click)="getProduccion(2)">
+      <option value="value1">ID de dato de Producción</option>
+
+      <option *ngFor="let TipPro of comboListaProduccion" [value]="TipPro.Id_produccion">
+        {{ TipPro.Id_produccion }} - {{ TipPro.Fecha_produccion}}
+      </option>
+    </select>
+  </form>
+</main>
 </html>
