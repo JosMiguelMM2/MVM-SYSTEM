@@ -9,14 +9,12 @@ html {
 }
 
 .principal {
-    background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+    background: linear-gradient(to right, #0f2027, #44c6f1, #2c5364);
    
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    width: 100vw;
-    height: 100vh;
 
 }
 
