@@ -84,7 +84,7 @@ tipCatalogoModel.getTipCatalogosa = function (cts, callback)
  
  // obtener contacto por tipo catalogo e id 
 
- tipCatalogoModel.getTipCatalogo = function (cts, id, callback)
+ tipCatalogoModel.getTipCatalogo = function (id, callback)
     {
         if(connection)
         {
@@ -101,8 +101,8 @@ tipCatalogoModel.getTipCatalogosa = function (cts, callback)
             +" cu.`catalogo_universal`"
             +" FROM `ct_catalogo_universal` AS cu "
             +" INNER JOIN `ct_catalogo_universal` AS a ON cu.catalogo_universal = a.Id_catalogo_universal"
-            +" WHERE cu.`catalogo_universal`= " + connection.escape(cts) + " AND cu.`Id_catalogo_universal` = "
-            + connection.escape(id) +";";
+            +" WHERE cu.`Id_catalogo_universal` = " + connection.escape(id) +";";
+           
 
             // console.log id
             // console.log("31 tal ";)

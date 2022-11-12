@@ -17,13 +17,13 @@ module.exports = function()
      //////////////////////////////////////////////////////////////////////////////
      // ID doble
 
-    router.get("/:cts/:id", function (req, res)
+    router.get("/ct/:id", function (req, res)
     {
         let id = req.params.id;
-        let cts = req.params.cts;
+      
         if(!isNaN(id))
         {
-            tipCatalogoModel.getTipCatalogo(cts, id, function (error, data)
+            tipCatalogoModel.getTipCatalogo( id, function (error, data)
             
             {
             if(typeof data !== 'undefined' && data.length > 0)

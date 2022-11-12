@@ -20,6 +20,7 @@ import { MaterialesComponent } from './materiales/materiales.component';
 import { EmpaquetamientoComponent } from './empaquetamiento/empaquetamiento.component';
 import { ProduccionComponent } from './produccion/produccion.component';
 import { MaterialesJuguetesComponent } from './materiales-juguetes/materiales-juguetes.component';
+import { InformesComponent } from './informes/informes.component';
 
 const appRoutes: Routes = [
   { path: '', pathMatch: 'prefix', redirectTo: 'Inicio' },
@@ -60,7 +61,7 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, MenuInicioComponent, ContactoComponent, EmpleadoComponent, CatalogoComponent, JuguetesComponent, MaterialesComponent, EmpaquetamientoComponent, ProduccionComponent, MaterialesJuguetesComponent],
+  declarations: [AppComponent, MenuInicioComponent, ContactoComponent, EmpleadoComponent, CatalogoComponent, JuguetesComponent, MaterialesComponent, EmpaquetamientoComponent, ProduccionComponent, MaterialesJuguetesComponent, InformesComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -24,7 +24,13 @@ export class CatalogoComponent implements OnInit {
   TituloTipCatalogo = "";              //Titulo de Tipo de Documento Buscado
   TabBusTipCatalogo: any = [];        //Encabezados tabla Tipo de Documento Buscado
   comboListaTipCatalogo: any = [];     //Combo Buscar Tipo de Documento
-
+//total---------------------------
+MiTipCatalogost: any = [];             //Tipo de Documento Buscado
+  TituloTipCatalogost = "";              //Titulo de Tipo de Documento Buscado
+  TabBusTipCatalogost: any = [];        //Encabezados tabla Tipo de Documento Buscado
+  comboListaCatalogost: any = [];
+  comboListaDocumt: any = [];
+//------------------------
   MiTipCatalogos: any = [];             //Tipo de Documento Buscado
   TituloTipCatalogos = "";              //Titulo de Tipo de Documento Buscado
   TabBusTipCatalogos: any = [];        //Encabezados tabla Tipo de Documento Buscado
@@ -60,6 +66,8 @@ export class CatalogoComponent implements OnInit {
   comboListaContacto: any = [];
   TituloTipContacto: any = [];
   TabBusTipContacto: any = [];
+
+  MiTipCatalogoUnico: any = [];
 //editar-------------------------
   TituloTipCatalogoEdit = "";          //Titulo de Tipo de Documento a Editar
   MiTipCatalogoE: any = [];            //Tipo de Documento a Editar
@@ -106,6 +114,10 @@ export class CatalogoComponent implements OnInit {
     {
       combofiltroContacto: new FormControl()
     });
+  filtrarTipCatalogoTotal = new FormGroup(
+    {
+      combofiltroTotal: new FormControl()
+    });
   InsertarGTipCatalogo = new FormGroup(
     {
       combofiltro: new FormControl(),
@@ -113,7 +125,13 @@ export class CatalogoComponent implements OnInit {
       textCatalogo: new FormControl(),
 
     });
-
+    ActualizarATipCatalogo =  new FormGroup(
+      {
+        BuscarIdTipCatalogo:new FormControl(),
+        textnuevoDenominacion: new FormControl(),
+        textnuevoCatalogo:new FormControl(),
+        
+        });
 
   constructor(
     private formBuilder: FormBuilder,
@@ -143,11 +161,23 @@ export class CatalogoComponent implements OnInit {
   }
 
 //filtros listas
+public ListComboCatalogoT() {
+  this.servi.getTipCatalogoE('/').subscribe((data: {}) => {
+      this.comboListaCatalogost = data;
+      console.log("por aca catalogo 223 " + this.comboListaCatalogost.denominacion_universal)
+    },
+    error => {
+      console.log(error)
+    });
+};
+
 //-----catalogos----
   public ListComboCatalogo() {
     this.servi.getTipCatalogoE('/' + 1).subscribe((data: {}) => {
         this.comboListaCatalogos = data;
         console.log("por aca 23 " + this.comboListaCatalogos.denominacion_universal)
+        console.log("por aca 2153 " + data)
+
       },
       error => {
         console.log(error)
@@ -224,7 +254,7 @@ export class CatalogoComponent implements OnInit {
   public ListComboTipoContacto() {
     this.servi.getTipCatalogoE('/' + 6).subscribe((data: {}) => {
         this.comboListaContacto = data;
-        console.log("por aca 23 " + this.comboListaContacto.denominacion_universal)
+        console.log("por aca 2452 " + this.comboListaContacto.denominacion_universal)
       },
       error => {
         console.log(error)
@@ -266,6 +296,7 @@ export class CatalogoComponent implements OnInit {
             // this.ActualizarATipDoc.removeControl("textnuevotipdoc");
             // this.ActualizarATipDoc.removeControl("textnuevoinicialestipdoc");
             console.error(" El listado 5 ");
+            console.log(" El listado 15 " + this.comboEditarTipCatalogo[0].denominacion_universal);
           }
 
         },
@@ -330,7 +361,7 @@ export class CatalogoComponent implements OnInit {
   public buscarTipCatalogo2() {
     var filtovalor = this.filtrarTipCatalogoD.getRawValue()['combofiltro2'];
 
-    this.servi.getTipCatalogosa('/' + 2 + '/' + filtovalor).subscribe((data: {}) => {
+    this.servi.getTipCatalogosa('/' + filtovalor).subscribe((data: {}) => {
         this.MiTipCatalogos = data;
         this.TituloTipCatalogos = "TIPO Catalogo SELECCIONADO";
         this.TabBusTipCatalogos[0] = "indicador";
@@ -349,7 +380,7 @@ export class CatalogoComponent implements OnInit {
   public buscarTipCatalogoCargos() {
     var filtovalor = this.filtrarTipCatalogoCargo.getRawValue()['combofiltroCargo'];
 
-    this.servi.getTipCatalogosa('/' + 3 + '/' + filtovalor).subscribe((data: {}) => {
+    this.servi.getTipCatalogosa('/' + filtovalor).subscribe((data: {}) => {
         this.MiTipCatalogoCar = data;
         this.TituloTipCargo = "TIPO Catalogo SELECCIONADO";
         this.TabBusTipCargo[0] = "indicador";
@@ -365,7 +396,7 @@ export class CatalogoComponent implements OnInit {
   public buscarTipCatalogoColor() {
     var filtovalor = this.filtrarTipCatalogoColor.getRawValue()['combofiltroColor'];
 
-    this.servi.getTipCatalogosa('/' + 15 + '/' + filtovalor).subscribe((data: {}) => {
+    this.servi.getTipCatalogosa('/' + filtovalor).subscribe((data: {}) => {
         this.MiTipCatalogoColor = data;
         this.TituloTipColor = "TIPO Catalogo SELECCIONADO";
         this.TabBusTipColor[0] = "indicador";
@@ -381,7 +412,7 @@ export class CatalogoComponent implements OnInit {
   public buscarTipCatalogoTipoProducto() {
     var filtovalor = this.filtrarTipCatalogoTipoProducto.getRawValue()['combofiltroTipoProducto'];
 
-    this.servi.getTipCatalogosa('/' + 17 + '/' + filtovalor).subscribe((data: {}) => {
+    this.servi.getTipCatalogosa('/' + filtovalor).subscribe((data: {}) => {
         this.MiTipCatalogoTipoProducto = data;
         this.TituloTipTipoProducto = "TIPO Catalogo SELECCIONADO";
         this.TabBusTipTipoProducto[0] = "indicador";
@@ -397,7 +428,7 @@ export class CatalogoComponent implements OnInit {
   public buscarTipCatalogoMaterial() {
     var filtovalor = this.filtrarTipCatalogoMaterial.getRawValue()['combofiltroMaterial'];
 
-    this.servi.getTipCatalogosa('/' + 28 + '/' + filtovalor).subscribe((data: {}) => {
+    this.servi.getTipCatalogosa('/' + filtovalor).subscribe((data: {}) => {
         this.MiTipCatalogoMaterial = data;
         this.TituloTipMaterial = "TIPO Catalogo SELECCIONADO";
         this.TabBusTipMaterial[0] = "indicador";
@@ -413,7 +444,7 @@ export class CatalogoComponent implements OnInit {
   public buscarTipCatalogoEmpaque() {
     var filtovalor = this.filtrarTipCatalogoEmpaque.getRawValue()['combofiltroEmpaque'];
 
-    this.servi.getTipCatalogosa('/' + 38 + '/' + filtovalor).subscribe((data: {}) => {
+    this.servi.getTipCatalogosa('/' + filtovalor).subscribe((data: {}) => {
         this.MiTipCatalogoEmpaque = data;
         this.TituloTipEmpaque = "TIPO Catalogo SELECCIONADO";
         this.TabBusTipEmpaque[0] = "indicador";
@@ -429,7 +460,7 @@ export class CatalogoComponent implements OnInit {
   public buscarTipCatalogoContacto() {
     var filtovalor = this.filtrarTipCatalogoContacto.getRawValue()['combofiltroContacto'];
 
-    this.servi.getTipCatalogosa('/' + 6 + '/' + filtovalor).subscribe((data: {}) => {
+    this.servi.getTipCatalogosa('/' + filtovalor).subscribe((data: {}) => {
         this.MiTipCatalogoContacto = data;
         this.TituloTipContacto = "TIPO Catalogo SELECCIONADO";
         this.TabBusTipContacto[0] = "indicador";
@@ -441,7 +472,21 @@ export class CatalogoComponent implements OnInit {
         console.log(error)
       });
   }
-
+  public buscarCatalogoUnico() {
+    var filtovalor = this.ActualizarATipCatalogo.getRawValue()['BuscarIdTipCatalogo'];
+    console.log("lista 1547 "+ filtovalor)
+    this.servi.getTipCatalogosa('/' + filtovalor).subscribe((data: {}) => {
+        this.MiTipCatalogoUnico = data;
+        this.TituloTipContacto = "TIPO Catalogo SELECCIONADO";
+        this.TabBusTipContacto[0] = "indicador";
+        this.TabBusTipContacto[1] = "Denominacion";
+        this.TabBusTipContacto[2] = "Grupo";
+        this.TabBusTipContacto[3] = "indicador de Grupo";
+      },
+      error => {
+        console.log(error)
+      });
+  }
 //--------------------------------------------------------------
   //Para insertar un nuevo elemento a catalogo
 
@@ -463,6 +508,53 @@ export class CatalogoComponent implements OnInit {
     this.InsertarGTipCatalogo.reset();
   }
 
+  //----------------------------------------------------------------------------
+// Consulta un tipo de documento por medio de su id para editarlo
+
+buscarEditarTipCatalogo() 
+{
+  if ( this.BuscarEvalor != 0)
+  {
+    this.BuscarEvalor = this.ActualizarATipCatalogo.getRawValue()['BuscarIdTipCatalogo'];
+    //console.error(" dos el filtro " + this.BuscarEvalor);
+  }
+  //console.error(" tres el filtro " + this.BuscarEvalor);
+
+  this.servi.getTipCatalogoE('/' + this.BuscarEvalor).subscribe((data: {}) => {
+
+    this.MiTipCatalogoE = data; 
+    this.TituloTipCatalogoEdit = "Denominacion de catalogo A EDITAR";
+       
+    console.log("inten 159 "+ this.MiTipCatalogoE[0].catalogo_universal )
+    console.log("inten 158 "+ this.MiTipCatalogoE[0].Pertenece_a)
+  }, error => { console.log(error) });
+ 
+}
+//--------------------------------------------------------------
+// Actualiza el Tipo de Material 
+
+public ActualizarTipCatalogo() 
+{
+  var nuevoinitipDenominacion = this.ActualizarATipCatalogo.getRawValue()['textnuevoDenominacion'];
+  var nuevoiniColorCatalogo = this.ActualizarATipCatalogo.getRawValue()['textnuevoCatalogo'];
+  //console.log("dat 158 "+ nuevoinitipDenominacion)
+  //console.log("dat 159 "+ nuevoiniColorCatalogo)
+  //console.log("dat 158 "+ nuevoinitipDenominacion)
+
+  var cadena = { "Id_catalogo_universal": this.BuscarEvalor,"denominacion_universal":nuevoinitipDenominacion , "catalogo_universal":nuevoiniColorCatalogo};
+  //console.log("actu 123" + nuevotipIdMate)
+  this.servi.updateTipCatalogo(cadena).then
+    (
+      res => {
+        console.log("res  ",res)
+      }
+    ).catch(err => {
+      console.log(err)
+    });
+
+    this.BuscarEvalor = 0;
+    this.ActualizarATipCatalogo.reset();
+}
   ngOnInit(): void {
     this.ListaCatalogo = this.formBuilder.group(
       {});
@@ -500,6 +592,10 @@ export class CatalogoComponent implements OnInit {
       {
         combofiltroContacto: []
       });
+    this.filtrarTipCatalogoTotal = this.formBuilder.group(
+      {
+        combofiltroTotal: []
+      });
 
     this.InsertarGTipCatalogo = this.formBuilder.group(
       {
@@ -511,6 +607,14 @@ export class CatalogoComponent implements OnInit {
     this.formBuilder.group
     this.ListaCatalogoE = this.formBuilder.group(
       {});
+
+      this.ActualizarATipCatalogo = this.formBuilder.group(
+        {
+          BuscarIdTipCatalogo:[],
+          textnuevoDenominacion: [], 
+          textnuevoCatalogo:[],
+        });
+        this.formBuilder.group
   }
 
 }

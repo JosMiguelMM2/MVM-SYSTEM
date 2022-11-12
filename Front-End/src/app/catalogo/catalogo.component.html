@@ -499,6 +499,51 @@
 
   </div>
   <br><br><br><br>
+
+  <div class="edit" id="header2">
+    <h2>Catalogo o elemento a modificar</h2>
+    <br>
+    <form (ngSubmit)="buscarEditarTipCatalogo()" [formGroup]="ActualizarATipCatalogo">
+      
+     Catalogo a modificar:
+        <select class="dropdown" formControlName="BuscarIdTipCatalogo" (click)="consultaCatalogo(3)">
+            <option  hidden [selected]="true">Catalogo a Buscar</option>
+            <option *ngFor="let TipDoc of comboEditarTipCatalogo"[value]="TipDoc.Id_catalogo_universal">
+              {{TipDoc.Id_catalogo_universal}} - {{TipDoc.denominacion_universal}}
+            </option>
+        </select>
+        <br><br>
+        <button type="submit" class="btn btn-outline-dark" (click)="ListComboCatalogo()" (click)="buscarCatalogoUnico()">Buscar Catalogo a Modificar</button>
+        <br><br>
+        <h4>{{TituloTipCatalogoEdit}}</h4>
+        <br>
+        
+
+              <li *ngFor="let Doc of MiTipCatalogoUnico">
+                
+                Denominacion 
+                <label for="CanPeso"><input type="text" name="CanPeso" id="CanPeso" 
+                value={{Doc.denominacion_universal}} [(ngModel)]="Doc.denominacion_universal" formControlName="textnuevoDenominacion"></label>
+                <br><br>
+                
+                Tipo de catalogo
+                <select class="dropdown" formControlName="textnuevoCatalogo"  
+                    [(ngModel)]="Doc.catalogo_universal"  > 
+                   
+                      <option *ngFor="let equ of comboListaCatalogos" [value]="equ.Id_catalogo_universal">
+                        {{equ.Id_catalogo_universal}} - {{equ.denominacion_universal}}
+                        </option>
+                   
+                                 
+                </select>
+        </li>
+        <br>
+        <button (click)="ActualizarTipCatalogo()"class="btn btn-outline-dark">Actualizar</button>
+      
+      </form>
+    <br>
+</div>
+
        <!--*************************************************************************-->
     <!-- se incluye el link para la otra página -->
     <div id="borde">

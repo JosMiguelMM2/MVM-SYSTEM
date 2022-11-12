@@ -145,9 +145,9 @@ export class JuguetesService {
     return this.http.get(this.Url + '/tipCatalogo', httpOptions);
 }
 ////-------lista catalogos
-  getTipCatalogoE(id:any): Observable<any>
+  getTipCatalogoE(tip:any): Observable<any>
 {
-    return this.http.get(this.Url + '/tipCatalogo'+id, httpOptions);
+    return this.http.get(this.Url + '/tipCatalogo'+tip, httpOptions);
 }
  //insertar nuevo Catalogo
  async insertTipCatalogo(TipCatalogo: any): Promise<any> {
@@ -157,14 +157,19 @@ export class JuguetesService {
       .toPromise();
   });
 }
-
+// metodo modificar Catalogo
+async updateTipCatalogo(cadena: any): Promise<any> {
+  return new Promise((resolve, reject) => {
+    this.http.put(this.Url + '/tipCatalogo', cadena, httpOptions).toPromise();
+  });
+}
   //mostrar un solo Jugute
   getTipCatalogosa(id: any): Observable<any> {
 
     // console.log("  4555  ***** "+this.Url + "/tipContac"+id )
     // console.log("211    ");
-    console.log(this.Url + '/tipCatalogo' + id)
-    return this.http.get(this.Url + '/tipCatalogo' + id, httpOptions);
+    console.log(this.Url + '/tipCatalogo/ct' + id)
+    return this.http.get(this.Url + '/tipCatalogo/ct' + id, httpOptions);
   }
   /// JUGUETES********************************************
   getTipJuguetess(): Observable<any> {
