@@ -66,9 +66,7 @@ export class JuguetesService {
   // Método para modificar un  Contacto
 
   async updateTipContac(cadena: any): Promise<any> {
-    //console.log("33 " + cadena)
-    console.log("tales 60  " + cadena.Id_contactos + " - " + cadena.Id_empleados + " - " + cadena.Tipo_contacto + " - " + cadena.Dato_contacto, this.Url + "/tipdoc")
-
+    console.log("tales 60  " + cadena.Id_contactos + " - " + cadena.Id_empleados + " - " + cadena.Tipo_contacto + " - " + cadena.Dato_contacto)
     return new Promise((resolve, reject) => {
       this.http.put(this.Url + '/tipContac', cadena, httpOptions).toPromise();
     });

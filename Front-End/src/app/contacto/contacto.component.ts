@@ -214,14 +214,12 @@ export class ContactoComponent implements OnInit {
   buscarEditarContacto() {
     if (this.BuscarEvalor != 0) {
       this.BuscarEvalor = this.ActualizarContacto.getRawValue()['BuscarIdContactoE'];
-      //console.error(" dos el filtro " + this.BuscarEvalor);
     }
-
-    //console.error(" tres el filtro " + this.BuscarEvalor);
-    //console.log(" aca 33 " + this.BuscarEvalor);
     this.juguetesService.getTipContac('/' + this.BuscarEvalor).subscribe((data: {}) => {
 
       this.MiContactoE = data;
+      console.log( this.MiContactoE);
+
       this.TituloContactoEdit = "TIPO DE CONTACTO A EDITAR";
       console.log("hasta aqui va bien "+ this.BuscarEvalor);
     }, error => { console.log(error) });
