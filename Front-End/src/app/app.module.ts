@@ -57,6 +57,9 @@ const appRoutes: Routes = [
   {
     path: 'MaterialesJuguetes',
     component: MaterialesJuguetesComponent,
+  },
+  {path: 'Informe',
+    component: InformesComponent,
   }
 ];
 

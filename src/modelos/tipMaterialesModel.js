@@ -21,13 +21,27 @@ tipMaterialesModel.getTipMaterialess = function (callback)
         let sql = "SELECT "+ 
         " M.`Id_material`, " +
         " M.`nombre_material`," +
+        " pj.Fecha_produccion, "+
         " a.`denominacion_universal` AS 'Clase_material' ," +
         " c.`denominacion_universal` AS 'color_material' ,"+
-        " M.`cantidad_peso` as 'Peso_gr'"+        
+        " M.`cantidad_peso` as 'Peso_gr',"+  
+        " CONCAT( 'Material ',  M.nombre_material, ', cantidad usada  ', pj.Material_Utilizado, ', " +
+        "   detalles de produccion ', pj.Detalles_produccion ) AS 'Datos_material', "+
+        " CONCAT('Color ', ca.denominacion_universal, ' clase material ', caq.denominacion_universal ) AS 'Material' "  +    
         " FROM `tb_materiales` AS M"+
         " INNER JOIN `ct_catalogo_universal` AS a ON M.clase_material = a.`Id_catalogo_universal`"+
         " INNER JOIN `ct_catalogo_universal` AS c ON M.color_material = c.`Id_catalogo_universal`"+
+        " INNER JOIN `th_produccion_juguetes` AS pj  ON M.Id_material= pj.Id_produccion "+
+        " INNER JOIN `ct_catalogo_universal` AS ca ON M.color_material=ca.Id_catalogo_universal "+
+        " INNER JOIN `ct_catalogo_universal` AS caq ON M.clase_material=caq.Id_catalogo_universal "+
         " ORDER BY `nombre_material`"
+
+                
+             
+             
+            
+              //+" FROM `tb_materiales` AS p "
+           
         connection.query(sql, function (error, rows)
         {
             if (error)
@@ -105,7 +119,7 @@ tipMaterialesModel.getTipMaterialess = function (callback)
               + " pj.Fecha_produccion, "
               +" p.cantidad_peso, "
               +" CONCAT( 'Material ',  p.nombre_material, ', cantidad usada  ', pj.Material_Utilizado, ', " 
-              +"    detalles de produccion ', pj.Detalles_produccion ) AS 'Datos material', "
+              +"    detalles de produccion ', pj.Detalles_produccion ) AS 'Datos_material', "
               +" CONCAT('Color ', ca.denominacion_universal, ' clase material ', caq.denominacion_universal ) AS 'Material' "
               +" FROM `tb_materiales` AS p "
               +" INNER JOIN `th_produccion_juguetes` AS pj  ON p.Id_material= pj.Id_produccion "

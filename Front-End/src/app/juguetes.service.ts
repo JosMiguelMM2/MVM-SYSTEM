@@ -250,4 +250,15 @@ async updateTipCatalogo(cadena: any): Promise<any> {
     console.log(this.Url + '/tipProJuguete' + id)
     return this.http.get(this.Url + '/tipProJuguete' + id, httpOptions);
   }
+
+  //mostrar informes materiales
+  getTipInforme2(FechaIni:any,FechaFin:any): Observable<any> {
+    // console.log("  4555  ***** "+this.Url + "/tipContac"+id )
+    // console.log("211    ");
+    console.log(this.Url + '/tipMaterial'+FechaIni+"/"+FechaFin)
+    return this.http.get(this.Url+"/tipMaterial/"+FechaIni+"/"+FechaFin, httpOptions);
+  }
+  //getInformes():Observable<any>{
+   // return this.http.get(this.Url+"/tipMaterial", httpOptions);
+  //}
 }

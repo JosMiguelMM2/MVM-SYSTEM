@@ -137,7 +137,7 @@ if(this.controlLista == 1)
           //let dat = data;
        
           this.TipMaterial = JSON.parse(data);
-          this.TituloMaterial = "LISTA DE Juguetes";
+          this.TituloMaterial = "LISTA DE MATERIALES";
           this.tablaMaterial[0] = "indicador";
           this.tablaMaterial[1] = "Nombre Material";
           this.tablaMaterial[2] = "Clase Material";

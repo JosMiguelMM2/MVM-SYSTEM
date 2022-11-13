@@ -1,1 +1,89 @@
 <p>informes works!</p>
+
+<body class="principal">  
+    <div id="header">
+        <ul class="nav"> 
+            <li><a href="/Inicio"><h2>Menú</h2></a></li>
+            <li><a href="/Contactos"><h2>Contactos</h2></a></li>
+            <li><a href="/Empleados"><h2>Empleados</h2></a></li>
+            <li><a href="/Juguetes"><h2>Juguetes</h2></a></li>
+            <li><a href="/Empaque"><h2>Empaque</h2></a></li>
+            <li><a href="/Materiales"><h2>Materiales</h2></a></li>
+            <li><a href="/Catalogo"><h2>Catalogo</h2></a></li>
+            <li><a href="/MaterialesJuguetes"><h2>Materiales y juguetes</h2></a></li>
+            <li><a href="/Produccion"><h2>Produccion</h2></a></li>
+            
+        </ul>       
+    </div><br>
+<br>
+<div style="text-align:center" id="header2">
+    <h1>Informes</h1>
+</div>
+<br><br>
+    <div class="lista" id="header2">
+        <h2>Lista de Informes</h2>
+        <br>
+        <form (ngSubmit)="consultaMaterial(1)" [formGroup]="ListaMaterial" [formGroup]="ListaMaterial">
+            <button type="submit" style="margin-right: 30px" class="btn btn-outline-dark">Mostrar Lista de infomres</button>
+            
+
+            <br><br>
+            <h4>{{TituloMaterial}}</h4>
+            <table class="table table-striped">
+               <thead>
+                <th scope="col" class="text-cente">{{TablaInformes[0]}}</th>
+                <th scope="col" class="text-cente">{{TablaInformes[1]}}</th>
+                <th scope="col" class="text-cente">{{TablaInformes[2]}}</th>
+                <th scope="col" class="text-cente">{{TablaInformes[3]}}</th>
+                <th scope="col" class="text-cente">{{TablaInformes[4]}}</th>
+               </thead> 
+               <tbody>
+                  <tr *ngFor="let inf of Informes">
+                    <th scope="row" class="text-center">{{ inf.Id_material}}</th>
+                    <th scope="row" class="text-center">{{ inf.Fecha_produccion}}</th>
+                    <th scope="row" class="text-center">{{ inf.Peso_gr}}</th>
+                    <th scope="row" class="text-center">{{ inf.Datos_material}}</th>
+                    <th scope="row" class="text-center">{{ inf.Material}}</th>
+                  </tr> 
+               </tbody>
+            </table>
+        </form>
+    </div>
+    <br><br><br>
+    <div class="buscar" id="header2">
+        <h2>Informe de Materiales por periodo de tiempo:</h2>
+        <br><form (ngSubmit)="InformeMateriales()" [formGroup]="informe">
+            Fecha Inicial del Informe
+            <label for="fechain"><input type="date" name="fechain" id="fechain" formControlName="DateFechaI"></label>
+            <br><br>
+            Fecha Final del Informe
+            <label for="fechafi"><input type="date" name="fechafi" id="fechafi" formControlName="DateFechaF"></label>
+            <br><br>
+            <button type="submit"class="btn btn-outline-dark">Generar Informe de equipo</button>
+        </form>
+        <br><h2>{{TituloInforme}}</h2>
+        <table class="tabBuscar">
+            <thead class="Colb">
+                <th >{{TabBusInforme[0]}}</th>
+                <th >{{TabBusInforme[1]}}</th>
+                <th >{{TabBusInforme[2]}}</th>
+                <th >{{TabBusInforme[3]}}</th>
+                <th >{{TabBusInforme[4]}}</th>
+            </thead>
+            <tbody class="Filb">
+                <tr  *ngFor="let equ of Informe">
+                    <th >{{ equ.Id_material}} </th>
+                    <th >{{ equ.Fecha_produccion}} </th>
+                    <th >{{ equ.cantidad_peso}} </th>
+                    <th >{{ equ.Datos_material}} </th>
+                    <th>{{ equ.Material}} </th>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+    </div>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
