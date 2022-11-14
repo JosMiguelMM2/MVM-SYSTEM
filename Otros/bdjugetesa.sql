@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-10-2022 a las 07:05:37
--- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 8.1.6
+-- Tiempo de generación: 14-11-2022 a las 16:07:07
+-- Versión del servidor: 10.4.25-MariaDB
+-- Versión de PHP: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -39,23 +39,27 @@ CREATE TABLE `am_contactos` (
 --
 
 INSERT INTO `am_contactos` (`Id_contactos`, `Id_empleados`, `Tipo_contacto`, `Dato_contacto`) VALUES
-(1, 1, 8, 'luis@gmail.com'),
+(1, 9, 8, 'hugo@gmail.com'),
 (2, 2, 7, '3154789845'),
-(3, 3, 7, '3164781549'),
+(3, 14, 8, 'pruetatsts@gmail.com'),
 (4, 4, 7, '3154879122'),
 (5, 5, 8, 'claudia@gmail.com'),
-(6, 6, 7, '3457815925'),
-(7, 7, 8, 'elian@gmail.com'),
+(6, 8, 8, 'valeria@gmail.com'),
+(7, 5, 8, 'hola@gmail.com'),
 (8, 8, 7, '3225487414'),
-(9, 9, 7, '3124578915'),
-(10, 4, 8, 'Felipe@gmail.com'),
-(13, 1, 7, '3147845214'),
+(9, 5, 8, 'hola@gmail.com'),
+(10, 10, 8, 'alvaro@gmail.com'),
+(13, 3, 8, 'hola@gmail.com'),
 (14, 3, 8, 'rosas@gmail.com'),
 (15, 11, 8, 'luis@gmail.com'),
 (16, 10, 7, '3152487945'),
 (19, 2, 8, 'Carlos@gmail.com'),
 (20, 11, 7, '323454715'),
-(21, 10, 8, 'alvaro@gmail.com');
+(21, 10, 8, 'alvaro@gmail.com'),
+(22, 10, 8, 'correopara@gmail.com'),
+(35, 11, 8, 'priubaojlaquesirva@gmail.com'),
+(36, 14, 7, 'hola@gmail.com'),
+(37, 1, 7, '601345789');
 
 -- --------------------------------------------------------
 
@@ -113,7 +117,8 @@ INSERT INTO `ct_catalogo_universal` (`Id_catalogo_universal`, `denominacion_univ
 (38, 'Tipo Empaque', 1),
 (40, 'Caja carton', 38),
 (41, 'Bolsa plastica', 38),
-(42, 'Papel regalo', 38);
+(42, 'Papel regalo', 38),
+(43, 'Cedula de extrangeria', 2);
 
 -- --------------------------------------------------------
 
@@ -133,7 +138,7 @@ CREATE TABLE `empaquetamiento` (
 --
 
 INSERT INTO `empaquetamiento` (`Id_Empaque`, `Tipo_Empaque`, `Juguete_Empaque`, `Empleado_Empaque`) VALUES
-(1, 40, 2, 1),
+(1, 41, 5, 3),
 (2, 40, 5, 2),
 (3, 40, 7, 3),
 (4, 41, 9, 4),
@@ -143,7 +148,8 @@ INSERT INTO `empaquetamiento` (`Id_Empaque`, `Tipo_Empaque`, `Juguete_Empaque`, 
 (8, 42, 4, 10),
 (9, 42, 2, 13),
 (10, 42, 12, 7),
-(11, 42, 10, 4);
+(11, 42, 10, 4),
+(12, 40, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -170,7 +176,7 @@ CREATE TABLE `tb_empleados` (
 INSERT INTO `tb_empleados` (`Id_empleados`, `Id_catalogos_universal`, `nombre1_empleados`, `nombre2_empleados`, `apellido1_empleados`, `apellido2_empleados`, `tipodocu_empleados`, `numdoc_empleados`, `cargo_empleados`) VALUES
 (1, 4, 'Lius', 'Maria', 'Perez', 'Fonseca', 11932014, '1245214', 14),
 (2, 4, 'Carlos', 'Antonio', 'Perez', 'Prieto', 154835, '231456789', 5),
-(3, 4, 'Rosa', 'Mariaaaaaaa', 'Rodrigez', 'Fonseca', 1254786, '1245214', 5),
+(3, 4, 'Rosa', 'Mariaaaaaaa', 'Rodrigez', 'Fonseca', 1254786, '1245214', 10),
 (4, 4, 'Felipe', 'Sebastian', 'Paz', 'Ñandun', 4578962, '1245863', 11),
 (5, 4, 'Claudia', 'Valentina', 'Salazar', 'Fernandez', 1452014, '1479549', 13),
 (6, 4, 'Manuel', 'Adrian', 'Delgado', 'Garcia', 14576214, '1486514', 10),
@@ -180,7 +186,8 @@ INSERT INTO `tb_empleados` (`Id_empleados`, `Id_catalogos_universal`, `nombre1_e
 (10, 4, 'Alvaro', 'Javier', 'Peña', 'Garcia', 95147852, '2457896', 5),
 (11, 4, 'Carlos', 'Javier', 'Perez', 'Prieto', 154835, '231456789', 5),
 (12, 4, 'Maria', 'Luisa', 'Gonsalez ', 'Casares', 119320923, '214578', 5),
-(13, 4, 'carmen', 'Luisa', 'Lopez ', 'Suares', 11931483, '2159485', 5);
+(13, 4, 'carmen', 'Luisa', 'Lopez ', 'Suares', 11931483, '2159485', 5),
+(14, 4, 'maria', 'camila', 'vargas', 'lleras', 354222765, '67789', 5);
 
 -- --------------------------------------------------------
 
@@ -212,7 +219,8 @@ INSERT INTO `tb_juguetes` (`Id_juguetes`, `tipo_producto`, `Nombre_juguete`, `ta
 (9, 19, 'Figura de Accion', 7, 16),
 (10, 19, 'Muñecas Kachina', 6, 26),
 (11, 19, 'JEEP Mediano', 5, 16),
-(12, 19, 'barco', 10, 27);
+(12, 19, 'barco', 10, 27),
+(13, 18, 'Carro control remoto', 1, 27);
 
 -- --------------------------------------------------------
 
@@ -240,7 +248,9 @@ INSERT INTO `tb_materiales` (`Id_material`, `clase_material`, `color_material`, 
 (5, 33, 24, 11, 'Algodon'),
 (6, 31, 16, 16, 'PS'),
 (7, 33, 24, 11, 'seda'),
-(8, 33, 24, 15, 'Dacron Nacional');
+(8, 33, 24, 15, 'Dacron Nacional'),
+(9, 33, 25, 2, 'JEAN'),
+(10, 31, 24, 4, 'Prueba');
 
 -- --------------------------------------------------------
 
@@ -388,37 +398,37 @@ ALTER TABLE `tp_materiales_juguetes`
 -- AUTO_INCREMENT de la tabla `am_contactos`
 --
 ALTER TABLE `am_contactos`
-  MODIFY `Id_contactos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `Id_contactos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT de la tabla `ct_catalogo_universal`
 --
 ALTER TABLE `ct_catalogo_universal`
-  MODIFY `Id_catalogo_universal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `Id_catalogo_universal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT de la tabla `empaquetamiento`
 --
 ALTER TABLE `empaquetamiento`
-  MODIFY `Id_Empaque` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `Id_Empaque` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_empleados`
 --
 ALTER TABLE `tb_empleados`
-  MODIFY `Id_empleados` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `Id_empleados` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_juguetes`
 --
 ALTER TABLE `tb_juguetes`
-  MODIFY `Id_juguetes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `Id_juguetes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_materiales`
 --
 ALTER TABLE `tb_materiales`
-  MODIFY `Id_material` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `Id_material` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `th_produccion_juguetes`
