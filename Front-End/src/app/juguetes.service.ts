@@ -1,13 +1,14 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {
   HttpClient,
   HttpHeaders,
   HttpErrorResponse,
 } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { map, catchError, tap } from 'rxjs/operators';
+import {Observable, of} from 'rxjs';
+import {map, catchError, tap} from 'rxjs/operators';
+
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  headers: new HttpHeaders({'Content-Type': 'application/json'}),
 };
 
 @Injectable({
@@ -16,7 +17,8 @@ const httpOptions = {
 export class JuguetesService {
   private Url: string = 'http://localhost:3000';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   private extractData(res: Response) {
     //console.log("22    ");
@@ -73,8 +75,6 @@ export class JuguetesService {
   }
 
 
-
-
   // Método Listar Empaque
 
   getTipEmpaques(): Observable<any> {
@@ -114,6 +114,7 @@ export class JuguetesService {
   getEmpleados(): Observable<any> {
     return this.http.get(this.Url + '/tipEmpleado', httpOptions);
   }
+
   //mostrar un solo Empleado
   getTipEmpleado(id: any): Observable<any> {
     // console.log("  4555  ***** "+this.Url + "/tipContac"+id )
@@ -121,6 +122,7 @@ export class JuguetesService {
     console.log(this.Url + '/tipEmpleado' + id);
     return this.http.get(this.Url + '/tipEmpleado' + id, httpOptions);
   }
+
   //insertar nuevo Empleado
   async insertTipEmpleado(TipEmpleados: any): Promise<any> {
     return new Promise((resolve, reject) => {
@@ -129,38 +131,42 @@ export class JuguetesService {
         .toPromise();
     });
   }
+
   // metodo modificar empleado
   async updateTipEmpleado(cadena: any): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.put(this.Url + '/tipEmpleado', cadena, httpOptions).toPromise();
     });
   }
+
   ///////////////catalogo
   //---lista total
 
-  getTipCatalogos(): Observable<any>
-{
+  getTipCatalogos(): Observable<any> {
     return this.http.get(this.Url + '/tipCatalogo', httpOptions);
-}
+  }
+
 ////-------lista catalogos
-  getTipCatalogoE(tip:any): Observable<any>
-{
-    return this.http.get(this.Url + '/tipCatalogo'+tip, httpOptions);
-}
- //insertar nuevo Catalogo
- async insertTipCatalogo(TipCatalogo: any): Promise<any> {
-  return new Promise((resolve, reject) => {
-    this.http
-      .post(this.Url + '/tipCatalogo', TipCatalogo, httpOptions)
-      .toPromise();
-  });
-}
+  getTipCatalogoE(tip: any): Observable<any> {
+    return this.http.get(this.Url + '/tipCatalogo' + tip, httpOptions);
+  }
+
+  //insertar nuevo Catalogo
+  async insertTipCatalogo(TipCatalogo: any): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http
+        .post(this.Url + '/tipCatalogo', TipCatalogo, httpOptions)
+        .toPromise();
+    });
+  }
+
 // metodo modificar Catalogo
-async updateTipCatalogo(cadena: any): Promise<any> {
-  return new Promise((resolve, reject) => {
-    this.http.put(this.Url + '/tipCatalogo', cadena, httpOptions).toPromise();
-  });
-}
+  async updateTipCatalogo(cadena: any): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.put(this.Url + '/tipCatalogo', cadena, httpOptions).toPromise();
+    });
+  }
+
   //mostrar un solo Jugute
   getTipCatalogosa(id: any): Observable<any> {
 
@@ -169,10 +175,12 @@ async updateTipCatalogo(cadena: any): Promise<any> {
     console.log(this.Url + '/tipCatalogo/ct' + id)
     return this.http.get(this.Url + '/tipCatalogo/ct' + id, httpOptions);
   }
+
   /// JUGUETES********************************************
   getTipJuguetess(): Observable<any> {
     return this.http.get(this.Url + '/tipJuguete', httpOptions);
   }
+
   //mostrar un solo Jugute
   getTipJuguetes(id: any): Observable<any> {
     // console.log("  4555  ***** "+this.Url + "/tipContac"+id )
@@ -180,6 +188,7 @@ async updateTipCatalogo(cadena: any): Promise<any> {
     console.log(this.Url + '/tipJuguete' + id)
     return this.http.get(this.Url + '/tipJuguete' + id, httpOptions);
   }
+
   //insertar nuevo Juguete
   async insertTipJuguete(TipJuguete: any): Promise<any> {
     return new Promise((resolve, reject) => {
@@ -188,16 +197,19 @@ async updateTipCatalogo(cadena: any): Promise<any> {
         .toPromise();
     });
   }
+
   // metodo modificar Juguete
   async updateTipJugute(cadena: any): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.put(this.Url + '/tipJuguete', cadena, httpOptions).toPromise();
     });
   }
+
   //materiales *****************************************
   getTipMateriales(): Observable<any> {
     return this.http.get(this.Url + '/tipMaterial', httpOptions);
   }
+
   //mostrar un solo material
   getTipMaterial(id: any): Observable<any> {
     // console.log("  4555  ***** "+this.Url + "/tipContac"+id )
@@ -205,6 +217,7 @@ async updateTipCatalogo(cadena: any): Promise<any> {
     console.log(this.Url + '/tipMaterial' + id)
     return this.http.get(this.Url + '/tipMaterial' + id, httpOptions);
   }
+
   //insertar nuevo Material
   async insertTipMaterial(TipMaterial: any): Promise<any> {
     return new Promise((resolve, reject) => {
@@ -213,16 +226,19 @@ async updateTipCatalogo(cadena: any): Promise<any> {
         .toPromise();
     });
   }
+
   // metodo modificar Material
   async updateTipMaterial(cadena: any): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http.put(this.Url + '/tipMaterial', cadena, httpOptions).toPromise();
     });
   }
+
   //materiales-juguete *****************************************
   getTipMaterialJuguetes(): Observable<any> {
     return this.http.get(this.Url + '/tipMaterialJuguete', httpOptions);
   }
+
   //mostrar un solo material
   getTipMaterialJuguete(id: any): Observable<any> {
     // console.log("  4555  ***** "+this.Url + "/tipContac"+id )
@@ -241,7 +257,7 @@ async updateTipCatalogo(cadena: any): Promise<any> {
 
   //metodo mostrar PRODUCCION
   //materiales *****************************************
- getTipProJuguetes(): Observable<any> {
+  getTipProJuguetes(): Observable<any> {
     return this.http.get(this.Url + '/tipProJuguete', httpOptions);
   }
 
@@ -252,13 +268,14 @@ async updateTipCatalogo(cadena: any): Promise<any> {
   }
 
   //mostrar informes materiales
-  getTipInforme2(FechaIni:any,FechaFin:any): Observable<any> {
+  getTipInforme2(FechaIni: any, FechaFin: any): Observable<any> {
     // console.log("  4555  ***** "+this.Url + "/tipContac"+id )
     // console.log("211    ");
-    console.log(this.Url + '/tipMaterial'+FechaIni+"/"+FechaFin)
-    return this.http.get(this.Url+"/tipMaterial/"+FechaIni+"/"+FechaFin, httpOptions);
+    console.log(this.Url + '/tipMaterial' + FechaIni + "/" + FechaFin)
+    return this.http.get(this.Url + "/tipMaterial/" + FechaIni + "/" + FechaFin, httpOptions);
   }
+
   //getInformes():Observable<any>{
-   // return this.http.get(this.Url+"/tipMaterial", httpOptions);
+  // return this.http.get(this.Url+"/tipMaterial", httpOptions);
   //}
 }

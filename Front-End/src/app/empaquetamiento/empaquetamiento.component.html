@@ -1,18 +1,18 @@
 <html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
   <body class="principal">
     <div id="header">
-      <ul class="nav"> 
+      <ul class="nav">
         <li><a href="/Inicio"><h2>Menú</h2></a></li>
         <li><a href="/Contactos"><h2>Contactos</h2></a></li>
         <li><a href="/Empleados"><h2>Empleados</h2></a></li>
         <li><a href="/Juguetes"><h2>Juguetes</h2></a></li>
-       
+
         <li><a href="/Materiales"><h2>Materiales</h2></a></li>
         <li><a href="/Catalogo"><h2>Catalogo</h2></a></li>
         <li><a href="/MaterialesJuguetes"><h2>Materiales y juguetes</h2></a></li>
         <li><a href="/Produccion"><h2>Produccion</h2></a></li>
         <li><a href="/Informe"><h2>Informes</h2></a></li>
-      </ul>       
+      </ul>
   </div><br>
 <main class="mostrarlista">
     <h1 class="titulo1">{{title}}</h1>
@@ -52,21 +52,21 @@ CON ID -->
     <h2 class="titulo-2">Mostar el Empaquetamiendo seleccionado</h2>
 
     <form (ngSubmit)="getEmpaqueId()" [formGroup]="filtraridempaque">
-        <span>Id del Tipo de Contacto a mostrar</span>
+        <span>Id de Empaque a mostrar</span>
         <select class="dropdown" formControlName="combofiltro" (click)="getEmpaquetamiento(2)">
           <option value="value1">Tipo de Empaque</option>
-    
+
           <option *ngFor="let TipEmp of comboListaEmpaque" [value]="TipEmp.Id_Empaque">
             {{ TipEmp.Id_Empaque }} - {{ TipEmp.tipo_de_empaque}}
           </option>
         </select>
-    
+
         <button type="submit">Buscar Tipo Documento</button>
       </form>
-    
+
       <ul>
         <h2 class="titulo2">{{ TituloEmpaq}}</h2>
-    
+
         <table class="tabBuscar">
           <thead class="Colb">
             <th class="b">{{ TabBusEmpaque[0] }}</th>
@@ -74,7 +74,7 @@ CON ID -->
             <th class="b">{{ TabBusEmpaque[2] }}</th>
             <th class="b">{{ TabBusEmpaque[3] }}</th>
           </thead>
-    
+
           <tbody class="Filb">
             <tr class="b" *ngFor="let tempa of MiEmpaque">
               <th>{{ tempa.Id_Empaque }}</th>
@@ -92,25 +92,41 @@ CON ID -->
     <h2 class="titulo2">Registrar un nuevo empaque</h2>
 
   <form (ngSubmit)="InsertarEmpaqueM()" [formGroup]="InsertarEmpaque">
-    
 
-    <label for="Tipo-empaque">
-      <span>Numero de tipo de empaque</span>
-      <input type="number" name="Tipo-empaque" id="Tipo-empaque" formControlName="TipEmpa" />
-    </label>
 
-    
-    <label for="juguete-empaque">
-      <span>Empaque de Juguete</span>
-      <input type="number" name="juguete-empaque" id="juguete-empaque"
-        formControlName="JugueteEmp" />
-    </label>
 
-    
-    <label for="empleado-empaque">
+      <span>Tipo de empaque</span>
+    <select class="dropdown"  (click)="ListTipoEmpaque()"
+            formControlName="TipEmpa">
+      <option value="value2" >Seleccione tipo de Empaque</option>
+      <option *ngFor="let TipEmpa of comboTipoEmpaque" [value]="TipEmpa.Id_catalogo_universal">
+        {{TipEmpa.Id_catalogo_universal}} - {{TipEmpa.denominacion_universal}}
+      </option>
+    </select>
+
+
+
+    <span>Juguete del empaque </span>
+    <select class="dropdown"  (click)="ListaJuguetesEm()"
+            formControlName="JugueteEmp">
+      <option value="value2" >Seleccione el Juguete</option>
+      <option *ngFor="let TipJug of comboJugueteEmp" [value]="TipJug.Id_juguetes">
+        {{TipJug.Id_juguetes}} - {{TipJug.Nombre_juguete}}
+      </option>
+    </select>
+
+
+
+
       <span>Empleado encargado del empaque</span>
-      <input type="number" name="empleado-empaque" id="empleado-empaque" formControlName="EmpleaEmpa" />
-    </label>
+    <select class="dropdown" (click)="consultarEmpleadosEmp()"
+            formControlName="EmpleaEmpa">
+      <option value="value2" >Seleccione al empleado a cargo</option>
+      <option *ngFor="let TipEmpleEmpa of comboListEmploEmp" [value]="TipEmpleEmpa.Id_empleados">
+        {{TipEmpleEmpa.Id_empleados}} - {{TipEmpleEmpa.Persona}}
+      </option>
+    </select>
+
 
     <button class="agregar-empaque" type="submit">
       Insertar Tipo de Documento
@@ -137,29 +153,29 @@ CON ID -->
     <h4>{{ TituloEmpaqueEdit }}</h4>
 
     <li *ngFor="let edit of MiEmpaqueE">
-      
+
       <label for="tipoempaque">
         <span>Tipo de empaque</span>
         <input type="number" name="tipoempaque" id="tipoempaque" formControlName="TipEmpaE"  value="{{edit.Tipo_Empaque}}" ngModel="edif.Tipo_Empaque"/>
       </label>
 
       <br /><br />
-      
+
       <label for="jugueteempaque">
         <span>Juguete Empaque</span>
         <input type="number" name="jugueteempaque" id="jugueteempaque"
           formControlName="JugueteEmpE"  value="{{edit.Juguete_Empaque}}" ngModel="edif.Juguete_Empaque"/></label>
 
-      
+
       <label for="empleadoempaque">
         <span>Empleado a cargo del empaque</span>
         <input type="text" name="empleadoempaque" id="empleadoempaque" formControlName="EmpleaEmpaE" value="{{edit.Empleado_Empaque}}" ngModel="edif.Empleado_Empaque"/>
-      
+
       </label>
-      
+
     </li>
     <button (click)="ActualizarEmpaqueM()">Actualizar Empaque</button>
-  
+
   </form>
 
 </main>

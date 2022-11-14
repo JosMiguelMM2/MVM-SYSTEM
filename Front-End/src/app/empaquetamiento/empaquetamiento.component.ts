@@ -32,6 +32,9 @@ export class EmpaquetamientoComponent implements OnInit {
   TituloEmpaqueEdit = ''; //Titulo de Tipo de Empaque a Editar
   MiEmpaqueE: any = []; //Tipo de Empaque a Editar
   comboEditarEmpaque: any = []; //Combo Editar Tipo de Empaque
+  comboTipoEmpaque: any = []; //Tipo de empaque desde catalogo
+  comboJugueteEmp: any = [];
+  comboListEmploEmp: any = [];
 
   //*****************************************************************************
   //Form group
@@ -132,6 +135,36 @@ export class EmpaquetamientoComponent implements OnInit {
     );
   }
 
+  //Tipo de empaque
+  public ListTipoEmpaque() {
+    this.juguetesService.getTipCatalogoE('/'+38).subscribe((data:{})=>
+      {
+        this.comboTipoEmpaque=data;
+        console.log("por aca cargo 23 "+ this.comboTipoEmpaque.denominacion_universal)
+      },
+      error =>{ console.log(error)});
+  }
+
+  //Juguete
+  public ListaJuguetesEm() {
+    this.juguetesService.getTipJuguetess().subscribe((data: any) =>
+      {
+        this.comboJugueteEmp=JSON.parse(data);
+        console.log("por aca cargo 23 "+ this.comboTipoEmpaque.denominacion_universal)
+      },
+      error =>{ console.log(error)});
+  }
+
+  // -----------------------------------------------------------------------------------------
+  //MOSTRAR LOS EMPLEADOS DISPONIBLES
+  public consultarEmpleadosEmp() {
+    this.juguetesService.getEmpleados ().subscribe((data: any) =>
+    {
+      this.comboListEmploEmp = JSON.parse(data);
+
+    });
+  }
+
   public InsertarEmpaqueM() {
     let datosvalo1 = this.InsertarEmpaque.getRawValue()['TipEmpa'];
     let datosvalo2 = this.InsertarEmpaque.getRawValue()['JugueteEmp'];
@@ -146,7 +179,7 @@ export class EmpaquetamientoComponent implements OnInit {
         console.log(err)
       });
     this.InsertarEmpaque.reset();
-    console.log('318    ' + datosvalo1 + ' - ' + datosvalo2 + ' - ' + datosvalo3);
+    console.log('Datos de insertar empaque    ' + datosvalo1 + ' - ' + datosvalo2 + ' - ' + datosvalo3);
 
   }
 
