@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -6,9 +6,9 @@ import {
   ReactiveFormsModule,
   FormControl,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import {Router} from '@angular/router';
 
-import { JuguetesService } from '../juguetes.service';
+import {JuguetesService} from '../juguetes.service';
 
 @Component({
   selector: 'app-empaquetamiento',
@@ -54,7 +54,7 @@ export class EmpaquetamientoComponent implements OnInit {
   });
 
   //ACTUALIZAR EMPAQUE
-  ActualizarEmpaque= new FormGroup({
+  ActualizarEmpaque = new FormGroup({
     BuscarIdEmpaqueE: new FormControl(),
     TipEmpaE: new FormControl(),
     JugueteEmpE: new FormControl(),
@@ -63,7 +63,8 @@ export class EmpaquetamientoComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private juguetesService: JuguetesService,
-              Router: Router) { }
+              Router: Router) {
+  }
 
   public LimpiarLista() {
     this.controlLista = 0;
@@ -137,29 +138,30 @@ export class EmpaquetamientoComponent implements OnInit {
 
   //Tipo de empaque
   public ListTipoEmpaque() {
-    this.juguetesService.getTipCatalogoE('/'+38).subscribe((data:{})=>
-      {
-        this.comboTipoEmpaque=data;
-        console.log("por aca cargo 23 "+ this.comboTipoEmpaque.denominacion_universal)
+    this.juguetesService.getTipCatalogoE('/' + 38).subscribe((data: {}) => {
+        this.comboTipoEmpaque = data;
+        console.log("por aca cargo 23 " + this.comboTipoEmpaque.denominacion_universal)
       },
-      error =>{ console.log(error)});
+      error => {
+        console.log(error)
+      });
   }
 
   //Juguete
   public ListaJuguetesEm() {
-    this.juguetesService.getTipJuguetess().subscribe((data: any) =>
-      {
-        this.comboJugueteEmp=JSON.parse(data);
-        console.log("por aca cargo 23 "+ this.comboTipoEmpaque.denominacion_universal)
+    this.juguetesService.getTipJuguetess().subscribe((data: any) => {
+        this.comboJugueteEmp = JSON.parse(data);
+        console.log("por aca cargo 23 " + this.comboTipoEmpaque.denominacion_universal)
       },
-      error =>{ console.log(error)});
+      error => {
+        console.log(error)
+      });
   }
 
   // -----------------------------------------------------------------------------------------
   //MOSTRAR LOS EMPLEADOS DISPONIBLES
   public consultarEmpleadosEmp() {
-    this.juguetesService.getEmpleados ().subscribe((data: any) =>
-    {
+    this.juguetesService.getEmpleados().subscribe((data: any) => {
       this.comboListEmploEmp = JSON.parse(data);
 
     });
@@ -170,14 +172,14 @@ export class EmpaquetamientoComponent implements OnInit {
     let datosvalo2 = this.InsertarEmpaque.getRawValue()['JugueteEmp'];
     let datosvalo3 = this.InsertarEmpaque.getRawValue()['EmpleaEmpa'];
 
-    let cadena = { "Tipo_Empaque": datosvalo1, "Juguete_Empaque": datosvalo2, "Empleado_Empaque": datosvalo3 };
-     this.juguetesService.insertTipEmpaque(cadena).then
-      (res => {
+    let cadena = {"Tipo_Empaque": datosvalo1, "Juguete_Empaque": datosvalo2, "Empleado_Empaque": datosvalo3};
+    this.juguetesService.insertTipEmpaque(cadena).then
+    (res => {
         console.log(res)
       }
-      ).catch(err => {
-        console.log(err)
-      });
+    ).catch(err => {
+      console.log(err)
+    });
     this.InsertarEmpaque.reset();
     console.log('Datos de insertar empaque    ' + datosvalo1 + ' - ' + datosvalo2 + ' - ' + datosvalo3);
 
@@ -187,43 +189,48 @@ export class EmpaquetamientoComponent implements OnInit {
   buscarEditarEmpaque() {
     if (this.BuscarEvalor != 0) {
       this.BuscarEvalor = this.ActualizarEmpaque.getRawValue()['BuscarIdEmpaqueE'];
-      //console.error(" dos el filtro " + this.BuscarEvalor);
-    }
 
-    //console.error(" tres el filtro " + this.BuscarEvalor);
-    //console.log(" aca 33 " + this.BuscarEvalor);
-    this.juguetesService.getTipContac('/' + this.BuscarEvalor).subscribe((data: {}) => {
+    }
+    this.juguetesService.getTipEmpaque('/' + this.BuscarEvalor).subscribe((data: {}) => {
 
       this.MiEmpaqueE = data;
+      console.log(this.MiEmpaqueE)
       this.TituloEmpaqueEdit = "TIPO DE EMPAQUE A EDITAR";
-      console.log("hasta aqui va bien "+ this.BuscarEvalor);
-    }, error => { console.log(error) });
+      console.log("hasta aqui va bien " + this.BuscarEvalor);
+    }, error => {
+      console.log(error)
+    });
 
   }
 
   //ACTUALIZAR EMPAQUE
   public ActualizarEmpaqueM() {
 
-    let TipoEmpaqueEdit= this.ActualizarEmpaque.getRawValue()['TipEmpaE'];
+    let TipoEmpaqueEdit = this.ActualizarEmpaque.getRawValue()['TipEmpaE'];
     let JugueteEmpaqueEdit = this.ActualizarEmpaque.getRawValue()['JugueteEmpE'];
     let EmpleadoEmpaqueEdit = this.ActualizarEmpaque.getRawValue()['EmpleaEmpaE'];
 
-    let cadenaup = { "Id_Empaque": this.BuscarEvalor, "Tipo_Empaque": TipoEmpaqueEdit, "Juguete_Empaque": JugueteEmpaqueEdit, "Empleado_Empaque": EmpleadoEmpaqueEdit };
+    let cadenaup = {
+      "Id_Empaque": this.BuscarEvalor,
+      "Tipo_Empaque": TipoEmpaqueEdit,
+      "Juguete_Empaque": JugueteEmpaqueEdit,
+      "Empleado_Empaque": EmpleadoEmpaqueEdit
+    };
 
-
+    console.log("Datos de actualizar " + this.BuscarEvalor, ' ', TipoEmpaqueEdit, ' ', JugueteEmpaqueEdit, ' ', EmpleadoEmpaqueEdit);
     this.juguetesService.updateTipEmpaque(cadenaup).then
-      (
-        res => {
-          console.log("res  ", res)
-        }
-      ).catch(err => {
-        console.log(err)
-      });
+    (
+      res => {
+        console.log("res  ", res)
+      }
+    ).catch(err => {
+      console.log(err)
+    });
 
     this.BuscarEvalor = 0;
     this.ActualizarEmpaque.reset();
 
- }
+  }
 
   ngOnInit(): void {
 
@@ -240,7 +247,8 @@ export class EmpaquetamientoComponent implements OnInit {
       TipEmpa: [],
       JugueteEmp: [],
       EmpleaEmpa: [],
-    }); this.formBuilder.group;
+    });
+    this.formBuilder.group;
 
     //ACTUALIZAR EMPAQUE
     this.ActualizarEmpaque = this.formBuilder.group({
@@ -248,7 +256,8 @@ export class EmpaquetamientoComponent implements OnInit {
       TipEmpaE: [],
       JugueteEmpE: [],
       EmpleaEmpaE: [],
-    });this.formBuilder.group;
+    });
+    this.formBuilder.group;
 
 
   }
