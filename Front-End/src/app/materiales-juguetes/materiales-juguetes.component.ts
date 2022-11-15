@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -6,9 +6,9 @@ import {
   ReactiveFormsModule,
   FormControl,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import {Router} from '@angular/router';
 
-import { JuguetesService } from '../juguetes.service';
+import {JuguetesService} from '../juguetes.service';
 
 
 @Component({
@@ -29,6 +29,8 @@ export class MaterialesJuguetesComponent implements OnInit {
   TituloMaterialesJ = ''; //Titulo de Tipo de MaterialesJuguetes Buscado
   TabBusMaterialesJuguetes: any = []; //Encabezados tabla Tipo de MaterialesJuguetes Buscado
   comboListaMaterialesJuguetes: any = []; //Combo Buscar Tipo de MaterialesJuguetes
+  TablaJuguetes: any = [];
+  TablaMateriales: any = [];
 
   TituloMaterielesJuguetesEdit = ''; //Titulo de Tipo de MaterialesJuguetes a Editar
   MiMaterielesJueguetesE: any = []; //Tipo de MaterialesJuguetes a Editar
@@ -52,9 +54,11 @@ export class MaterialesJuguetesComponent implements OnInit {
     Cantidad: new FormControl(),
   });
 
+
   constructor(private formBuilder: FormBuilder,
-    private juguetesService: JuguetesService,
-    Router: Router) { }
+              private juguetesService: JuguetesService,
+              Router: Router) {
+  }
 
   public LimpiarLista() {
     this.controlLista = 0;
@@ -119,6 +123,18 @@ export class MaterialesJuguetesComponent implements OnInit {
     );
   }
 
+  public consultarJuguete() {
+    this.juguetesService.getTipJuguetess().subscribe((data: any) => {
+      this.TablaJuguetes= JSON.parse(data);
+    });
+  }
+
+  public consultarMaterial() {
+    this.juguetesService.getTipMateriales().subscribe((data: any) => {
+      this.TablaMateriales= JSON.parse(data);
+    });
+  }
+
   //INSERTAR NUEVO MATERIALES JUGUETES
   public InsertarMaterialesJuguetes() {
     let Id_juguetes1 = this.InsertarMateriJuguetes.getRawValue()['Id_juguetes'];
@@ -126,18 +142,23 @@ export class MaterialesJuguetesComponent implements OnInit {
     let Descripcion1 = this.InsertarMateriJuguetes.getRawValue()['Descripcion'];
     let Cantidad1 = this.InsertarMateriJuguetes.getRawValue()['Cantidad'];
 
-    let cadenaup={"Id_juguetes":Id_juguetes1,"Id_material":Id_material1,"Descripcion":Descripcion1,"cantidad":Cantidad1};
-    
+    let cadenaup = {
+      "Id_juguetes": Id_juguetes1,
+      "Id_material": Id_material1,
+      "Descripcion": Descripcion1,
+      "cantidad": Cantidad1
+    };
+
     this.juguetesService.insertTipMaterialJuguete(cadenaup).then
     (res => {
-      console.log(res)
-    }
+        console.log(res)
+      }
     ).catch(err => {
       console.log(err)
     });
 
     this.InsertarMateriJuguetes.reset();
-}
+  }
 
   ngOnInit(): void {
 
@@ -155,6 +176,7 @@ export class MaterialesJuguetesComponent implements OnInit {
       Id_material: [],
       Descripcion: [],
       Cantidad: [],
-    });this.formBuilder.group;
+    });
+    this.formBuilder.group;
   }
 }

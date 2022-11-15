@@ -1,97 +1,137 @@
 <html>
-    <!-- LISTAR MATERIALES-JUGUETES -->
-    <body class="principal">
-      <div id="header">
-        <ul class="nav"> 
-            <li><a href="/Inicio"><h1>Menú</h1></a></li>
-            <li><a href="/Contactos"><h1>Contactos</h1></a></li>
-            <li><a href="/Empleados"><h1>Empleados</h1></a></li>
-            <li><a href="/Juguetes"><h1>Juguetes</h1></a></li>
-            <li><a href="/Empaque"><h1>Empaque</h1></a></li>
-            <li><a href="/Materiales"><h1>Materiales</h1></a></li>
-            <li><a href="/Catalogo"><h1>Catalogo</h1></a></li>
-            <li><a href="/Produccion"><h1>Produccion</h1></a></li>
-        </ul>       
-    </div><br>
-    <main class="listar-materiales">
-        <h1 class="titulo1">{{title}}</h1>
-        <div class="container">
-            <h2 class="titulo2">Lista de Materiales de los Juguetes</h2>
+<!-- LISTAR MATERIALES-JUGUETES -->
+<body class="principal">
+<div id="header">
+  <ul class="nav">
+    <li><a href="/Inicio"><h1>Menú</h1></a></li>
+    <li><a href="/Contactos"><h1>Contactos</h1></a></li>
+    <li><a href="/Empleados"><h1>Empleados</h1></a></li>
+    <li><a href="/Juguetes"><h1>Juguetes</h1></a></li>
+    <li><a href="/Empaque"><h1>Empaque</h1></a></li>
+    <li><a href="/Materiales"><h1>Materiales</h1></a></li>
+    <li><a href="/Catalogo"><h1>Catalogo</h1></a></li>
+    <li><a href="/Produccion"><h1>Produccion</h1></a></li>
+  </ul>
+</div>
+<br>
+<main class="listar-materiales">
+  <h1 class="titulo1">{{title}}</h1>
+  <div class="container">
+    <h2 class="titulo2">Lista de Materiales de los Juguetes</h2>
 
-            <form (ngSubmit)="getMaterialesJuguetesM(1)" [formGroup]="ListaMaterialesJuguetes">
-                <button  class="botonMostrar" type="submit">Mostrar lista </button>
-                <button class="botonlimpiar" (click)="LimpiarLista()">Limpiar Lista</button>
+    <form (ngSubmit)="getMaterialesJuguetesM(1)" [formGroup]="ListaMaterialesJuguetes">
+      <button class="botonMostrar" type="submit">Mostrar lista</button>
+      <button class="botonlimpiar" (click)="LimpiarLista()">Limpiar Lista</button>
 
-                <h2 class="titulo2">{{TituloMaterialesJ}}</h2>
+      <h2 class="titulo2">{{TituloMaterialesJ}}</h2>
 
-                <table class="tabla-mostrarempaque">
-                    <thead>
-                        <th class="tr1">{{TablaMaterialesJuguetes[0]}}</th>
-                        <th>{{TablaMaterialesJuguetes[1]}}</th>
-                        <th>{{TablaMaterialesJuguetes[2]}}</th>
-                        <th>{{TablaMaterialesJuguetes[3]}}</th>
-                        <th>{{TablaMaterialesJuguetes[4]}}</th>
-                    </thead>
+      <table class="tabla-mostrarempaque">
+        <thead>
+        <th class="tr1">{{TablaMaterialesJuguetes[0]}}</th>
+        <th>{{TablaMaterialesJuguetes[1]}}</th>
+        <th>{{TablaMaterialesJuguetes[2]}}</th>
+        <th>{{TablaMaterialesJuguetes[3]}}</th>
+        <th>{{TablaMaterialesJuguetes[4]}}</th>
+        </thead>
 
-                    <tbody>
-                        <tr *ngFor="let MaJu of MaterialesJuguetes">
-                            <th>{{MaJu.Id_materiales_productos}}</th>
-                            <th>{{MaJu.nombre_juguete}}</th>
-                            <th>{{MaJu.Material}}</th>
-                            <th>{{MaJu.Descripcion}}</th>
-                            <th>{{MaJu.cantidad}}</th>
-                        </tr>
-                    </tbody>
-                </table>
+        <tbody>
+        <tr *ngFor="let MaJu of MaterialesJuguetes">
+          <th>{{MaJu.Id_materiales_productos}}</th>
+          <th>{{MaJu.nombre_juguete}}</th>
+          <th>{{MaJu.Material}}</th>
+          <th>{{MaJu.Descripcion}}</th>
+          <th>{{MaJu.cantidad}}</th>
+        </tr>
+        </tbody>
+      </table>
 
-            </form>
+    </form>
 
-        </div>
+  </div>
 
-    </main>
+</main>
 
-    <!-- MOSTRAR UN SOLO DATO DE MATERIALES-JUGUETES-->
-    <main class="buscar-id-MJ">
-        <h2 class="titulo-2">Mostrar el Material del Juguete seleccionado</h2>
-        <form (ngSubmit)="getEmpaqueId()" [formGroup]="filtrarIdMaterialesJuguetes">
-            <span>Id Matelial-Juguete a mostrar</span>
-            <select class="dropdown" formControlName="combofiltro" (click)="getMaterialesJuguetesM(2)">
-              <option value="value1">Id material-juguete</option>
+<!-- MOSTRAR UN SOLO DATO DE MATERIALES-JUGUETES-->
+<main class="buscar-id-MJ">
+  <h2 class="titulo-2">Mostrar el Material del Juguete seleccionado</h2>
+  <form (ngSubmit)="getEmpaqueId()" [formGroup]="filtrarIdMaterialesJuguetes">
+    <span>Id Matelial-Juguete a mostrar</span>
+    <select class="dropdown" formControlName="combofiltro" (click)="getMaterialesJuguetesM(2)">
+      <option value="value1">Id material-juguete</option>
 
-              <option *ngFor="let TipMateJugue of comboListaMaterialesJuguetes" [value]="TipMateJugue.Id_materiales_productos">
-                {{ TipMateJugue.Id_materiales_productos }} - {{ TipMateJugue.Descripcion}}
-              </option>
-            </select>
+      <option *ngFor="let TipMateJugue of comboListaMaterialesJuguetes" [value]="TipMateJugue.Id_materiales_productos">
+        {{ TipMateJugue.Id_materiales_productos }} - {{ TipMateJugue.Descripcion}}
+      </option>
+    </select>
 
-            <button type="submit">Buscar Tipo Documento</button>
-          </form>
+    <button type="submit">Buscar Tipo Documento</button>
+  </form>
 
-          <ul>
-            <h2 class="titulo2">{{TituloMaterialesJ}}</h2>
-            <table class="tabBuscar">
-                <thead class="Colb">
-                  <th class="b">{{ TabBusMaterialesJuguetes[0]}}</th>
-                  <th class="b">{{ TabBusMaterialesJuguetes[1]}}</th>
-                  <th class="b">{{TabBusMaterialesJuguetes[2]}}</th>
-                  <th class="b">{{ TabBusMaterialesJuguetes[3]}}</th>
-                  <th class="b">{{ TabBusMaterialesJuguetes[4]}}</th>
-                </thead>
+  <ul>
+    <h2 class="titulo2">{{TituloMaterialesJ}}</h2>
+    <table class="tabBuscar">
+      <thead class="Colb">
+      <th class="b">{{ TabBusMaterialesJuguetes[0]}}</th>
+      <th class="b">{{ TabBusMaterialesJuguetes[1]}}</th>
+      <th class="b">{{TabBusMaterialesJuguetes[2]}}</th>
+      <th class="b">{{ TabBusMaterialesJuguetes[3]}}</th>
+      <th class="b">{{ TabBusMaterialesJuguetes[4]}}</th>
+      </thead>
 
-                <tbody class="Filb">
-                  <tr class="b" *ngFor="let Umj of MiMaterialesJuguetes">
-                    <th>{{ Umj.Id_materiales_productos }}</th>
-                    <th>{{ Umj.nombre_juguete }}</th>
-                    <th>{{ Umj.Material }}</th>
-                    <th>{{ Umj.Descripcion }}</th>
-                    <th>{{ Umj.cantidad }}</th>
-                  </tr>
-                </tbody>
-              </table>
-        </ul>
-    </main>
+      <tbody class="Filb">
+      <tr class="b" *ngFor="let Umj of MiMaterialesJuguetes">
+        <th>{{ Umj.Id_materiales_productos }}</th>
+        <th>{{ Umj.nombre_juguete }}</th>
+        <th>{{ Umj.Material }}</th>
+        <th>{{ Umj.Descripcion }}</th>
+        <th>{{ Umj.cantidad }}</th>
+      </tr>
+      </tbody>
+    </table>
+  </ul>
+</main>
 
-    <main class="insertar-materiales-juguetes">
+<main class="insertar-materiales-juguetes">
+  <h2 class="titulo2">Crear un Nuevo Material para los Juguetes</h2>
+  <form (ngSubmit)="InsertarMaterialesJuguetes()" [formGroup]="InsertarMateriJuguetes">
 
-    </main>
-    </body>
+    <!--INSERTAR JUGUETE-->
+    <span>Juguete</span>
+    <select class="dropdown" (click)="consultarJuguete()"
+            formControlName="Id_juguetes">
+      <option value="value2">Seleccione el juguete</option>
+      <option *ngFor="let NombJugue of TablaJuguetes" [value]="NombJugue.Id_juguetes">
+        {{NombJugue.Id_juguetes}} - {{NombJugue.Nombre_juguete}}
+      </option>
+    </select>
+
+    <!--INSERTAR MATERIAL-->
+    <span>Material</span>
+    <select class="dropdown" (click)="consultarMaterial()"
+            formControlName="Id_material">
+      <option value="value2">Seleccione el material</option>
+      <option *ngFor="let NombMater of TablaMateriales" [value]="NombMater.Id_material">
+        {{NombMater.Id_material}} - {{NombMater.nombre_material}}
+      </option>
+    </select>
+
+
+    <!--DIGITAR LA DESCRIPCION-->
+    <label for="DescripcionMateriJu">
+      <span>Dato del Contacto</span>
+      <input type="text" name="DescripcionMateriJu" id="DescripcionMateriJu" formControlName="Descripcion" placeholder="Se debe agregar una descripción"/>
+    </label>
+
+    <!--DIGITAR LA CANTIDAD-->
+    <label for="CantidadMateriJu">
+      <span>Dato del Contacto</span>
+      <input type="text" name="CantidadMateriJu" id="CantidadMateriJu" formControlName="Cantidad" placeholder="Cantidad en gramos"/>
+    </label>
+
+    <button class="agregar-MaterialJuguetes" type="submit">
+      Insertar Nuevo Material de los juguetes
+    </button>
+  </form>
+</main>
+</body>
 </html>

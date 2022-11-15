@@ -151,11 +151,11 @@ ul,ol{
 }
 .nav li ul li{
   position: relative;
-  
+
 }
 .nav li ul li ul{
   right: -190px;
-  top: 0px;   
+  top: 0px;
 }
 
 .imagen-logo{
@@ -175,10 +175,19 @@ ul,ol{
 
 .principal {
   background: linear-gradient(to right, #0f2027, #44c6f1, #2c5364);
- 
+
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 
+}
+
+.agregar-contacto{
+  background-color: aqua;
+  margin: 0 auto;
+  margin-top: 6rem;
+  width: 16rem;
+  height: 4rem;
+  text-align: center;
 }
