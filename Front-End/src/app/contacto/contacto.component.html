@@ -162,8 +162,8 @@
 
 
       <span>Editar Empleado</span>
-      <select class="dropdown" formControlName="nuidemple" [(ngModel)]="edit.Persona">
-        <option   selected >{{edit.Persona}}</option>
+      <select class="dropdown-empl" formControlName="nuidemple" [(ngModel)]="edit.Persona">
+        <option selected>{{edit.Persona}}</option>
         <option *ngFor="let TipEmple of comboListEmplo" [value]="TipEmple.Id_empleados">
            {{TipEmple.Persona}}
         </option>

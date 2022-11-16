@@ -168,7 +168,7 @@ export class ContactoComponent implements OnInit {
   // -----------------------------------------------------------------------------------------
   //MOSTRAR LOS EMPLEADOS DISPONIBLES
   public consultarEmpleados() {
-    this.juguetesService.getEmpleados ().subscribe((data: any) =>
+    this.juguetesService.getEmpleados().subscribe((data: any) =>
     {
       this.comboListEmplo = JSON.parse(data);
 

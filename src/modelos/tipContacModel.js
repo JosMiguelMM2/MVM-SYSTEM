@@ -59,8 +59,8 @@ tipContacModel.getTipContacs = function(callback)
             let sql = "SELECT" +
             " ct.`Id_contactos`,"+
             " g.`tipodocu_empleados` AS 'Numero_Documento',"+
-            " CONCAT(h.nombre1_empleados, '  ',h.nombre2_empleados,"+
-            " ' ', i.apellido1_empleados, ' ', i.apellido2_empleados ) as 'Persona',"+
+            " CONCAT(h.nombre1_empleados,' ',h.nombre2_empleados,"+
+            " ' ', i.apellido1_empleados, ' ',i.apellido2_empleados ) as 'Persona',"+
             " D.`denominacion_universal` AS 'Tipo_Contacto', "+
             " ct.`Dato_contacto`   "  +     
             " FROM `am_contactos` AS ct "+
