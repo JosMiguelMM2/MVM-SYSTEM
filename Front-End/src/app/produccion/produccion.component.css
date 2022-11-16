@@ -13,84 +13,133 @@ html {
 }
 
 
-.mostrarlista {
-  margin: 0 auto;
-  margin-top: 4rem;
-  width: 60%;
+.mostrarlista  {
+  background-color: #71deb6;
+  display: block;
+  align-content: center;
   text-align: center;
-  background-color: #3691b4;
+  margin: 0 auto;
+  margin-top: 6rem;
+  width: 80%;
+  text-align: center;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+.mostrarporId{
+  background-color: #71deb6;
+  display: block;
+  align-content: center;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 6rem;
+  width: 80%;
+  text-align: center;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
 }
 
 .botonlimpiarp, .botonMostrarp {
   margin-left: 2rem;
   margin-top: 3rem;
   margin-bottom: 3rem;
-  width: 14rem;
-  height: 5rem;
+  width: 20rem;
+  height: 6rem;
   border-radius: 1rem 1rem 1rem 1rem;
   background-color: #0d6f98;
-
-
+  text-align: center;
 }
-#header2{
+th{
+  background-color: #71deb6;
+  color: white;
+  font-size: 2rem;
+  font-weight: 700;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+}
+td{
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 2rem;
+  color: black;
+}
+
+
+
+
+
+
+#header2 {
   margin: 5px 0px;
   width: 700px;
   font-family: Times, Helvetica, sans-serif;
-  text-align:center
-}
-#header{
-  margin: 65px 0px;
-  width: 1320px;
-  font-family: Times , Helvetica, sans-serif;
+  text-align: center
 }
 
-ul,ol{
+#header {
+  margin: 65px 0px;
+  width: 1320px;
+  font-family: Times, Helvetica, sans-serif;
+}
+
+ul, ol {
   list-style: none;
 }
+
 .nav li {
-  background-color:rgb(0, 12, 31);
+  background-color: rgb(0, 12, 31);
   color: white;
   text-decoration: none;
   padding: 10px 10px;
   display: block;
 }
-.nav li a{
+
+.nav li a {
   background-color: rgb(0, 162, 255);
   color: rgb(0, 0, 0);
   text-decoration: none;
   padding: 10px 15px;
   display: block;
 }
-.nav li a:hover{                        /*color al pasar el mouse*/
+
+.nav li a:hover { /*color al pasar el mouse*/
   background-color: rgba(179, 184, 245, 0.384);
 }
-.nav>li{
+
+.nav > li {
   float: left;
 }
-.nav li ul{
+
+.nav li ul {
   display: none;
   position: absolute;
   min-width: 140px;
 }
-.nav li:hover>ul{
+
+.nav li:hover > ul {
   display: block;
 }
-.nav li ul li{
+
+.nav li ul li {
   position: relative;
-  
-}
-.nav li ul li ul{
-  right: -190px;
-  top: 0px;   
+
 }
 
-.imagen-logo{
+.nav li ul li ul {
+  right: -190px;
+  top: 0px;
+}
+
+.imagen-logo {
   text-align: center;
   width: 38rem;
   margin-top: 4rem;
 }
 
-.titulo-menu{
+.titulo-menu {
   text-align: center;
   font-size: 3rem;
   font-weight: bold;
@@ -101,7 +150,7 @@ ul,ol{
 
 .principal {
   background: linear-gradient(to right, #0f2027, #44c6f1, #2c5364);
- 
+
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

@@ -170,6 +170,20 @@
       </option>
     </select>
 
+    <!--DESCRIPCION-->
+    <label for="DescripcionMateriJuE">
+      <span>Descripción</span>
+      <input type="text" name="DescripcionMateriJuE" id="DescripcionMateriJuE" formControlName="Descripcion_E"
+              [(ngModel)]="editar.Descripcion"/>
+    </label>
+
+    <!--CANTIDAD-->
+    <label for="CantidadDeMPJ">
+      <span>Cantidad</span>
+      <input type="number" name="CantidadDeMPJ" id="CantidadDeMPJ" formControlName="Cantidad_E"
+             [(ngModel)]="editar.cantidad"/>
+    </label>
+
   </li>
     <button (click)="EditarMaterialesJuguetes()">Actualizar</button>
 

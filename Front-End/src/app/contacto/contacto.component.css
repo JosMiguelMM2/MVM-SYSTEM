@@ -11,11 +11,17 @@ html {
 }
 
 .primera {
-  background-color: aqua;
+  background-color: #71deb6;
+  display: block;
+  align-content: center;
+  text-align: center;
   margin: 0 auto;
   margin-top: 6rem;
   width: 80%;
   text-align: center;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
 
 }
 
@@ -47,28 +53,46 @@ html {
 }
 
 .buscar_por_id {
-  background-color: aqua;
+  background-color: #71deb6;
+  display: block;
+  align-content: center;
+  text-align: center;
   margin: 0 auto;
-  margin-top: 4rem;
+  margin-top: 6rem;
   width: 80%;
   text-align: center;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
 
 }
 
 .crear-contacto {
-  background-color: aqua;
+  background-color: #71deb6;
+  display: block;
+  align-content: center;
+  text-align: center;
   margin: 0 auto;
-  margin-top: 4rem;
+  margin-top: 6rem;
   width: 80%;
   text-align: center;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
 }
 
 .modificar-contacto {
-  background-color: aqua;
+  background-color: #71deb6;
+  display: block;
+  align-content: center;
+  text-align: center;
   margin: 0 auto;
-  margin-top: 4rem;
+  margin-top: 6rem;
   width: 80%;
   text-align: center;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
 }
 
 span {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -6,9 +6,9 @@ import {
   ReactiveFormsModule,
   FormControl,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import {Router} from '@angular/router';
 
-import { JuguetesService } from '../juguetes.service';
+import {JuguetesService} from '../juguetes.service';
 
 @Component({
   selector: 'app-contacto',
@@ -43,7 +43,7 @@ export class ContactoComponent implements OnInit {
     combofiltro: new FormControl(),
   });
 
-  filtrarTipEmple =  new FormGroup(
+  filtrarTipEmple = new FormGroup(
     {
       combofiltro2: new FormControl()
     });
@@ -70,8 +70,8 @@ export class ContactoComponent implements OnInit {
     private formBuilder: FormBuilder,
     private juguetesService: JuguetesService,
     Router: Router
-  ) { }
-
+  ) {
+  }
 
 
   public consultarcontactos(op: any) {
@@ -168,8 +168,7 @@ export class ContactoComponent implements OnInit {
   // -----------------------------------------------------------------------------------------
   //MOSTRAR LOS EMPLEADOS DISPONIBLES
   public consultarEmpleados() {
-    this.juguetesService.getEmpleados().subscribe((data: any) =>
-    {
+    this.juguetesService.getEmpleados().subscribe((data: any) => {
       this.comboListEmplo = JSON.parse(data);
 
     });
@@ -182,30 +181,35 @@ export class ContactoComponent implements OnInit {
     let datosvalo2 = this.InsertarContacto.getRawValue()['numberidtipcontacto'];
     let datosvalo3 = this.InsertarContacto.getRawValue()['textdatocontacto'];
 
-    let cadena = { "Id_empleados": datosvalo1, "Tipo_contacto": datosvalo2, "Dato_contacto": datosvalo3 };
+    let cadena = {
+      "Id_empleados": datosvalo1,
+      "Tipo_contacto": datosvalo2,
+      "Dato_contacto": datosvalo3
+    };
 
     this.juguetesService.insertTipContac(cadena).then
-      (res => {
+    (res => {
         console.log(res)
       }
-      ).catch(err => {
-        console.log(err)
-      });
+    ).catch(err => {
+      console.log(err)
+    });
     this.InsertarContacto.reset();
-    console.log('nombre del empleado '+ datosvalo1);
-    console.log('tipo de contacto '+ datosvalo2);
-    console.log('dato de contacto '+ datosvalo3);
+    console.log('nombre del empleado ' + datosvalo1);
+    console.log('tipo de contacto ' + datosvalo2);
+    console.log('dato de contacto ' + datosvalo3);
   }
 
   // -----------------------------------------------------------------------------------------
   //Tipo Contacto
   public ListTipoContacto() {
-    this.juguetesService.getTipCatalogoE('/'+6).subscribe((data:{})=>
-      {
-        this.comboTipoConta=data;
-        console.log("por aca cargo 23 "+ this.comboTipoConta.denominacion_universal)
+    this.juguetesService.getTipCatalogoE('/' + 6).subscribe((data: {}) => {
+        this.comboTipoConta = data;
+        console.log("por aca cargo 23 " + this.comboTipoConta.denominacion_universal)
       },
-      error =>{ console.log(error)});
+      error => {
+        console.log(error)
+      });
   }
 
   //----------------------------------------------------------------------------
@@ -218,15 +222,16 @@ export class ContactoComponent implements OnInit {
     this.juguetesService.getTipContac('/' + this.BuscarEvalor).subscribe((data: {}) => {
 
       this.MiContactoE = data;
-      console.log( this.MiContactoE);
+      console.log(this.MiContactoE);
 
       this.TituloContactoEdit = "TIPO DE CONTACTO A EDITAR";
-      console.log("hasta aqui va bien "+ this.BuscarEvalor);
-    }, error => { console.log(error) });
+      console.log("hasta aqui va bien " + this.BuscarEvalor);
+    }, error => {
+      console.log(error)
+    });
 
 
   }
-
 
 
   //--------------------------------------------------------------
@@ -238,25 +243,30 @@ export class ContactoComponent implements OnInit {
     let nuevonumberidtipcontact = this.ActualizarContacto.getRawValue()['nuidtipcontac'];
     let nuevotextdatocontacto = this.ActualizarContacto.getRawValue()['nudatcontac'];
 
-    let cadenaup = { "Id_contactos": this.BuscarEvalor, "Id_empleados": nuevonumberidempleados, "Tipo_contacto": nuevonumberidtipcontact, "Dato_contacto": nuevotextdatocontacto };
+    let cadenaup = {
+      "Id_contactos": this.BuscarEvalor,
+      "Id_empleados": nuevonumberidempleados,
+      "Tipo_contacto": nuevonumberidtipcontact,
+      "Dato_contacto": nuevotextdatocontacto
+    };
     console.log("hasta aqui va bien 2 " + this.BuscarEvalor);
     console.log("hasta aqui va bien 3 " + nuevonumberidempleados);
     console.log("hasta aqui va bien 4 " + nuevonumberidtipcontact);
     console.log("hasta aqui va bien 5 " + nuevotextdatocontacto);
 
     this.juguetesService.updateTipContac(cadenaup).then
-      (
-        res => {
-          console.log("res  ", res)
-        }
-      ).catch(err => {
-        console.log(err)
-      });
+    (
+      res => {
+        console.log("res  ", res)
+      }
+    ).catch(err => {
+      console.log(err)
+    });
 
     this.BuscarEvalor = 0;
     this.ActualizarContacto.reset();
 
- }
+  }
 
   //-------------------------------------------------------
   ngOnInit(): void {
@@ -278,6 +288,7 @@ export class ContactoComponent implements OnInit {
       nuidemple: [],
       nuidtipcontac: [],
       nudatcontac: [],
-    }); this.formBuilder.group;
+    });
+    this.formBuilder.group;
   }
 }

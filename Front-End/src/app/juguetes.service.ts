@@ -274,15 +274,18 @@ export class JuguetesService {
     return this.http.get(this.Url + '/tipProJuguete' + id, httpOptions);
   }
 
+  //INSERTAR PRODUCCION
+  async insertTipProJuguete(Produccion: any): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http
+        .post(this.Url + '/tipMaterialJuguete', Produccion, httpOptions).toPromise();
+    });
+  }
+
   //mostrar informes materiales
   getTipInforme2(FechaIni: any, FechaFin: any): Observable<any> {
-    // console.log("  4555  ***** "+this.Url + "/tipContac"+id )
-    // console.log("211    ");
     console.log(this.Url + '/tipMaterial' + FechaIni + "/" + FechaFin)
     return this.http.get(this.Url + "/tipMaterial/" + FechaIni + "/" + FechaFin, httpOptions);
   }
 
-  //getInformes():Observable<any>{
-  // return this.http.get(this.Url+"/tipMaterial", httpOptions);
-  //}
 }

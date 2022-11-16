@@ -1,8 +1,8 @@
 <p>informes works!</p>
 
-<body class="principal">  
+<body class="principal">
     <div id="header">
-        <ul class="nav"> 
+        <ul class="nav">
             <li><a href="/Inicio"><h2>Menú</h2></a></li>
             <li><a href="/Contactos"><h2>Contactos</h2></a></li>
             <li><a href="/Empleados"><h2>Empleados</h2></a></li>
@@ -12,8 +12,8 @@
             <li><a href="/Catalogo"><h2>Catalogo</h2></a></li>
             <li><a href="/MaterialesJuguetes"><h2>Materiales y juguetes</h2></a></li>
             <li><a href="/Produccion"><h2>Produccion</h2></a></li>
-            
-        </ul>       
+
+        </ul>
     </div><br>
 <br>
 <div style="text-align:center" id="header2">
@@ -24,8 +24,8 @@
         <h2>Lista de Informes</h2>
         <br>
         <form (ngSubmit)="consultaMaterial(1)" [formGroup]="ListaMaterial" [formGroup]="ListaMaterial">
-            <button type="submit" style="margin-right: 30px" class="btn btn-outline-dark">Mostrar Lista de infomres</button>
-            
+            <button type="submit" style="margin-right: 30px" class="btn btn-outline-dark">Mostrar Lista de informes</button>
+
 
             <br><br>
             <h4>{{TituloMaterial}}</h4>
@@ -36,7 +36,7 @@
                 <th scope="col" class="text-cente">{{TablaInformes[2]}}</th>
                 <th scope="col" class="text-cente">{{TablaInformes[3]}}</th>
                 <th scope="col" class="text-cente">{{TablaInformes[4]}}</th>
-               </thead> 
+               </thead>
                <tbody>
                   <tr *ngFor="let inf of Informes">
                     <th scope="row" class="text-center">{{ inf.Id_material}}</th>
@@ -44,12 +44,13 @@
                     <th scope="row" class="text-center">{{ inf.Peso_gr}}</th>
                     <th scope="row" class="text-center">{{ inf.Datos_material}}</th>
                     <th scope="row" class="text-center">{{ inf.Material}}</th>
-                  </tr> 
+                  </tr>
                </tbody>
             </table>
         </form>
     </div>
     <br><br><br>
+
     <div class="buscar" id="header2">
         <h2>Informe de Materiales por periodo de tiempo:</h2>
         <br><form (ngSubmit)="InformeMateriales()" [formGroup]="informe">

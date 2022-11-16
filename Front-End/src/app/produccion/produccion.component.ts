@@ -43,6 +43,17 @@ export class ProduccionComponent implements OnInit {
     combofiltro: new FormControl(),
   });
 
+  //INSERTAR UNA NUEVA PRODUCCION
+  InsertarProduccion = new FormGroup({
+    Empleados_Produccion: new FormControl(),
+    Juguete_Producido: new FormControl(),
+    Fecha_Produccion: new FormControl(),
+    Detalle_Produccion: new FormControl(),
+    Errores_Produccion: new FormControl(),
+    Cantidad_Producida: new FormControl(),
+    Material_Utilizado: new FormControl(),
+  });
+
   constructor(private formBuilder: FormBuilder,
               private juguetesService: JuguetesService,
               Router: Router) {
@@ -71,10 +82,10 @@ export class ProduccionComponent implements OnInit {
           this.TablaProduccion[7] = 'Material utilizado';
 
 
-        }else if (op==2){
+        } else if (op == 2) {
           this.comboListaProduccion = JSON.parse(data);
-          this.MiProduccion=null;
-          this.TituloProducc='';
+          this.MiProduccion = null;
+          this.TituloProducc = '';
           this.TabBusProduccion[0] = '';
           this.TabBusProduccion[1] = '';
           this.TabBusProduccion[2] = '';
@@ -124,6 +135,36 @@ export class ProduccionComponent implements OnInit {
     );
   }
 
+  //METODO PARA INSERTAR UNA NUEVA PRODUCCION
+  public InsertarProduccionM() {
+    let V_Empleados_Produccion = this.InsertarProduccion.getRawValue()['Empleados_Produccion'];
+    let V_Juguete_Producido = this.InsertarProduccion.getRawValue()['Juguete_Producido'];
+    let V_Fecha_Produccion = this.InsertarProduccion.getRawValue()['Fecha_Produccion'];
+    let V_Detalle_Produccion = this.InsertarProduccion.getRawValue()['Detalle_Produccion'];
+    let V_Errores_Produccion = this.InsertarProduccion.getRawValue()['Errores_Produccion'];
+    let V_Cantidad_Producida = this.InsertarProduccion.getRawValue()['Cantidad_Producida'];
+    let V_Material_Utilizado = this.InsertarProduccion.getRawValue()['Material_Utilizado'];
+
+    let NuevaProduccion = {
+      "empleados_Proccion": V_Empleados_Produccion,
+      "juguetes_Produccion": V_Juguete_Producido,
+      "Fecha_produccion": V_Fecha_Produccion,
+      "Detalles_produccion": V_Detalle_Produccion,
+      "Errores_produccion": V_Errores_Produccion,
+      "Cantidad_producida": V_Cantidad_Producida,
+      "Material_Utilizado": V_Material_Utilizado
+    };
+
+    this.juguetesService.insertTipProJuguete(NuevaProduccion).then(res => {
+        console.log(res);
+
+      }
+    ).catch(err => {
+      console.log(err)
+    });
+    this.InsertarProduccion.reset()
+  }
+
   ngOnInit(): void {
     //LISTAR PRODUCCION
     this.ListaProduccion = this.formBuilder.group({});
@@ -132,7 +173,19 @@ export class ProduccionComponent implements OnInit {
     this.filtrarProduccion = this.formBuilder.group({
       combofiltro: [],
     });
+
+    //INSERTAR PRODUCCION
+    this.InsertarProduccion = this.formBuilder.group({
+      Empleados_Produccion: [],
+      Juguete_Producido: [],
+      Fecha_Produccion: [],
+      Detalle_Produccion: [],
+      Errores_Produccion: [],
+      Cantidad_Producida: [],
+      Material_Utilizado: [],
+    });
   }
 }
+
 
 
