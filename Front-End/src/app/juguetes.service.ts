@@ -255,6 +255,13 @@ export class JuguetesService {
     });
   }
 
+  //ACTUALIZAR MATERIAL JUGUETE
+  async updateTipMateralJuguete(cadena: any): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.put(this.Url + '/tipMaterialJuguete', cadena, httpOptions).toPromise();
+    });
+  }
+
   //metodo mostrar PRODUCCION
   //materiales *****************************************
   getTipProJuguetes(): Observable<any> {

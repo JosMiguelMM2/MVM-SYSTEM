@@ -57,8 +57,7 @@
   <form (ngSubmit)="getEmpaqueId()" [formGroup]="filtrarIdMaterialesJuguetes">
     <span>Id Matelial-Juguete a mostrar</span>
     <select class="dropdown" formControlName="combofiltro" (click)="getMaterialesJuguetesM(2)">
-      <option value="value1">Id material-juguete</option>
-
+      <option value="value1">Id material juguete</option>
       <option *ngFor="let TipMateJugue of comboListaMaterialesJuguetes" [value]="TipMateJugue.Id_materiales_productos">
         {{ TipMateJugue.Id_materiales_productos }} - {{ TipMateJugue.Descripcion}}
       </option>
@@ -91,6 +90,7 @@
   </ul>
 </main>
 
+<!-- INSERTAR MATERIALES-JUGUETES -->
 <main class="insertar-materiales-juguetes">
   <h2 class="titulo2">Crear un Nuevo Material para los Juguetes</h2>
   <form (ngSubmit)="InsertarMaterialesJuguetes()" [formGroup]="InsertarMateriJuguetes">
@@ -118,20 +118,67 @@
 
     <!--DIGITAR LA DESCRIPCION-->
     <label for="DescripcionMateriJu">
-      <span>Dato del Contacto</span>
-      <input type="text" name="DescripcionMateriJu" id="DescripcionMateriJu" formControlName="Descripcion" placeholder="Se debe agregar una descripción"/>
+      <span>Descripción</span>
+      <input type="text" name="DescripcionMateriJu" id="DescripcionMateriJu" formControlName="Descripcion"
+             placeholder="Se debe agregar una descripción"/>
     </label>
 
     <!--DIGITAR LA CANTIDAD-->
     <label for="CantidadMateriJu">
-      <span>Dato del Contacto</span>
-      <input type="text" name="CantidadMateriJu" id="CantidadMateriJu" formControlName="Cantidad" placeholder="Cantidad en gramos"/>
+      <span>Cantidad de material por juguetes</span>
+      <input type="text" name="CantidadMateriJu" id="CantidadMateriJu" formControlName="Cantidad"
+             placeholder="Cantidad en gramos"/>
     </label>
 
+    <!--BOTON PARA REGRESAR AL MENU-->
     <button class="agregar-MaterialJuguetes" type="submit">
       Insertar Nuevo Material de los juguetes
     </button>
   </form>
 </main>
+
+<!-- ACTUALIZAR MATERIALES-JUGUETES -->
+<main class="ActualizarMJ">
+  <h2>Editar material del juguete</h2>
+  <form (ngSubmit)="BuscarMaJuEdi()" [formGroup]="ActualizarMj" >
+    <span>Id del material juguete</span>
+    <select class="dropdown" formControlName="BuscarIdMaJu" (click)="getMaterialesJuguetesM(3)">
+      <option *ngFor="let IdMJ of comboEditarMaterielesJuguetes" [value]="IdMJ.Id_materiales_productos">
+        {{ IdMJ.Id_materiales_productos }} - {{ IdMJ.nombre_juguete }} - {{IdMJ.Material}}
+      </option>
+    </select>
+
+    <button type="submit" (click)="consultarJuguete()" (click)="consultarMaterial()" >Buscar</button>
+
+  <li *ngFor="let editar of MiMaterielesJueguetesE">
+
+    <!--NOMBRE DEL JUGUETE-->
+    <span>Nombre del Juguete</span>
+    <select class="dropdown-empl" formControlName="Id_juguetes_E" [(ngModel)]="editar.nombre_juguete">
+      <option selected>{{editar.nombre_juguete}}</option>
+      <option *ngFor="let TipEmple of TablaJuguetes" [value]="TipEmple.Id_juguetes">
+        {{TipEmple.Id_juguetes}}-{{TipEmple.Nombre_juguete}}
+      </option>
+    </select>
+
+    <!--NOMBRE DEL MATERIAL-->
+    <span>Material</span>
+    <select class="dropdown" formControlName="Id_material_E" [(ngModel)]="editar.Material" >
+      <option selected>{{editar.Material}}</option>
+      <option *ngFor="let NombMateE of TablaMateriales" [value]="NombMateE.Id_material">
+        {{NombMateE.Id_material}} - {{NombMateE.nombre_material}}
+      </option>
+    </select>
+
+  </li>
+    <button (click)="EditarMaterialesJuguetes()">Actualizar</button>
+
+  </form>
+</main>
+
+<!--boton para enviar a /Inicio-->
+<footer class="pie-de-pagina">
+  <button class="redirigue" routerLink="/Inicio">Menú inicio</button>
+</footer>
 </body>
 </html>

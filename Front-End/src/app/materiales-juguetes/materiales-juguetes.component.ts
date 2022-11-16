@@ -54,6 +54,14 @@ export class MaterialesJuguetesComponent implements OnInit {
     Cantidad: new FormControl(),
   });
 
+  //ACTUALIZAR MATERIALES JUGUETES
+  ActualizarMj = new FormGroup({
+    BuscarIdMaJu: new FormControl(),
+    Id_juguetes_E: new FormControl(),
+    Id_material_E: new FormControl(),
+    Descripcion_E: new FormControl(),
+    Cantidad_E: new FormControl(),
+  });
 
   constructor(private formBuilder: FormBuilder,
               private juguetesService: JuguetesService,
@@ -87,6 +95,9 @@ export class MaterialesJuguetesComponent implements OnInit {
           this.TabBusMaterialesJuguetes[3] = '';
           this.TabBusMaterialesJuguetes[4] = '';
 
+        }else if(op == 3){
+          this.comboEditarMaterielesJuguetes = JSON.parse(data);
+          this.MiMaterielesJueguetesE = null;
         }
       });
     } else {
@@ -125,13 +136,13 @@ export class MaterialesJuguetesComponent implements OnInit {
 
   public consultarJuguete() {
     this.juguetesService.getTipJuguetess().subscribe((data: any) => {
-      this.TablaJuguetes= JSON.parse(data);
+      this.TablaJuguetes = JSON.parse(data);
     });
   }
 
   public consultarMaterial() {
     this.juguetesService.getTipMateriales().subscribe((data: any) => {
-      this.TablaMateriales= JSON.parse(data);
+      this.TablaMateriales = JSON.parse(data);
     });
   }
 
@@ -160,6 +171,49 @@ export class MaterialesJuguetesComponent implements OnInit {
     this.InsertarMateriJuguetes.reset();
   }
 
+  //METODO PARA EDITAR MATERIALES JUGUETES
+  public BuscarMaJuEdi() {
+    if (this.BuscarEvalor != 0) {
+      this.BuscarEvalor = this.ActualizarMj.getRawValue()['BuscarIdMaJu'];
+    }
+    this.juguetesService.getTipMaterialJuguete('/' + this.BuscarEvalor).subscribe((data: {}) => {
+
+      this.MiMaterielesJueguetesE = data;
+      console.log(this.MiMaterielesJueguetesE);
+      console.log("hasta aqui va bien " + this.BuscarEvalor);
+    }, error => {
+      console.log(error)
+    });
+
+  }
+
+  //EDITAR MATERIALES JUGUETES
+  public EditarMaterialesJuguetes() {
+
+    let Id_juguetes_E_C = this.ActualizarMj.getRawValue()['Id_juguetes_E'];
+    let Id_material_E_C = this.ActualizarMj.getRawValue()['Id_material_E'];
+    let Descripcion_E_C = this.ActualizarMj.getRawValue()['Descripcion_E'];
+    let Cantidad_E_C = this.ActualizarMj.getRawValue()['Cantidad_E'];
+
+    let cadenaup = {
+      "Id_materiales_productos": this.BuscarEvalor,
+      "Id_juguetes": Id_juguetes_E_C,
+      "Id_material": Id_material_E_C,
+      "Descripcion": Descripcion_E_C,
+      "cantidad": Cantidad_E_C
+    };
+
+    this.juguetesService.updateTipMateralJuguete(cadenaup).then
+    (res => {
+        console.log(res)
+      }
+    ).catch(err => {
+      console.log(err)
+    });
+
+    this.ActualizarMj.reset();
+  }
+
   ngOnInit(): void {
 
     //LISTAR MATERIALES JUGUETES
@@ -178,5 +232,14 @@ export class MaterialesJuguetesComponent implements OnInit {
       Cantidad: [],
     });
     this.formBuilder.group;
+
+    //ACTUALIZAR MATERIALES JUGUETES
+    this.ActualizarMj = this.formBuilder.group({
+      BuscarIdMaJu: [],
+      Id_juguetes_E: [],
+      Id_material_E: [],
+      Descripcion_E: [],
+      Cantidad_E: [],
+    });
   }
 }
