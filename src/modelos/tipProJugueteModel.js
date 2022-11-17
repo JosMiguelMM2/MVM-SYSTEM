@@ -21,18 +21,16 @@ tipProJugueteModel.getTipProJuguetes = function (callback) {
         let sql = "SELECT "
             + " pj.`Id_produccion`,"
             + " CONCAT(h.nombre1_empleados, ' ',h.nombre2_empleados, ' ',"
-            + " i.apellido1_empleados,' ',i.apellido2_empleados) as 'Nombre_Encargado',"
+            + " h.apellido1_empleados,' ',h.apellido2_empleados) as 'Nombre_Encargado',"
             + " j.`Nombre_juguete` as 'nombre_juguete',"
             + " pj.`Cantidad_producida`,"
             + " pj.`Fecha_produccion`, "
             + " pj.`Detalles_produccion`,"
             + " pj.`Errores_produccion`, "
-            + " mat.nombre_material"
+            + " pj.Material_Utilizado"
             + " FROM `th_produccion_juguetes` AS pj"
             + " INNER JOIN `tb_empleados` AS h ON pj.`empleados_Produccion` = h.`Id_empleados`"
-            + " INNER JOIN `tb_empleados` AS i ON pj.`empleados_Produccion` = i.`Id_empleados`"
             + " INNER JOIN `tb_juguetes` AS j ON pj.`juguetes_Produccion` = j.`Id_juguetes`"
-            + "INNER JOIN tb_materiales AS mat  ON pj.Id_produccion=mat.Id_material"
             + " order by `Id_produccion`";
         connection.query(sql, function (error, rows) {
             if (error) {

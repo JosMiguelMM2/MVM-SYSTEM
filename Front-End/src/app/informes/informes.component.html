@@ -20,36 +20,6 @@
     <h1>Informes</h1>
 </div>
 <br><br>
-    <div class="lista" id="header2">
-        <h2>Lista de Informes</h2>
-        <br>
-        <form (ngSubmit)="consultaMaterial(1)" [formGroup]="ListaMaterial" [formGroup]="ListaMaterial">
-            <button type="submit" style="margin-right: 30px" class="btn btn-outline-dark">Mostrar Lista de informes</button>
-
-
-            <br><br>
-            <h4>{{TituloMaterial}}</h4>
-            <table class="table table-striped">
-               <thead>
-                <th scope="col" class="text-cente">{{TablaInformes[0]}}</th>
-                <th scope="col" class="text-cente">{{TablaInformes[1]}}</th>
-                <th scope="col" class="text-cente">{{TablaInformes[2]}}</th>
-                <th scope="col" class="text-cente">{{TablaInformes[3]}}</th>
-                <th scope="col" class="text-cente">{{TablaInformes[4]}}</th>
-               </thead>
-               <tbody>
-                  <tr *ngFor="let inf of Informes">
-                    <th scope="row" class="text-center">{{ inf.Id_material}}</th>
-                    <th scope="row" class="text-center">{{ inf.Fecha_produccion}}</th>
-                    <th scope="row" class="text-center">{{ inf.Peso_gr}}</th>
-                    <th scope="row" class="text-center">{{ inf.Datos_material}}</th>
-                    <th scope="row" class="text-center">{{ inf.Material}}</th>
-                  </tr>
-               </tbody>
-            </table>
-        </form>
-    </div>
-    <br><br><br>
 
     <div class="buscar" id="header2">
         <h2>Informe de Materiales por periodo de tiempo:</h2>
