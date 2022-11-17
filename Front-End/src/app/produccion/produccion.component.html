@@ -236,8 +236,8 @@
         <!--Editar Cantidad usada en producción-->
         <span>Nombre del Material</span>
         <select class="dropdown"  formControlName="Material_UtilizadoE"
-        [(ngModel)]="EditPro.nombre_material">
-          <option selected>{{EditPro.nombre_material}}</option>
+        [(ngModel)]="EditPro.Material_Utilizado">
+          <option selected>{{EditPro.Material_Utilizado}}</option>
           <option *ngFor="let TabMaEdit of TablaMaterial" [value]="TabMaEdit.Id_material">
             {{ TabMaEdit.Id_material}} - {{ TabMaEdit.nombre_material}}
           </option>

@@ -3,14 +3,15 @@
     padding: 0;
     box-sizing: border-box;
 }
-
-html {
+body{
     font-size: 62.5%;
+    width: 100vw;
+    height: 100vh;
 }
 
 .principal {
     background: linear-gradient(to right, #0f2027, #44c6f1, #2c5364);
-   
+
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -62,7 +63,7 @@ h3 {
     text-align: center;
     margin-bottom: 30px;
     margin-top: 2.5rem;
-    
+
 }
 
 a {
@@ -119,11 +120,11 @@ ul,ol{
 }
 .nav li ul li{
     position: relative;
-    
+
 }
 .nav li ul li ul{
     right: -190px;
-    top: 0px;   
+    top: 0px;
 }
 
 .imagen-logo{
