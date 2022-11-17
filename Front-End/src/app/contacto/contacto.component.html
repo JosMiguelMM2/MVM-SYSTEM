@@ -25,9 +25,9 @@
   <div class="lista">
     <h2 class="titulo2">Lista de Contactos</h2>
     <form (ngSubmit)="consultarcontactos(1)" [formGroup]="ListaContacto">
-      <button type="submit">Mostrar Lista Contactos</button>
+      <button class="MostrarContactos" type="submit">Mostrar Lista Contactos</button>
 
-      <button (click)="LimpiarLista()">Limpiar Lista de Contactos</button>
+      <button class="LimpiarContactos" (click)="LimpiarLista()">Limpiar Lista de Contactos</button>
 
       <h2>{{ TituloContacto }}</h2>
       <table class="tabla1">
@@ -63,13 +63,12 @@
     <h5 class="titulo5">Id del Tipo de Contacto a mostrar</h5>
     <select class="dropdown" formControlName="combofiltro" (click)="consultarcontactos(2)">
       <option value="value1">Tipo de Documento a buscar</option>
-
       <option *ngFor="let TipDoc of comboListaContacto" [value]="TipDoc.Id_contactos">
         {{ TipDoc.Id_contactos }} - {{ TipDoc.Persona }}
       </option>
     </select>
 
-    <button type="submit">Buscar</button>
+    <button class="BuscarPorId" type="submit">Buscar</button>
   </form>
 
   <ul>
@@ -161,7 +160,7 @@
     <li *ngFor="let edit of MiContactoE">
 
       <span>Editar Empleado</span>
-      <select class="dropdown-empl" formControlName="nuidemple" [(ngModel)]="edit.Persona">
+      <select class="dropdown" formControlName="nuidemple" [(ngModel)]="edit.Persona">
         <option selected>{{edit.Persona}}</option>
         <option *ngFor="let TipEmple of comboListEmplo" [value]="TipEmple.Id_empleados">
           {{TipEmple.Persona}}
