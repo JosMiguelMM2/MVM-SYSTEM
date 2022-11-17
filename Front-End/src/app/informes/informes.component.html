@@ -51,6 +51,7 @@
         <br><br><br>-->
 
 
+
     <div class="buscar" id="header2">
       <h2>Informe de Materiales por periodo de tiempo:</h2>
       <br>
@@ -86,7 +87,7 @@
       <br>
     </div>
 
-    <main class="InfomeCantidadPro">
+    <main class="InfomeCantidadPro" id="header2">
       <h2>Informe de cantidad producida filtrada por fecha</h2>
       <form (ngSubmit)="InformeCantidadProducidaM()" [formGroup]="InformeCantidadProducida">
 
@@ -98,7 +99,7 @@
             {{ TabJu.Id_juguetes}} - {{ TabJu.Nombre_juguete}}
           </option>
         </select>
-
+        <br><br>
         <label for="FechaInicial">
           <span>Fecha Inicial del Informe</span>
           <input type="date" id="FechaInicial" name="FechaInicial" formControlName="DateFechaI2">

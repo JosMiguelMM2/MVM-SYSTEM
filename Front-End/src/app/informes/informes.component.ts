@@ -21,9 +21,14 @@ export class InformesComponent implements OnInit {
   TabBusInforme: any = [];
   TabBusInforme2: any = [];
 
-  Informes: any = [];
-  TituloInformes = "";
-  TablaInformes: any = [];
+ 
+  Informep: any=[];
+  TituloInformep= "";
+  TabBusInformep: any=[];
+
+  Informes: any=[];
+  TituloInformes= "";
+  TablaInformes: any=[];
 
   Equipo: any = [];
   TituloEquipo = "";
@@ -39,6 +44,14 @@ export class InformesComponent implements OnInit {
     DateFechaF: new FormControl()
   });
   listainformes = new FormGroup({});
+
+  informeP= new FormGroup({
+    textEquipoP: new FormControl(),
+    DateFechaIP: new FormControl(),
+    DateFechaFP: new FormControl()
+  });
+  
+  
   ListaMaterial = new FormGroup(
     {});
 
@@ -49,6 +62,10 @@ export class InformesComponent implements OnInit {
   });
 
 
+
+  ListaJuguetes = new FormGroup( 
+    { 
+    } );
   constructor(
     private formBuilder: FormBuilder,
     private servi: JuguetesService,
@@ -108,6 +125,8 @@ export class InformesComponent implements OnInit {
       });
   }
 
+// -----------------------------------------------------------------------------------------
+
   ngOnInit(): void {
     this.ListaMaterial = this.formBuilder.group(
       {});
@@ -117,7 +136,11 @@ export class InformesComponent implements OnInit {
       DateFechaI2: [],
       DateFechaF2: []
     });
+      
+      
   }
+  
+
 }
 
 

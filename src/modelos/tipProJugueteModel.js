@@ -20,8 +20,10 @@ tipProJugueteModel.getTipProJuguetes = function (callback) {
         */
         let sql = "SELECT "
             + " pj.`Id_produccion`,"
+            + " pj.`juguetes_Produccion`,"
             + " CONCAT(h.nombre1_empleados, ' ',h.nombre2_empleados, ' ',"
             + " h.apellido1_empleados,' ',h.apellido2_empleados) as 'Nombre_Encargado',"
+            + " pj.`juguetes_Produccion` AS 'ID_juguete',"
             + " j.`Nombre_juguete` as 'nombre_juguete',"
             + " pj.`Cantidad_producida`,"
             + " pj.`Fecha_produccion`, "
