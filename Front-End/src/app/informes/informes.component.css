@@ -1,29 +1,42 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.informes{
+  font-size: 62.5%;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(to right, #0f2027, #44c6f1, #2c5364);
+}
+
 div.lista /*---*/
 {
     position: relative;
     left: 0px;
-    border: 3px  solid rgb(248, 77, 205); 
+    border: 3px  solid rgb(248, 77, 205);
     width: 580px;
     background-color:rgb(243, 238, 174);
     text-align: center
-    
+
 }
 
-div.buscar  /*---*/
-{
-    position: relative;
-    left: 0px;
-    border: 3px  solid rgb(73, 110, 70); 
-    width: 580px;
-    background-color:rgb(159, 216, 154);
-    text-align: center
+.buscar {
+  position: relative;
+  left: 0px;
+  border: 3px  solid rgb(248, 77, 205);
+  width: 580px;
+  background-color:rgb(243, 238, 174);
+  text-align: center;
+  justify-content: center;
 }
 
 div.crea
 {
     position: relative;
     left: 0px;
-    border: 3px  solid rgb(182, 91, 194); 
+    border: 3px  solid rgb(182, 91, 194);
     width: 580px;
     background-color:rgb(198, 158, 224);
     text-align: center
@@ -33,7 +46,7 @@ div.infoVeh
 {
     position: relative;
     left: 0px;
-    border: 3px  solid rgb(182, 91, 194); 
+    border: 3px  solid rgb(182, 91, 194);
     width: 580px;
     background-color:rgb(24, 90, 57);
     text-align: center
@@ -43,22 +56,22 @@ div.edit
 {
     position: relative;
     left: 0px;
-    border: 3px  solid rgb(0, 4, 255); 
+    border: 3px  solid rgb(0, 4, 255);
     width: 580px;
     background-color:rgb(153, 151, 245);
     text-align: center
 }
 
-li  
-{   
-    list-style: none; 
+li
+{
+    list-style: none;
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 ul
 {
-    list-style: none; 
+    list-style: none;
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -66,7 +79,7 @@ ul
 
 .titlista
 {
-    
+
     width: -50px;
     text-align: center;
 }
@@ -83,7 +96,7 @@ table
     border-collapse: collapse;
 }
 
-th, td 
+th, td
 {
     border: solid 1px black;
     padding: 0;
@@ -104,8 +117,8 @@ table.tabBuscar  /*---*/
 {
     width: 100%;
     border: none;
-    border-collapse: collapse; 
-    background-color:rgb(255, 237, 180);  
+    border-collapse: collapse;
+    background-color:rgb(255, 237, 180);
     text-align: center;
 
 }
@@ -116,7 +129,7 @@ thead.Colb
     border: none;
 
     font-family: "calibri", Garamond, 'Comic Sans';
-    font-weight: bold;    
+    font-weight: bold;
     font-size: 18px
 }
 
@@ -130,7 +143,7 @@ tbody.Filb
     font-size: 14px;
 }
 
-th.b, tr.b 
+th.b, tr.b
 {
     border: none;
 }
@@ -179,11 +192,11 @@ ul,ol{
 }
 .nav li ul li{
     position: relative;
-    
+
 }
 .nav li ul li ul{
     right: -190px;
-    top: 0px;   
+    top: 0px;
 }
 
 .imagen-logo{
@@ -203,7 +216,7 @@ ul,ol{
 
 .principal {
     background: linear-gradient(to right, #0f2027, #44c6f1, #2c5364);
-   
+
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
