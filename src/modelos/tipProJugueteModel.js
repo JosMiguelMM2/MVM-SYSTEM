@@ -21,18 +21,16 @@ tipProJugueteModel.getTipProJuguetes = function (callback) {
         let sql = "SELECT "
             + " pj.`Id_produccion`,"
             + " CONCAT(h.nombre1_empleados, ' ',h.nombre2_empleados, ' ',"
-            + " i.apellido1_empleados,' ',i.apellido2_empleados) as 'Nombre_Encargado',"
+            + " h.apellido1_empleados,' ',h.apellido2_empleados) as 'Nombre_Encargado',"
             + " j.`Nombre_juguete` as 'nombre_juguete',"
             + " pj.`Cantidad_producida`,"
             + " pj.`Fecha_produccion`, "
             + " pj.`Detalles_produccion`,"
             + " pj.`Errores_produccion`, "
-            + " mat.nombre_material"
+            + " pj.Material_Utilizado"
             + " FROM `th_produccion_juguetes` AS pj"
             + " INNER JOIN `tb_empleados` AS h ON pj.`empleados_Produccion` = h.`Id_empleados`"
-            + " INNER JOIN `tb_empleados` AS i ON pj.`empleados_Produccion` = i.`Id_empleados`"
             + " INNER JOIN `tb_juguetes` AS j ON pj.`juguetes_Produccion` = j.`Id_juguetes`"
-            + "INNER JOIN tb_materiales AS mat  ON pj.Id_produccion=mat.Id_material"
             + " order by `Id_produccion`";
         connection.query(sql, function (error, rows) {
             if (error) {
@@ -68,19 +66,17 @@ tipProJugueteModel.getTipProJuguetei = function (id, callback) {
 
         let sql = "SELECT "
             + " pj.`Id_produccion`,"
-            + " CONCAT(h.nombre1_empleados,' ',"
-            + " i.apellido1_empleados) as 'Nombre_Encargado',"
+            + " CONCAT(h.nombre1_empleados, ' ',h.nombre2_empleados, ' ',"
+            + " h.apellido1_empleados,' ',h.apellido2_empleados) as 'Nombre_Encargado',"
             + " j.`Nombre_juguete` as 'nombre_juguete',"
             + " pj.`Cantidad_producida`,"
             + " pj.`Fecha_produccion`, "
             + " pj.`Detalles_produccion`,"
             + " pj.`Errores_produccion`, "
-            + " mat.`nombre_material`"
+            + " pj.Material_Utilizado"
             + " FROM `th_produccion_juguetes` AS pj"
             + " INNER JOIN `tb_empleados` AS h ON pj.`empleados_Produccion` = h.`Id_empleados`"
-            + " INNER JOIN `tb_empleados` AS i ON pj.`empleados_Produccion` = i.`Id_empleados`"
             + " INNER JOIN `tb_juguetes` AS j ON pj.`juguetes_Produccion` = j.`Id_juguetes`"
-            + " INNER JOIN tb_materiales AS mat  ON pj.Id_produccion=mat.Id_material"
             + " WHERE Id_produccion = "
             + connection.escape(id) + ";";
         // console.log id
@@ -102,13 +98,13 @@ tipProJugueteModel.getTipProJuguetei = function (id, callback) {
 
 // obtener Informe por fechas cantidad de juguetes producidos
 
-tipProJugueteModel.getTipProJuguete = function (Finicio, Ffinal, id, callback) {
+tipProJugueteModel.getTipProJuguete = function (id,Finicio, Ffinal, callback) {
     console.log("aca 258 " + Finicio + " - " + Ffinal + "- " + id);
     if (connection) {
 
         let sql = " SELECT e.Id_produccion,"
             + " e.Fecha_produccion AS 'Fecha',"
-            + " e.`juguetes_Produccion` AS 'ID juguete',"
+            + " e.`juguetes_Produccion` AS 'ID_juguete',"
             + " CONCAT ( a.denominacion_universal ,' ',"
             + "       `Nombre_juguete`,' ',"
             + "       c.denominacion_universal ) AS 'Juguete' ,"
@@ -117,8 +113,8 @@ tipProJugueteModel.getTipProJuguete = function (Finicio, Ffinal, id, callback) {
             + "       g.apellido2_empleados, ' ',"
             + "       h.apellido2_empleados ) AS 'Persona',"
             + "  e.Errores_produccion AS 'Errores', "
-            + "  e.Cantidad_producida AS 'Total Creados',"
-            + " ( e.Cantidad_producida - e.Errores_produccion ) AS 'Total Servibles' "
+            + "  e.Cantidad_producida AS 'Total_Creados',"
+            + " ( e.Cantidad_producida - e.Errores_produccion ) AS 'Total_Servibles' "
             + " FROM `th_produccion_juguetes` AS e"
             + " INNER JOIN `tb_juguetes` AS d ON e.`juguetes_Produccion`= d.`Id_juguetes`"
             + " INNER JOIN `ct_catalogo_universal` AS a ON a.Id_catalogo_universal = d.tipo_producto "
@@ -136,9 +132,9 @@ tipProJugueteModel.getTipProJuguete = function (Finicio, Ffinal, id, callback) {
             if (error) {
                 throw error;
             } else {
-                //callback(null, row);
+                callback(null, row);
                 //comvierte las filas Json a una cadena de texto para Angular
-                callback(null, JSON.stringify(rows));
+                //callback(null, JSON.stringify(rows));
             }
         });
     }

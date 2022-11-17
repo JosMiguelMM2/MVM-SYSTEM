@@ -36,9 +36,9 @@
 
   <form (ngSubmit)="consultaEmpleados(1)" [formGroup]="ListaEmpleados" [formGroup]="ListaEmpleados">
 
-    <button type="submit" style="margin-right: 30px" class="btn btn-outline-dark"><h4>Mostrar Lista de Tipos de
+    <button type="submit" style="margin-right: 30px" class="btn btn-outline-dark"><h4>Mostrar Lista de
       Empleado</h4></button>
-    <button (click)="LimpiarLista()" class="btn btn-outline-dark"><h4>Linpiar Lista de Tipos de Empleado</h4></button>
+    <button (click)="LimpiarLista()" class="btn btn-outline-dark"><h4>Linpiar Lista de Empleado</h4></button>
 
     <br><br>
 
@@ -97,7 +97,6 @@
   </form>
 
   <ul>
-    <h2>{{TituloEmpleado}}</h2>
 
     <table id="header2" class="tabBuscar">
       <thead class="Colb" id="header2">
@@ -118,7 +117,7 @@
         <th class="b">{{tEmpleado.Numero_Documento}}  </th>
         <th class="b">{{tEmpleado.Persona}}  </th>
         <th class="b">{{tEmpleado.Codigo_Empresa}}  </th>
-        <th class="b">{{tEmpleado.Cargo_Empleado}}  </th>
+        <th class="b">{{tEmpleado.Cargo}}  </th>
       </tr>
       </tbody>
 

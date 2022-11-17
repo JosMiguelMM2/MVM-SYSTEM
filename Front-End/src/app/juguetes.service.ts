@@ -294,4 +294,8 @@ export class JuguetesService {
     return this.http.get(this.Url + "/tipMaterial/" + FechaIni + "/" + FechaFin, httpOptions);
   }
 
+  //MOSTRAR INFORME CANTIDAD PRODUCCIDA
+  getTipProJuguete(id: any, FechaInicio:any,FechaFinal:any): Observable<any> {
+    return this.http.get(this.Url + '/tipProJuguete' +"/"+ id +"/"+FechaInicio+"/"+FechaFinal, httpOptions);
+  }
 }

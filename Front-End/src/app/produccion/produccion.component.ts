@@ -139,6 +139,7 @@ export class ProduccionComponent implements OnInit {
         console.log('313    ' + filtovalor);
 
         this.MiProduccion = data;
+        console.log(this.MiProduccion)
         this.TituloProducc = 'Buscar Empaque por Id';
         this.TabBusProduccion[0] = 'Id Producción';
         this.TabBusProduccion[1] = 'Empleados por producción';
