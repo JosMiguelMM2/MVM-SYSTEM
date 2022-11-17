@@ -19,6 +19,10 @@ export class InformesComponent implements OnInit {
   TituloInforme= "";
   TabBusInforme: any=[];
 
+  Informep: any=[];
+  TituloInformep= "";
+  TabBusInformep: any=[];
+
   Informes: any=[];
   TituloInformes= "";
   TablaInformes: any=[];
@@ -33,6 +37,13 @@ export class InformesComponent implements OnInit {
     DateFechaI: new FormControl(),
     DateFechaF: new FormControl()
   });
+
+  informeP= new FormGroup({
+    textEquipoP: new FormControl(),
+    DateFechaIP: new FormControl(),
+    DateFechaFP: new FormControl()
+  });
+  
   listainformes= new FormGroup({
 
   });
@@ -40,64 +51,16 @@ export class InformesComponent implements OnInit {
     {
 
   } );
+  ListaJuguetes = new FormGroup( 
+    { 
+    } );
   constructor(
     private formBuilder: FormBuilder,
     private servi: JuguetesService,
     Router: Router
   ){}
 // -----------------------------------------------------------------------------------------
-public consultaMaterial(op:any)
-{
-//console.error(" El listado 1 " );
-if(this.controlLista == 1)
-{
-    console.log("component")
-    this.servi.getTipMateriales().subscribe((data: any) => {
-      //console.error(" El listado 2 " );
-      if (op == 1)
-      {
-          //let dat = data;
 
-          this.TipMaterial = JSON.parse(data);
-          this.TituloMaterial = "LISTA DE Juguetes";
-          this.tablaMaterial[0] = "indicador";
-          this.tablaMaterial[1] = "Nombre Material";
-          this.tablaMaterial[2] = "Clase Material";
-          this.tablaMaterial[3] = "Color";
-          this.tablaMaterial[4] = "Cantidad Peso gr";
-
-          //console.error(" El listado 3 " + this.TipDocs);
-      }
-      },
-      error => { console.error(error + " ") });
-  }
-  else
-  {
-    this.TipMaterial = null;
-    this.TituloMaterial = "";
-    this.tablaMaterial[0] = "";
-    this.tablaMaterial[1] = "";
-    this.tablaMaterial[2] = "";
-    this.tablaMaterial[3] = "";
-    this.tablaMaterial[4] = "";
-
-    this.controlLista = 1;
-  }
-
-  }
-// Consulta un tipo de documento por medio de su id.
-
-public consultainformes(){
-  this.servi.getTipMateriales().subscribe((data:{})=>{
-    this.Informes=data;
-    this.TituloInformes="LISTA DE INFORMES DE MATERIALES";
-    this.TablaInformes[0]="indicador";
-    this.TablaInformes[1]=" Fecha";
-    this.TablaInformes[2]="Peso gr ";
-    this.TablaInformes[3]="Detalle";
-    this.TablaInformes[4]="Material";
-  },error =>{console.log(error)});
-}
 InformeMateriales()
 {
 //console.log("318    " + filtovalor );
@@ -118,12 +81,17 @@ InformeMateriales()
   },
   error =>{console.log(error)});
 }
+
+
+
+
   ngOnInit(): void {
     this.ListaMaterial = this.formBuilder.group(
       {
 
       });
+      
   }
-
+  
 
 }

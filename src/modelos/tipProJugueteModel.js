@@ -20,8 +20,10 @@ tipProJugueteModel.getTipProJuguetes = function (callback) {
         */
         let sql = "SELECT "
             + " pj.`Id_produccion`,"
+            + " pj.`juguetes_Produccion`,"
             + " CONCAT(h.nombre1_empleados, ' ',h.nombre2_empleados, ' ',"
             + " h.apellido1_empleados,' ',h.apellido2_empleados) as 'Nombre_Encargado',"
+            + " pj.`juguetes_Produccion` AS 'ID_juguete',"
             + " j.`Nombre_juguete` as 'nombre_juguete',"
             + " pj.`Cantidad_producida`,"
             + " pj.`Fecha_produccion`, "
@@ -106,7 +108,7 @@ tipProJugueteModel.getTipProJuguete = function (Finicio, Ffinal, id, callback) {
 
         let sql = " SELECT e.Id_produccion,"
             + " e.Fecha_produccion AS 'Fecha',"
-            + " e.`juguetes_Produccion` AS 'ID juguete',"
+            + " e.`juguetes_Produccion` AS 'ID_juguete',"
             + " CONCAT ( a.denominacion_universal ,' ',"
             + "       `Nombre_juguete`,' ',"
             + "       c.denominacion_universal ) AS 'Juguete' ,"
@@ -115,8 +117,8 @@ tipProJugueteModel.getTipProJuguete = function (Finicio, Ffinal, id, callback) {
             + "       g.apellido2_empleados, ' ',"
             + "       h.apellido2_empleados ) AS 'Persona',"
             + "  e.Errores_produccion AS 'Errores', "
-            + "  e.Cantidad_producida AS 'Total Creados',"
-            + " ( e.Cantidad_producida - e.Errores_produccion ) AS 'Total Servibles' "
+            + "  e.Cantidad_producida AS 'Total_Creados',"
+            + " ( e.Cantidad_producida - e.Errores_produccion ) AS 'Total_Servibles' "
             + " FROM `th_produccion_juguetes` AS e"
             + " INNER JOIN `tb_juguetes` AS d ON e.`juguetes_Produccion`= d.`Id_juguetes`"
             + " INNER JOIN `ct_catalogo_universal` AS a ON a.Id_catalogo_universal = d.tipo_producto "
@@ -134,9 +136,9 @@ tipProJugueteModel.getTipProJuguete = function (Finicio, Ffinal, id, callback) {
             if (error) {
                 throw error;
             } else {
-                //callback(null, row);
+                callback(null, row);
                 //comvierte las filas Json a una cadena de texto para Angular
-                callback(null, JSON.stringify(rows));
+                //callback(null, JSON.stringify(rows));
             }
         });
     }

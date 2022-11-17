@@ -293,5 +293,9 @@ export class JuguetesService {
     console.log(this.Url + '/tipMaterial' + FechaIni + "/" + FechaFin)
     return this.http.get(this.Url + "/tipMaterial/" + FechaIni + "/" + FechaFin, httpOptions);
   }
+  //mostrar informe POR ID produccion
+  getInformeProduID(FechaIni:any,FechaFin:any,id:any): Observable <any>{
+    return this.http.get(this.Url+"/tipProJuguete/"+FechaIni+"/"+FechaFin+"/"+id, httpOptions);
+}
 
 }
