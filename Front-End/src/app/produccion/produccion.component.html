@@ -1,59 +1,63 @@
-<html>
-<main class="principal">
-  <div id="header">
-    <ul class="nav">
-      <li><a href="/Inicio"><h2>Menú</h2></a></li>
-      <li><a href="/Contactos"><h2>Contactos</h2></a></li>
-      <li><a href="/Empleados"><h2>Empleados</h2></a></li>
-      <li><a href="/Juguetes"><h2>Juguetes</h2></a></li>
-      <li><a href="/Empaque"><h2>Empaque</h2></a></li>
-      <li><a href="/Materiales"><h2>Materiales</h2></a></li>
-      <li><a href="/Catalogo"><h2>Catalogo</h2></a></li>
-      <li><a href="/MaterialesJuguetes"><h2>Materiales y juguetes</h2></a></li>
+<main class="EntidadProduccion">
+  <main class="principal">
+    <div id="header">
+      <ul class="nav">
+        <li><a href="/Inicio"><h2>Menú</h2></a></li>
+        <li><a href="/Contactos"><h2>Contactos</h2></a></li>
+        <li><a href="/Empleados"><h2>Empleados</h2></a></li>
+        <li><a href="/Juguetes"><h2>Juguetes</h2></a></li>
+        <li><a href="/Empaque"><h2>Empaque</h2></a></li>
+        <li><a href="/Materiales"><h2>Materiales</h2></a></li>
+        <li><a href="/Catalogo"><h2>Catalogo</h2></a></li>
+        <li><a href="/MaterialesJuguetes"><h2>Materiales y juguetes</h2></a></li>
 
-      <li><a href="/Informe"><h2>Informes</h2></a></li>
-    </ul>
-  </div>
-  <br>
-  <main class="mostrarlista">
-
-    <h1 class="titulo1">{{ title }}</h1>
-
-    <div class="contenedor">
-      <form (ngSubmit)="getProduccion(1)" [formGroup]="ListaProduccion">
-        <button class="botonMostrarp" type="submit">Mostrar lista de Producción</button>
-        <button class="botonlimpiarp" (click)="LimpiarLista()">Limpiar Lista</button>
-
-        <h2 class="titulo2">{{TituloProduccion}}</h2>
-
-        <table class="tabla-mostrarproduccion">
-          <thead>
-          <th>{{TablaProduccion[0]}}</th>
-          <th>{{TablaProduccion[1]}}</th>
-          <th>{{TablaProduccion[2]}}</th>
-          <th>{{TablaProduccion[3]}}</th>
-          <th>{{TablaProduccion[4]}}</th>
-          <th>{{TablaProduccion[5]}}</th>
-          <th>{{TablaProduccion[6]}}</th>
-          <th>{{TablaProduccion[7]}}</th>
-          </thead>
-
-          <tbody>
-          <tr *ngFor="let pro of Produccion">
-            <td>{{pro.Id_produccion}}</td>
-            <td>{{pro.Nombre_Encargado}}</td>
-            <td>{{pro.nombre_juguete}}</td>
-            <td>{{pro.Fecha_produccion}}</td>
-            <td>{{pro.Detalles_produccion}}</td>
-            <td>{{pro.Errores_produccion}}</td>
-            <td>{{pro.Cantidad_producida}}</td>
-            <td>{{pro.nombre_material}}</td>
-          </tbody>
-
-        </table>
-
-      </form>
+        <li><a href="/Informe"><h2>Informes</h2></a></li>
+      </ul>
     </div>
+    <br>
+
+
+    <!--INICIAN LOS METODOS-MOSTRAR LISTA DE PRODUCCION-->
+    <main class="mostrarlista">
+
+      <h1 class="titulo1">{{ title }}</h1>
+
+      <div class="contenedor">
+        <form (ngSubmit)="getProduccion(1)" [formGroup]="ListaProduccion">
+          <button class="botonMostrarp" type="submit">Mostrar lista de Producción</button>
+          <button class="botonlimpiarp" (click)="LimpiarLista()">Limpiar Lista</button>
+
+          <h2 class="titulo2">{{TituloProduccion}}</h2>
+
+          <table class="tabla-mostrarproduccion">
+            <thead>
+            <th>{{TablaProduccion[0]}}</th>
+            <th>{{TablaProduccion[1]}}</th>
+            <th>{{TablaProduccion[2]}}</th>
+            <th>{{TablaProduccion[3]}}</th>
+            <th>{{TablaProduccion[4]}}</th>
+            <th>{{TablaProduccion[5]}}</th>
+            <th>{{TablaProduccion[6]}}</th>
+            <th>{{TablaProduccion[7]}}</th>
+            </thead>
+
+            <tbody>
+            <tr *ngFor="let pro of Produccion">
+              <td>{{pro.Id_produccion}}</td>
+              <td>{{pro.Nombre_Encargado}}</td>
+              <td>{{pro.nombre_juguete}}</td>
+              <td>{{pro.Fecha_produccion}}</td>
+              <td>{{pro.Detalles_produccion}}</td>
+              <td>{{pro.Errores_produccion}}</td>
+              <td>{{pro.Cantidad_producida}}</td>
+              <td>{{pro.nombre_material}}</td>
+            </tbody>
+
+          </table>
+
+        </form>
+      </div>
+    </main>
   </main>
 
 
@@ -102,5 +106,146 @@
     </ul>
 
   </main>
+
+  <!-- INSERTAR Produccion-->
+  <main class="InsertarProduccion">
+    <h2 class="titulo2">Registrar una nueva producción</h2>
+    <form (ngSubmit)="InsertarProduccionM()" [formGroup]="InsertarProduccion">
+
+      <!--Empleado-->
+      <span>Empleado a cargo</span>
+      <select class="dropdown" (click)="consultarEmpleados()" formControlName="Empleados_Produccion">
+        <option value="value1">ID de Empleado</option>
+        <option *ngFor="let TipPro of comboListEmplo" [value]="TipPro.Id_empleados">
+          {{ TipPro.Id_empleados }} - {{ TipPro.Persona}}
+        </option>
+      </select>
+
+      <!--Juguetes-->
+      <span>Nombre de Juguetes Producidos</span>
+      <select class="dropdown" (click)="consultarJuguete()" formControlName="Juguete_Producido">
+        <option value="value1">Nombre del Juguete</option>
+        <option *ngFor="let TabJu of TablaJuguetes" [value]="TabJu.Id_juguetes">
+          {{ TabJu.Id_juguetes }} - {{ TabJu.Nombre_juguete}}
+        </option>
+      </select>
+
+      <!--Fecha-->
+      <label for="Fecha_Produccion">
+        <span>Fecha de producción</span>
+        <input type="date" id="Fecha_Produccion" name="Fecha_Produccion" formControlName="Fecha_Produccion">
+      </label>
+
+      <!--Detalles de Produccion-->
+      <label for="Detalles_Produccion">
+        <span>Detalles de Producción</span>
+        <input type="text" id="Detalles_Produccion" name="Detalles_Produccion" formControlName="Detalle_Produccion">
+      </label>
+
+      <!--Errores de Produccion-->
+      <label for="Errores_Produccion">
+        <span>Errores de Producción</span>
+        <input type="number" id="Errores_Produccion" name="Errores_Produccion" formControlName="Errores_Produccion">
+      </label>
+
+      <!--Cantidad de Produccion-->
+      <label for="CantidadDeProduccion">
+        <span>Cantidad Producida</span>
+        <input type="number" id="CantidadDeProduccion" name="CantidadDeProduccion" formControlName="Cantidad_Producida">
+      </label>
+
+      <!--Material usada en producción-->
+      <span>Nombre del Material</span>
+      <select class="dropdown" (click)="consultarMaterial()" formControlName="Material_Utilizado">
+        <option value="value1">Nombre del Juguete</option>
+        <option *ngFor="let TabMa of TablaMaterial" [value]="TabMa.Id_material">
+          {{ TabMa.Id_material}} - {{ TabMa.nombre_material}}
+        </option>
+      </select>
+
+      <button class="agregar-produccion" type="submit">
+        Insertar Nueva Producción
+      </button>
+    </form>
+  </main>
+
+  <!--//ACTUALIZAR PRODUCCION-->
+  <main class="EditarProduccion">
+    <h2>Editar producción</h2>
+    <form (ngSubmit)="BuscarEditarProduccion()" [formGroup]="ActualizarProduccion">
+
+      <!--BUSCAR ID PRODUCCION PARA EDITAR-->
+      <span>Id de la producción a mostrar</span>
+      <select class="dropdown" formControlName="BuscarIdProduccionE" (click)="getProduccion(3)">
+        <option value="value1">ID de dato de Producción</option>
+        <option *ngFor="let IdProEd of comboEditarProduccion" [value]="IdProEd.Id_produccion">
+          {{ IdProEd.Id_produccion }} - {{ IdProEd.Fecha_produccion}}
+        </option>
+      </select>
+
+      <button type="submit" (click)="consultarEmpleados()" (click)="consultarJuguete()" (click)="consultarMaterial()">Buscar</button>
+      <h4 class="titulo4"></h4>
+      <li *ngFor="let EditPro of MiProduccionE">
+
+        <!--Editar Empleado-->
+        <span>Empleado a cargo</span>
+        <select class="dropdown" formControlName="Empleados_ProduccionE" [(ngModel)]="EditPro.Nombre_Encargado">
+          <option selected>{{EditPro.Nombre_Encargado}}</option>
+          <option *ngFor="let TipPro of comboListEmplo" [value]="TipPro.Id_empleados">
+            {{ TipPro.Id_empleados }} - {{ TipPro.Persona}}
+          </option>
+        </select>
+
+        <!--JUGUETES EDITAR-->
+        <span>Nombre de Juguetes Producidos</span>
+        <select class="dropdown" formControlName="Juguete_ProducidoE" [(ngModel)]="EditPro.nombre_juguete">
+          <option selected>{{EditPro.nombre_juguete}}</option>
+          <option *ngFor="let TabMaEd of TablaJuguetes" [value]="TabMaEd.Id_juguetes">
+            {{ TabMaEd.Id_juguetes }} - {{ TabMaEd.Nombre_juguete}}
+          </option>
+        </select>
+
+        <!--EDITAR Fecha-->
+        <label for="Fecha_ProduccionEdi">
+          <span>Fecha de producción</span>
+          <input type="text" id="Fecha_ProduccionEdi" name="Fecha_ProduccionEdi" formControlName="Fecha_ProduccionE"
+                 [(ngModel)]="EditPro.Fecha_produccion">
+        </label>
+
+        <!--EDITAR Detalles de Produccion-->
+        <label for="Edit_Detalles_Produccion">
+          <span>Detalles de Producción</span>
+          <input type="text" id="Edit_Detalles_Produccion" name="Edit_Detalles_Produccion" formControlName="Detalle_ProduccionE"
+          [(ngModel)]="EditPro.Detalles_produccion">
+        </label>
+
+        <!--EDITAR Errores de Produccion-->
+        <label for="Edit_Errores_Produccion">
+          <span>Errores de Producción</span>
+          <input type="number" id="Edit_Errores_Produccion" name="Edit_Errores_Produccion" formControlName="Errores_ProduccionE"
+          [(ngModel)]="EditPro.Errores_produccion">
+        </label>
+
+        <!--Editar Cantidad de Produccion-->
+        <label for="Editar_CantidadDeProduccion">
+          <span>Cantidad Producida</span>
+          <input type="number" id="Editar_CantidadDeProduccion" name="Editar_CantidadDeProduccion"
+                 formControlName="Cantidad_ProducidaE" [(ngModel)]="EditPro.Cantidad_producida">
+        </label>
+
+        <!--Editar Cantidad usada en producción-->
+        <span>Nombre del Material</span>
+        <select class="dropdown"  formControlName="Material_UtilizadoE"
+        [(ngModel)]="EditPro.nombre_material">
+          <option selected>{{EditPro.nombre_material}}</option>
+          <option *ngFor="let TabMaEdit of TablaMaterial" [value]="TabMaEdit.Id_material">
+            {{ TabMaEdit.Id_material}} - {{ TabMaEdit.nombre_material}}
+          </option>
+        </select>
+
+      </li>
+      <button (click)="ActualizarProduccionM()">Actualizar</button>
+    </form>
+  </main>
 </main>
-</html>
+

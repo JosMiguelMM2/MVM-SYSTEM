@@ -32,7 +32,9 @@ export class ProduccionComponent implements OnInit {
   TituloProduccionEdit = ''; //Titulo de Tipo de Empaque a Editar
   MiProduccionE: any = []; //Tipo de Empaque a Editar
   comboEditarProduccion: any = []; //Combo Editar Tipo de Empaque
-
+  comboListEmplo: any = [];
+  TablaJuguetes: any = [];
+  TablaMaterial: any = [];
   //*****************************************************************************
   //Form group
   //MOSTRAR PRODUCCION
@@ -54,6 +56,19 @@ export class ProduccionComponent implements OnInit {
     Material_Utilizado: new FormControl(),
   });
 
+  //EDITAR PRODUCCION
+  ActualizarProduccion = new FormGroup({
+    BuscarIdProduccionE: new FormControl(),
+    Empleados_ProduccionE: new FormControl(),
+    Juguete_ProducidoE: new FormControl(),
+    Fecha_ProduccionE: new FormControl(),
+    Detalle_ProduccionE: new FormControl(),
+    Errores_ProduccionE: new FormControl(),
+    Cantidad_ProducidaE: new FormControl(),
+    Material_UtilizadoE: new FormControl(),
+
+  });
+
   constructor(private formBuilder: FormBuilder,
               private juguetesService: JuguetesService,
               Router: Router) {
@@ -72,7 +87,7 @@ export class ProduccionComponent implements OnInit {
 
           this.Produccion = JSON.parse(data);
           this.TituloProduccion = 'Lista de Producción';
-          this.TablaProduccion[0] = 'Id Empaque';
+          this.TablaProduccion[0] = 'Id Producción';
           this.TablaProduccion[1] = 'Empleados por producción';
           this.TablaProduccion[2] = 'Juguete Producido';
           this.TablaProduccion[3] = 'Fecha de Producción';
@@ -94,6 +109,11 @@ export class ProduccionComponent implements OnInit {
           this.TabBusProduccion[5] = '';
           this.TabBusProduccion[6] = '';
           this.TabBusProduccion[7] = '';
+
+        } else if (op == 3) {
+          this.comboEditarProduccion = JSON.parse(data);
+          this.MiProduccionE = null;
+          this.TituloProduccionEdit = '';
         }
       })
     } else {
@@ -120,7 +140,7 @@ export class ProduccionComponent implements OnInit {
 
         this.MiProduccion = data;
         this.TituloProducc = 'Buscar Empaque por Id';
-        this.TabBusProduccion[0] = 'Id Empaque';
+        this.TabBusProduccion[0] = 'Id Producción';
         this.TabBusProduccion[1] = 'Empleados por producción';
         this.TabBusProduccion[2] = 'Juguete Producido';
         this.TabBusProduccion[3] = 'Fecha de Producción';
@@ -135,6 +155,29 @@ export class ProduccionComponent implements OnInit {
     );
   }
 
+  //MOSTRAR LOS EMPLEADOS DISPONIBLES
+  public consultarEmpleados() {
+    this.juguetesService.getEmpleados().subscribe((data: any) => {
+      this.comboListEmplo = JSON.parse(data);
+
+    });
+  }
+
+  //NOMBRE DEL JUGUETE
+  public consultarJuguete() {
+    this.juguetesService.getTipJuguetess().subscribe((data: any) => {
+      this.TablaJuguetes = JSON.parse(data);
+    });
+  }
+
+  //MATERIAL UTILIZADO
+  public consultarMaterial() {
+    this.juguetesService.getTipMateriales().subscribe((data: any) => {
+      this.TablaMaterial= JSON.parse(data);
+    });
+  }
+
+
   //METODO PARA INSERTAR UNA NUEVA PRODUCCION
   public InsertarProduccionM() {
     let V_Empleados_Produccion = this.InsertarProduccion.getRawValue()['Empleados_Produccion'];
@@ -144,9 +187,8 @@ export class ProduccionComponent implements OnInit {
     let V_Errores_Produccion = this.InsertarProduccion.getRawValue()['Errores_Produccion'];
     let V_Cantidad_Producida = this.InsertarProduccion.getRawValue()['Cantidad_Producida'];
     let V_Material_Utilizado = this.InsertarProduccion.getRawValue()['Material_Utilizado'];
-
     let NuevaProduccion = {
-      "empleados_Proccion": V_Empleados_Produccion,
+      "empleados_Produccion": V_Empleados_Produccion,
       "juguetes_Produccion": V_Juguete_Producido,
       "Fecha_produccion": V_Fecha_Produccion,
       "Detalles_produccion": V_Detalle_Produccion,
@@ -163,6 +205,56 @@ export class ProduccionComponent implements OnInit {
       console.log(err)
     });
     this.InsertarProduccion.reset()
+  }
+
+  //METODO PARA ACTUALIZAR UNA PRODUCCION
+  public BuscarEditarProduccion() {
+    if (this.BuscarEvalor != 0) {
+      this.BuscarEvalor = this.ActualizarProduccion.getRawValue()['BuscarIdProduccionE'];
+    }
+    console.log('BuscarEvalor ' + this.BuscarEvalor);
+    this.juguetesService.getTipProJuguetei('/' + this.BuscarEvalor).subscribe(
+      (data: {}) => {
+        this.MiProduccionE = data;
+        console.log(this.MiProduccionE);
+        this.TituloProduccionEdit = 'Buscar Producción por Id';
+
+      }, (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  public ActualizarProduccionM() {
+    let E_Empleados_Produccion = this.ActualizarProduccion.getRawValue()['Empleados_ProduccionE'];
+    let E_Juguete_Producido = this.ActualizarProduccion.getRawValue()['Juguete_ProducidoE'];
+    let E_Fecha_Produccion = this.ActualizarProduccion.getRawValue()['Fecha_ProduccionE'];
+    let E_Detalle_Produccion = this.ActualizarProduccion.getRawValue()['Detalle_ProduccionE'];
+    let E_Errores_Produccion = this.ActualizarProduccion.getRawValue()['Errores_ProduccionE'];
+    let E_Cantidad_Producida = this.ActualizarProduccion.getRawValue()['Cantidad_ProducidaE'];
+    let E_Material_Utilizado = this.ActualizarProduccion.getRawValue()['Material_UtilizadoE'];
+
+    let CadenaActualizacion = {
+      "Id_produccion": this.BuscarEvalor,
+      "empleados_Produccion": E_Empleados_Produccion,
+      "juguetes_Produccion": E_Juguete_Producido,
+      "Fecha_produccion": E_Fecha_Produccion,
+      "Detalles_produccion": E_Detalle_Produccion,
+      "Errores_produccion": E_Errores_Produccion,
+      "Cantidad_producida": E_Cantidad_Producida,
+      "Material_Utilizado": E_Material_Utilizado,
+    };
+
+    this.juguetesService.updateTipProJuguete(CadenaActualizacion).then
+    (res => {
+        console.log("res  ", res)
+      }
+    ).catch(err => {
+      console.log(err)
+    });
+
+    this.BuscarEvalor = 0;
+    this.ActualizarProduccion.reset();
   }
 
   ngOnInit(): void {
@@ -184,8 +276,21 @@ export class ProduccionComponent implements OnInit {
       Cantidad_Producida: [],
       Material_Utilizado: [],
     });
+
+    //ACTUALIZAR PRODUCCION
+    this.ActualizarProduccion = this.formBuilder.group({
+      BuscarIdProduccionE: [],
+      Empleados_ProduccionE: [],
+      Juguete_ProducidoE: [],
+      Fecha_ProduccionE: [],
+      Detalle_ProduccionE: [],
+      Errores_ProduccionE: [],
+      Cantidad_ProducidaE: [],
+      Material_UtilizadoE: [],
+    });
   }
 }
+
 
 
 

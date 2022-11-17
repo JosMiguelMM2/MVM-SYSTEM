@@ -17,7 +17,8 @@
     <li><a href="/Produccion"><h2>Produccion</h2></a></li>
     <li><a href="/Informe"><h2>Informes</h2></a></li>
   </ul>
-</div><br>
+</div>
+<br>
 <main class="primera">
   <h1 class="titulo1">{{ title }}</h1>
 
@@ -109,7 +110,7 @@
     <span>Empleado</span>
     <select class="dropdown" formControlName="combofiltro2" (click)="consultarEmpleados()"
             formControlName="numberidempleados">
-      <option value="value2" >Seleccione tipo de Documento</option>
+      <option value="value2">Empleados</option>
       <option *ngFor="let TipEmple of comboListEmplo" [value]="TipEmple.Id_empleados">
         {{TipEmple.Id_empleados}} - {{TipEmple.Persona}}
       </option>
@@ -143,13 +144,12 @@
   <h2>Editar contacto</h2>
 
   <form (ngSubmit)="buscarEditarContacto()" [formGroup]="ActualizarContacto">
+
     <span>Id del contacto editar:</span>
     <select class="dropdown" formControlName="BuscarIdContactoE" (click)="consultarcontactos(3)">
       <option value="value1">Contacto a editar</option>
       <option *ngFor="let conte of comboEditarContacto" [value]="conte.Id_contactos">
-        {{ conte.Id_contactos }} - {{ conte.Persona }} - {{
-        conte.Dato_contacto
-        }}
+        {{ conte.Id_contactos }} - {{ conte.Persona }} - {{conte.Dato_contacto}}
       </option>
     </select>
 
@@ -160,12 +160,11 @@
 
     <li *ngFor="let edit of MiContactoE">
 
-
       <span>Editar Empleado</span>
       <select class="dropdown-empl" formControlName="nuidemple" [(ngModel)]="edit.Persona">
         <option selected>{{edit.Persona}}</option>
         <option *ngFor="let TipEmple of comboListEmplo" [value]="TipEmple.Id_empleados">
-           {{TipEmple.Persona}}
+          {{TipEmple.Persona}}
         </option>
       </select>
 
@@ -185,7 +184,7 @@
       <label for="datocontacto">
         <span>Dato del Contacto</span>
         <input type="text" name="datocontacto" id="datocontacto" formControlName="nudatcontac"
-                [(ngModel)]="edit.Dato_contacto"/>
+               [(ngModel)]="edit.Dato_contacto"/>
 
       </label>
 
@@ -193,12 +192,5 @@
     <button (click)="ActualizarTipContacto()">Actualizar Contacto</button>
   </form>
 </div>
-
-
-<!--boton para enviar a /Inicio-->
-<footer class="pie-de-pagina">
-  <button class="redirigue" routerLink="/Inicio">Menú inicio</button>
-</footer>
-
 </body>
 </html>

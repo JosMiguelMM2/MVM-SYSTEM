@@ -263,7 +263,6 @@ export class JuguetesService {
   }
 
   //metodo mostrar PRODUCCION
-  //materiales *****************************************
   getTipProJuguetes(): Observable<any> {
     return this.http.get(this.Url + '/tipProJuguete', httpOptions);
   }
@@ -278,7 +277,14 @@ export class JuguetesService {
   async insertTipProJuguete(Produccion: any): Promise<any> {
     return new Promise((resolve, reject) => {
       this.http
-        .post(this.Url + '/tipMaterialJuguete', Produccion, httpOptions).toPromise();
+        .post(this.Url + '/tipProJuguete', Produccion, httpOptions).toPromise();
+    });
+  }
+
+  //ACTUALIZAR PRODUCCION
+  async updateTipProJuguete(CadenaActualizacionP: any): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.put(this.Url + '/tipProJuguete', CadenaActualizacionP, httpOptions).toPromise();
     });
   }
 

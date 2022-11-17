@@ -108,9 +108,6 @@ export class ContactoComponent implements OnInit {
             this.comboEditarContacto = JSON.parse(data);
             this.MiContactoE = null;
             this.TituloContactoEdit = '';
-            // this.ActualizarATipDoc.removeControl("textnuevotipdoc");
-            // this.ActualizarATipDoc.removeControl("textnuevoinicialestipdoc");
-            console.error(' El listado 5 ');
           }
         },
         (error) => {
@@ -147,11 +144,6 @@ export class ContactoComponent implements OnInit {
         console.log('313    ' + filtovalor);
 
         this.MiContacto = data;
-
-        // console.log("la data es " + data);
-        // console.log("MiTipDoc es " + this.MiTipDoc);
-        //console.log("MiTipDoc es " + this.MiTipDoc[0].id_tip_doc + " - " + this.MiTipDoc[0].tipo_documento + " - " + this.MiTipDoc[0].iniciales_tip_doc);
-
         this.TituloContact = 'Buscar Contactos';
         this.TabBusContacto[0] = 'Id Contacto';
         this.TabBusContacto[1] = 'Numero Documento';
@@ -249,11 +241,6 @@ export class ContactoComponent implements OnInit {
       "Tipo_contacto": nuevonumberidtipcontact,
       "Dato_contacto": nuevotextdatocontacto
     };
-    console.log("hasta aqui va bien 2 " + this.BuscarEvalor);
-    console.log("hasta aqui va bien 3 " + nuevonumberidempleados);
-    console.log("hasta aqui va bien 4 " + nuevonumberidtipcontact);
-    console.log("hasta aqui va bien 5 " + nuevotextdatocontacto);
-
     this.juguetesService.updateTipContac(cadenaup).then
     (
       res => {

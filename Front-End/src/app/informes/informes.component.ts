@@ -11,7 +11,7 @@ import { JuguetesService } from '../juguetes.service'
 export class InformesComponent implements OnInit {
   TipMaterial: any =[];               //Lista de Tipos de Empleado
   TituloMaterial: any=[];          //Titulo Lista de Tipos de Empleado
-  tablaMaterial: any=[]; 
+  tablaMaterial: any=[];
 
   title="MANEJO DE INFORME";
   controlLista=1;
@@ -23,7 +23,7 @@ export class InformesComponent implements OnInit {
   TituloInformes= "";
   TablaInformes: any=[];
 
-  Equipo: any=[]; 
+  Equipo: any=[];
   TituloEquipo="";
   TabBusEquipo: any=[];
   comboListarEquipo: any=[];
@@ -36,9 +36,9 @@ export class InformesComponent implements OnInit {
   listainformes= new FormGroup({
 
   });
-  ListaMaterial = new FormGroup( 
-    { 
-  
+  ListaMaterial = new FormGroup(
+    {
+
   } );
   constructor(
     private formBuilder: FormBuilder,
@@ -57,7 +57,7 @@ if(this.controlLista == 1)
       if (op == 1)
       {
           //let dat = data;
-       
+
           this.TipMaterial = JSON.parse(data);
           this.TituloMaterial = "LISTA DE Juguetes";
           this.tablaMaterial[0] = "indicador";
@@ -77,13 +77,13 @@ if(this.controlLista == 1)
     this.TituloMaterial = "";
     this.tablaMaterial[0] = "";
     this.tablaMaterial[1] = "";
-    this.tablaMaterial[2] = ""; 
+    this.tablaMaterial[2] = "";
     this.tablaMaterial[3] = "";
     this.tablaMaterial[4] = "";
-      
-    this.controlLista = 1; 
+
+    this.controlLista = 1;
   }
-  
+
   }
 // Consulta un tipo de documento por medio de su id.
 
@@ -98,12 +98,13 @@ public consultainformes(){
     this.TablaInformes[4]="Material";
   },error =>{console.log(error)});
 }
-InformeMateriales() 
+InformeMateriales()
 {
 //console.log("318    " + filtovalor );
   //var equipo=this.informe.getRawValue()['textEquipo'];
   var fechaini=this.informe.getRawValue()['DateFechaI'];
   var fechafin=this.informe.getRawValue()['DateFechaF'];
+  console.log("fecha inicio" + fechaini );
 
   this.servi.getTipInforme2(fechaini,fechafin).subscribe((data:{})=>{
     this.Informe= data;
@@ -114,7 +115,7 @@ InformeMateriales()
     this.TabBusInforme[3]="Detalle";
     this.TabBusInforme[4]="Material";
     console.log(data);
-  }, 
+  },
   error =>{console.log(error)});
 }
   ngOnInit(): void {
