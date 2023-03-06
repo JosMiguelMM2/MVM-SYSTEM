@@ -3,7 +3,7 @@
 ## Bienvenidos 
 MVM es un proyecto desarrollado como proyecto de universidad, este se crea un pagina de software con el uso de las siguientes herramientas:
 
-##Base de datos: 
+## Base de datos: 
 MySQL, para hacer uso de ella hay un modelo con algunos archivos pregrabados que puedes modificar en la carpeta 
 >/Otros en los archivos bdjugetes o ‘bdjugetesa’
 
