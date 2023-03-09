@@ -16,6 +16,10 @@ Si se tiene instalado nodemon se escribe en la terminal:
 
 > nodemon app.js
 
+####  Nodemon:
+Si se quiere usar la libreria para node de nodemon, se coloca en la terminal:
+> npm install -g nodemon
+
 Para que ello funcione la terminal debe estar en la dirección de la carpeta con el comando 
 
 > pwd 
