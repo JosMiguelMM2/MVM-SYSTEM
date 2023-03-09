@@ -12,6 +12,10 @@ Se uso el entorno de ejecución node en su versión 16.17.0, las demás versione
 
 > node app.js 
 
+Si se tiene instalado nodemon se escribe en la terminal:
+
+> nodemon app.js
+
 Para que ello funcione la terminal debe estar en la dirección de la carpeta con el comando 
 
 > pwd 
