@@ -41,3 +41,6 @@ La información correspondiente se sustituye dependiendo del uso del equipo.
       "password": "",
       "database": "bdjugetesa"
     }
+    
+ ####Instrucciones del fronted se encuentran en la carpeta:
+> /Frot-End
